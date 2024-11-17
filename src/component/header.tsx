@@ -7,7 +7,9 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center; /* 使標題在主軸上居中 */
-  position: relative;
+  position: sticky;
+  top: 0;
+  box-shadow: 0px 8px 16px 4px #0000000a, 0px 4px 8px 0px #0000001a;
 `;
 
 const Title = styled.div`
@@ -16,6 +18,7 @@ const Title = styled.div`
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.title2};
   img {
+    width: 20.57px;
     padding-right: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
