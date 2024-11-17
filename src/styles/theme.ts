@@ -19,9 +19,13 @@ const colors = {
   gray800: "#353434",
   gray900: "#212121",
 };
+const fontSize = {
+  title2: "22px",
+};
 
 const theme = {
   colors,
+  fontSize,
 };
 
 export default theme;
