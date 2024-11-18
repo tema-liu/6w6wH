@@ -2,6 +2,7 @@ const colors = {
   light: "#FFFFFF",
   dark: "#000000",
   primary: "#ED008C",
+  warning: "#FFF401",
   container1: "#FF6063",
   container2: "#FF983E",
   container3: "#3EDF77",
@@ -21,6 +22,7 @@ const colors = {
 };
 const fontSize = {
   title2: "22px",
+  body: "17px",
 };
 
 const theme = {

@@ -2,9 +2,6 @@ import styled from "styled-components";
 import cubes from "../assets/cubes.png";
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 16px 8px 0 8px;
   background-color: ${({ theme }) => theme.colors.gray300}; /* 設定底色 */
   background-image: url(${cubes}); /* 替換為你的圖片路徑 */
