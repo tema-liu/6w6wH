@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import theme from "./styles/theme.ts";
 import GlobalStyle from "./GlobalStyle.tsx";
 import { ThemeProvider } from "styled-components";
-import StoreDetail from "./StoreDetail/StoreDetail.tsx";
+import StoreDetail from "./storeDetail/StoreDetail.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
