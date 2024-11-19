@@ -20,7 +20,7 @@ const TagsBar = styled.div`
 
   h3 + h3 {
     padding-left: 6px;
-    border-left: 1px solid ${({ theme }) => theme.colors.gray600};
+    border-left: 1px solid ${({ theme }) => theme.colors.gray400};
   }
 `;
 
