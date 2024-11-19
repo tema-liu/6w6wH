@@ -5,31 +5,18 @@ import rightBtn from "../assets/Vector.png";
 import navigateIcon from "../assets/logo_done.png";
 import voiceIcon from "../assets/Voice.png";
 import CollectIcon from "../component/CollectIcon";
+import { TagsBar, Tag } from "../component/TagsBar";
 import {
   ImageSection,
   NavigateBtn,
   StoreImg,
   BtnContainer,
   CarouselBtn,
+  PlaceDetailHeader,
+  PlaceName,
+  VoiceIcon,
 } from "./styled";
 import styled from "styled-components";
-
-const PlaceDetailHeader = styled.div`
-  padding: 8px;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray100};
-`;
-const PlaceName = styled.div`
-  display: flex;
-  align-items: center;
-  font-family: mix;
-`;
-
-const VoiceIcon = styled.img`
-  width: 18px;
-  height: 17.5px;
-  margin: 0 11px;
-`;
 
 function StoreDetail() {
   return (
@@ -51,13 +38,20 @@ function StoreDetail() {
           </ImageSection>
           <NavigateBtn>
             <img src={navigateIcon} alt="navigateIcon" />
-            Navigate
+            <h2>Navigate</h2>
           </NavigateBtn>
           <PlaceDetailHeader>
             <PlaceName>
               <h1> Left Bank Rendezvous Cafe 南國人文美食坊</h1>
               <VoiceIcon src={voiceIcon} alt="voice" />
             </PlaceName>
+            <TagsBar>
+              <Tag>Multilingual (12)</Tag>
+              <Tag>Multilingual (12)</Tag>
+              <Tag>Multilingual (12)</Tag>
+              <Tag>Multilingual (12)</Tag>
+              <Tag>Multilingual (12)</Tag>
+            </TagsBar>
           </PlaceDetailHeader>
         </Container>
       </Wrapper>

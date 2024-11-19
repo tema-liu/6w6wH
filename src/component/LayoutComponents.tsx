@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 const Container = styled.div`
   padding: 16px 8px 0 8px;
   width: 100%;
-  max-width: 768px;
   flex-grow: 1;
   background-color: transparent;
 `;

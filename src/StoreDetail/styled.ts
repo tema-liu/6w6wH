@@ -31,6 +31,8 @@ export const CarouselBtn = styled.button`
 `;
 
 export const NavigateBtn = styled.button`
+  display: flex;
+  flex-wrap: nowrap;
   position: absolute;
   margin-left: -14px;
   margin-top: -56px;
@@ -52,4 +54,24 @@ export const NavigateBtn = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.dark};
   }
+`;
+export const PlaceDetailHeader = styled.div`
+  padding: 8px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.gray100};
+`;
+export const PlaceName = styled.div`
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
+  h1 {
+    font-family: "mix";
+  }
+`;
+
+export const VoiceIcon = styled.img`
+  width: 18px;
+  height: 17.5px;
+  margin: 0 11px;
 `;
