@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 interface CollectIconProps {
+  $right?: number;
+}
+interface ComponentProps {
   right?: number;
 }
 
 const Icon = styled.div<CollectIconProps>`
   position: absolute;
   top: 0;
-  right: ${(props) => props.right}px;
+  right: ${(props) => props.$right}px;
   display: inline-block;
   background-color: ${({ theme }) => theme.colors.warning};
   opacity: 0.75;
@@ -38,9 +41,9 @@ const Icon = styled.div<CollectIconProps>`
   }
 `;
 
-const CollectIcon = ({ right }: CollectIconProps) => {
+const CollectIcon = ({ right }: ComponentProps) => {
   return (
-    <Icon right={right}>
+    <Icon $right={right}>
       <div className="ribbon"></div>
     </Icon>
   );
