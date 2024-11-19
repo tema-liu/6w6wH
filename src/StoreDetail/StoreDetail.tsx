@@ -3,6 +3,7 @@ import { Wrapper, Container } from "../component/LayoutComponents";
 import leftBtn from "../assets/Frame.png";
 import rightBtn from "../assets/Vector.png";
 import navigateIcon from "../assets/logo_done.png";
+import voiceIcon from "../assets/Voice.png";
 import CollectIcon from "../component/CollectIcon";
 import {
   ImageSection,
@@ -11,12 +12,30 @@ import {
   BtnContainer,
   CarouselBtn,
 } from "./styled";
+import styled from "styled-components";
+
+const PlaceDetailHeader = styled.div`
+  padding: 8px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.gray100};
+`;
+const PlaceName = styled.div`
+  display: flex;
+  align-items: center;
+  font-family: mix;
+`;
+
+const VoiceIcon = styled.img`
+  width: 18px;
+  height: 17.5px;
+  margin: 0 11px;
+`;
 
 function StoreDetail() {
   return (
     <>
-      <Header title={"Store Detail"} />
       <Wrapper>
+        <Header title={"Store Detail"} />
         <Container>
           <ImageSection>
             <CollectIcon right={32} />
@@ -34,6 +53,12 @@ function StoreDetail() {
             <img src={navigateIcon} alt="navigateIcon" />
             Navigate
           </NavigateBtn>
+          <PlaceDetailHeader>
+            <PlaceName>
+              <h1> Left Bank Rendezvous Cafe 南國人文美食坊</h1>
+              <VoiceIcon src={voiceIcon} alt="voice" />
+            </PlaceName>
+          </PlaceDetailHeader>
         </Container>
       </Wrapper>
     </>
