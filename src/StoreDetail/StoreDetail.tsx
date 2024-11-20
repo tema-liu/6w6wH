@@ -3,7 +3,6 @@ import { Wrapper, Container } from "../component/LayoutComponents";
 import leftBtn from "../assets/Frame.png";
 import rightBtn from "../assets/Vector.png";
 import navigateIcon from "../assets/logo_done.png";
-
 import voiceIcon from "../assets/Voice.png";
 import CollectIcon from "../component/CollectIcon";
 import shareIcon from "../assets/share.png";

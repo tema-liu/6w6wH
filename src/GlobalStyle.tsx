@@ -64,8 +64,7 @@ h6{
 @font-face {
     font-family: "mix";
     src: url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format('woff2');
-    unicode-range:U+0041-005A, U+0061-007A;  /* 英文字母 unicode 區間 */
-    font-weight: 700;
+    /* unicode-range:U+0041-005A, U+0061-007A;  英文字母 unicode 區間 */
   }
 
  
