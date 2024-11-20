@@ -25,14 +25,24 @@ import { ReviewBtn } from "../component/ReviewBtn";
 const ReviewSection = styled.div`
   display: flex;
   align-items: center;
-  overflow: auto;
-  scrollbar-width: none;
+  /* overflow: auto;
+  scrollbar-width: none; */
   padding: 16px 0 62px 0;
 `;
 
 const ShareIcon = styled.img`
   width: 18px;
   height: 20px;
+`;
+const StarContent = styled.div`
+  display: flex;
+  justify-content: center;
+  flex: auto;
+  border-left: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
+  /* @media (max-width: 380px) {
+    padding: 10px 0px;
+  } */
 `;
 
 function StoreDetail() {
@@ -71,19 +81,14 @@ function StoreDetail() {
             </TagsBar>
             <ReviewSection>
               <ReviewBtn marginRight={16} content={"Review"}></ReviewBtn>
-              <div
-                style={{
-                  padding: "10px 35px",
-                  borderLeft: "1px solid #D4D4D4",
-                  borderRight: "1px solid #D4D4D4",
-                }}
-              >
-                <StarRating star={3} />
-              </div>
+              <StarContent>
+                <StarRating star={5} />
+              </StarContent>
               <div
                 style={{
                   width: "100%",
                   display: "flex",
+                  flex: "0",
                   padding: "0 11px 0 24px",
                 }}
               >
