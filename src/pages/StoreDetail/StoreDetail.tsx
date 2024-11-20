@@ -2,6 +2,7 @@ import Header from "../../component/header";
 import { Wrapper, Container } from "../../component/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
+  Icon,
   ImageSection,
   NavigateBtn,
   StoreImg,
@@ -13,8 +14,10 @@ import {
   ReviewSection,
   ShareIcon,
   StarContent,
+  SuggestBtn,
+  ContentSwitcher,
+  PlaceDetailMain,
 } from "./styled";
-import styled from "styled-components";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/ReviewBtn";
 import {
@@ -28,20 +31,9 @@ import navigateIcon from "../../assets/logo_done.png";
 import voiceIcon from "../../assets/Voice.png";
 import CollectIcon from "../../component/CollectIcon";
 import shareIcon from "../../assets/share.png";
+import penIcon from "../../assets/pen.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
-const PlaceDetailMain = styled.div`
-  margin-top: -38px;
-  margin-bottom: 16px;
-  border-radius: 32px;
-  box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a;
-`;
-
-const ContentSwitcher = styled.div`
-  padding: 0 16px;
-  border-radius: 0 0 32px 32px;
-  background-color: ${({ theme }) => theme.colors.light};
-`;
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -126,9 +118,21 @@ function StoreDetail() {
               </SegmentedControlInner>
             </form>
             <ContentSwitcher>
-              {selectedOption === "Detail" && <StoreInfo />}
+              {selectedOption === "Detail" && (
+                <>
+                  <StoreInfo />
+                </>
+              )}
             </ContentSwitcher>
           </PlaceDetailMain>
+          {selectedOption === "Detail" && (
+            <>
+              <SuggestBtn>
+                <Icon src={penIcon} alt="penIcon" />
+                Suggest an edit
+              </SuggestBtn>
+            </>
+          )}
         </Container>
       </Wrapper>
     </>

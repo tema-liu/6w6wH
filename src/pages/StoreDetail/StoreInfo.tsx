@@ -5,8 +5,9 @@ import callIcon from "../../assets/call.png";
 import language from "../../assets/language.png";
 import todayIcon from "../../assets/today.png";
 import scheduleIcon from "../../assets/schedule.png";
-
+import voiceIcon from "../../assets/Voice.png";
 import styled from "styled-components";
+import { Icon } from "./styled";
 
 const Store = styled.div`
   display: flex;
@@ -14,11 +15,6 @@ const Store = styled.div`
   }
   color: ${({ theme }) => theme.colors.gray900};
   padding: 12px 0;
-`;
-const StoreInfoIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
 `;
 
 const BusinessHours = styled.div`
@@ -31,33 +27,45 @@ function StoreInfo() {
   return (
     <>
       <Store>
-        <StoreInfoIcon src={trainIcon} alt="train" />
+        <Icon src={trainIcon} alt="train" />
         <h2>336m from Kaohsiung Railway Station</h2>
       </Store>
       <Store>
-        <StoreInfoIcon src={markerIcon} alt="train" />
+        <Icon src={markerIcon} alt="train" />
         <h2>高雄市新興區河南一路118號一樓</h2>
+        <img
+          width={"18px"}
+          height={"17.5px"}
+          style={{
+            marginBottom: "auto",
+            marginTop: "auto",
+            marginLeft: "auto",
+            marginRight: "4px",
+          }}
+          src={voiceIcon}
+          alt="train"
+        />
       </Store>
       <Store>
-        <StoreInfoIcon src={moneyIcon} alt="train" />
+        <Icon src={moneyIcon} alt="train" />
         <h2>NTD200~400 / Rp1500～3000</h2>
       </Store>
       <Store>
-        <StoreInfoIcon src={callIcon} alt="train" />
+        <Icon src={callIcon} alt="train" />
         <h2>0983387594</h2>
       </Store>
       <Store>
-        <StoreInfoIcon src={language} alt="train" />
+        <Icon src={language} alt="train" />
         <a href="#">Website</a>
       </Store>
       <Store>
-        <StoreInfoIcon src={todayIcon} alt="train" />
+        <Icon src={todayIcon} alt="train" />
         <h2>
           <a href="#">Book</a>
         </h2>
       </Store>
       <Store>
-        <StoreInfoIcon src={scheduleIcon} alt="train" />
+        <Icon src={scheduleIcon} alt="train" />
         <BusinessHours>
           <h2 style={{ fontWeight: "700" }}>Business hours</h2>
           <h2>Monday closed</h2>

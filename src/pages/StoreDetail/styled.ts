@@ -98,3 +98,33 @@ export const StarContent = styled.div`
     padding: 10px 0px;
   } */
 `;
+
+export const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+`;
+
+export const PlaceDetailMain = styled.div`
+  margin-top: -38px;
+  margin-bottom: 16px;
+  border-radius: 32px;
+  box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a;
+`;
+
+export const ContentSwitcher = styled.div`
+  padding: 0 16px;
+  border-radius: 0 0 32px 32px;
+  background-color: ${({ theme }) => theme.colors.light};
+`;
+
+export const SuggestBtn = styled.button`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.gray200};
+  border-radius: 16px;
+  padding: 13px 0;
+  box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
+`;
