@@ -5,7 +5,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-
   background-color: ${({ theme }) => theme.colors.gray300}; /* 設定底色 */
   background-image: url(${cubes}); /* 替換為你的圖片路徑 */
   background-repeat: repeat; /* 讓背景圖片無限重複 */

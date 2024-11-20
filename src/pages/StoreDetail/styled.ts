@@ -75,3 +75,26 @@ export const VoiceIcon = styled.img`
   height: 17.5px;
   margin: 0 11px;
 `;
+
+export const ReviewSection = styled.div`
+  display: flex;
+  align-items: center;
+  /* overflow: auto;
+  scrollbar-width: none; */
+  padding: 16px 0 54px 0;
+`;
+
+export const ShareIcon = styled.img`
+  width: 18px;
+  height: 20px;
+`;
+export const StarContent = styled.div`
+  display: flex;
+  justify-content: center;
+  flex: auto;
+  border-left: 1px solid #d4d4d4;
+  border-right: 1px solid #d4d4d4;
+  /* @media (max-width: 380px) {
+    padding: 10px 0px;
+  } */
+`;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import review from "../assets/Component 1.png";
 
 interface ReviewProps {
-  marginRight?: number;
+  $marginRight?: number;
   content?: string;
 }
 
@@ -14,11 +14,13 @@ const ReviewIcon = styled.img`
 
 const Review = styled.button<ReviewProps>`
   display: flex;
+  flex: 0;
   align-items: center;
   flex-wrap: nowrap;
   background-color: ${({ theme }) => theme.colors.outline3};
   padding: 12px 16px;
-  margin-right: ${({ marginRight }) => (marginRight ? `${marginRight}px` : 0)};
+  margin-right: ${({ $marginRight }) =>
+    $marginRight ? `${$marginRight}px` : 0};
   border-radius: 8px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   &:hover {
@@ -29,9 +31,9 @@ const Review = styled.button<ReviewProps>`
   }
 `;
 
-export const ReviewBtn = ({ marginRight, content }: ReviewProps) => {
+export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
   return (
-    <Review marginRight={marginRight}>
+    <Review $marginRight={$marginRight}>
       <ReviewIcon src={review} alt="review" />
       {content}
     </Review>

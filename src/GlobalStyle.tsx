@@ -5,8 +5,9 @@ const GlobalStyle = createGlobalStyle`
     html,body{
 max-width: 956px;
 margin: 0 auto;
+padding: 0;
 width: 100%;
-height: 100dvh;
+height: 100%;
 font-family: 'Roboto', sans-serif;
 }
 
@@ -22,6 +23,7 @@ a,button{
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
+    color: inherit; 
 }
 
 h1,h2,h3,h4,h5,h6,p{
@@ -37,6 +39,7 @@ h2{
     font-size: 17px;
     line-height: 22px;
     font-weight: 400;
+    letter-spacing: -0.41px;
 }
 h3{
     font-size: 15px;
