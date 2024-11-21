@@ -1,5 +1,5 @@
 import Header from "../../component/header";
-import { Wrapper, Container } from "../../component/LayoutComponents";
+import { Wrapper, Container, IconImg } from "../../component/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
   Icon,
@@ -12,10 +12,8 @@ import {
   PlaceName,
   VoiceIcon,
   ReviewSection,
-  ShareIcon,
   StarContent,
   SuggestBtn,
-  ContentSwitcher,
   PlaceDetailMain,
 } from "./styled";
 import { StarRating } from "../../component/StarRating";
@@ -34,6 +32,8 @@ import shareIcon from "../../assets/share.png";
 import penIcon from "../../assets/pen.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
+import CommentCard from "./CommentCard";
+import FooterNav from "../../component/FooterNav";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -90,7 +90,7 @@ function StoreDetail() {
                   padding: "0 11px 0 24px",
                 }}
               >
-                <ShareIcon src={shareIcon} alt="share" />
+                <IconImg src={shareIcon} alt="share" />
               </div>
             </ReviewSection>
           </PlaceDetailHeader>
@@ -117,13 +117,16 @@ function StoreDetail() {
                 <Label htmlFor="Reviews">Reviews (23)</Label>
               </SegmentedControlInner>
             </form>
-            <ContentSwitcher>
-              {selectedOption === "Detail" && (
-                <>
-                  <StoreInfo />
-                </>
-              )}
-            </ContentSwitcher>
+            {selectedOption === "Detail" && (
+              <>
+                <StoreInfo />
+              </>
+            )}
+            {selectedOption === "Reviews" && (
+              <>
+                <CommentCard></CommentCard>
+              </>
+            )}
           </PlaceDetailMain>
           {selectedOption === "Detail" && (
             <>
@@ -135,6 +138,7 @@ function StoreDetail() {
           )}
         </Container>
       </Wrapper>
+      <FooterNav />
     </>
   );
 }

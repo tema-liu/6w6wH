@@ -14,8 +14,8 @@ interface StarRatingProps {
 
 const StarImg = styled.img`
   //星星預設長寬
-  width: ${({ width }) => (width ? width + "px" : 152)}px;
-  height: ${({ height }) => (height ? height + "px" : 24)}px;
+  width: ${({ width }) => (width ? width : 152)}px;
+  height: ${({ height }) => (height ? height : 24)}px;
 `;
 
 export const StarRating = ({ star, width, height }: StarRatingProps) => {

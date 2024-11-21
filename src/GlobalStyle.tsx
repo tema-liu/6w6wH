@@ -8,7 +8,6 @@ margin: 0 auto;
 padding: 0;
 width: 100%;
 min-height: 100dvh;
-height: 100%;
 font-family: 'Roboto', sans-serif;
 }
 
@@ -51,6 +50,7 @@ h4{
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
+    letter-spacing: 0.25px;
 }
 h5{
     font-size: 12px;
@@ -62,8 +62,17 @@ h6{
     line-height: 13px;
     font-weight: 400;
 }
+span{
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 400;
+    letter-spacing: 0.38px;
 
+}
 
+img{
+    vertical-align: middle;
+}
 
 @font-face {
     font-family: "mix";

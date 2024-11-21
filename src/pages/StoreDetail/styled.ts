@@ -84,10 +84,6 @@ export const ReviewSection = styled.div`
   padding: 16px 0 54px 0;
 `;
 
-export const ShareIcon = styled.img`
-  width: 18px;
-  height: 20px;
-`;
 export const StarContent = styled.div`
   display: flex;
   justify-content: center;
@@ -112,12 +108,6 @@ export const PlaceDetailMain = styled.div`
   box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a;
 `;
 
-export const ContentSwitcher = styled.div`
-  padding: 0 16px;
-  border-radius: 0 0 32px 32px;
-  background-color: ${({ theme }) => theme.colors.light};
-`;
-
 export const SuggestBtn = styled.button`
   width: 100%;
   display: flex;
@@ -126,5 +116,6 @@ export const SuggestBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.gray200};
   border-radius: 16px;
   padding: 13px 0;
+  margin-bottom: 25px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;

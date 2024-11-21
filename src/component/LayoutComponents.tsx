@@ -18,4 +18,10 @@ const Container = styled.div`
   background-color: transparent;
 `;
 
-export { Wrapper, Container };
+const IconImg = styled.img`
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+`;
+
+export { Wrapper, Container, IconImg };

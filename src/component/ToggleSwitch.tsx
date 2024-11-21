@@ -48,23 +48,3 @@ export const Label = styled.label`
     opacity: 1;
   }
 `;
-
-// // 使用範例
-// export const ToggleSwitch = () => {
-//   return (
-//     <Form id="radio-segmented-control">
-//       <SegmentedControlInner>
-//         <RadioInput
-//           id="radio-dog"
-//           type="radio"
-//           name="animal"
-//           value="Dog"
-//           defaultChecked
-//         />
-//         <Label htmlFor="radio-dog">Dog</Label>
-//         <RadioInput id="radio-cat" type="radio" name="animal" value="Cat" />
-//         <Label htmlFor="radio-cat">Cat</Label>
-//       </SegmentedControlInner>
-
-//   );
-// };
