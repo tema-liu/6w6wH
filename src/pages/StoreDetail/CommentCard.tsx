@@ -104,104 +104,106 @@ const UserReviewFooter = styled.div`
 
 function CommentCard() {
   return (
-    <Container>
-      <CommentCardContent>
-        <CommentCardImgBox>
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-        </CommentCardImgBox>
-        <CommentCardDetail>
-          <Head>
-            <HeadShot src={headShotIcon} alt="headShot" />
-            <BadgeBox>
-              <img width={22} src={badge} alt="badge" />
-              <img width={22} src={badge2} alt="badge2" />
-            </BadgeBox>
-          </Head>
-          <HeadRight>
-            <UserReviewTop>
-              <UserRating>
-                <span style={{ display: "block" }}>Ala</span>
-                <StarRating star={3} width={112} height={16} />
-              </UserRating>
-              <div>
-                <Icon src={report} alt="" />
-                <Icon src={shareIcon} alt="" />
-              </div>
-            </UserReviewTop>
-            <UserReviewMain>
-              <h2>
-                Kopi susu is super yummy! Nice ambient and service! Come hang
-                out!
-              </h2>
-            </UserReviewMain>
-            <UserReviewFooter>
-              <h5>3 hour ago</h5>
-              <SocialBlock>
+    <>
+      <Container>
+        <CommentCardContent>
+          <CommentCardImgBox>
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+          </CommentCardImgBox>
+          <CommentCardDetail>
+            <Head>
+              <HeadShot src={headShotIcon} alt="headShot" />
+              <BadgeBox>
+                <img width={22} src={badge} alt="badge" />
+                <img width={22} src={badge2} alt="badge2" />
+              </BadgeBox>
+            </Head>
+            <HeadRight>
+              <UserReviewTop>
+                <UserRating>
+                  <span style={{ display: "block" }}>Ala</span>
+                  <StarRating star={3} width={112} height={16} />
+                </UserRating>
                 <div>
-                  <h4>1.5k</h4>
-                  <IconImg src={review} alt="review" />
+                  <Icon src={report} alt="" />
+                  <Icon src={shareIcon} alt="" />
                 </div>
+              </UserReviewTop>
+              <UserReviewMain>
+                <p>
+                  Kopi susu is super yummy! Nice ambient and service! Come hang
+                  out!
+                </p>
+              </UserReviewMain>
+              <UserReviewFooter>
+                <h5>3 hour ago</h5>
+                <SocialBlock>
+                  <div>
+                    <h4>1.5k</h4>
+                    <IconImg src={review} alt="review" />
+                  </div>
+                  <div>
+                    <h4>999</h4>
+                    <IconImg src={heart} alt="heart" />
+                  </div>
+                </SocialBlock>
+              </UserReviewFooter>
+            </HeadRight>
+          </CommentCardDetail>
+        </CommentCardContent>
+        <CommentCardContent>
+          <CommentCardImgBox>
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+            <img src="https://picsum.photos/1000/800" alt="" />
+          </CommentCardImgBox>
+          <CommentCardDetail>
+            <Head>
+              <HeadShot src={headShotIcon} alt="headShot" />
+              <BadgeBox>
+                <img width={22} src={badge} alt="badge" />
+                <img width={22} src={badge2} alt="badge2" />
+              </BadgeBox>
+            </Head>
+            <HeadRight>
+              <UserReviewTop>
+                <UserRating>
+                  <span style={{ display: "block" }}>Ala</span>
+                  <StarRating star={3} width={112} height={16} />
+                </UserRating>
                 <div>
-                  <h4>999</h4>
-                  <IconImg src={heart} alt="heart" />
+                  <Icon src={report} alt="" />
+                  <Icon src={shareIcon} alt="" />
                 </div>
-              </SocialBlock>
-            </UserReviewFooter>
-          </HeadRight>
-        </CommentCardDetail>
-      </CommentCardContent>
-      <CommentCardContent>
-        <CommentCardImgBox>
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-          <img src="https://picsum.photos/1000/800" alt="" />
-        </CommentCardImgBox>
-        <CommentCardDetail>
-          <Head>
-            <HeadShot src={headShotIcon} alt="headShot" />
-            <BadgeBox>
-              <img width={22} src={badge} alt="badge" />
-              <img width={22} src={badge2} alt="badge2" />
-            </BadgeBox>
-          </Head>
-          <HeadRight>
-            <UserReviewTop>
-              <UserRating>
-                <span style={{ display: "block" }}>Ala</span>
-                <StarRating star={3} width={112} height={16} />
-              </UserRating>
-              <div>
-                <Icon src={report} alt="" />
-                <Icon src={shareIcon} alt="" />
-              </div>
-            </UserReviewTop>
-            <UserReviewMain>
-              <h2>
-                Kopi susu is super yummy! Nice ambient and service! Come hang
-                out!
-              </h2>
-            </UserReviewMain>
-            <UserReviewFooter>
-              <h5>3 hour ago</h5>
-              <SocialBlock>
-                <div>
-                  <h4>1.5k</h4>
-                  <IconImg src={review} alt="review" />
-                </div>
-                <div>
-                  <h4>999</h4>
-                  <IconImg src={heart} alt="heart" />
-                </div>
-              </SocialBlock>
-            </UserReviewFooter>
-          </HeadRight>
-        </CommentCardDetail>
-      </CommentCardContent>
-    </Container>
+              </UserReviewTop>
+              <UserReviewMain>
+                <p>
+                  Kopi susu is super yummy! Nice ambient and service! Come hang
+                  out!
+                </p>
+              </UserReviewMain>
+              <UserReviewFooter>
+                <h5>3 hour ago</h5>
+                <SocialBlock>
+                  <div>
+                    <h4>1.5k</h4>
+                    <IconImg src={review} alt="review" />
+                  </div>
+                  <div>
+                    <h4>999</h4>
+                    <IconImg src={heart} alt="heart" />
+                  </div>
+                </SocialBlock>
+              </UserReviewFooter>
+            </HeadRight>
+          </CommentCardDetail>
+        </CommentCardContent>
+      </Container>
+    </>
   );
 }
 

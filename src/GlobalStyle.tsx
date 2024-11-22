@@ -70,6 +70,13 @@ span{
 
 }
 
+p{
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 400;
+    letter-spacing: -0.41px;
+}
+
 img{
     vertical-align: middle;
 }

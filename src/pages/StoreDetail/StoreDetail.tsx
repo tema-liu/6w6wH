@@ -34,6 +34,7 @@ import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import FooterNav from "../../component/FooterNav";
+import FilterColumn from "./FilterColumn";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -134,6 +135,11 @@ function StoreDetail() {
                 <Icon src={penIcon} alt="penIcon" />
                 Suggest an edit
               </SuggestBtn>
+            </>
+          )}
+          {selectedOption === "Reviews" && (
+            <>
+              <FilterColumn></FilterColumn>
             </>
           )}
         </Container>
