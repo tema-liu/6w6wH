@@ -7,8 +7,9 @@ max-width: 956px;
 margin: 0 auto;
 padding: 0;
 width: 100%;
-min-height: 100dvh;
+height: 100%;
 font-family: 'Roboto', sans-serif;
+
 }
 
 *,*::after,*::before{    

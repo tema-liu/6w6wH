@@ -143,8 +143,8 @@ function StoreDetail() {
             </>
           )}
         </Container>
+        <FooterNav />
       </Wrapper>
-      <FooterNav />
     </>
   );
 }

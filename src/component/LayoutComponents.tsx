@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex: 1;
   background-color: ${({ theme }) => theme.colors.gray300}; /* 設定底色 */
   background-image: url(${cubes}); /* 替換為你的圖片路徑 */
   background-repeat: repeat; /* 讓背景圖片無限重複 */
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   padding: 16px 8px 0 8px;
   width: 100%;
-  flex-grow: 1;
+  flex: 1;
   background-color: transparent;
 `;
 
