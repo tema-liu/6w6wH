@@ -128,7 +128,6 @@ function CommentCard() {
                   <StarRating star={3} width={112} height={16} />
                 </UserRating>
                 <div>
-                  <Icon src={report} alt="" />
                   <Icon src={shareIcon} alt="" />
                 </div>
               </UserReviewTop>
@@ -176,7 +175,6 @@ function CommentCard() {
                   <StarRating star={3} width={112} height={16} />
                 </UserRating>
                 <div>
-                  <Icon src={report} alt="" />
                   <Icon src={shareIcon} alt="" />
                 </div>
               </UserReviewTop>

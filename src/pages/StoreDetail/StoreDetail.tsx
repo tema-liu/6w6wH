@@ -88,7 +88,7 @@ function StoreDetail() {
                   width: "100%",
                   display: "flex",
                   flex: "0",
-                  padding: "0 11px 0 24px",
+                  padding: "0 8px 0 24px",
                 }}
               >
                 <IconImg src={shareIcon} alt="share" />

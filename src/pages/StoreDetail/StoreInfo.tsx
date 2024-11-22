@@ -9,6 +9,7 @@ import voiceIcon from "../../assets/Voice.png";
 import advertisImg from "../../assets/Frame 18.png";
 import styled from "styled-components";
 import { Icon } from "./styled";
+import { IconImg } from "../../component/LayoutComponents";
 
 const Store = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ const ContentDetail = styled.div`
 `;
 
 const AdvertisingContent = styled.img`
+  margin: 16px 0 16px 0;
   width: 100%;
   height: 238px;
   object-fit: cover;
@@ -37,48 +39,45 @@ const AdvertisingContent = styled.img`
 function StoreInfo() {
   return (
     <>
-      <AdvertisingContent src={advertisImg} alt="advertising" />
       <ContentDetail>
+        <AdvertisingContent src={advertisImg} alt="advertising" />
         <Store>
           <Icon src={trainIcon} alt="train" />
           <h2>336m from Kaohsiung Railway Station</h2>
         </Store>
         <Store>
-          <Icon src={markerIcon} alt="train" />
+          <Icon src={markerIcon} alt="markerIcon" />
           <h2>高雄市新興區河南一路118號一樓</h2>
-          <img
-            width={"18px"}
-            height={"17.5px"}
+          <IconImg
             style={{
               marginBottom: "auto",
               marginTop: "auto",
               marginLeft: "auto",
-              marginRight: "4px",
             }}
             src={voiceIcon}
-            alt="train"
+            alt="voiceIcon"
           />
         </Store>
         <Store>
-          <Icon src={moneyIcon} alt="train" />
+          <Icon src={moneyIcon} alt="moneyIcon" />
           <h2>NTD200~400 / Rp1500～3000</h2>
         </Store>
         <Store>
-          <Icon src={callIcon} alt="train" />
+          <Icon src={callIcon} alt="callIcon" />
           <h2>0983387594</h2>
         </Store>
         <Store>
-          <Icon src={language} alt="train" />
+          <Icon src={language} alt="language" />
           <a href="#">Website</a>
         </Store>
         <Store>
-          <Icon src={todayIcon} alt="train" />
+          <Icon src={todayIcon} alt="todayIcon" />
           <h2>
             <a href="#">Book</a>
           </h2>
         </Store>
         <Store>
-          <Icon src={scheduleIcon} alt="train" />
+          <Icon src={scheduleIcon} alt="scheduleIcon" />
           <BusinessHours>
             <h2 style={{ fontWeight: "700" }}>Business hours</h2>
             <h2>Monday closed</h2>

@@ -71,9 +71,9 @@ export const PlaceName = styled.div`
 `;
 
 export const VoiceIcon = styled.img`
-  width: 18px;
-  height: 17.5px;
-  margin: 0 11px;
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
 `;
 
 export const ReviewSection = styled.div`
