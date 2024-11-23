@@ -27,7 +27,7 @@ a,button{
     color:initial;
 }
 
-h1,h2,h3,h4,h5,h6,p{
+h1,h2,h3,h4,h5,h6,p,input{
     font-family: 'Roboto', sans-serif;
     word-break: break-word; /* 解決中文字換行問題 */
     overflow-wrap: break-word; /* 備用屬性 */

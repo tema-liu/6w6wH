@@ -30,6 +30,7 @@ import heart from "../../assets/heart.png";
 import review from "../../assets/review.png";
 import shareIcon from "../../assets/share.png";
 import RepliesCard from "./RepliesCard";
+import MessageBox from "./MessageBox";
 
 function Reviews() {
   return (
@@ -91,6 +92,7 @@ function Reviews() {
             </CommentCardDetail>
           </CommentCardContent>
           <RepliesCard />
+          <MessageBox />
         </Container>
 
         <FooterNav />
