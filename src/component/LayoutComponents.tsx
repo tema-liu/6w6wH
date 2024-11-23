@@ -4,7 +4,6 @@ import cubes from "../assets/cubes.png";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   flex: 1;
   background-color: ${({ theme }) => theme.colors.gray300}; /* 設定底色 */
   background-image: url(${cubes}); /* 替換為你的圖片路徑 */

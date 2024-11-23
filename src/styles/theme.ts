@@ -2,6 +2,7 @@ const colors = {
   light: "#FFFFFF",
   dark: "#000000",
   primary: "#ED008C",
+  Secondary: "#63D4FF",
   warning: "#FFF401",
   container1: "#FF6063",
   container2: "#FF983E",

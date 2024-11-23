@@ -29,6 +29,9 @@ a,button{
 
 h1,h2,h3,h4,h5,h6,p{
     font-family: 'Roboto', sans-serif;
+    word-break: break-word; /* 解決中文字換行問題 */
+    overflow-wrap: break-word; /* 備用屬性 */
+    white-space: normal; /* 確保文字會換行 */
 }
 
 h1{

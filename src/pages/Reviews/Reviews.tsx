@@ -29,6 +29,7 @@ import FooterNav from "../../component/FooterNav";
 import heart from "../../assets/heart.png";
 import review from "../../assets/review.png";
 import shareIcon from "../../assets/share.png";
+import RepliesCard from "./RepliesCard";
 
 function Reviews() {
   return (
@@ -89,7 +90,9 @@ function Reviews() {
               </HeadRight>
             </CommentCardDetail>
           </CommentCardContent>
+          <RepliesCard />
         </Container>
+
         <FooterNav />
       </Wrapper>
     </>

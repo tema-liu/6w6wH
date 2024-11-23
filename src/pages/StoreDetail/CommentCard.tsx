@@ -4,7 +4,6 @@ import styled from "styled-components";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
 import shareIcon from "../../assets/share.png";
-import report from "../../assets/report.png";
 import { IconImg } from "../../component/LayoutComponents";
 import heart from "../../assets/heart.png";
 import review from "../../assets/review.png";
