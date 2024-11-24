@@ -26,11 +26,11 @@ import {
   SocialBlock,
 } from "../Reviews/styled";
 import FooterNav from "../../component/FooterNav";
-import heart from "../../assets/heart.png";
 import review from "../../assets/review.png";
 import shareIcon from "../../assets/share.png";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
+import HeartIcon from "../../component/HeartIcon";
 
 function Reviews() {
   return (
@@ -84,7 +84,7 @@ function Reviews() {
                     </div>
                     <div>
                       <h4>999</h4>
-                      <IconImg src={heart} alt="heart" />
+                      <HeartIcon />
                     </div>
                   </SocialBlock>
                 </UserReviewFooter>

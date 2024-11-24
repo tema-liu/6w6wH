@@ -17,9 +17,9 @@ import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import review from "../../assets/review.png";
 import overflowIcon from "../../assets/overflow.png";
-import heart from "../../assets/heart.png";
 import { IconImg } from "../../component/LayoutComponents";
 import { ReadMore } from "./ReadMore";
+import HeartIcon from "../../component/HeartIcon";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -69,7 +69,7 @@ function RepliesCard() {
               </div>
               <div>
                 <h4>4</h4>
-                <IconImg src={heart} alt="heart" />
+                <HeartIcon />
               </div>
             </SocialBlock>
           </UserReviewFooter>
@@ -105,7 +105,7 @@ function RepliesCard() {
               </div>
               <div>
                 <h4>4</h4>
-                <IconImg src={heart} alt="heart" />
+                <HeartIcon />
               </div>
             </SocialBlock>
           </UserReviewFooter>
@@ -142,7 +142,7 @@ function RepliesCard() {
               </div>
               <div>
                 <h4>4</h4>
-                <IconImg src={heart} alt="heart" />
+                <HeartIcon />
               </div>
             </SocialBlock>
           </UserReviewFooter>

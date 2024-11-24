@@ -9,6 +9,7 @@ const Box = styled.div`
   align-items: center;
   margin-left: -8px;
   position: sticky;
+  padding-top: 8px;
   padding-bottom: 16px;
   bottom: 72px;
 `;
