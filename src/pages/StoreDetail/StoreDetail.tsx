@@ -42,7 +42,6 @@ function StoreDetail() {
   // 處理選擇的變更
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
-    console.log(event.target.value);
   };
 
   return (

@@ -12,9 +12,9 @@ const FilterBar = styled.div`
   bottom: 72px;
 `;
 
-const FilterButton = styled.button<{ active?: boolean }>`
+const FilterButton = styled.button<{ $active?: boolean }>`
   background-color: ${({ theme }) => theme.colors.dark};
-  opacity: ${(props) => (props.active ? 0.75 : 0.5)};
+  opacity: ${(props) => (props.$active ? 0.75 : 0.5)};
   color: ${({ theme }) => theme.colors.light};
   padding: 13px 8px;
   border-radius: 0 4px 4px 0;
@@ -46,19 +46,19 @@ const FilterColumn = () => {
       </IconBg>
 
       <FilterButton
-        active={activeFilter === "relevance"}
+        $active={activeFilter === "relevance"}
         onClick={() => handleFilterClick("relevance")}
       >
         relevance ↑
       </FilterButton>
       <FilterButton
-        active={activeFilter === "star"}
+        $active={activeFilter === "star"}
         onClick={() => handleFilterClick("star")}
       >
         star ↑
       </FilterButton>
       <FilterButton
-        active={activeFilter === "distance"}
+        $active={activeFilter === "distance"}
         onClick={() => handleFilterClick("distance")}
       >
         distance ↑
