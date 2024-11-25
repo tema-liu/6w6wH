@@ -69,9 +69,6 @@ const UserRating = styled.div`
     margin-top: 8px; // 子元素之間的間距
   }
 `;
-const Icon = styled(IconImg)`
-  margin: 8px;
-`;
 
 const UserReviewMain = styled.div`
   padding: 4px 0 8px 0;

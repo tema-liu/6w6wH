@@ -5,6 +5,10 @@ const Content = styled.p`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: -0.41px;
 `;
 const TagChip = styled.div`
   display: flex;
@@ -12,10 +16,7 @@ const TagChip = styled.div`
   flex-wrap: nowrap;
   background: ${({ theme }) => theme.colors.light};
   max-width: 100%;
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 22px;
-  letter-spacing: -0.41px;
+
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 
   // 左側紅色條

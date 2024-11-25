@@ -27,7 +27,6 @@ import {
 } from "../Reviews/styled";
 import FooterNav from "../../component/FooterNav";
 import review from "../../assets/review.png";
-import shareIcon from "../../assets/share.png";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
