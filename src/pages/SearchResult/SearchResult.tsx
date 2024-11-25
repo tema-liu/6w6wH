@@ -4,6 +4,7 @@ import { Container, Wrapper } from "../../component/LayoutComponents";
 import FooterNav from "../../component/FooterNav";
 import bugIcon from "../../assets/bug.png";
 import { TagChips } from "../../component/TagChips";
+import ShopCard from "./ShopCard";
 const ChipGroup = styled.div``;
 const TitleBox = styled.div`
   border-radius: 16px 16px 0 0;
@@ -29,6 +30,12 @@ const TagBox = styled.div`
   background-color: ${({ theme }) => theme.colors.gray100};
   gap: 8px;
 `;
+const ShopCards = styled.section`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+`;
 
 function SearchResult() {
   const num = 5;
@@ -49,6 +56,9 @@ function SearchResult() {
               <TagChips label={"Friendly"} />
             </TagBox>
           </ChipGroup>
+          <ShopCards>
+            <ShopCard />
+          </ShopCards>
         </Container>
         <FooterNav />
       </Wrapper>

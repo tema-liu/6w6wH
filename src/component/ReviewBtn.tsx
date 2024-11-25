@@ -9,10 +9,10 @@ interface ReviewProps {
 const ReviewIcon = styled.img`
   width: 24px;
   height: 24px;
-  margin-right: 6px;
 `;
 
 const Review = styled.button<ReviewProps>`
+  gap: 6px;
   display: flex;
   flex: 0;
   align-items: center;

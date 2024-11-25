@@ -20,8 +20,8 @@ const Icon = styled.div<CollectIconProps>`
   .ribbon {
     position: relative;
     display: inline-block;
-    width: 32px;
-    height: 40px;
+    width: 24px;
+    height: 28px;
     background-color: ${({ theme }) =>
       theme.colors.light}; /* 如果點擊後背景為黃色 */
     border-radius: 4px 4px 0 0; /* 上方圓角 */
