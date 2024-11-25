@@ -65,6 +65,7 @@ h6{
     font-size: 11px;
     line-height: 13px;
     font-weight: 400;
+    letter-spacing: 0.07px;
 }
 span{
     font-size: 20px;
