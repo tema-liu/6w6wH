@@ -31,6 +31,14 @@ import shareIcon from "../../assets/share.png";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
+import styled from "styled-components";
+
+const CommentContent = styled(CommentCardContent)`
+  padding: 8px 8px 16px 8px;
+`;
+const CommentDetail = styled(CommentCardDetail)`
+  margin: 0;
+`;
 
 function Reviews() {
   return (
@@ -49,8 +57,8 @@ function Reviews() {
               </CarouselBtn>
             </BtnContainer>
           </ImageSection>
-          <CommentCardContent>
-            <CommentCardDetail>
+          <CommentContent>
+            <CommentDetail>
               <Head>
                 <HeadShot src={headShotIcon} alt="headShot" />
                 <BadgeBox>
@@ -65,7 +73,6 @@ function Reviews() {
                     <StarRating star={3} width={112} height={16} />
                   </UserRating>
                   <div>
-                    <Icon src={shareIcon} alt="share" />
                     <Icon src={overflowIcon} alt="overflow" />
                   </div>
                 </UserReviewTop>
@@ -89,8 +96,8 @@ function Reviews() {
                   </SocialBlock>
                 </UserReviewFooter>
               </HeadRight>
-            </CommentCardDetail>
-          </CommentCardContent>
+            </CommentDetail>
+          </CommentContent>
           <RepliesCard />
           <MessageBox />
         </Container>

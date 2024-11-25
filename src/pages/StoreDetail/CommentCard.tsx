@@ -3,7 +3,6 @@ import badge2 from "../../assets/badge2.png";
 import styled from "styled-components";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
-import shareIcon from "../../assets/share.png";
 import { IconImg } from "../../component/LayoutComponents";
 import review from "../../assets/review.png";
 import HeartIcon from "../../component/HeartIcon";
@@ -62,7 +61,6 @@ const BadgeBox = styled.div`
 `;
 const UserReviewTop = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 
@@ -126,9 +124,6 @@ function CommentCard() {
                   <span style={{ display: "block" }}>Ala</span>
                   <StarRating star={3} width={112} height={16} />
                 </UserRating>
-                <div>
-                  <Icon src={shareIcon} alt="" />
-                </div>
               </UserReviewTop>
               <UserReviewMain>
                 <p>
@@ -173,9 +168,6 @@ function CommentCard() {
                   <span style={{ display: "block" }}>Ala</span>
                   <StarRating star={3} width={112} height={16} />
                 </UserRating>
-                <div>
-                  <Icon src={shareIcon} alt="" />
-                </div>
               </UserReviewTop>
               <UserReviewMain>
                 <p>
