@@ -100,7 +100,6 @@ function StoreDetail() {
                 <RadioInput
                   id="Detail"
                   type="radio"
-                  name="switch"
                   value="Detail"
                   checked={selectedOption === "Detail"}
                   onChange={handleOptionChange}
@@ -109,7 +108,6 @@ function StoreDetail() {
                 <RadioInput
                   id="Reviews"
                   type="radio"
-                  name="switch"
                   value="Reviews"
                   checked={selectedOption === "Reviews"}
                   onChange={handleOptionChange}
