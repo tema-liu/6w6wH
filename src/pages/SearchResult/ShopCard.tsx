@@ -7,13 +7,21 @@ import arrowIcon from "../../assets/arrow.png";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { ReadMore } from "./ReadMore";
 
-const ShopCardBox = styled.div``;
-const ShopCardImg = styled.img`
+type DonateProps = {
+  $isDonate?: boolean;
+};
+
+const ShopCardBox = styled.div`
+  position: relative;
+`;
+const ShopCardImg = styled.img<DonateProps>`
   width: 100%;
   height: 424px;
   border-radius: 32px;
   object-fit: cover;
   object-position: center;
+  border: ${({ $isDonate, theme }) =>
+    $isDonate ? `4px solid ${theme.colors.container2}` : "none"};
 `;
 const ShopCardMain = styled.div`
   margin-top: -200px;
@@ -90,12 +98,39 @@ const HeadShot = styled.img`
   border-radius: 50%; /* 圓形裁切 */
   object-fit: cover; /* 確保圖片內容不變形 */
 `;
+const ADtag = styled.div`
+  position: absolute;
+  top: 0;
+  right: 32px;
+  width: 30px;
+  height: 30px;
+  padding: 4px;
+  background: #00000080;
+  border-radius: 0 0 4px 4px;
+  span {
+    color: ${({ theme }) => theme.colors.light};
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+  }
+`;
 
 function ShopCard() {
+  const isDonate = true;
   return (
     <>
       <ShopCardBox>
-        <ShopCardImg src="https://picsum.photos/1000/800" alt="shopImg" />
+        {isDonate && (
+          <ADtag>
+            <span>AD</span>
+          </ADtag>
+        )}
+        <ShopCardImg
+          $isDonate={isDonate}
+          src="https://picsum.photos/1000/800"
+          alt="shopImg"
+        />
+
         <ShopCardMain>
           <PlaceName>
             <CollectIcon right={28} />
@@ -111,7 +146,7 @@ function ShopCard() {
           <MessageBox>
             <ReadMore
               text={
-                " Really fantastic all tasted are very delicious and no worry about Halal. I did not  I did not I did not"
+                " Kopi susu is super yummy! Nice ambient and service! Come hang out!"
               }
             />
 
@@ -136,7 +171,17 @@ function ShopCard() {
         </ShopCardMain>
       </ShopCardBox>
       <ShopCardBox>
-        <ShopCardImg src="https://picsum.photos/1000/800" alt="shopImg" />
+        {isDonate && (
+          <ADtag>
+            <span>AD</span>
+          </ADtag>
+        )}
+        <ShopCardImg
+          $isDonate={isDonate}
+          src="https://picsum.photos/1000/800"
+          alt="shopImg"
+        />
+
         <ShopCardMain>
           <PlaceName>
             <CollectIcon right={28} />
