@@ -7,10 +7,7 @@ interface ComponentProps {
   right?: number;
 }
 
-const Icon = styled.div<CollectIconProps>`
-  position: absolute;
-  top: 0;
-  right: ${(props) => props.$right}px;
+const Icon = styled.div`
   display: inline-block;
   background-color: ${({ theme }) => theme.colors.warning};
   opacity: 0.75;
@@ -41,11 +38,28 @@ const Icon = styled.div<CollectIconProps>`
   }
 `;
 
+const IconDiv = styled.div<CollectIconProps>`
+  position: absolute;
+  top: 0;
+  right: ${(props) => props.$right}px;
+  opacity: 0.75;
+  filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.04))
+    drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1));
+  &:active {
+    opacity: 1;
+  }
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 const CollectIcon = ({ right }: ComponentProps) => {
   return (
-    <Icon $right={right}>
-      <div className="ribbon"></div>
-    </Icon>
+    <IconDiv $right={right}>
+      <Icon>
+        <div className="ribbon"></div>
+      </Icon>
+    </IconDiv>
   );
 };
 

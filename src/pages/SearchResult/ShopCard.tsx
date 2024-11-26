@@ -132,8 +132,8 @@ function ShopCard() {
         />
 
         <ShopCardMain>
+          <CollectIcon right={28} />
           <PlaceName>
-            <CollectIcon right={28} />
             <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
             <h6>336m from R11 Kaohsiung Main Station</h6>
           </PlaceName>
@@ -183,8 +183,8 @@ function ShopCard() {
         />
 
         <ShopCardMain>
+          <CollectIcon right={28} />
           <PlaceName>
-            <CollectIcon right={28} />
             <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
             <h6>336m from R11 Kaohsiung Main Station</h6>
           </PlaceName>
@@ -197,7 +197,7 @@ function ShopCard() {
           <MessageBox>
             <ReadMore
               text={
-                " Really fantastic all tasted are very delicious and no worry about Halal. I did not  I did not I did not"
+                " Kopi susu is super yummy! Nice ambient and service! Come hang out!"
               }
             />
 
