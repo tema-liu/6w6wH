@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import StoreDetail from "./pages/StoreDetail/StoreDetail.tsx";
 import Reviews from "./pages/Reviews/Reviews.tsx";
 import SearchResult from "./pages/SearchResult/SearchResult.tsx";
-import Search from "./pages/Search/search.tsx";
+import Search from "./pages/Search/Search.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
