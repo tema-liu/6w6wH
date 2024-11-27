@@ -77,14 +77,6 @@ function Search() {
     "Communication aids": false,
     "online shopping": false,
   });
-
-  const [location, setLocation] = useState<CheckedState>({
-    "R9 Central Park": false,
-    "R10 Formosa Boulevard": false,
-    "R11 Kaohsiung Main Station": false,
-    "R13 Aozihdi": false,
-  });
-
   const handleCheckboxChange = (
     tag: string,
     setState: React.Dispatch<React.SetStateAction<CheckedState>>
@@ -93,6 +85,25 @@ function Search() {
       ...checkedState,
       [tag]: !checkedState[tag],
     }));
+  };
+
+  //保存選中的定位
+  const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
+    null,
+    null,
+  ]);
+
+  const location: {
+    Train: string[];
+    MRT: string[];
+  } = {
+    Train: ["R10 Formosa Boulevard"],
+    MRT: [
+      "R9 Central Park",
+      "R10 Formosa Boulevard",
+      "R11 Kaohsiung Main Station",
+      "R13 Aozihdi",
+    ],
   };
 
   return (
@@ -190,16 +201,37 @@ function Search() {
             <StationList>
               {selectedOption == "Location" && <></>}
               {selectedOption == "HSR" && <></>}
-              {selectedOption == "Train" && <></>}
-              {selectedOption == "LRT" && <></>}
-              {selectedOption == "MRT" && (
+              {selectedOption == "Train" && (
                 <>
-                  {Object.keys(location).map((tag) => (
+                  {location.Train.map((tag) => (
                     <Radio
                       key={tag}
                       content={tag}
-                      isChecked={location[tag]}
-                      onChange={() => handleCheckboxChange(tag, setLocation)}
+                      isCheck={
+                        selectedStation[0] == selectedOption &&
+                        selectedStation[1] == tag
+                      }
+                      onChange={() => {
+                        setSelectedStation([selectedOption, tag]);
+                      }}
+                    />
+                  ))}
+                </>
+              )}
+              {selectedOption == "LRT" && <></>}
+              {selectedOption == "MRT" && (
+                <>
+                  {location.MRT.map((tag) => (
+                    <Radio
+                      key={tag}
+                      content={tag}
+                      isCheck={
+                        selectedStation[0] == selectedOption &&
+                        selectedStation[1] == tag
+                      }
+                      onChange={() => {
+                        setSelectedStation([selectedOption, tag]);
+                      }}
                     />
                   ))}
                 </>

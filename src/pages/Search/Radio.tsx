@@ -54,19 +54,19 @@ const MoonBtn = styled.label`
 
 type CheckProps = {
   content: string;
-  isChecked: boolean; // 是否選中
-  onChange: (tag: string) => void;
+  isCheck: boolean;
+  onChange: () => void;
 };
 
-function Radio({ content, isChecked, onChange }: CheckProps) {
+function Radio({ content, isCheck, onChange }: CheckProps) {
   return (
     <>
       <Input
         type="radio"
         id={content}
         name="location"
-        checked={isChecked}
-        onChange={() => onChange(content)}
+        checked={isCheck}
+        onChange={onChange}
       />
       <MoonBtn htmlFor={content}>
         <span>{content}</span>
