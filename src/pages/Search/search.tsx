@@ -17,26 +17,17 @@ import { useState } from "react";
 import searchIcon from "../../assets/search.png";
 import styled from "styled-components";
 import addIcon from "../../assets/addIcon.png";
+import Radio from "./Radio";
 
 const StationList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 8px;
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 0 0 16px 16px;
-  padding: 16px 16px 16px 42px;
-`;
-const MoonBtn = styled.button`
-  padding: 12px 16px;
-  max-width: 100%;
-  border: 0;
-  background-color: ${({ theme }) => theme.colors.light};
-  box-shadow: 8px 0px 0px #ff6063 inset, 0px 0px 4px 0px #00000033,
-    0px 0px 8px 0px #0000001a;
-
-  border-radius: 20px;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 16px 16px 16px 28px;
 `;
 
 const PlusIcon = styled.div`
@@ -87,6 +78,13 @@ function Search() {
     "online shopping": false,
   });
 
+  const [location, setLocation] = useState<CheckedState>({
+    "R9 Central Park": false,
+    "R10 Formosa Boulevard": false,
+    "R11 Kaohsiung Main Station": false,
+    "R13 Aozihdi": false,
+  });
+
   const handleCheckboxChange = (
     tag: string,
     setState: React.Dispatch<React.SetStateAction<CheckedState>>
@@ -112,12 +110,7 @@ function Search() {
               <TitleBoxIcon src={bugIcon} alt="bugIcon" />
               <TitleBoxText>Category</TitleBoxText>
             </StyledTitleBox>
-            <StyledTagBox
-              style={{
-                boxShadow:
-                  "0px 4px 16px 4px #0000000A,0px 2px 8px 0px #0000001A",
-              }}
-            >
+            <StyledTagBox>
               {/* 獲取obj的所有key值 */}
               {Object.keys(category).map((tag) => (
                 <CheckBox
@@ -148,7 +141,8 @@ function Search() {
           <div
             style={{
               filter:
-                "drop-shadow(0px 4px 16px #0000000a) drop-shadow(0px 2px 8px #0000001a)",
+                "drop-shadow(0px 4px 16px #0000000A) drop-shadow(0px 2px 8px #0000001A)",
+              willChange: "filter",
             }}
           >
             <SegmentedControlInner>
@@ -194,7 +188,22 @@ function Search() {
               <Label htmlFor="MRT">MRT</Label>
             </SegmentedControlInner>
             <StationList>
-              <MoonBtn>R11 Kaohsiung Main Station</MoonBtn>
+              {selectedOption == "Location" && <></>}
+              {selectedOption == "HSR" && <></>}
+              {selectedOption == "Train" && <></>}
+              {selectedOption == "LRT" && <></>}
+              {selectedOption == "MRT" && (
+                <>
+                  {Object.keys(location).map((tag) => (
+                    <Radio
+                      key={tag}
+                      content={tag}
+                      isChecked={location[tag]}
+                      onChange={() => handleCheckboxChange(tag, setLocation)}
+                    />
+                  ))}
+                </>
+              )}
               <PlusIcon>
                 <img src={addIcon} alt="addIcon" />
               </PlusIcon>
