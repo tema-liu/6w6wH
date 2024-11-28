@@ -28,17 +28,21 @@ const Message = styled.input`
   line-height: 22px;
   letter-spacing: -0.41px;
   margin: 0 8px;
-  height: 64px;
-  padding: 0 16px 12px 16px;
+  padding: 12px 16px 14px 16px;
   vertical-align: top;
   flex: 1;
   border-radius: 8px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   background-color: ${({ theme }) => theme.colors.light};
 `;
-const Button = styled.button`
-  padding: 20px 8px;
-  background-color: ${({ theme }) => theme.colors.gray100};
+
+type ButtonProps = {
+  $bgColor?: string;
+};
+const Button = styled.button<ButtonProps>`
+  padding: 12px;
+  background-color: ${({ $bgColor, theme }) =>
+    $bgColor?.trim() !== "" ? theme.colors.outline3 : theme.colors.gray400};
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   border-radius: 8px;
 `;
@@ -57,13 +61,13 @@ function MessageBox() {
 
   return (
     <Box>
-      <HeadShot src={photo} alt="HeadShot" />
       <Message
         value={inputValue}
         placeholder="Reply to this review"
         onChange={(e) => setInputValue(e.target.value)}
       ></Message>
-      <Button onClick={handleBtnClick}>
+
+      <Button $bgColor={inputValue} onClick={handleBtnClick}>
         <IconImg src={messageIcon} alt="messageIcon" />
       </Button>
     </Box>

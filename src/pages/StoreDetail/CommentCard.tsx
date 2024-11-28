@@ -112,7 +112,6 @@ function CommentCard() {
               <HeadShot src={headShotIcon} alt="headShot" />
               <BadgeBox>
                 <img width={22} src={badge} alt="badge" />
-                <img width={22} src={badge2} alt="badge2" />
               </BadgeBox>
             </Head>
             <HeadRight>
@@ -156,7 +155,6 @@ function CommentCard() {
               <HeadShot src={headShotIcon} alt="headShot" />
               <BadgeBox>
                 <img width={22} src={badge} alt="badge" />
-                <img width={22} src={badge2} alt="badge2" />
               </BadgeBox>
             </Head>
             <HeadRight>

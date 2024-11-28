@@ -17,7 +17,7 @@ const FilterButton = styled.button<{ $active?: boolean }>`
   opacity: ${(props) => (props.$active ? 0.75 : 0.5)};
   color: ${({ theme }) => theme.colors.light};
   padding: 13px 8px;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 px 4px 0;
   font-size: 17px;
   line-height: 22px;
   letter-spacing: -0.41px;
@@ -33,7 +33,7 @@ const IconBg = styled.div`
 `;
 
 const FilterColumn = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("relevance");
+  const [activeFilter, setActiveFilter] = useState<string>("Popular");
 
   const handleFilterClick = (filter: string) => {
     setActiveFilter(filter);
@@ -46,22 +46,22 @@ const FilterColumn = () => {
       </IconBg>
 
       <FilterButton
-        $active={activeFilter === "relevance"}
-        onClick={() => handleFilterClick("relevance")}
+        $active={activeFilter === "Popular"}
+        onClick={() => handleFilterClick("Popular")}
       >
-        relevance ↑
+        Popular ↑
       </FilterButton>
       <FilterButton
-        $active={activeFilter === "star"}
-        onClick={() => handleFilterClick("star")}
+        $active={activeFilter === "Lastest"}
+        onClick={() => handleFilterClick("Lastest")}
       >
-        star ↑
+        Lastest ↑
       </FilterButton>
       <FilterButton
-        $active={activeFilter === "distance"}
-        onClick={() => handleFilterClick("distance")}
+        $active={activeFilter === "Replies"}
+        onClick={() => handleFilterClick("Replies")}
       >
-        distance ↑
+        Replies ↑
       </FilterButton>
     </FilterBar>
   );

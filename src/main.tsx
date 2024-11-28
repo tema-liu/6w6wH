@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Search />
+      <Reviews />
     </ThemeProvider>
   </StrictMode>
 );
