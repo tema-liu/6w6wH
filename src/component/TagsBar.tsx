@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 const TagsBar = styled.div`
+  width: 100%;
   padding: 8px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
   display: flex;
   flex-wrap: nowrap;
-  overflow: auto;
+  overflow-x: auto; /* 允許水平滾動 */
+  overflow-y: hidden; /* 禁止垂直滾動 */
+  align-items: center;
 
   /* 隱藏滾動條 - Chrome, Safari, Edge */
   ::-webkit-scrollbar {

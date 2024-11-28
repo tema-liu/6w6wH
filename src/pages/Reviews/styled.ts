@@ -49,6 +49,7 @@ export const Head = styled.div`
 export const HeadRight = styled.div`
   width: 100%;
   margin-left: 8px;
+  overflow: hidden;
 `;
 export const HeadShot = styled.img`
   width: 64px; /* 設置圖片寬度 */

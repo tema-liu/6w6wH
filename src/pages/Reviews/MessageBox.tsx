@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import photo from "../../assets/fe595192d2f3182e2c308450c2f7be7f.jpg";
 import messageIcon from "../../assets/message.png";
 import { IconImg } from "../../component/LayoutComponents";
 import { useState } from "react";
@@ -10,16 +9,8 @@ const Box = styled.div`
   margin-left: -8px;
   position: sticky;
   padding-top: 8px;
-  padding-bottom: 16px;
-  bottom: 72px;
-`;
-
-const HeadShot = styled.img`
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 0 8px 8px 0;
+  padding-bottom: 40px;
+  bottom: 0;
 `;
 
 const Message = styled.input`

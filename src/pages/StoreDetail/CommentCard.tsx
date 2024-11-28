@@ -6,7 +6,7 @@ import { StarRating } from "../../component/StarRating";
 import { IconImg } from "../../component/LayoutComponents";
 import review from "../../assets/review.png";
 import HeartIcon from "../../component/HeartIcon";
-
+import { TagsBar, Tag } from "../../component/TagsBar";
 const Container = styled.div`
   > div + div {
     border-top: 1px solid ${({ theme }) => theme.colors.gray400};
@@ -16,7 +16,7 @@ const Container = styled.div`
   }
 `;
 const CommentCardContent = styled.div`
-  padding: 16px 8px 16px 8px;
+  padding: 16px 8px 8px 8px;
   background-color: ${({ theme }) => theme.colors.light};
 `;
 const CommentCardImgBox = styled.div`
@@ -47,6 +47,7 @@ const Head = styled.div`
 const HeadRight = styled.div`
   width: 100%;
   margin-left: 8px;
+  overflow: hidden; /* 防止內容溢出父容器 */
 `;
 const HeadShot = styled.img`
   width: 64px; /* 設置圖片寬度 */
@@ -61,11 +62,8 @@ const BadgeBox = styled.div`
 `;
 const UserReviewTop = styled.div`
   display: flex;
-  align-items: center;
-`;
-
-const UserRating = styled.div`
-  * + * {
+  flex-direction: column;
+  > * + * {
     margin-top: 8px; // 子元素之間的間距
   }
 `;
@@ -91,9 +89,15 @@ const UserReviewFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   color: ${({ theme }) => theme.colors.gray600};
+`;
+const Tags = styled(TagsBar)`
+  border: none;
+  padding: 2px 0 10px 0;
+  padding-top: 2px;
+  padding-bottom: 10px;
 `;
 
 function CommentCard() {
@@ -116,10 +120,12 @@ function CommentCard() {
             </Head>
             <HeadRight>
               <UserReviewTop>
-                <UserRating>
-                  <span style={{ display: "block" }}>Ala</span>
-                  <StarRating star={3} width={112} height={16} />
-                </UserRating>
+                <span style={{ display: "block" }}>Ala</span>
+                <StarRating star={3} width={112} height={16} />
+                <Tags>
+                  <Tag>Multilingual</Tag>
+                  <Tag>Friendly</Tag>
+                </Tags>
               </UserReviewTop>
               <UserReviewMain>
                 <p>
@@ -159,10 +165,12 @@ function CommentCard() {
             </Head>
             <HeadRight>
               <UserReviewTop>
-                <UserRating>
-                  <span style={{ display: "block" }}>Ala</span>
-                  <StarRating star={3} width={112} height={16} />
-                </UserRating>
+                <span style={{ display: "block" }}>Ala</span>
+                <StarRating star={3} width={112} height={16} />
+                <Tags>
+                  <Tag>Multilingual</Tag>
+                  <Tag>Friendly</Tag>
+                </Tags>
               </UserReviewTop>
               <UserReviewMain>
                 <p>

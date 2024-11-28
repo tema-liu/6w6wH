@@ -31,12 +31,19 @@ import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
+import { TagsBar, Tag } from "../../component/TagsBar";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
 `;
 const CommentDetail = styled(CommentCardDetail)`
   margin: 0;
+`;
+const Tags = styled(TagsBar)`
+  border: none;
+  padding: 2px 0 10px 0;
+  padding-top: 2px;
+  padding-bottom: 10px;
 `;
 
 function Reviews() {
@@ -75,6 +82,13 @@ function Reviews() {
                   </div>
                 </UserReviewTop>
                 <UserReviewMain>
+                  <Tags>
+                    <Tag>Multilingual</Tag>
+                    <Tag>Multilingual</Tag>
+                    <Tag>Multilingual</Tag>
+                    <Tag>Multilingual</Tag>
+                    <Tag>Friendly</Tag>
+                  </Tags>
                   <p>
                     Kopi susu is super yummy! Nice ambient and service! Come
                     hang out!
@@ -99,8 +113,6 @@ function Reviews() {
           <RepliesCard />
           <MessageBox />
         </Container>
-
-        <FooterNav />
       </Wrapper>
     </>
   );

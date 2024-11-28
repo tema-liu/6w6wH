@@ -134,11 +134,11 @@ function StoreDetail() {
               </SuggestBtn>
             </>
           )}
-          {selectedOption === "Reviews" && (
+          {/* {selectedOption === "Reviews" && (
             <>
               <FilterColumn></FilterColumn>
             </>
-          )}
+          )} */}
         </Container>
         <FooterNav />
       </Wrapper>
