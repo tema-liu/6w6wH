@@ -19,6 +19,7 @@ const Input = styled.input`
     span {
       font-weight: 700;
       letter-spacing: -0.41px;
+      font-size: 17px;
       color: ${({ theme }) => theme.colors.gray900};
       animation: changeBackground 1s forwards; /* 設置動畫 */
     }

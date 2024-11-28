@@ -24,7 +24,7 @@ export const SuggestBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 16px;
   padding: 13px 0;
-  margin: 16px 0;
+  margin: 24px 0 16px 0;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 
@@ -84,4 +84,15 @@ export const Label = styled.label`
     background: ${({ theme }) => theme.colors.gray100};
     opacity: 1;
   }
+`;
+
+export const StationList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 8px;
+  position: relative;
+  background-color: ${({ theme }) => theme.colors.gray100};
+  border-radius: 0 0 16px 16px;
+  padding: 16px 16px 16px 28px;
 `;

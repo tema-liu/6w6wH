@@ -11,59 +11,32 @@ import {
   SegmentedControlInner,
   RadioInput,
   Label,
+  StationList,
 } from "./styled";
 import CheckBox from "./CheckBox";
 import { useState } from "react";
 import searchIcon from "../../assets/search.png";
-import styled from "styled-components";
-import addIcon from "../../assets/addIcon.png";
-import Radio from "./Radio";
-
-const StationList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
-  gap: 8px;
-  position: relative;
-  background-color: ${({ theme }) => theme.colors.gray100};
-  border-radius: 0 0 16px 16px;
-  padding: 16px 16px 16px 28px;
-`;
-
-const PlusIcon = styled.div`
-  display: inline-block;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  font-size: 0;
-  /* 扇形 */
-  &::before {
-    content: "";
-    width: 42px;
-    height: 42px;
-    background: ${({ theme }) => theme.colors.gray400};
-    border-radius: 0 0 0 16px; /* 左下圓角 */
-    clip-path: circle(100% at 0% 100%); /* 創建扇形形狀 */
-    display: inline-block;
-  }
-  img {
-    position: absolute;
-    bottom: 11px;
-    left: 11px;
-  }
-`;
+import { ReadMoreRadio } from "./tagReadMore";
 
 function Search() {
+  type CheckedState = {
+    [key: string]: boolean;
+  };
+
+  //單選nav
   const [selectedOption, setSelectedOption] = useState("HSR");
 
-  // 處理選擇的變更
+  //保存單選中的定位("MRT","R13 Aozihdi")
+  const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
+    null,
+    null,
+  ]);
+
+  //處理選擇的變更
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
 
-  type CheckedState = {
-    [key: string]: boolean;
-  };
   const [category, setCategoryState] = useState<CheckedState>({
     Food: false,
     Shopping: false,
@@ -77,6 +50,7 @@ function Search() {
     "Communication aids": false,
     "online shopping": false,
   });
+
   const handleCheckboxChange = (
     tag: string,
     setState: React.Dispatch<React.SetStateAction<CheckedState>>
@@ -87,23 +61,75 @@ function Search() {
     }));
   };
 
-  //保存選中的定位
-  const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
-    null,
-    null,
-  ]);
-
   const location: {
+    HSR: string[];
     Train: string[];
     MRT: string[];
+    LRT: string[];
   } = {
+    HSR: [
+      "R9 Central Park",
+      "R10 Formosa Boulevard",
+      "R11 Kaohsiung Main Station",
+      "R13 Aozihdi",
+    ],
     Train: ["R10 Formosa Boulevard"],
     MRT: [
       "R9 Central Park",
       "R10 Formosa Boulevard",
       "R11 Kaohsiung Main Station",
       "R13 Aozihdi",
+      "R17",
+      "R18",
+      "R29",
+      "R15",
     ],
+    LRT: ["ASD", "ASDF", "ASDAS"],
+  };
+
+  const RenderTransportOptions = () => {
+    switch (selectedOption) {
+      case "Location":
+        return null;
+      case "HSR":
+        return (
+          <ReadMoreRadio
+            type="HSR"
+            location={location.HSR}
+            selectedStation={selectedStation}
+            onStationChange={setSelectedStation}
+          />
+        );
+      case "Train":
+        return (
+          <ReadMoreRadio
+            type="Train"
+            location={location.Train}
+            selectedStation={selectedStation}
+            onStationChange={setSelectedStation}
+          />
+        );
+      case "LRT":
+        return (
+          <ReadMoreRadio
+            type="LRT"
+            location={location.LRT}
+            selectedStation={selectedStation}
+            onStationChange={setSelectedStation}
+          />
+        );
+      case "MRT":
+        return (
+          <ReadMoreRadio
+            type="MRT"
+            location={location.MRT}
+            selectedStation={selectedStation}
+            onStationChange={setSelectedStation}
+          />
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -125,7 +151,7 @@ function Search() {
               {/* 獲取obj的所有key值 */}
               {Object.keys(category).map((tag) => (
                 <CheckBox
-                  key={tag} // 唯一标识
+                  key={tag}
                   content={tag}
                   isChecked={category[tag]}
                   onChange={() => handleCheckboxChange(tag, setCategoryState)}
@@ -199,46 +225,7 @@ function Search() {
               <Label htmlFor="MRT">MRT</Label>
             </SegmentedControlInner>
             <StationList>
-              {selectedOption == "Location" && <></>}
-              {selectedOption == "HSR" && <></>}
-              {selectedOption == "Train" && (
-                <>
-                  {location.Train.map((tag) => (
-                    <Radio
-                      key={tag}
-                      content={tag}
-                      isCheck={
-                        selectedStation[0] == selectedOption &&
-                        selectedStation[1] == tag
-                      }
-                      onChange={() => {
-                        setSelectedStation([selectedOption, tag]);
-                      }}
-                    />
-                  ))}
-                </>
-              )}
-              {selectedOption == "LRT" && <></>}
-              {selectedOption == "MRT" && (
-                <>
-                  {location.MRT.map((tag) => (
-                    <Radio
-                      key={tag}
-                      content={tag}
-                      isCheck={
-                        selectedStation[0] == selectedOption &&
-                        selectedStation[1] == tag
-                      }
-                      onChange={() => {
-                        setSelectedStation([selectedOption, tag]);
-                      }}
-                    />
-                  ))}
-                </>
-              )}
-              <PlusIcon>
-                <img src={addIcon} alt="addIcon" />
-              </PlusIcon>
+              <RenderTransportOptions />
             </StationList>
           </div>
           <SuggestBtn>
