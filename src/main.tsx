@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import theme from "./styles/theme.ts";
-import GlobalStyle from "./GlobalStyle.tsx";
+import GlobalStyle from "./utils/styled-components/GlobalStyle.tsx";
 import { ThemeProvider } from "styled-components";
 import StoreDetail from "./pages/StoreDetail/StoreDetail.tsx";
 import Reviews from "./pages/Reviews/Reviews.tsx";
