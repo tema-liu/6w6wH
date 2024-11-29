@@ -21,7 +21,7 @@ const ShopCardImg = styled.img<DonateProps>`
   object-fit: cover;
   object-position: center;
   border: ${({ $isDonate, theme }) =>
-    $isDonate ? `4px solid ${theme.colors.container2}` : "none"};
+    $isDonate ? `8px solid ${theme.colors.container2}` : "none"};
 `;
 const ShopCardMain = styled.div`
   margin-top: -200px;
@@ -116,17 +116,17 @@ const ADtag = styled.div`
 `;
 
 function ShopCard() {
-  const isDonate = true;
+  const isAdvertise = true;
   return (
     <>
       <ShopCardBox>
-        {isDonate && (
+        {isAdvertise && (
           <ADtag>
             <span>AD</span>
           </ADtag>
         )}
         <ShopCardImg
-          $isDonate={isDonate}
+          $isDonate={isAdvertise}
           src="https://picsum.photos/1000/800"
           alt="shopImg"
         />
@@ -171,13 +171,13 @@ function ShopCard() {
         </ShopCardMain>
       </ShopCardBox>
       <ShopCardBox>
-        {isDonate && (
+        {isAdvertise && (
           <ADtag>
             <span>AD</span>
           </ADtag>
         )}
         <ShopCardImg
-          $isDonate={isDonate}
+          $isDonate={isAdvertise}
           src="https://picsum.photos/1000/800"
           alt="shopImg"
         />
