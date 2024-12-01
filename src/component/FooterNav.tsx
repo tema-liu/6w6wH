@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { IconImg } from "./LayoutComponents";
 import fire from "../assets/fire.png";
 import add from "../assets/add_circle.png";
@@ -30,21 +31,27 @@ const Icon = styled(IconImg)`
 `;
 
 function FooterNav() {
+  const navigate = useNavigate();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <Footer>
-      <NavLink>
+      <NavLink onClick={() => handleNavigate("/")}>
         <IconImg src={fire} alt="fireIcon" />
       </NavLink>
-      <NavLink>
+      <NavLink onClick={() => handleNavigate("/addShop")}>
         <IconImg src={add} alt="addIcon" />
       </NavLink>
-      <NavLink>
+      <NavLink onClick={() => handleNavigate("/search")}>
         <Icon src={search} alt="search" />
       </NavLink>
-      <NavLink>
+      <NavLink onClick={() => handleNavigate("/notification")}>
         <IconImg src={notify} alt="notify" />
       </NavLink>
-      <NavLink>
+      <NavLink onClick={() => handleNavigate("/profile")}>
         <IconImg src={person} alt="person" />
       </NavLink>
     </Footer>

@@ -25,13 +25,13 @@ import {
   HeadShot,
   SocialBlock,
 } from "../Reviews/styled";
-import FooterNav from "../../component/FooterNav";
 import review from "../../assets/review.png";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
+import { useNavigate } from "react-router-dom";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;

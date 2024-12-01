@@ -6,6 +6,7 @@ import { StarRating } from "../../component/StarRating";
 import arrowIcon from "../../assets/arrow.png";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { ReadMore } from "./ReadMore";
+import { useNavigate } from "react-router-dom";
 
 type DonateProps = {
   $isDonate?: boolean;
@@ -117,9 +118,14 @@ const ADtag = styled.div`
 
 function ShopCard() {
   const isAdvertise = true;
+  const navigate = useNavigate();
   return (
     <>
-      <ShopCardBox>
+      <ShopCardBox
+        onClick={() => {
+          navigate("/storeList/:id");
+        }}
+      >
         {isAdvertise && (
           <ADtag>
             <span>AD</span>
@@ -170,7 +176,11 @@ function ShopCard() {
           </RatingContent>
         </ShopCardMain>
       </ShopCardBox>
-      <ShopCardBox>
+      <ShopCardBox
+        onClick={() => {
+          navigate("/storeList/:id");
+        }}
+      >
         {isAdvertise && (
           <ADtag>
             <span>AD</span>

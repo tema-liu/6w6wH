@@ -1,6 +1,5 @@
 import { Wrapper, Container, IconImg } from "../../component/LayoutComponents";
 import Header from "../../component/header";
-import FooterNav from "../../component/FooterNav";
 import bugIcon from "../../assets/bug.png";
 import { TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 import {
@@ -17,8 +16,11 @@ import CheckBox from "./CheckBox";
 import { useState } from "react";
 import searchIcon from "../../assets/search.png";
 import { ReadMoreRadio } from "./tagReadMore";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
+  const navigate = useNavigate();
+
   type CheckedState = {
     [key: string]: boolean;
   };
@@ -228,13 +230,16 @@ function Search() {
               <RenderTransportOptions />
             </StationList>
           </div>
-          <SuggestBtn>
+          <SuggestBtn
+            onClick={() => {
+              navigate("/storeList");
+            }}
+          >
             <IconImg src={searchIcon} alt="penIcon" />
             Search
           </SuggestBtn>
         </SearchContainer>
       </Container>
-      <FooterNav />
     </Wrapper>
   );
 }

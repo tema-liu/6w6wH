@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Header from "../../component/header";
 import { Container, Wrapper } from "../../component/LayoutComponents";
-import FooterNav from "../../component/FooterNav";
 import bugIcon from "../../assets/bug.png";
 import { TagChips } from "../../component/TagChips";
 import ShopCard from "./ShopCard";
@@ -60,7 +59,6 @@ function SearchResult() {
             <ShopCard />
           </ShopCards>
         </Container>
-        <FooterNav />
       </Wrapper>
     </>
   );

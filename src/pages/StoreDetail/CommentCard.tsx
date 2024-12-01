@@ -7,6 +7,7 @@ import { IconImg } from "../../component/LayoutComponents";
 import review from "../../assets/review.png";
 import HeartIcon from "../../component/HeartIcon";
 import { TagsBar, Tag } from "../../component/TagsBar";
+import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   > div + div {
     border-top: 1px solid ${({ theme }) => theme.colors.gray400};
@@ -101,6 +102,7 @@ const Tags = styled(TagsBar)`
 `;
 
 function CommentCard() {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -138,7 +140,13 @@ function CommentCard() {
                 <SocialBlock>
                   <div>
                     <h4>1.5k</h4>
-                    <IconImg src={review} alt="review" />
+                    <IconImg
+                      src={review}
+                      alt="review"
+                      onClick={() => {
+                        navigate("/review/:id");
+                      }}
+                    />
                   </div>
                   <div>
                     <h4>999</h4>
@@ -183,7 +191,13 @@ function CommentCard() {
                 <SocialBlock>
                   <div>
                     <h4>1.5k</h4>
-                    <IconImg src={review} alt="review" />
+                    <IconImg
+                      src={review}
+                      alt="review"
+                      onClick={() => {
+                        navigate("/review/:id");
+                      }}
+                    />
                   </div>
                   <div>
                     <h4>999</h4>

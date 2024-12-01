@@ -33,7 +33,6 @@ import penIcon from "../../assets/pen.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
-import FooterNav from "../../component/FooterNav";
 import FilterColumn from "./FilterColumn";
 
 function StoreDetail() {
@@ -140,7 +139,6 @@ function StoreDetail() {
             </>
           )} */}
         </Container>
-        <FooterNav />
       </Wrapper>
     </>
   );
