@@ -12,7 +12,7 @@ const Footer = styled.div`
   justify-content: space-evenly;
   position: sticky;
   bottom: 0;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ theme }) => theme.colors.gray200};
   color: #fff;
   padding-bottom: 24px;
   box-shadow: 0px -8px 16px 4px #0000000a, 0px -4px 8px 0px #0000001a;

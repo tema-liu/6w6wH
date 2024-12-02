@@ -3,7 +3,7 @@ import beforeBtn from "../assets/navigate_before.png";
 
 const Wrapper = styled.header`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ theme }) => theme.colors.gray200};
   display: flex;
   align-items: center;
   justify-content: center; /* 使標題在主軸上居中 */
