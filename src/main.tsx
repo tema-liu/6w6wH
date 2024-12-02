@@ -10,6 +10,7 @@ import Search from "./pages/Search/Search.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, Outlet } from "react-router-dom";
 import StoreListLayout from "./StoreListLayout.tsx";
+import Popular from "./pages/Popular/Popular.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -37,7 +38,7 @@ if (rootElement) {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<StoreListLayout />}>
-              <Route index element={<App />} />
+              <Route index element={<Popular />} />
               {/* 此放popular */}
               <Route path="/addShop" element={<App />} />
               <Route path="/search" element={<Search />} />
