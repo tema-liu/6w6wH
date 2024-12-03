@@ -33,7 +33,7 @@ const Text = styled(TitleBoxText)`
 const Popup = styled.div`
   transition: all 5s ease-in-out;
   position: relative;
-  top: 25%;
+  top: 10%;
 `;
 const Info = styled.div`
   border-radius: 0 0 16px 16px;
@@ -52,17 +52,13 @@ type PureProps = {
 function Pure({ id, content, text, isActive }: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // 如果點擊的是 Overlay 本身 (非彈窗內部)
-    if (e.target instanceof Element && e.target.id === "popup") {
-      window.location.hash = "#close"; // 清空 hash 值，關閉彈窗
+    if (isActive && e.target instanceof Element && e.target.id === "popup") {
+      window.location.hash = "#close";
     }
   };
 
   return (
-    <Overlay
-      id={id}
-      isActive={isActive}
-      onClick={isActive ? handleOverlayClick : undefined}
-    >
+    <Overlay id={id} onClick={isActive ? handleOverlayClick : undefined}>
       <Popup>
         <TitleBox>
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />

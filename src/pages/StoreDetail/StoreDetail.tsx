@@ -35,6 +35,7 @@ import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import FilterColumn from "./FilterColumn";
 import Pure from "../../component/Pure";
+import SuggestForm from "./SuggestForm";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -136,7 +137,7 @@ function StoreDetail() {
                 isActive={true}
                 text="Suggest an edit"
                 id="popup"
-                content={123}
+                content={<SuggestForm />}
               />
             </>
           )}
