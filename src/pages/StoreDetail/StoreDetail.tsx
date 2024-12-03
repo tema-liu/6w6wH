@@ -34,6 +34,7 @@ import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import FilterColumn from "./FilterColumn";
+import Pure from "../../component/Pure";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -127,10 +128,11 @@ function StoreDetail() {
           </PlaceDetailMain>
           {selectedOption === "Detail" && (
             <>
-              <SuggestBtn>
+              <SuggestBtn href="#popup">
                 <Icon src={penIcon} alt="penIcon" />
                 Suggest an edit
               </SuggestBtn>
+              <Pure text="Suggest an edit" id="popup" content={123} />
             </>
           )}
         </Container>
