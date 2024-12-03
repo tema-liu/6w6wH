@@ -133,11 +133,6 @@ function StoreDetail() {
               </SuggestBtn>
             </>
           )}
-          {/* {selectedOption === "Reviews" && (
-            <>
-              <FilterColumn></FilterColumn>
-            </>
-          )} */}
         </Container>
       </Wrapper>
     </>
