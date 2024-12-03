@@ -132,7 +132,12 @@ function StoreDetail() {
                 <Icon src={penIcon} alt="penIcon" />
                 Suggest an edit
               </SuggestBtn>
-              <Pure text="Suggest an edit" id="popup" content={123} />
+              <Pure
+                isActive={true}
+                text="Suggest an edit"
+                id="popup"
+                content={123}
+              />
             </>
           )}
         </Container>

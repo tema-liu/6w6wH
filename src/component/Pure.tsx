@@ -46,9 +46,10 @@ type PureProps = {
   id: string; // id 是字串
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
+  isActive: boolean;
 };
 
-function Pure({ id, content, text }: PureProps) {
+function Pure({ id, content, text, isActive }: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // 如果點擊的是 Overlay 本身 (非彈窗內部)
     if (e.target instanceof Element && e.target.id === "popup") {
@@ -57,7 +58,11 @@ function Pure({ id, content, text }: PureProps) {
   };
 
   return (
-    <Overlay id={id} onClick={handleOverlayClick}>
+    <Overlay
+      id={id}
+      isActive={isActive}
+      onClick={isActive ? handleOverlayClick : undefined}
+    >
       <Popup>
         <TitleBox>
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />
