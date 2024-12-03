@@ -26,7 +26,10 @@ const ShopName = styled.div`
   top: 35px;
   left: -112px;
   gap: 6px;
-
+  @media screen and (max-width: 375px) {
+    top: 9%;
+    left: -130px;
+  }
   h2 {
     white-space: nowrap;
     overflow: hidden;
