@@ -108,7 +108,8 @@ export const PlaceDetailMain = styled.div`
   box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a;
 `;
 
-export const SuggestBtn = styled.button`
+export const SuggestBtn = styled.a`
+  text-decoration: none;
   width: 100%;
   display: flex;
   align-items: center;
