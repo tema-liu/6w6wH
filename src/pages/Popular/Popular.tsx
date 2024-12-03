@@ -4,6 +4,7 @@ import { Container, Wrapper } from "../../component/LayoutComponents";
 import AdSwiper from "./AdSwiper";
 import PopularMarquee from "./PopularMarquee";
 import HotShopList from "./HotShopList";
+import HotReviews from "./HotReviews";
 
 const HomeContainer = styled(Container)`
   padding-top: 0px;
@@ -18,6 +19,7 @@ function Popular() {
           <AdSwiper />
           <PopularMarquee />
           <HotShopList />
+          <HotReviews />
         </HomeContainer>
       </Wrapper>
     </>

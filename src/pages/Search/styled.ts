@@ -69,7 +69,7 @@ export const Label = styled.label`
 
   /* Last label */
   &:last-of-type {
-    border-radius: 0 32px 0 0;
+    border-radius: 0 16px 0 0;
   }
 
   /* Checked state */

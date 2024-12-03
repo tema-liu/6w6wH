@@ -68,8 +68,8 @@ const HeadShot = styled.img`
   margin: auto auto;
 `;
 const ShopCards = styled.div`
-  filter: drop-shadow(0px 4px 16px #0000000a) drop-shadow(0px 2px 8px #0000002a);
-  will-change: filter;
+  /* filter: drop-shadow(0px 4px 16px #0000000a) drop-shadow(0px 2px 8px #0000002a);
+  will-change: filter; */
   display: flex;
   column-gap: 4px;
   overflow-x: auto;
@@ -92,7 +92,7 @@ function HotShopList() {
   return (
     <ShopCards>
       <ShopCard>
-        <TitleBox color={"Secondary"}>
+        <TitleBox color={"secondary"}>
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />
           <TitleBoxText>November Picks</TitleBoxText>
         </TitleBox>
@@ -104,7 +104,7 @@ function HotShopList() {
                 <h2>Left Bank Rendezvous Cafe 南國人文美食坊</h2>
               </ShopName>
             </ShopNameContainer>
-            <ShopImg src="https://picsum.photos/1000/800" alt="photo" />
+            <ShopImg src={photo} alt="photo" />
           </ShopMain>
           <Review>
             <HeadShot src={photo} alt="photo" />
@@ -127,7 +127,7 @@ function HotShopList() {
                 <h2>Left Bank Rendezvous Cafe 南國人文美食坊</h2>
               </ShopName>
             </ShopNameContainer>
-            <ShopImg src="https://picsum.photos/1000/800" alt="photo" />
+            <ShopImg src={photo} alt="photo" />
           </ShopMain>
           <Review>
             <HeadShot src={photo} alt="photo" />
@@ -150,7 +150,7 @@ function HotShopList() {
                 <h2>Left Bank Rendezvous Cafe 南國人文美食坊</h2>
               </ShopName>
             </ShopNameContainer>
-            <ShopImg src="https://picsum.photos/1000/800" alt="photo" />
+            <ShopImg src={photo} alt="photo" />
           </ShopMain>
           <Review>
             <HeadShot src={photo} alt="photo" />
@@ -173,7 +173,7 @@ function HotShopList() {
                 <h2>Left Bank Rendezvous Cafe 南國人文美食坊</h2>
               </ShopName>
             </ShopNameContainer>
-            <ShopImg src="https://picsum.photos/1000/800" alt="photo" />
+            <ShopImg src={photo} alt="photo" />
           </ShopMain>
           <Review>
             <HeadShot src={photo} alt="photo" />
