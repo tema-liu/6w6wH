@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const ReadMoreBtn = styled.span`
-  color: ${({ theme }) => theme.colors.Secondary};
+  color: ${({ theme }) => theme.colors.secondary};
   //styleName: Callout/Bold;
   font-size: 16px;
   font-weight: 700;
@@ -18,7 +18,7 @@ type ReadMoreProps = {
 
 export const ReadMore: React.FC<ReadMoreProps> = ({
   text,
-  amountOfWords = 20,
+  amountOfWords = 24,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 

@@ -63,6 +63,7 @@ export const BadgeBox = styled.div`
   margin-top: 8px;
 `;
 export const UserReviewTop = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

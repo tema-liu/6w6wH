@@ -85,6 +85,10 @@ p{
 img{
     vertical-align: middle;
 }
+button{
+
+    background: transparent;
+}
 
 @font-face {
     font-family: "mix";
