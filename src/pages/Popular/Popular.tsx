@@ -5,6 +5,7 @@ import AdSwiper from "./AdSwiper";
 import PopularMarquee from "./PopularMarquee";
 import HotShopList from "./HotShopList";
 import HotReviews from "./HotReviews";
+import LearningResources from "./LearningResources";
 
 const HomeContainer = styled(Container)`
   padding-top: 0px;
@@ -20,6 +21,7 @@ function Popular() {
           <PopularMarquee />
           <HotShopList />
           <HotReviews />
+          <LearningResources />
         </HomeContainer>
       </Wrapper>
     </>
