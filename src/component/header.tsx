@@ -35,12 +35,13 @@ const BeforeBtn = styled.img`
 
 interface HeaderProps {
   title: string; // 這裡應該是 string 類型
+  isBefore?: boolean;
 }
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, isBefore = true }: HeaderProps) => {
   return (
     <Wrapper>
-      <BeforeBtn src={beforeBtn} alt="beforeBtn" />
+      {isBefore && <BeforeBtn src={beforeBtn} alt="beforeBtn" />}
       <Title>
         <img src="/Frame65.png" alt="icon" /> {title}
       </Title>

@@ -15,7 +15,7 @@ function Popular() {
   return (
     <>
       <Wrapper>
-        <Header title={`Popular`} />
+        <Header title={`Popular`} isBefore={false} />
         <HomeContainer>
           <AdSwiper />
           <PopularMarquee />

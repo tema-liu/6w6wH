@@ -20,20 +20,19 @@ const Box = styled(TagBox)`
 `;
 const ShopName = styled.div`
   position: absolute;
+  width: 216px;
   display: flex;
   flex-direction: column;
   transform: rotate(-90deg);
-  top: 35px;
-  left: -112px;
+  overflow: hidden;
+  top: 86px;
+  left: -63px;
   gap: 6px;
-  @media screen and (max-width: 375px) {
-    top: 9%;
-    left: -130px;
-  }
+
   h2 {
     white-space: nowrap;
     overflow: hidden;
-    font-weight: 700;
+    font-family: mix;
   }
   img {
   }
