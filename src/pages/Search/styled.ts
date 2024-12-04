@@ -96,3 +96,7 @@ export const StationList = styled.div`
   border-radius: 0 0 16px 16px;
   padding: 16px 16px 16px 28px;
 `;
+
+export const IconImg = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+`;

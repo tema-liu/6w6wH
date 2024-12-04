@@ -1,15 +1,10 @@
 import styled from "styled-components";
-import review from "../assets/Component 1.png";
+import { Icon } from "./LayoutComponents";
 
 interface ReviewProps {
   $marginRight?: number;
   content?: string;
 }
-
-const ReviewIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
 
 const Review = styled.button<ReviewProps>`
   gap: 6px;
@@ -34,7 +29,7 @@ const Review = styled.button<ReviewProps>`
 export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
   return (
     <Review $marginRight={$marginRight}>
-      <ReviewIcon src={review} alt="review" />
+      <Icon className="material-symbols-outlined">reviews</Icon>
       {content}
     </Review>
   );

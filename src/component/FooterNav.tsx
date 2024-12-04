@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
-import { IconImg } from "./LayoutComponents";
-import fire from "../assets/fire.png";
-import fireOn from "../assets/fire_on.png";
-import add from "../assets/add_circle.png";
-import addOn from "../assets/add_on.png";
+import { IconImg, Icon } from "./LayoutComponents";
 import search from "../assets/Frame65.png";
-import notify from "../assets/Icon.png";
-import person from "../assets/person.png";
 
 const Footer = styled.div`
   display: flex;
@@ -30,11 +24,21 @@ const StyledNavLink = styled(NavLink)`
 type IconProps = {
   $opacity?: boolean; // 或者根据需要调整类型
 };
-const Icon = styled(IconImg)<IconProps>`
+const ImgIcon = styled(IconImg)<IconProps>`
   width: 32px;
   height: 32px;
   opacity: ${({ $opacity }) => ($opacity ? 1 : 0.5)};
   transition: opacity 0.25s ease;
+`;
+
+type fillProps = {
+  $fill?: boolean; // 或者根据需要调整类型
+};
+
+const NavIcon = styled(Icon)<fillProps>`
+  font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
+  color: ${({ theme, $fill }) =>
+    $fill ? theme.colors.gray900 : theme.colors.gray600};
 `;
 
 function FooterNav() {
@@ -44,17 +48,21 @@ function FooterNav() {
     <Footer>
       <StyledNavLink to="/">
         {({ isActive }) => (
-          <IconImg src={isActive ? fireOn : fire} alt="fireIcon" />
+          <NavIcon $fill={isActive} className="material-symbols-outlined">
+            local_fire_department
+          </NavIcon>
         )}
       </StyledNavLink>
       <StyledNavLink to="/addShop">
         {({ isActive }) => (
-          <IconImg src={isActive ? addOn : add} alt="addIcon" />
+          <NavIcon $fill={isActive} className="material-symbols-outlined">
+            add_circle
+          </NavIcon>
         )}
       </StyledNavLink>
       <StyledNavLink to="/search">
         {({ isActive }) => (
-          <Icon
+          <ImgIcon
             src={search}
             alt="search"
             $opacity={
@@ -66,15 +74,15 @@ function FooterNav() {
       </StyledNavLink>
       <StyledNavLink to="/notification">
         {({ isActive }) => (
-          <IconImg src={isActive ? notify : notify} alt="notify" />
+          <NavIcon $fill={isActive} className="material-symbols-outlined">
+            notifications
+          </NavIcon>
         )}
       </StyledNavLink>
       <StyledNavLink to="/profile">
         {({ isActive }) => (
-          <Icon
-            src={isActive ? person : person}
-            alt="person"
-            $opacity={
+          <NavIcon
+            $fill={
               isActive ||
               [
                 "/login",
@@ -87,7 +95,10 @@ function FooterNav() {
                 "/profile",
               ].includes(location.pathname)
             }
-          />
+            className="material-symbols-outlined"
+          >
+            person
+          </NavIcon>
         )}
       </StyledNavLink>
     </Footer>

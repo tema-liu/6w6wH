@@ -1,4 +1,4 @@
-import { Wrapper, Container, IconImg } from "../../component/LayoutComponents";
+import { Wrapper, Container } from "../../component/LayoutComponents";
 import Header from "../../component/header";
 import bugIcon from "../../assets/bug.png";
 import { TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
@@ -11,10 +11,10 @@ import {
   RadioInput,
   Label,
   StationList,
+  IconImg,
 } from "./styled";
 import CheckBox from "./CheckBox";
 import { useState } from "react";
-import searchIcon from "../../assets/search.png";
 import { ReadMoreRadio } from "./tagReadMore";
 import { useNavigate } from "react-router-dom";
 
@@ -235,7 +235,7 @@ function Search() {
               navigate("/storeList");
             }}
           >
-            <IconImg src={searchIcon} alt="penIcon" />
+            <IconImg className="material-symbols-outlined">search</IconImg>
             Search
           </SuggestBtn>
         </SearchContainer>

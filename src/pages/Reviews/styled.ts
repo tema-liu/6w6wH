@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IconImg } from "../../component/LayoutComponents";
+import { Icon as IconImg } from "../../component/LayoutComponents";
 
 export const ImageSection = styled.div`
   position: relative;
@@ -74,8 +74,13 @@ export const UserRating = styled.div`
     margin-top: 8px; // 子元素之間的間距
   }
 `;
+// export const Icon = styled(IconImg)`
+//   margin: 8px;
+// `;
+
 export const Icon = styled(IconImg)`
-  margin: 8px;
+  margin: 12px 8px;
+  color: ${({ theme }) => theme.colors.gray600};
 `;
 
 export const UserReviewMain = styled.div`
@@ -89,7 +94,7 @@ export const SocialBlock = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    img {
+    span {
       margin-left: 4px;
     }
   }

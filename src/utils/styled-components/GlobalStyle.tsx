@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import "material-symbols";
 const GlobalStyle = createGlobalStyle`
 
     html,body{
@@ -9,6 +9,7 @@ padding: 0;
 width: 100%;
 height: 100%;
 font-family: 'Roboto', sans-serif;
+font-weight: 400;
 
 }
 
@@ -25,7 +26,9 @@ a,button{
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
     color:initial;
+    text-decoration: none;
 }
+
 
 h1,h2,h3,h4,h5,h6,p,input,textarea{
     font-family: 'Roboto', sans-serif;

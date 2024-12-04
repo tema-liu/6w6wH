@@ -1,211 +1,35 @@
-import styled from "styled-components";
 import { useState } from "react";
 import badge from "../../assets/badge.png";
 import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
-import { IconImg } from "../../component/LayoutComponents";
-import review from "../../assets/review.png";
 import HeartIcon from "../../component/HeartIcon";
-import { TagsBar, Tag } from "../../component/TagsBar";
-import overflowIcon from "../../assets/overflow.png";
+import { Tag } from "../../component/TagsBar";
 import { ReadMore } from "../Reviews/ReadMore";
-
-const Input = styled.input`
-  clip: rect(0, 0, 0, 0);
-  opacity: 0;
-  position: absolute;
-`;
-
-const Label = styled.label`
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  flex: 1;
-  font-size: 17px;
-  line-height: 22px;
-  padding: 12px 0;
-  letter-spacing: -0.41px;
-  font-weight: 700;
-  text-align: center;
-  transition: background, color 0.4s ease;
-  color: rgba(33, 33, 33, 0.5);
-
-  /* First label */
-  &:first-of-type {
-    border-radius: 16px 0 0 0;
-    background: #b2e0f3;
-    ${Input}:checked + & {
-      background: ${({ theme }) => theme.colors.secondary};
-    }
-  }
-  &:nth-of-type(2) {
-    background: #f8b9dd;
-    ${Input}:checked + & {
-      background: ${({ theme }) => theme.colors.outline1};
-    }
-  }
-
-  /* Last label */
-  &:last-of-type {
-    background: ${({ theme }) => theme.colors.outline2};
-    border-radius: 0 16px 0 0;
-    ${Input}:checked + & {
-      background: ${({ theme }) => theme.colors.outline2};
-    }
-  }
-
-  /* Checked state */
-  ${Input}:checked + & {
-    color: ${({ theme }) => theme.colors.dark};
-  }
-`;
-
-const Title = styled.div`
-  background: ${({ theme }) => theme.colors.gray100};
-  border-radius: 16px 16px 0 0;
-  margin-right: 8px;
-  padding: 12px 24px;
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 22px;
-  letter-spacing: -0.41px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
-`;
-
-const Reviews = styled.div`
-  position: relative;
-  margin-top: -64px;
-  filter: drop-shadow(0px 4px 16px #0000000a) drop-shadow(0px 2px 8px #0000002a);
-`;
-
-const ReviewContent = styled.div`
-  border-radius: 0 0 16px 16px;
-  background: ${({ theme }) => theme.colors.gray100};
-  > div + div {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-`;
-
-const CommentCardContent = styled.div`
-  padding: 16px 8px 8px 8px;
-`;
-const CommentCardImgBox = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  height: 120px;
-  overflow: auto;
-
-  img {
-    width: 120px;
-    border-radius: 4px;
-    object-fit: cover;
-    object-position: center;
-  }
-  img + img {
-    margin-left: 4px;
-  }
-`;
-const CommentCardDetail = styled.div`
-  display: flex;
-  margin-top: 8px;
-`;
-
-const Head = styled.div`
-  width: 64px;
-`;
-
-const HeadRight = styled.div`
-  width: 100%;
-  margin-left: 8px;
-  overflow: hidden; /* 防止內容溢出父容器 */
-`;
-const HeadShot = styled.img`
-  width: 64px; /* 設置圖片寬度 */
-  height: 64px; /* 設置圖片高度（確保是正方形） */
-  border-radius: 50%; /* 圓形裁切 */
-  object-fit: cover; /* 確保圖片內容不變形 */
-`;
-const BadgeBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 8px;
-`;
-const UserReviewTop = styled.div`
-  display: flex;
-  flex-direction: column;
-  > * + * {
-    margin-top: 8px; // 子元素之間的間距
-  }
-`;
-
-const UserReviewMain = styled.div`
-  padding: 4px 0 8px 0;
-`;
-
-const SocialBlock = styled.div`
-  display: flex;
-  div {
-    width: 88px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    img {
-      margin-left: 4px;
-    }
-  }
-`;
-
-const UserReviewFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: ${({ theme }) => theme.colors.gray600};
-`;
-const Tags = styled(TagsBar)`
-  border: none;
-  padding: 2px 0 10px 0;
-  padding-top: 2px;
-  padding-bottom: 10px;
-`;
-
-const CommentCard = styled(CommentCardDetail)`
-  margin: 0;
-  padding: 16px 8px;
-`;
-
-const MenuOptions = styled.div`
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
-`;
-const Icon = styled(IconImg)`
-  margin: 8px;
-`;
-
-const UserReplyTop = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import {
+  ChatIcon,
+  Input,
+  Label,
+  Title,
+  Reviews,
+  ReviewContent,
+  CommentCardContent,
+  CommentCardImgBox,
+  CommentCardDetail,
+  Head,
+  HeadRight,
+  HeadShot,
+  BadgeBox,
+  UserReviewTop,
+  UserReviewMain,
+  SocialBlock,
+  UserReviewFooter,
+  Tags,
+  CommentCard,
+  MenuOptions,
+  IconImg,
+  UserReplyTop,
+} from "./styled";
 
 function HotReviews() {
   //單選nav
@@ -285,7 +109,9 @@ function HotReviews() {
                     <SocialBlock>
                       <div>
                         <h4>1.5k</h4>
-                        <IconImg src={review} alt="review" />
+                        <ChatIcon className="material-symbols-outlined">
+                          chat_bubble
+                        </ChatIcon>
                       </div>
                       <div>
                         <h4>999</h4>
@@ -307,7 +133,9 @@ function HotReviews() {
                 <UserReplyTop>
                   <span style={{ display: "block" }}>Ala</span>
                   <button onClick={toggleMenu}>
-                    <Icon src={overflowIcon} alt="overflow" />
+                    <IconImg className="material-symbols-outlined">
+                      more_vert
+                    </IconImg>
                     {isMenuOpen && (
                       <MenuOptions>
                         <button>delete</button>
@@ -345,7 +173,9 @@ function HotReviews() {
                 <UserReplyTop>
                   <span style={{ display: "block" }}>Ala</span>
                   <button onClick={toggleMenu}>
-                    <Icon src={overflowIcon} alt="overflow" />
+                    <IconImg className="material-symbols-outlined">
+                      more_vert
+                    </IconImg>
                     {isMenuOpen && (
                       <MenuOptions>
                         <button>delete</button>
@@ -408,7 +238,9 @@ function HotReviews() {
                   <SocialBlock>
                     <div>
                       <h4>1.5k</h4>
-                      <IconImg src={review} alt="review" />
+                      <ChatIcon className="material-symbols-outlined">
+                        chat_bubble
+                      </ChatIcon>
                     </div>
                     <div>
                       <h4>999</h4>
@@ -455,7 +287,9 @@ function HotReviews() {
                     <SocialBlock>
                       <div>
                         <h4>1.5k</h4>
-                        <IconImg src={review} alt="review" />
+                        <ChatIcon className="material-symbols-outlined">
+                          chat_bubble
+                        </ChatIcon>
                       </div>
                       <div>
                         <h4>999</h4>
@@ -477,7 +311,9 @@ function HotReviews() {
                 <UserReplyTop>
                   <span style={{ display: "block" }}>Ala</span>
                   <button onClick={toggleMenu}>
-                    <Icon src={overflowIcon} alt="overflow" />
+                    <IconImg className="material-symbols-outlined">
+                      more_vert
+                    </IconImg>
                     {isMenuOpen && (
                       <MenuOptions>
                         <button>delete</button>
@@ -515,7 +351,9 @@ function HotReviews() {
                 <UserReplyTop>
                   <span style={{ display: "block" }}>Ala</span>
                   <button onClick={toggleMenu}>
-                    <Icon src={overflowIcon} alt="overflow" />
+                    <IconImg className="material-symbols-outlined">
+                      more_vert
+                    </IconImg>
                     {isMenuOpen && (
                       <MenuOptions>
                         <button>delete</button>

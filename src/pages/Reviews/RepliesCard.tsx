@@ -73,15 +73,15 @@ function RepliesCard() {
         <HeadRight>
           <UserReviewTop>
             <span style={{ display: "block" }}>Ala</span>
-            <button onClick={toggleMenu}>
-              <Icon src={overflowIcon} alt="overflow" />
-              {isMenuOpen && (
-                <MenuOptions>
-                  <button>delete</button>
-                  <button>report</button>
-                </MenuOptions>
-              )}
-            </button>
+            <Icon onClick={toggleMenu} className="material-symbols-outlined">
+              more_vert
+            </Icon>
+            {isMenuOpen && (
+              <MenuOptions>
+                <button>delete</button>
+                <button>report</button>
+              </MenuOptions>
+            )}
           </UserReviewTop>
           <UserReviewMain>
             <ReadMore

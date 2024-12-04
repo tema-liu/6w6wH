@@ -3,8 +3,7 @@ import badge2 from "../../assets/badge2.png";
 import styled from "styled-components";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
-import { IconImg } from "../../component/LayoutComponents";
-import review from "../../assets/review.png";
+import { Icon } from "../../component/LayoutComponents";
 import HeartIcon from "../../component/HeartIcon";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +79,7 @@ const SocialBlock = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    img {
+    span {
       margin-left: 4px;
     }
   }
@@ -99,6 +98,9 @@ const Tags = styled(TagsBar)`
   padding: 2px 0 10px 0;
   padding-top: 2px;
   padding-bottom: 10px;
+`;
+const ChatIcon = styled(Icon)`
+  color: ${({ theme }) => theme.colors.gray600};
 `;
 
 function CommentCard() {
@@ -140,13 +142,14 @@ function CommentCard() {
                 <SocialBlock>
                   <div>
                     <h4>1.5k</h4>
-                    <IconImg
-                      src={review}
-                      alt="review"
+                    <ChatIcon
+                      className="material-symbols-outlined"
                       onClick={() => {
                         navigate("/review/:id");
                       }}
-                    />
+                    >
+                      chat_bubble
+                    </ChatIcon>
                   </div>
                   <div>
                     <h4>999</h4>
@@ -191,13 +194,14 @@ function CommentCard() {
                 <SocialBlock>
                   <div>
                     <h4>1.5k</h4>
-                    <IconImg
-                      src={review}
-                      alt="review"
+                    <ChatIcon
+                      className="material-symbols-outlined"
                       onClick={() => {
                         navigate("/review/:id");
                       }}
-                    />
+                    >
+                      chat_bubble
+                    </ChatIcon>
                   </div>
                   <div>
                     <h4>999</h4>

@@ -1,20 +1,16 @@
-import trainIcon from "../../assets/directions_subway.png";
-import markerIcon from "../../assets/marker.png";
-import moneyIcon from "../../assets/attach_money.png";
-import callIcon from "../../assets/call.png";
-import language from "../../assets/language.png";
-import todayIcon from "../../assets/today.png";
-import scheduleIcon from "../../assets/schedule.png";
-import voiceIcon from "../../assets/Voice.png";
 import advertisImg from "../../assets/Frame 18.png";
 import styled from "styled-components";
 import { Icon } from "./styled";
-import { IconImg } from "../../component/LayoutComponents";
+import { Icon as IconImg } from "../../component/LayoutComponents";
 
 const Store = styled.div`
   display: flex;
   color: ${({ theme }) => theme.colors.gray900};
   padding: 12px 0;
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 const BusinessHours = styled.div`
@@ -42,42 +38,41 @@ function StoreInfo() {
       <ContentDetail>
         <AdvertisingContent src={advertisImg} alt="advertising" />
         <Store>
-          <Icon src={trainIcon} alt="train" />
+          <Icon className="material-symbols-outlined">train</Icon>
           <h2>336m from Kaohsiung Railway Station</h2>
         </Store>
         <Store>
-          <Icon src={markerIcon} alt="markerIcon" />
+          <Icon className="material-symbols-outlined">location_on</Icon>
           <h2>高雄市新興區河南一路118號一樓</h2>
           <IconImg
+            className="material-symbols-outlined"
             style={{
               marginBottom: "auto",
               marginTop: "auto",
               marginLeft: "auto",
             }}
-            src={voiceIcon}
-            alt="voiceIcon"
-          />
+          >
+            volume_up
+          </IconImg>
         </Store>
         <Store>
-          <Icon src={moneyIcon} alt="moneyIcon" />
+          <Icon className="material-symbols-outlined">attach_money</Icon>
           <h2>NTD200~400 / Rp1500～3000</h2>
         </Store>
         <Store>
-          <Icon src={callIcon} alt="callIcon" />
+          <Icon className="material-symbols-outlined">call</Icon>
           <h2>0983387594</h2>
         </Store>
         <Store>
-          <Icon src={language} alt="language" />
+          <Icon className="material-symbols-outlined">language</Icon>
           <a href="#">Website</a>
         </Store>
         <Store>
-          <Icon src={todayIcon} alt="todayIcon" />
-          <h2>
-            <a href="#">Book</a>
-          </h2>
+          <Icon className="material-symbols-outlined">today</Icon>
+          <a href="#">Book</a>
         </Store>
         <Store>
-          <Icon src={scheduleIcon} alt="scheduleIcon" />
+          <Icon className="material-symbols-outlined">schedule</Icon>
           <BusinessHours>
             <h2 style={{ fontWeight: "700" }}>Business hours</h2>
             <h2>Monday closed</h2>

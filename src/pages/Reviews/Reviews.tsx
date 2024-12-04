@@ -6,10 +6,10 @@ import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
 import leftBtn from "../../assets/Frame.png";
 import rightBtn from "../../assets/Vector.png";
-import { Wrapper, Container, IconImg } from "../../component/LayoutComponents";
+import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
 import {
+  Icon as IconImg,
   UserReviewFooter,
-  Icon,
   ImageSection,
   StoreImg,
   BtnContainer,
@@ -25,7 +25,6 @@ import {
   HeadShot,
   SocialBlock,
 } from "../Reviews/styled";
-import review from "../../assets/review.png";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
@@ -44,6 +43,9 @@ const Tags = styled(TagsBar)`
   padding: 2px 0 10px 0;
   padding-top: 2px;
   padding-bottom: 10px;
+`;
+const ChatIcon = styled(Icon)`
+  color: ${({ theme }) => theme.colors.gray600};
 `;
 
 function Reviews() {
@@ -78,7 +80,9 @@ function Reviews() {
                     <StarRating star={3} width={112} height={16} />
                   </UserRating>
                   <div>
-                    <Icon src={overflowIcon} alt="overflow" />
+                    <IconImg className="material-symbols-outlined">
+                      more_vert
+                    </IconImg>
                   </div>
                 </UserReviewTop>
                 <UserReviewMain>
@@ -99,7 +103,9 @@ function Reviews() {
                   <SocialBlock>
                     <div>
                       <h4>1.5k</h4>
-                      <IconImg src={review} alt="review" />
+                      <ChatIcon className="material-symbols-outlined">
+                        chat_bubble
+                      </ChatIcon>
                     </div>
                     <div>
                       <h4>999</h4>

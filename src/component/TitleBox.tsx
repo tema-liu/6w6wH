@@ -7,7 +7,7 @@ export const TitleBox = styled.div<{ color?: string }>`
   width: fit-content;
   padding: 2px 16px 0 16px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 5;
+  z-index: 0;
 `;
 export const TitleBoxIcon = styled.img`
   width: 32px;

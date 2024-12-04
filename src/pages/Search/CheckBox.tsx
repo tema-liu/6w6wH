@@ -18,7 +18,7 @@ const Input = styled.input`
   &:checked + label {
     span {
       font-weight: 700;
-      letter-spacing: -0.41px;
+      letter-spacing: -0.19px;
       font-size: 17px;
       color: ${({ theme }) => theme.colors.gray900};
       animation: changeBackground 1s forwards; /* 設置動畫 */
@@ -54,7 +54,7 @@ const Label = styled.label`
     font-size: 17px;
     font-weight: 400;
     line-height: 22px;
-    letter-spacing: -0.41px;
+    letter-spacing: -0.19px;
     color: ${({ theme }) => theme.colors.gray600};
   }
 

@@ -1,7 +1,15 @@
-import { IconImg } from "./LayoutComponents";
-import heartIcon from ".././assets/heart.png";
-import heartClick from ".././assets/heartClick.png";
+import { Icon } from "./LayoutComponents";
 import { useState } from "react";
+import styled from "styled-components";
+type fillProps = {
+  $fill?: boolean; // 或者根据需要调整类型
+};
+
+const LikeIcon = styled(Icon)<fillProps>`
+  font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
+  color: ${({ theme, $fill }) =>
+    $fill ? theme.colors.container1 : theme.colors.gray600};
+`;
 
 function HeartIcon() {
   const [isLiked, setIsLiked] = useState(false);
@@ -11,11 +19,13 @@ function HeartIcon() {
   };
 
   return (
-    <IconImg
+    <LikeIcon
       onClick={clickHandler}
-      src={isLiked ? heartClick : heartIcon}
-      alt="heart"
-    />
+      $fill={isLiked}
+      className="material-symbols-outlined"
+    >
+      favorite
+    </LikeIcon>
   );
 }
 

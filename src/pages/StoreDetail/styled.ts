@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Icon as IconI } from "../../component/LayoutComponents";
 
 export const ImageSection = styled.div`
   position: relative;
@@ -70,9 +71,7 @@ export const PlaceName = styled.div`
   }
 `;
 
-export const VoiceIcon = styled.img`
-  width: 24px;
-  height: 24px;
+export const VoiceIcon = styled(IconI)`
   margin: 0 8px;
 `;
 
@@ -95,10 +94,12 @@ export const StarContent = styled.div`
   } */
 `;
 
-export const Icon = styled.img`
-  width: 24px;
-  height: 24px;
+export const Icon = styled(IconI)`
   margin-right: 8px;
+`;
+export const PrIcon = styled(IconI)`
+  margin-right: 8px;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const PlaceDetailMain = styled.div`

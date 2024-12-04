@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { IconImg } from "../../component/LayoutComponents";
-import downloadImg from "../../assets/download.png";
+import { Icon } from "../../component/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TitleBox, TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 
@@ -109,7 +108,7 @@ function LearningResources() {
           <ShopCardFooter>
             <FooterTitle>Free Download</FooterTitle>
             <Review>
-              <IconImg src={downloadImg} alt="downloadImg" />
+              <Icon className="material-symbols-outlined">download</Icon>
             </Review>
           </ShopCardFooter>
         </ShopCardMain>
@@ -134,7 +133,7 @@ function LearningResources() {
           <ShopCardFooter>
             <FooterTitle>Free Download</FooterTitle>
             <Review>
-              <IconImg src={downloadImg} alt="downloadImg" />
+              <Icon className="material-symbols-outlined">download</Icon>
             </Review>
           </ShopCardFooter>
         </ShopCardMain>

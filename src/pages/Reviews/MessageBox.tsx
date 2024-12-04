@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import messageIcon from "../../assets/message.png";
-import { IconImg } from "../../component/LayoutComponents";
+import { Icon } from "../../component/LayoutComponents";
 import { useState } from "react";
 
 const Box = styled.div`
@@ -32,6 +32,7 @@ type ButtonProps = {
 };
 const Button = styled.button<ButtonProps>`
   padding: 12px;
+  font-size: 0;
   background-color: ${({ $bgColor, theme }) =>
     $bgColor?.trim() !== "" ? theme.colors.outline3 : theme.colors.gray400};
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
@@ -59,7 +60,7 @@ function MessageBox() {
       ></Message>
 
       <Button $bgColor={inputValue} onClick={handleBtnClick}>
-        <IconImg src={messageIcon} alt="messageIcon" />
+        <Icon className="material-symbols-outlined">add_comment</Icon>
       </Button>
     </Box>
   );

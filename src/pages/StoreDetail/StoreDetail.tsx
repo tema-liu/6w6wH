@@ -1,5 +1,9 @@
 import Header from "../../component/header";
-import { Wrapper, Container, IconImg } from "../../component/LayoutComponents";
+import {
+  Wrapper,
+  Container,
+  Icon as IconImg,
+} from "../../component/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
   Icon,
@@ -15,6 +19,7 @@ import {
   StarContent,
   SuggestBtn,
   PlaceDetailMain,
+  PrIcon,
 } from "./styled";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/ReviewBtn";
@@ -26,14 +31,10 @@ import {
 import leftBtn from "../../assets/Frame.png";
 import rightBtn from "../../assets/Vector.png";
 import navigateIcon from "../../assets/logo_done.png";
-import voiceIcon from "../../assets/Voice.png";
 import CollectIcon from "../../component/CollectIcon";
-import shareIcon from "../../assets/share.png";
-import penIcon from "../../assets/pen.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
-import FilterColumn from "./FilterColumn";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 
@@ -69,7 +70,9 @@ function StoreDetail() {
           <PlaceDetailHeader>
             <PlaceName>
               <h1> Left Bank Rendezvous Cafe 南國人文美食坊</h1>
-              <VoiceIcon src={voiceIcon} alt="voice" />
+              <VoiceIcon className="material-symbols-outlined">
+                volume_up
+              </VoiceIcon>
             </PlaceName>
             <TagsBar>
               <Tag>Multilingual (12)</Tag>
@@ -91,7 +94,7 @@ function StoreDetail() {
                   padding: "0 8px 0 24px",
                 }}
               >
-                <IconImg src={shareIcon} alt="share" />
+                <IconImg className="material-symbols-outlined">link</IconImg>
               </div>
             </ReviewSection>
           </PlaceDetailHeader>
@@ -130,7 +133,7 @@ function StoreDetail() {
           {selectedOption === "Detail" && (
             <>
               <SuggestBtn href="#popup">
-                <Icon src={penIcon} alt="penIcon" />
+                <PrIcon className="material-symbols-outlined">edit</PrIcon>
                 Suggest an edit
               </SuggestBtn>
               <Pure
