@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { IconImg } from "./LayoutComponents";
 import fire from "../assets/fire.png";
+import fireOn from "../assets/fire_on.png";
 import add from "../assets/add_circle.png";
+import addOn from "../assets/add_on.png";
 import search from "../assets/Frame65.png";
 import notify from "../assets/Icon.png";
 import person from "../assets/person.png";
@@ -17,7 +19,7 @@ const Footer = styled.div`
   padding-bottom: 24px;
   box-shadow: 0px -8px 16px 4px #0000000a, 0px -4px 8px 0px #0000001a;
 `;
-const NavLink = styled.a`
+const StyledNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,35 +27,69 @@ const NavLink = styled.a`
   height: 48px;
 `;
 
-const Icon = styled(IconImg)`
+type IconProps = {
+  $opacity?: boolean; // 或者根据需要调整类型
+};
+const Icon = styled(IconImg)<IconProps>`
   width: 32px;
   height: 32px;
+  opacity: ${({ $opacity }) => ($opacity ? 1 : 0.5)};
+  transition: opacity 0.25s ease;
 `;
 
 function FooterNav() {
-  const navigate = useNavigate();
-
-  const handleNavigate = (path: string) => {
-    navigate(path);
-  };
+  const location = useLocation();
 
   return (
     <Footer>
-      <NavLink onClick={() => handleNavigate("/")}>
-        <IconImg src={fire} alt="fireIcon" />
-      </NavLink>
-      <NavLink onClick={() => handleNavigate("/addShop")}>
-        <IconImg src={add} alt="addIcon" />
-      </NavLink>
-      <NavLink onClick={() => handleNavigate("/search")}>
-        <Icon src={search} alt="search" />
-      </NavLink>
-      <NavLink onClick={() => handleNavigate("/notification")}>
-        <IconImg src={notify} alt="notify" />
-      </NavLink>
-      <NavLink onClick={() => handleNavigate("/profile")}>
-        <IconImg src={person} alt="person" />
-      </NavLink>
+      <StyledNavLink to="/">
+        {({ isActive }) => (
+          <IconImg src={isActive ? fireOn : fire} alt="fireIcon" />
+        )}
+      </StyledNavLink>
+      <StyledNavLink to="/addShop">
+        {({ isActive }) => (
+          <IconImg src={isActive ? addOn : add} alt="addIcon" />
+        )}
+      </StyledNavLink>
+      <StyledNavLink to="/search">
+        {({ isActive }) => (
+          <Icon
+            src={search}
+            alt="search"
+            $opacity={
+              isActive ||
+              ["/storeList", "/storeList/:id"].includes(location.pathname)
+            }
+          />
+        )}
+      </StyledNavLink>
+      <StyledNavLink to="/notification">
+        {({ isActive }) => (
+          <IconImg src={isActive ? notify : notify} alt="notify" />
+        )}
+      </StyledNavLink>
+      <StyledNavLink to="/profile">
+        {({ isActive }) => (
+          <Icon
+            src={isActive ? person : person}
+            alt="person"
+            $opacity={
+              isActive ||
+              [
+                "/login",
+                "/faqs",
+                "/TermsAndConditions",
+                "/PrivacyPolicy",
+                "/Add&EditStoreInformation",
+                "/settings",
+                "/editProfile",
+                "/profile",
+              ].includes(location.pathname)
+            }
+          />
+        )}
+      </StyledNavLink>
     </Footer>
   );
 }
