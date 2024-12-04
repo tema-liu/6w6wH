@@ -121,3 +121,43 @@ export const SuggestBtn = styled.a`
   margin-bottom: 25px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
+
+export const FilterColumn = styled.div`
+  background-color: ${({ theme }) => theme.colors.light};
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+`;
+export const FilterContainer = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: ""; /* 使用 Unicode 或文字製作箭頭 */
+    position: absolute;
+    top: 50%;
+    right: 23px; /* 箭頭與右側的距離 */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid gray; /* 控制箭頭的寬高 */
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 24px;
+    color: gray;
+  }
+`;
+
+export const FilterButtons = styled.select`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 14px 0px;
+  padding-right: 48px;
+  padding-left: 20px;
+  color: ${({ theme }) => theme.colors.gray600};
+  font-size: 17px;
+  letter-spacing: -0.41px;
+  line-height: 22px;
+  border-radius: 4px;
+  width: 100%;
+`;

@@ -34,8 +34,6 @@ const ShopName = styled.div`
     overflow: hidden;
     font-family: mix;
   }
-  img {
-  }
 `;
 
 const ShopImg = styled.img`

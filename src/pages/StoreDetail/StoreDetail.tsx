@@ -6,7 +6,6 @@ import {
 } from "../../component/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
-  Icon,
   ImageSection,
   NavigateBtn,
   StoreImg,
@@ -20,6 +19,9 @@ import {
   SuggestBtn,
   PlaceDetailMain,
   PrIcon,
+  FilterColumn,
+  FilterContainer,
+  FilterButtons,
 } from "./styled";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/ReviewBtn";
@@ -37,6 +39,7 @@ import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
+import styled from "styled-components";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -126,6 +129,15 @@ function StoreDetail() {
             )}
             {selectedOption === "Reviews" && (
               <>
+                <FilterColumn>
+                  <FilterContainer>
+                    <FilterButtons name="filter" id="filter">
+                      <option value="popular">Popular</option>
+                      <option value="lastest">Lastest</option>
+                      <option value="Replies">Replies</option>
+                    </FilterButtons>
+                  </FilterContainer>
+                </FilterColumn>
                 <CommentCard></CommentCard>
               </>
             )}
