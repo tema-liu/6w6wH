@@ -28,34 +28,36 @@ const Label = styled.label`
   letter-spacing: -0.41px;
   font-weight: 700;
   text-align: center;
-  transition: opacity 0.4s ease;
-
-  opacity: 0.5;
-  color: ${({ theme }) => theme.colors.gray900};
+  transition: background, color 0.4s ease;
+  color: rgba(33, 33, 33, 0.5);
 
   /* First label */
   &:first-of-type {
     border-radius: 16px 0 0 0;
-    background: ${({ theme }) => theme.colors.secondary};
+    background: #b2e0f3;
+    ${Input}:checked + & {
+      background: ${({ theme }) => theme.colors.secondary};
+    }
   }
   &:nth-of-type(2) {
-    background: ${({ theme }) => theme.colors.outline1};
+    background: #f8b9dd;
+    ${Input}:checked + & {
+      background: ${({ theme }) => theme.colors.outline1};
+    }
   }
 
   /* Last label */
   &:last-of-type {
     background: ${({ theme }) => theme.colors.outline2};
     border-radius: 0 16px 0 0;
+    ${Input}:checked + & {
+      background: ${({ theme }) => theme.colors.outline2};
+    }
   }
 
   /* Checked state */
   ${Input}:checked + & {
-    opacity: 1;
-  }
-
-  /* Focus state */
-  ${Input}:focus + & {
-    opacity: 1;
+    color: ${({ theme }) => theme.colors.dark};
   }
 `;
 
