@@ -30,6 +30,7 @@ import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -46,8 +47,34 @@ const Tags = styled(TagsBar)`
 const ChatIcon = styled(Icon)`
   color: ${({ theme }) => theme.colors.gray600};
 `;
+const MenuOptions = styled.div`
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.gray400};
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+
+  > button + button {
+    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
+  }
+  button {
+    padding: 4px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+`;
 
 function Reviews() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
+  };
+
   return (
     <>
       <Wrapper>
@@ -79,9 +106,18 @@ function Reviews() {
                     <StarRating star={3} width={112} height={16} />
                   </UserRating>
                   <div>
-                    <IconImg className="material-symbols-outlined">
+                    <IconImg
+                      onClick={toggleMenu}
+                      className="material-symbols-outlined"
+                    >
                       more_vert
                     </IconImg>
+                    {isMenuOpen && (
+                      <MenuOptions>
+                        <button>delete</button>
+                        <button>report</button>
+                      </MenuOptions>
+                    )}
                   </div>
                 </UserReviewTop>
                 <UserReviewMain>
