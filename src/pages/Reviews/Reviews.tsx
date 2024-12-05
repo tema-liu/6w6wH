@@ -30,7 +30,9 @@ import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ResponseData } from "../../type/type";
+import { mockApi } from "./data";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -70,18 +72,55 @@ const MenuOptions = styled.div`
 
 function Reviews() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [response, setResponse] = useState<ResponseData | null>(null);
+  const [loading, setLoading] = useState(true); //loading 狀態
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await mockApi("/api/items");
+        setResponse(result);
+        setLoading(false);
+        console.log(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const data = response?.data;
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
   };
 
+  // 從後端獲得的圖片標識符
+  const badgeType: string | null = data?.medal ?? null;
+
+  // 圖片選擇邏輯
+  const badgeImages = {
+    badge: badge,
+    badge2: badge2,
+  } as const;
+
+  const selectedBadge =
+    badgeType && Object.keys(badgeImages).includes(badgeType)
+      ? badgeImages[badgeType as keyof typeof badgeImages]
+      : null;
+  if (loading) {
+    return <div>Loading...</div>; // 顯示 loading 當資料還在加載時
+  }
   return (
     <>
       <Wrapper>
         <Header title={"Reviews"} />
         <Container>
           <ImageSection>
-            <StoreImg src="https://picsum.photos/1000/800" alt="" />
+            {data?.photo.map((photo) => (
+              <StoreImg key={photo} src={photo} alt="photo" />
+            ))}
             <BtnContainer>
               <CarouselBtn>
                 <StoreImg src={leftBtn} alt="leftBtn" />
@@ -94,16 +133,22 @@ function Reviews() {
           <CommentContent>
             <CommentDetail>
               <Head>
-                <HeadShot src={headShotIcon} alt="headShot" />
+                <HeadShot src={data?.userPhoto} alt="headShot" />
                 <BadgeBox>
-                  <img width={22} src={badge} alt="badge" />
+                  {selectedBadge && (
+                    <img width={22} src={selectedBadge} alt="badge" />
+                  )}
                 </BadgeBox>
               </Head>
               <HeadRight>
                 <UserReviewTop>
                   <UserRating>
                     <span style={{ display: "block" }}>Ala</span>
-                    <StarRating star={3} width={112} height={16} />
+                    <StarRating
+                      star={data?.starCount as 1 | 2 | 3 | 4 | 5}
+                      width={112}
+                      height={16}
+                    />
                   </UserRating>
                   <div>
                     <IconImg
@@ -122,29 +167,24 @@ function Reviews() {
                 </UserReviewTop>
                 <UserReviewMain>
                   <Tags>
-                    <Tag>Multilingual</Tag>
-                    <Tag>Multilingual</Tag>
-                    <Tag>Multilingual</Tag>
-                    <Tag>Multilingual</Tag>
-                    <Tag>Friendly</Tag>
+                    {data?.tag.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
                   </Tags>
-                  <p>
-                    Kopi susu is super yummy! Nice ambient and service! Come
-                    hang out!
-                  </p>
+                  <p>{data?.comment}</p>
                 </UserReviewMain>
                 <UserReviewFooter>
                   <h5>3 hour ago</h5>
                   <SocialBlock>
                     <div>
-                      <h4>1.5k</h4>
+                      <h4>{data?.reply?.length}</h4>
                       <ChatIcon className="material-symbols-outlined">
                         chat_bubble
                       </ChatIcon>
                     </div>
                     <div>
-                      <h4>999</h4>
-                      <HeartIcon />
+                      <h4>{data?.likeCount}</h4>
+                      <HeartIcon isLike={data?.isLike ?? false} />
                     </div>
                   </SocialBlock>
                 </UserReviewFooter>

@@ -6,13 +6,15 @@ export const mockData = {
     commentID: "comment-12345",
     userID: "user-001",
     userName: "John Doe",
+    userPhoto: "https://picsum.photos/400/400.jpg",
     starCount: 4,
     comment: "這家店的產品很不錯，值得推薦！",
+    photo: ["https://picsum.photos/1000/800"],
     postedAt: new Date("2024-12-05T10:00:00Z"),
     likeCount: 15,
     isLike: true,
-    tag: ["服務好", "產品優質", "環境舒適"],
-    medal: "badge1", // 假設有一個金獎的字串
+    tag: ["Multilingual", "Friendly", "Communication aids"],
+    medal: "badge", // 假設有一個金獎的字串
     reply: [
       {
         replyID: "reply-54321",
@@ -43,7 +45,7 @@ export const mockApi = async (url: string): Promise<any> => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(mockData);
-      }, 500); // 模擬延遲 500ms
+      }, 1000); // 模擬延遲 1s
     });
   } else {
     throw new Error("API route not found");

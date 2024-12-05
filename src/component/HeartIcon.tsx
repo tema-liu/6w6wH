@@ -11,17 +11,17 @@ const LikeIcon = styled(Icon)<fillProps>`
     $fill ? theme.colors.container1 : theme.colors.gray600};
 `;
 
-function HeartIcon() {
-  const [isLiked, setIsLiked] = useState(false);
+function HeartIcon({ isLike }: { isLike: boolean }) {
+  const [Liked, setIsLiked] = useState(isLike);
 
   const clickHandler = () => {
-    setIsLiked(!isLiked);
+    setIsLiked(!Liked);
   };
 
   return (
     <LikeIcon
       onClick={clickHandler}
-      $fill={isLiked}
+      $fill={Liked}
       className="material-symbols-outlined"
     >
       favorite
