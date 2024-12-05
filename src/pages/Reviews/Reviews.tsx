@@ -1,7 +1,6 @@
 import Header from "../../component/header";
 import badge from "../../assets/badge.png";
 import badge2 from "../../assets/badge2.png";
-import overflowIcon from "../../assets/overflow.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
 import leftBtn from "../../assets/Frame.png";
