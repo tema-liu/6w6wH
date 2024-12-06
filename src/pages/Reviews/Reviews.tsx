@@ -182,8 +182,10 @@ function Reviews() {
                       </ChatIcon>
                     </div>
                     <div>
-                      <h4>{data?.likeCount}</h4>
-                      <HeartIcon isLike={data?.isLike ?? false} />
+                      <HeartIcon
+                        likeCount={data?.likeCount ?? 0}
+                        isLike={data?.isLike ?? false}
+                      />
                     </div>
                   </SocialBlock>
                 </UserReviewFooter>

@@ -63,8 +63,11 @@ type RepliesCardProps = {
 
 function RepliesCard({ data }: RepliesCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
+  const [menuOpenID, setMenuOpenID] = useState<string | null>(null);
+
+  const toggleMenu = (replyID: string) => {
     setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
+    setMenuOpenID(replyID);
   };
   console.log(data);
 
@@ -87,10 +90,13 @@ function RepliesCard({ data }: RepliesCardProps) {
           <HeadRight>
             <UserReviewTop>
               <span style={{ display: "block" }}>{data.userName}</span>
-              <Icon onClick={toggleMenu} className="material-symbols-outlined">
+              <Icon
+                onClick={() => toggleMenu(data.replyID)}
+                className="material-symbols-outlined"
+              >
                 more_vert
               </Icon>
-              {isMenuOpen && (
+              {menuOpenID === data.replyID && (
                 <MenuOptions>
                   <button>delete</button>
                   <button>report</button>
@@ -104,8 +110,7 @@ function RepliesCard({ data }: RepliesCardProps) {
               <h5>{new Date(data.postedAt).toLocaleString()}</h5>
               <SocialBlock>
                 <div>
-                  <h4>{data.likeCount}</h4>
-                  <HeartIcon isLike={data.isLike} />
+                  <HeartIcon likeCount={data.likeCount} isLike={data.isLike} />
                 </div>
               </SocialBlock>
             </UserReviewFooter>

@@ -11,21 +11,33 @@ const LikeIcon = styled(Icon)<fillProps>`
     $fill ? theme.colors.container1 : theme.colors.gray600};
 `;
 
-function HeartIcon({ isLike }: { isLike: boolean }) {
+function HeartIcon({
+  isLike,
+  likeCount,
+}: {
+  isLike: boolean;
+  likeCount: number;
+}) {
   const [Liked, setIsLiked] = useState(isLike);
-
+  const [count, setCount] = useState(likeCount);
   const clickHandler = () => {
     setIsLiked(!Liked);
+    setCount((prev) => {
+      return Liked ? prev - 1 : prev + 1;
+    });
   };
 
   return (
-    <LikeIcon
-      onClick={clickHandler}
-      $fill={Liked}
-      className="material-symbols-outlined"
-    >
-      favorite
-    </LikeIcon>
+    <>
+      <h4>{count === 0 ? "" : count}</h4>
+      <LikeIcon
+        onClick={clickHandler}
+        $fill={Liked}
+        className="material-symbols-outlined"
+      >
+        favorite
+      </LikeIcon>
+    </>
   );
 }
 
