@@ -19,6 +19,8 @@ import overflowIcon from "../../assets/overflow.png";
 import { ReadMore } from "./ReadMore";
 import HeartIcon from "../../component/HeartIcon";
 import { useState } from "react";
+import { Reply } from "../../type/type";
+import { badgeImages } from "../../constants/imageResources";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -55,52 +57,61 @@ const MenuOptions = styled.div`
   }
 `;
 
-function RepliesCard() {
+type RepliesCardProps = {
+  data: Reply; // 更新這裡的型別為 Reply（回覆的陣列）
+};
+
+function RepliesCard({ data }: RepliesCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
   };
+  console.log(data);
 
   return (
     <CommentCards>
-      <CommentCard>
-        <Head>
-          <HeadShot src={headShotIcon} alt="headShot" />
-          <BadgeBox>
-            <img width={22} src={badge} alt="badge" />
-          </BadgeBox>
-        </Head>
-        <HeadRight>
-          <UserReviewTop>
-            <span style={{ display: "block" }}>Ala</span>
-            <Icon onClick={toggleMenu} className="material-symbols-outlined">
-              more_vert
-            </Icon>
-            {isMenuOpen && (
-              <MenuOptions>
-                <button>delete</button>
-                <button>report</button>
-              </MenuOptions>
-            )}
-          </UserReviewTop>
-          <UserReviewMain>
-            <ReadMore
-              text={
-                "Kopi susu is super yummy! Nice ambient and service! Come hang out! Kopi susu is super yummy! Nice ambient and service! Come hang out! Kopi susu is super yummy! Nice ambient and service! Come hang out! Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-              }
-            />
-          </UserReviewMain>
-          <UserReviewFooter>
-            <h5>3 hour ago</h5>
-            <SocialBlock>
-              <div>
-                <h4>4</h4>
-                <HeartIcon />
-              </div>
-            </SocialBlock>
-          </UserReviewFooter>
-        </HeadRight>
-      </CommentCard>
+      {data.map((data) => (
+        <CommentCard key={data.replyID}>
+          <Head>
+            <HeadShot src={data.userPhoto} alt="headShot" />
+            <BadgeBox>
+              {data.medal && Object.keys(badgeImages).includes(data.medal) && (
+                <img
+                  width={22}
+                  src={badgeImages[data.medal as keyof typeof badgeImages]}
+                  alt="badge"
+                />
+              )}
+            </BadgeBox>
+          </Head>
+          <HeadRight>
+            <UserReviewTop>
+              <span style={{ display: "block" }}>{data.userName}</span>
+              <Icon onClick={toggleMenu} className="material-symbols-outlined">
+                more_vert
+              </Icon>
+              {isMenuOpen && (
+                <MenuOptions>
+                  <button>delete</button>
+                  <button>report</button>
+                </MenuOptions>
+              )}
+            </UserReviewTop>
+            <UserReviewMain>
+              <ReadMore text={data.comment} />
+            </UserReviewMain>
+            <UserReviewFooter>
+              <h5>{new Date(data.postedAt).toLocaleString()}</h5>
+              <SocialBlock>
+                <div>
+                  <h4>{data.likeCount}</h4>
+                  <HeartIcon isLike={data.isLike} />
+                </div>
+              </SocialBlock>
+            </UserReviewFooter>
+          </HeadRight>
+        </CommentCard>
+      ))}
     </CommentCards>
   );
 }

@@ -20,9 +20,10 @@ export const mockData = {
         replyID: "reply-54321",
         userID: "user-002",
         userName: "Jane Smith",
+        userPhoto: "https://picsum.photos/400/400.jpg",
         comment: "謝謝你的評論！我們會繼續努力！",
         postedAt: new Date("2024-12-06T12:30:00Z"),
-        medal: "silver", // 假設這是銀獎
+        medal: "badge", // 假設這是銀獎
         likeCount: 5,
         isLike: false,
       },
@@ -30,6 +31,7 @@ export const mockData = {
         replyID: "reply-11223",
         userID: "user-005",
         userName: "Charlie Wu",
+        userPhoto: "https://picsum.photos/400/400.jpg",
         comment: "感謝推薦，會告訴朋友們！",
         postedAt: new Date("2024-12-06T17:30:00Z"),
         medal: null, // 沒有獎牌

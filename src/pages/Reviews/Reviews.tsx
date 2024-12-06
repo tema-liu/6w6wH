@@ -1,6 +1,4 @@
 import Header from "../../component/header";
-import badge from "../../assets/badge.png";
-import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
 import leftBtn from "../../assets/Frame.png";
@@ -33,6 +31,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";
+import { badgeImages } from "../../constants/imageResources";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -72,7 +71,7 @@ const MenuOptions = styled.div`
 
 function Reviews() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [response, setResponse] = useState<ResponseData | null>(null);
+  const [response, setResponse] = useState<ResponseData>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
 
   useEffect(() => {
@@ -81,7 +80,6 @@ function Reviews() {
         const result = await mockApi("/api/items");
         setResponse(result);
         setLoading(false);
-        console.log(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -99,16 +97,11 @@ function Reviews() {
   // 從後端獲得的圖片標識符
   const badgeType: string | null = data?.medal ?? null;
 
-  // 圖片選擇邏輯
-  const badgeImages = {
-    badge: badge,
-    badge2: badge2,
-  } as const;
-
   const selectedBadge =
     badgeType && Object.keys(badgeImages).includes(badgeType)
       ? badgeImages[badgeType as keyof typeof badgeImages]
       : null;
+
   if (loading) {
     return <div>Loading...</div>; // 顯示 loading 當資料還在加載時
   }
@@ -118,9 +111,11 @@ function Reviews() {
         <Header title={"Reviews"} />
         <Container>
           <ImageSection>
-            {data?.photo.map((photo) => (
-              <StoreImg key={photo} src={photo} alt="photo" />
-            ))}
+            {data?.photo
+              ? data?.photo.map((photo) => (
+                  <StoreImg key={photo} src={photo} alt="photo" />
+                ))
+              : headShotIcon}
             <BtnContainer>
               <CarouselBtn>
                 <StoreImg src={leftBtn} alt="leftBtn" />
@@ -174,7 +169,11 @@ function Reviews() {
                   <p>{data?.comment}</p>
                 </UserReviewMain>
                 <UserReviewFooter>
-                  <h5>3 hour ago</h5>
+                  <h5>
+                    {data?.postedAt
+                      ? new Date(data?.postedAt).toLocaleString()
+                      : "unknown date"}
+                  </h5>
                   <SocialBlock>
                     <div>
                       <h4>{data?.reply?.length}</h4>
@@ -191,7 +190,7 @@ function Reviews() {
               </HeadRight>
             </CommentDetail>
           </CommentContent>
-          <RepliesCard />
+          {data?.reply && <RepliesCard data={data?.reply} />}
           <MessageBox />
         </Container>
       </Wrapper>
