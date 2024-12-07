@@ -74,9 +74,6 @@ export const UserRating = styled.div`
     margin-top: 8px; // 子元素之間的間距
   }
 `;
-// export const Icon = styled(IconImg)`
-//   margin: 8px;
-// `;
 
 export const Icon = styled(IconImg)`
   margin: 12px 8px;

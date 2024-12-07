@@ -9,6 +9,7 @@ const ReadMoreBtn = styled.span`
   letter-spacing: -0.32px;
   line-height: 21px;
   text-decoration-line: underline;
+  cursor: pointer;
 `;
 
 type ReadMoreProps = {

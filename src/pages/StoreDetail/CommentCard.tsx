@@ -101,6 +101,7 @@ const Tags = styled(TagsBar)`
 `;
 const ChatIcon = styled(Icon)`
   color: ${({ theme }) => theme.colors.gray600};
+  cursor: pointer;
 `;
 
 function CommentCard() {

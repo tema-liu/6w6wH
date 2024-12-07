@@ -193,6 +193,7 @@ export const IconImg = styled(Icon)`
 `;
 export const ChatIcon = styled(Icon)`
   color: ${({ theme }) => theme.colors.gray600};
+  cursor: pointer;
 `;
 
 export const UserReplyTop = styled.div`
