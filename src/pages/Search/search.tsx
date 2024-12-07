@@ -17,6 +17,7 @@ import CheckBox from "./CheckBox";
 import { useState } from "react";
 import { ReadMoreRadio } from "./tagReadMore";
 import { useNavigate } from "react-router-dom";
+import Radio from "./Radio";
 
 function Search() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Search() {
   };
 
   //單選nav
-  const [selectedOption, setSelectedOption] = useState("HSR");
+  const [selectedOption, setSelectedOption] = useState("North");
 
   //保存單選中的定位("MRT","R13 Aozihdi")
   const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
@@ -64,71 +65,78 @@ function Search() {
   };
 
   const location: {
-    HSR: string[];
-    Train: string[];
-    MRT: string[];
-    LRT: string[];
+    North: string[];
+    Center: string[];
+    South: string[];
+    East: string[];
   } = {
-    HSR: [
-      "R9 Central Park",
-      "R10 Formosa Boulevard",
-      "R11 Kaohsiung Main Station",
-      "R13 Aozihdi",
+    North: ["Taipei City", "Keelung City", "Taoyuan City", "Hsinchu City"],
+    Center: [
+      "Taichung City",
+      "Changhua County",
+      "Nantou County",
+      "Miaoli County",
     ],
-    Train: ["R10 Formosa Boulevard"],
-    MRT: [
-      "R9 Central Park",
-      "R10 Formosa Boulevard",
-      "R11 Kaohsiung Main Station",
-      "R13 Aozihdi",
-      "R17",
-      "R18",
-      "R29",
-      "R15",
-    ],
-    LRT: ["ASD", "ASDF", "ASDAS"],
+    South: ["Tainan City", "Kaohsiung City", "Chiayi City", "Pingtung County"],
+    East: ["Yilan County", "Hualien County", "Taitung County"],
   };
 
   const RenderTransportOptions = () => {
     switch (selectedOption) {
       case "Location":
         return null;
-      case "HSR":
-        return (
-          <ReadMoreRadio
-            type="HSR"
-            location={location.HSR}
-            selectedStation={selectedStation}
-            onStationChange={setSelectedStation}
+      case "North":
+        return location.North.map((station) => (
+          <Radio
+            key={station}
+            content={station}
+            isCheck={
+              selectedStation[0] === "North" && selectedStation[1] === station
+            }
+            onChange={() => {
+              setSelectedStation(["North", station]);
+            }}
           />
-        );
-      case "Train":
-        return (
-          <ReadMoreRadio
-            type="Train"
-            location={location.Train}
-            selectedStation={selectedStation}
-            onStationChange={setSelectedStation}
+        ));
+      case "Center":
+        return location.Center.map((station) => (
+          <Radio
+            key={station}
+            content={station}
+            isCheck={
+              selectedStation[0] === "Center" && selectedStation[1] === station
+            }
+            onChange={() => {
+              setSelectedStation(["Center", station]);
+            }}
           />
-        );
-      case "LRT":
-        return (
-          <ReadMoreRadio
-            type="LRT"
-            location={location.LRT}
-            selectedStation={selectedStation}
-            onStationChange={setSelectedStation}
+        ));
+      case "South":
+        return location.South.map((station) => (
+          <Radio
+            key={station}
+            content={station}
+            isCheck={
+              selectedStation[0] === "South" && selectedStation[1] === station
+            }
+            onChange={() => {
+              setSelectedStation(["South", station]);
+            }}
           />
-        );
-      case "MRT":
-        return (
-          <ReadMoreRadio
-            type="MRT"
-            location={location.MRT}
-            selectedStation={selectedStation}
-            onStationChange={setSelectedStation}
+        ));
+      case "East":
+        return location.East.map((station) => (
+          <Radio
+            key={station}
+            content={station}
+            isCheck={
+              selectedStation[0] === "East" && selectedStation[1] === station
+            }
+            onChange={() => {
+              setSelectedStation(["East", station]);
+            }}
           />
-        );
+        ));
       default:
         return null;
     }
@@ -194,37 +202,37 @@ function Search() {
               />
               <Label htmlFor="Location">Location</Label>
               <RadioInput
-                id="HSR"
+                id="North"
                 type="radio"
-                value="HSR"
-                checked={selectedOption === "HSR"}
+                value="North"
+                checked={selectedOption === "North"}
                 onChange={handleOptionChange}
               />
-              <Label htmlFor="HSR">HSR</Label>
+              <Label htmlFor="North">North</Label>
               <RadioInput
-                id="Train"
+                id="Center"
                 type="radio"
-                value="Train"
-                checked={selectedOption === "Train"}
+                value="Center"
+                checked={selectedOption === "Center"}
                 onChange={handleOptionChange}
               />
-              <Label htmlFor="Train">Train</Label>
+              <Label htmlFor="Center">Center</Label>
               <RadioInput
-                id="LRT"
+                id="South"
                 type="radio"
-                value="LRT"
-                checked={selectedOption === "LRT"}
+                value="South"
+                checked={selectedOption === "South"}
                 onChange={handleOptionChange}
               />
-              <Label htmlFor="LRT">LRT</Label>
+              <Label htmlFor="South">South</Label>
               <RadioInput
-                id="MRT"
+                id="East"
                 type="radio"
-                value="MRT"
-                checked={selectedOption === "MRT"}
+                value="East"
+                checked={selectedOption === "East"}
                 onChange={handleOptionChange}
               />
-              <Label htmlFor="MRT">MRT</Label>
+              <Label htmlFor="East">East</Label>
             </SegmentedControlInner>
             <StationList>
               <RenderTransportOptions />
