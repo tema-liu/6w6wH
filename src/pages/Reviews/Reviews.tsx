@@ -32,6 +32,8 @@ import { useEffect, useState } from "react";
 import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";
 import { badgeImages } from "../../constants/imageResources";
+import MoreVert from "../../component/MoreVert";
+import OutsideAlerter from "../../hooks/OutsideAlerter";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -70,7 +72,6 @@ const MenuOptions = styled.div`
 `;
 
 function Reviews() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [response, setResponse] = useState<ResponseData>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
 
@@ -88,114 +89,103 @@ function Reviews() {
     fetchData();
   }, []);
 
-  const data = response?.data;
-
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
-  };
-
-  // 從後端獲得的圖片標識符
-  const badgeType: string | null = data?.medal ?? null;
-
-  const selectedBadge =
-    badgeType && Object.keys(badgeImages).includes(badgeType)
-      ? badgeImages[badgeType as keyof typeof badgeImages]
-      : null;
+  const data = response?.data ?? null;
 
   if (loading) {
     return <div>Loading...</div>; // 顯示 loading 當資料還在加載時
   }
   return (
     <>
-      <Wrapper>
-        <Header title={"Reviews"} />
-        <Container>
-          <ImageSection>
-            {data?.photo
-              ? data?.photo.map((photo) => (
-                  <StoreImg key={photo} src={photo} alt="photo" />
-                ))
-              : headShotIcon}
-            <BtnContainer>
-              <CarouselBtn>
-                <StoreImg src={leftBtn} alt="leftBtn" />
-              </CarouselBtn>
-              <CarouselBtn>
-                <StoreImg src={rightBtn} alt="rightBtn" />
-              </CarouselBtn>
-            </BtnContainer>
-          </ImageSection>
-          <CommentContent>
-            <CommentDetail>
-              <Head>
-                <HeadShot src={data?.userPhoto} alt="headShot" />
-                <BadgeBox>
-                  {selectedBadge && (
-                    <img width={22} src={selectedBadge} alt="badge" />
-                  )}
-                </BadgeBox>
-              </Head>
-              <HeadRight>
-                <UserReviewTop>
-                  <UserRating>
-                    <span style={{ display: "block" }}>Ala</span>
-                    <StarRating
-                      star={data?.starCount as 1 | 2 | 3 | 4 | 5}
-                      width={112}
-                      height={16}
-                    />
-                  </UserRating>
-                  <div>
-                    <IconImg
-                      onClick={toggleMenu}
-                      className="material-symbols-outlined"
-                    >
-                      more_vert
-                    </IconImg>
-                    {isMenuOpen && (
-                      <MenuOptions>
-                        <button>delete</button>
-                        <button>report</button>
-                      </MenuOptions>
-                    )}
-                  </div>
-                </UserReviewTop>
-                <UserReviewMain>
-                  <Tags>
-                    {data?.tag.map((tag) => (
-                      <Tag key={tag}>{tag}</Tag>
-                    ))}
-                  </Tags>
-                  <p>{data?.comment}</p>
-                </UserReviewMain>
-                <UserReviewFooter>
-                  <h5>
-                    {data?.postedAt
-                      ? new Date(data?.postedAt).toLocaleString()
-                      : "unknown date"}
-                  </h5>
-                  <SocialBlock>
+      {data !== null && (
+        <Wrapper>
+          <Header title={"Reviews"} />
+          <Container>
+            <ImageSection>
+              {data.photo
+                ? data.photo.map((photo) => (
+                    <StoreImg key={photo} src={photo} alt="photo" />
+                  ))
+                : headShotIcon}
+              <BtnContainer>
+                <CarouselBtn>
+                  <StoreImg src={leftBtn} alt="leftBtn" />
+                </CarouselBtn>
+                <CarouselBtn>
+                  <StoreImg src={rightBtn} alt="rightBtn" />
+                </CarouselBtn>
+              </BtnContainer>
+            </ImageSection>
+            <CommentContent>
+              <CommentDetail>
+                <Head>
+                  <HeadShot src={data.userPhoto} alt="headShot" />
+                  <BadgeBox>
+                    {data.medal &&
+                      Object.keys(badgeImages).includes(data.medal) && (
+                        <img
+                          width={22}
+                          src={
+                            badgeImages[data.medal as keyof typeof badgeImages]
+                          }
+                          alt="badge"
+                        />
+                      )}
+                  </BadgeBox>
+                </Head>
+                <HeadRight>
+                  <UserReviewTop>
+                    <UserRating>
+                      <span style={{ display: "block" }}>Ala</span>
+                      <StarRating
+                        star={data?.starCount as 1 | 2 | 3 | 4 | 5}
+                        width={112}
+                        height={16}
+                      />
+                    </UserRating>
                     <div>
-                      <h4>{data?.reply?.length}</h4>
-                      <ChatIcon className="material-symbols-outlined">
-                        chat_bubble
-                      </ChatIcon>
-                    </div>
-                    <div>
-                      <HeartIcon
-                        likeCount={data?.likeCount ?? 0}
-                        isLike={data?.isLike ?? false}
+                      <MoreVert
+                        userID={data.userID!}
+                        replyID={data.commentID!}
                       />
                     </div>
-                  </SocialBlock>
-                </UserReviewFooter>
-              </HeadRight>
-            </CommentDetail>
-          </CommentContent>
-          {data?.reply && <RepliesCard data={data?.reply} />}
-          <MessageBox />
-        </Container>
-      </Wrapper>
+                  </UserReviewTop>
+                  <UserReviewMain>
+                    <Tags>
+                      {data.tag.map((tag) => (
+                        <Tag key={tag}>{tag}</Tag>
+                      ))}
+                    </Tags>
+                    <p>{data.comment}</p>
+                  </UserReviewMain>
+                  <UserReviewFooter>
+                    <h5>
+                      {data?.postedAt
+                        ? new Date(data.postedAt).toLocaleString()
+                        : "unknown date"}
+                    </h5>
+                    <SocialBlock>
+                      <div>
+                        <h4>{data.reply?.length}</h4>
+                        <ChatIcon className="material-symbols-outlined">
+                          chat_bubble
+                        </ChatIcon>
+                      </div>
+                      <div>
+                        <HeartIcon
+                          likeCount={data.likeCount ?? 0}
+                          isLike={data.isLike ?? false}
+                        />
+                      </div>
+                    </SocialBlock>
+                  </UserReviewFooter>
+                </HeadRight>
+              </CommentDetail>
+            </CommentContent>
+            {data.reply && <RepliesCard data={data.reply} />}
+            <MessageBox />
+          </Container>
+        </Wrapper>
+      )}
     </>
   );
 }

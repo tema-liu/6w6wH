@@ -21,6 +21,7 @@ import HeartIcon from "../../component/HeartIcon";
 import { useState } from "react";
 import { Reply } from "../../type/type";
 import { badgeImages } from "../../constants/imageResources";
+import MoreVert from "../../component/MoreVert";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -62,15 +63,6 @@ type RepliesCardProps = {
 };
 
 function RepliesCard({ data }: RepliesCardProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [menuOpenID, setMenuOpenID] = useState<string | null>(null);
-
-  const toggleMenu = (replyID: string) => {
-    setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
-    setMenuOpenID(replyID);
-  };
-  console.log(data);
-
   return (
     <CommentCards>
       {data.map((data) => (
@@ -90,18 +82,7 @@ function RepliesCard({ data }: RepliesCardProps) {
           <HeadRight>
             <UserReviewTop>
               <span style={{ display: "block" }}>{data.userName}</span>
-              <Icon
-                onClick={() => toggleMenu(data.replyID)}
-                className="material-symbols-outlined"
-              >
-                more_vert
-              </Icon>
-              {menuOpenID === data.replyID && (
-                <MenuOptions>
-                  <button>delete</button>
-                  <button>report</button>
-                </MenuOptions>
-              )}
+              <MoreVert userID={data.userID} replyID={data.replyID} />
             </UserReviewTop>
             <UserReviewMain>
               <ReadMore text={data.comment} />

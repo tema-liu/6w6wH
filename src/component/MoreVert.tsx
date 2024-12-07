@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { Icon } from "./LayoutComponents";
+import OutsideAlerter from "../hooks/OutsideAlerter";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -26,15 +28,46 @@ const MenuOptions = styled.div`
   }
 `;
 
-function MoreVert() {
+type moreProps = {
+  userID: string;
+  replyID: string;
+  activeUserID?: string;
+};
+
+function MoreVert({
+  activeUserID = "isAnonymous",
+  userID,
+  replyID,
+}: moreProps) {
+  const [menuOpenID, setMenuOpenID] = useState<string | null>(null);
+
+  const toggleMenu = (replyID: string) => {
+    if (menuOpenID === replyID) {
+      setMenuOpenID(null); // 再次點擊時關閉
+    } else {
+      setMenuOpenID(replyID); // 打開菜單
+    }
+  };
+
+  const closeMenu = () => {
+    setMenuOpenID(null); // 點擊外部時關閉
+  };
+
   return (
-    <>
-      <IconImg className="material-symbols-outlined">more_vert</IconImg>
-      <MenuOptions role="menu">
-        <button role="menuitem">delete</button>
-        <button role="menuitem">report</button>
-      </MenuOptions>
-    </>
+    <OutsideAlerter onOutsideClick={closeMenu}>
+      <IconImg
+        onClick={() => toggleMenu(replyID)}
+        className="material-symbols-outlined"
+      >
+        more_vert
+      </IconImg>
+      {menuOpenID !== null && menuOpenID === replyID && (
+        <MenuOptions role="menu">
+          {userID === activeUserID && <button role="menuitem">delete</button>}
+          <button role="menuitem">report</button>
+        </MenuOptions>
+      )}
+    </OutsideAlerter>
   );
 }
 
