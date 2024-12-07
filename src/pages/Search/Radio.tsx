@@ -33,6 +33,7 @@ const Input = styled.input`
 
 const MoonBtn = styled.label`
   padding: 12px 16px;
+  height: 46px;
   max-width: 100%;
   border: 0;
   background-color: ${({ theme }) => theme.colors.light};

@@ -2,11 +2,14 @@ import styled from "styled-components";
 import Icon from "../../assets/Frame65Large.svg";
 import { Icon as IconImg } from "../../component/LayoutComponents";
 
-const ImgContainer = styled.div`
+type pdProps = {
+  $padding: string;
+};
+const ImgContainer = styled.div<pdProps>`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 22px 0;
+  padding: ${({ $padding }) => $padding};
 `;
 
 const Title = styled.p`
@@ -43,17 +46,23 @@ const Button = styled.button`
   }
 `;
 
-function LocationMap() {
+function LocationMap({
+  padding = "22px 0",
+  noBtn = false,
+  content = "Use your location to explore your surroundings",
+}) {
   return (
-    <ImgContainer>
+    <ImgContainer $padding={padding}>
       <Img src={Icon} alt="6w6wHIcon" />
-      <Title>Use your location to explore your surroundings</Title>
-      <Button>
-        <IconImg className="material-symbols-outlined">
-          person_pin_circle
-        </IconImg>
-        Turn on location
-      </Button>
+      <Title>{content}</Title>
+      {!noBtn && (
+        <Button>
+          <IconImg className="material-symbols-outlined">
+            person_pin_circle
+          </IconImg>
+          Turn on location
+        </Button>
+      )}
     </ImgContainer>
 
     // <iframe
