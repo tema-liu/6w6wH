@@ -75,7 +75,6 @@ export const Label = styled.label`
   /* Checked state */
   ${RadioInput}:checked + & {
     background: ${({ theme }) => theme.colors.gray100};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
     opacity: 1;
   }
 
@@ -94,7 +93,7 @@ export const StationList = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 0 0 16px 16px;
-  padding: 16px 16px 16px 28px;
+  padding: 16px;
 `;
 
 export const IconImg = styled.span`

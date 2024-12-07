@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ReadMoreRadio } from "./tagReadMore";
 import { useNavigate } from "react-router-dom";
 import Radio from "./Radio";
+import LocationMap from "./LocationMap";
 
 function Search() {
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ function Search() {
   const RenderTransportOptions = () => {
     switch (selectedOption) {
       case "Location":
-        return null;
+        return <LocationMap />;
       case "North":
         return location.North.map((station) => (
           <Radio
@@ -149,7 +150,6 @@ function Search() {
         <SearchContainer
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(category, friendly);
           }}
         >
           <div>
