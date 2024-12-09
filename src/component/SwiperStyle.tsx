@@ -24,9 +24,12 @@ export const Photo = styled.img`
   height: 100%;
   object-fit: contain;
 `;
+type ButtonProps = {
+  $bottom?: number; // 定義屬性類型，可選屬性
+};
 
-export const Button = styled.div`
-  bottom: 104px;
+export const Button = styled.div<ButtonProps>`
+  bottom: ${({ $bottom }) => $bottom + "px" || "104px"};
   margin-top: 0px;
   top: auto;
   background-color: ${({ theme }) => theme.colors.light};
