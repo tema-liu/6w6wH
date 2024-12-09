@@ -27,7 +27,8 @@ const ShopCardImg = styled.img<DonateProps>`
 const ShopCardMain = styled.div`
   margin-top: -200px;
   position: relative;
-  width: 350px;
+  min-width: 350px;
+  margin-right: 74px;
   border-radius: 32px;
   padding: 24px;
   background-color: ${({ theme }) => theme.colors.light};
