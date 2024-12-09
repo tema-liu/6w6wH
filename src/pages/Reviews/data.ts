@@ -9,7 +9,11 @@ export const mockData = {
     userPhoto: "https://picsum.photos/400/400.jpg",
     starCount: 4,
     comment: "這家店的產品很不錯，值得推薦！",
-    photo: ["https://picsum.photos/1000/800"],
+    photo: [
+      "https://picsum.photos/1000/800",
+      "https://picsum.photos/1000/800",
+      "https://picsum.photos/1000/800",
+    ],
     postedAt: new Date("2024-12-05T10:00:00Z"),
     likeCount: 15,
     isLike: true,

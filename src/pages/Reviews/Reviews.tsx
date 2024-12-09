@@ -99,7 +99,7 @@ function Reviews() {
                     <StoreImg key={photo} src={photo} alt="photo" />
                   ))
                 : headShotIcon} */}
-            <ReviewSwiper />
+            <ReviewSwiper photos={data.photo} />
             <CommentContent>
               <CommentDetail>
                 <Head>

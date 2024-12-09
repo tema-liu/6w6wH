@@ -19,7 +19,7 @@ const Container = styled(SwiperContainer)`
   background-color: transparent;
 `;
 
-function ReviewSwiper() {
+function ReviewSwiper({ photos }: { photos: string[] | null }) {
   return (
     <Container
       // install Swiper modules
@@ -31,20 +31,13 @@ function ReviewSwiper() {
       }}
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
+      {photos &&
+        photos.map((photo, index) => (
+          <SwiperSlide key={"photo" + index}>
+            <Img src={photo} alt="reviewPhoto" />
+          </SwiperSlide>
+        ))}
       <Button className="swiper-button-next">
         <Icon className="material-symbols-outlined">chevron_right</Icon>
       </Button>
