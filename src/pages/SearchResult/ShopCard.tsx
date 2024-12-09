@@ -17,7 +17,7 @@ const ShopCardBox = styled.div`
 `;
 const ShopCardImg = styled.img<DonateProps>`
   width: 100%;
-  height: 424px;
+  aspect-ratio: 1 / 1;
   border-radius: 32px;
   object-fit: cover;
   object-position: center;
