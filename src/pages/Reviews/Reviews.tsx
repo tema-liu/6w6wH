@@ -1,6 +1,6 @@
 import Header from "../../component/header";
 import badge from "../../assets/badge.png";
-import badge2 from "../../assets/badge2.png";
+// import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
 import leftBtn from "../../assets/Frame.png";
@@ -29,7 +29,7 @@ import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;

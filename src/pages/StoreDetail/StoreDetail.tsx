@@ -39,7 +39,6 @@ import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
-import styled from "styled-components";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");

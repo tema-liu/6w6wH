@@ -15,7 +15,6 @@ import {
 } from "./styled";
 import CheckBox from "./CheckBox";
 import { useState } from "react";
-import { ReadMoreRadio } from "./tagReadMore";
 import { useNavigate } from "react-router-dom";
 import Radio from "./Radio";
 import LocationMap from "./LocationMap";

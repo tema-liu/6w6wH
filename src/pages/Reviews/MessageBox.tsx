@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import messageIcon from "../../assets/message.png";
 import { Icon } from "../../component/LayoutComponents";
 import { useState } from "react";
 
