@@ -23,6 +23,11 @@ const IconImg = styled.img`
   height: 24px;
   object-fit: cover;
 `;
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 const Icon = styled.span`
   width: 24px;
@@ -30,4 +35,4 @@ const Icon = styled.span`
   color: ${({ theme }) => theme.colors.gray900};
 `;
 
-export { Wrapper, Container, IconImg, Icon };
+export { Wrapper, Container, IconImg, Icon, Img };

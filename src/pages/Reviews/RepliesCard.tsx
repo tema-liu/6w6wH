@@ -13,9 +13,8 @@ import {
   SocialBlock,
 } from "../Reviews/styled";
 import badge from "../../assets/badge.png";
-import badge2 from "../../assets/badge2.png";
+// import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-import overflowIcon from "../../assets/overflow.png";
 import { ReadMore } from "./ReadMore";
 import HeartIcon from "../../component/HeartIcon";
 import { useState } from "react";

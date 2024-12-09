@@ -20,8 +20,6 @@ const Input = styled.input`
       0px 0px 8px 0px #0000001a;
     animation: changeBackground 1s forwards; /* 設置動畫 */
     span {
-      font-weight: 700;
-      letter-spacing: -0.41px;
       color: ${({ theme }) => theme.colors.gray900};
     }
   }
@@ -35,6 +33,7 @@ const Input = styled.input`
 
 const MoonBtn = styled.label`
   padding: 12px 16px;
+  height: 46px;
   max-width: 100%;
   border: 0;
   background-color: ${({ theme }) => theme.colors.light};

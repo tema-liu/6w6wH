@@ -1,36 +1,6 @@
 import styled from "styled-components";
 import { Icon as IconImg } from "../../component/LayoutComponents";
 
-export const ImageSection = styled.div`
-  position: relative;
-  width: 100%;
-  height: 248px;
-  border-radius: 32px 32px 0 0;
-  overflow: hidden; // 這很重要！確保圖片不會超出圓角範圍
-`;
-
-export const StoreImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-export const BtnContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 8px;
-  margin-top: -128px;
-`;
-
-export const CarouselBtn = styled.button`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  opacity: 0.5;
-  &:hover {
-    opacity: 1;
-  }
-`;
-
 export const CommentCardContent = styled.div`
   padding: 16px 8px 16px 8px;
   border-radius: 0 0 32px 32px;
@@ -74,9 +44,6 @@ export const UserRating = styled.div`
     margin-top: 8px; // 子元素之間的間距
   }
 `;
-// export const Icon = styled(IconImg)`
-//   margin: 8px;
-// `;
 
 export const Icon = styled(IconImg)`
   margin: 12px 8px;

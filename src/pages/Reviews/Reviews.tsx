@@ -1,16 +1,10 @@
 import Header from "../../component/header";
-import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+import badge from "../../assets/badge.png";
+// import badge2 from "../../assets/badge2.png";
 import { StarRating } from "../../component/StarRating";
-import leftBtn from "../../assets/Frame.png";
-import rightBtn from "../../assets/Vector.png";
 import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
 import {
-  Icon as IconImg,
   UserReviewFooter,
-  ImageSection,
-  StoreImg,
-  BtnContainer,
-  CarouselBtn,
   CommentCardContent,
   CommentCardDetail,
   Head,
@@ -33,7 +27,7 @@ import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";
 import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/MoreVert";
-import OutsideAlerter from "../../hooks/OutsideAlerter";
+import ReviewSwiper from "./ReviewSwiper";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -100,21 +94,12 @@ function Reviews() {
         <Wrapper>
           <Header title={"Reviews"} />
           <Container>
-            <ImageSection>
-              {data.photo
+            {/* {data.photo
                 ? data.photo.map((photo) => (
                     <StoreImg key={photo} src={photo} alt="photo" />
                   ))
-                : headShotIcon}
-              <BtnContainer>
-                <CarouselBtn>
-                  <StoreImg src={leftBtn} alt="leftBtn" />
-                </CarouselBtn>
-                <CarouselBtn>
-                  <StoreImg src={rightBtn} alt="rightBtn" />
-                </CarouselBtn>
-              </BtnContainer>
-            </ImageSection>
+                : headShotIcon} */}
+            <ReviewSwiper />
             <CommentContent>
               <CommentDetail>
                 <Head>

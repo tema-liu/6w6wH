@@ -6,11 +6,7 @@ import {
 } from "../../component/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
-  ImageSection,
   NavigateBtn,
-  StoreImg,
-  BtnContainer,
-  CarouselBtn,
   PlaceDetailHeader,
   PlaceName,
   VoiceIcon,
@@ -30,16 +26,13 @@ import {
   RadioInput,
   Label,
 } from "../../component/ToggleSwitch";
-import leftBtn from "../../assets/Frame.png";
-import rightBtn from "../../assets/Vector.png";
 import navigateIcon from "../../assets/logo_done.png";
-import CollectIcon from "../../component/CollectIcon";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCard from "./CommentCard";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
-import styled from "styled-components";
+import StoreSwiper from "./StoreSwiper";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
@@ -54,18 +47,7 @@ function StoreDetail() {
       <Wrapper>
         <Header title={"Store Detail"} />
         <Container>
-          <ImageSection>
-            <CollectIcon right={32} />
-            <StoreImg src="https://picsum.photos/1000/800" alt="" />
-            <BtnContainer>
-              <CarouselBtn>
-                <StoreImg src={leftBtn} alt="leftBtn" />
-              </CarouselBtn>
-              <CarouselBtn>
-                <StoreImg src={rightBtn} alt="rightBtn" />
-              </CarouselBtn>
-            </BtnContainer>
-          </ImageSection>
+          <StoreSwiper />
           <NavigateBtn>
             <img src={navigateIcon} alt="navigateIcon" />
             <h2>Navigate</h2>

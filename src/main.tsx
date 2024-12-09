@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, Outlet } from "react-router-dom";
 import StoreListLayout from "./StoreListLayout.tsx";
 import Popular from "./pages/Popular/Popular.tsx";
+import AddStore from "./pages/AddStore/AddStore.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -39,8 +40,7 @@ if (rootElement) {
           <Routes>
             <Route path="/" element={<StoreListLayout />}>
               <Route index element={<Popular />} />
-              {/* 此放popular */}
-              <Route path="/addShop" element={<App />} />
+              <Route path="/addShop" element={<AddStore />} />
               <Route path="/search" element={<Search />} />
               <Route path="/storeList" element={<SearchResult />} />
               <Route path="/storeList/:id" element={<StoreDetail />} />

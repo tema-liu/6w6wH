@@ -9,6 +9,7 @@ const LikeIcon = styled(Icon)<fillProps>`
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
   color: ${({ theme, $fill }) =>
     $fill ? theme.colors.container1 : theme.colors.gray600};
+  cursor: pointer;
 `;
 
 function HeartIcon({

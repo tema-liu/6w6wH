@@ -40,6 +40,7 @@ const Icon = styled.div`
 
 const IconDiv = styled.div<CollectIconProps>`
   position: absolute;
+  z-index: 1;
   top: 0;
   right: ${(props) => props.$right}px;
   opacity: 0.75;
