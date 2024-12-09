@@ -6,7 +6,6 @@ import { SwiperContainer, Button, Photo } from "../../component/SwiperStyle";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 import { Icon } from "../../component/LayoutComponents";
 
 const ADtag = styled.div`

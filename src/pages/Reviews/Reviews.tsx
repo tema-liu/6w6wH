@@ -3,16 +3,10 @@ import badge from "../../assets/badge.png";
 // import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../../component/StarRating";
-import leftBtn from "../../assets/Frame.png";
-import rightBtn from "../../assets/Vector.png";
 import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
 import {
   Icon as IconImg,
   UserReviewFooter,
-  ImageSection,
-  StoreImg,
-  BtnContainer,
-  CarouselBtn,
   CommentCardContent,
   CommentCardDetail,
   Head,
@@ -29,6 +23,7 @@ import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
+import ReviewSwiper from "./ReviewSwiper";
 // import { useNavigate } from "react-router-dom";
 
 const CommentContent = styled(CommentCardContent)`
@@ -53,17 +48,7 @@ function Reviews() {
       <Wrapper>
         <Header title={"Reviews"} />
         <Container>
-          <ImageSection>
-            <StoreImg src="https://picsum.photos/1000/800" alt="" />
-            <BtnContainer>
-              <CarouselBtn>
-                <StoreImg src={leftBtn} alt="leftBtn" />
-              </CarouselBtn>
-              <CarouselBtn>
-                <StoreImg src={rightBtn} alt="rightBtn" />
-              </CarouselBtn>
-            </BtnContainer>
-          </ImageSection>
+          <ReviewSwiper />
           <CommentContent>
             <CommentDetail>
               <Head>

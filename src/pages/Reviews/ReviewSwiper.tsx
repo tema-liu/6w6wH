@@ -1,6 +1,6 @@
-import CollectIcon from "../../component/CollectIcon";
 import { SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 import { SwiperContainer, Button } from "../../component/SwiperStyle";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,20 +19,20 @@ const Container = styled(SwiperContainer)`
   background-color: transparent;
 `;
 
-function StoreSwiper() {
+function ReviewSwiper() {
   return (
     <Container
       // install Swiper modules
-      modules={[Navigation]}
+      modules={[Navigation, Pagination]}
       slidesPerView={1}
       navigation={{
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       }}
+      pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
-      <CollectIcon right={32} />
       <SwiperSlide>
         <Img src="https://picsum.photos/1000/800" alt="advertise" />
       </SwiperSlide>
@@ -45,14 +45,14 @@ function StoreSwiper() {
       <SwiperSlide>
         <Img src="https://picsum.photos/1000/800" alt="advertise" />
       </SwiperSlide>
-      <Button $bottom={124} className="swiper-button-next">
+      <Button className="swiper-button-next">
         <Icon className="material-symbols-outlined">chevron_right</Icon>
       </Button>
-      <Button $bottom={124} className="swiper-button-prev">
+      <Button className="swiper-button-prev">
         <Icon className="material-symbols-outlined">chevron_left</Icon>
       </Button>
     </Container>
   );
 }
 
-export default StoreSwiper;
+export default ReviewSwiper;

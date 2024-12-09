@@ -29,7 +29,7 @@ type ButtonProps = {
 };
 
 export const Button = styled.div<ButtonProps>`
-  bottom: ${({ $bottom }) => $bottom + "px" || "104px"};
+  bottom: ${({ $bottom }) => ($bottom ? $bottom + "px" : "104px")};
   margin-top: 0px;
   top: auto;
   background-color: ${({ theme }) => theme.colors.light};
