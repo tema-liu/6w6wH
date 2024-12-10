@@ -37,7 +37,7 @@ export const mockData = {
         userName: "Charlie Wu",
         userPhoto: "https://picsum.photos/400/400.jpg",
         comment: "感謝推薦，會告訴朋友們！",
-        postedAt: new Date("2024-12-06T17:30:00Z"),
+        postedAt: new Date("2024-12-09T00:30:00Z"),
         medal: null, // 沒有獎牌
         likeCount: 10,
         isLike: true,

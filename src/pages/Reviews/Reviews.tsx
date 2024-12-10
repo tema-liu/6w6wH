@@ -1,6 +1,4 @@
 import Header from "../../component/header";
-import badge from "../../assets/badge.png";
-// import badge2 from "../../assets/badge2.png";
 import { StarRating } from "../../component/StarRating";
 import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
 import {
@@ -28,6 +26,7 @@ import { mockApi } from "./data";
 import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
+import useTimeAgo from "../../hooks/useTimeAgo";
 
 const CommentContent = styled(CommentCardContent)`
   padding: 8px 8px 16px 8px;
@@ -43,26 +42,6 @@ const Tags = styled(TagsBar)`
 `;
 const ChatIcon = styled(Icon)`
   color: ${({ theme }) => theme.colors.gray600};
-`;
-const MenuOptions = styled.div`
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
 `;
 
 function Reviews() {
@@ -94,11 +73,6 @@ function Reviews() {
         <Wrapper>
           <Header title={"Reviews"} />
           <Container>
-            {/* {data.photo
-                ? data.photo.map((photo) => (
-                    <StoreImg key={photo} src={photo} alt="photo" />
-                  ))
-                : headShotIcon} */}
             <ReviewSwiper photos={data.photo} />
             <CommentContent>
               <CommentDetail>
@@ -143,11 +117,7 @@ function Reviews() {
                     <p>{data.comment}</p>
                   </UserReviewMain>
                   <UserReviewFooter>
-                    <h5>
-                      {data?.postedAt
-                        ? new Date(data.postedAt).toLocaleString()
-                        : "unknown date"}
-                    </h5>
+                    <h5>{useTimeAgo(data.postedAt)}</h5>
                     <SocialBlock>
                       <div>
                         <h4>{data.reply?.length}</h4>

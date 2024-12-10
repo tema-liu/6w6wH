@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Reply } from "../../type/type";
 import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/MoreVert";
+import useTimeAgo from "../../hooks/useTimeAgo";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -87,7 +88,7 @@ function RepliesCard({ data }: RepliesCardProps) {
               <ReadMore text={data.comment} />
             </UserReviewMain>
             <UserReviewFooter>
-              <h5>{new Date(data.postedAt).toLocaleString()}</h5>
+              <h5>{useTimeAgo(data.postedAt)}</h5>
               <SocialBlock>
                 <div>
                   <HeartIcon likeCount={data.likeCount} isLike={data.isLike} />

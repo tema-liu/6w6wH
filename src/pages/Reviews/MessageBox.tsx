@@ -43,10 +43,10 @@ function MessageBox() {
 
   const handleBtnClick = () => {
     if (inputValue.trim()) {
-      console.log("Reply:", inputValue); // 提交內容
+      console.log("Reply:", inputValue); // 這裡用POST提交內容:UserID 以及內容
       setInputValue(""); //清空輸入值
     } else {
-      console.log("請勿空白！");
+      alert("Please do not input blank spaces.");
     }
   };
 
