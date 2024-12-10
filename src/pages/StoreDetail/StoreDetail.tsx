@@ -33,10 +33,10 @@ import CommentCard from "./CommentCard";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
+import PostComment from "../PostComment/PostComment";
 
 function StoreDetail() {
   const [selectedOption, setSelectedOption] = useState("Detail");
-
   // 處理選擇的變更
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);

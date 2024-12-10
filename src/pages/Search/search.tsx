@@ -29,7 +29,6 @@ function Search() {
   //單選nav
   const [selectedOption, setSelectedOption] = useState("North");
 
-  //保存單選中的定位("MRT","R13 Aozihdi")
   const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
     null,
     null,

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import beforeBtn from "../assets/navigate_before.png";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.header`
   width: 100%;
@@ -36,12 +37,30 @@ const BeforeBtn = styled.img`
 interface HeaderProps {
   title: string; // 這裡應該是 string 類型
   isBefore?: boolean;
+  beforeClick?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header = ({ title, isBefore = true }: HeaderProps) => {
+const Header = ({ title, isBefore = true, beforeClick }: HeaderProps) => {
+  const navigator = useNavigate();
+
+  //如果有指定函數返回指定函數操作，其餘返回上一頁
+  const handleBeforeClick = () => {
+    if (beforeClick) {
+      beforeClick((prev: boolean) => !prev);
+    } else {
+      navigator(-1);
+    }
+  };
+
   return (
     <Wrapper>
-      {isBefore && <BeforeBtn src={beforeBtn} alt="beforeBtn" />}
+      {isBefore && (
+        <BeforeBtn
+          onClick={handleBeforeClick}
+          src={beforeBtn}
+          alt="beforeBtn"
+        />
+      )}
       <Title>
         <img src="/Frame65.png" alt="icon" /> {title}
       </Title>

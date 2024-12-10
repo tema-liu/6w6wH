@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { Icon } from "./LayoutComponents";
+import { useNavigate } from "react-router-dom";
 
 interface ReviewProps {
   $marginRight?: number;
   content?: string;
+  setPostCommentOut?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Review = styled.button<ReviewProps>`
@@ -27,8 +29,16 @@ const Review = styled.button<ReviewProps>`
 `;
 
 export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
+  const navigator = useNavigate();
+
   return (
-    <Review $marginRight={$marginRight}>
+    <Review
+      onClick={(e) => {
+        e.stopPropagation();
+        navigator("/postComment");
+      }}
+      $marginRight={$marginRight}
+    >
       <Icon className="material-symbols-outlined">reviews</Icon>
       {content}
     </Review>
