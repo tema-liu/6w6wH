@@ -28,11 +28,15 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
 `;
+type IconProps = {
+  $color?: string;
+};
 
-const Icon = styled.span`
+const Icon = styled.span<IconProps>`
   width: 24px;
   height: 24px;
-  color: ${({ theme }) => theme.colors.gray900};
+  color: ${({ theme, $color }) =>
+    $color ? theme.colors[$color] : theme.colors.gray900};
 `;
 
 export { Wrapper, Container, IconImg, Icon, Img };

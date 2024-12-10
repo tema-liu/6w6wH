@@ -12,13 +12,14 @@ type buttonProps = {
   $bgColor?: string;
   $iconColor?: string;
   onClick?: () => void; // 可選的點擊事件處理函式
+  type?: string;
 };
 
 const IconImg = styled(Icon)<buttonStyleProps>`
   color: ${({ $iconColor, theme }) => $iconColor && theme.colors[$iconColor]};
 `;
 
-const Btn = styled.button<buttonStyleProps>`
+export const Btn = styled.button<buttonStyleProps>`
   width: 100%;
   column-gap: 8px;
   display: flex;
@@ -31,7 +32,7 @@ const Btn = styled.button<buttonStyleProps>`
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 
-function PrimaryBtn({
+export function PrimaryBtn({
   iconName,
   content,
   $bgColor,
@@ -49,5 +50,3 @@ function PrimaryBtn({
     </Btn>
   );
 }
-
-export default PrimaryBtn;

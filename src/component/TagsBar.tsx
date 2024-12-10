@@ -33,4 +33,27 @@ const Tag = styled.h3`
   padding-right: 6px;
 `;
 
-export { TagsBar, Tag };
+const PhotosBar = styled.div`
+  width: 100%;
+  height: 120px;
+  padding: 0px 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* 允許水平滾動 */
+  overflow-y: hidden; /* 禁止垂直滾動 */
+  align-items: center;
+  column-gap: 4px;
+
+  /* 隱藏滾動條 - Chrome, Safari, Edge */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const Photo = styled.img`
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+`;
+
+export { TagsBar, Tag, PhotosBar, Photo };
