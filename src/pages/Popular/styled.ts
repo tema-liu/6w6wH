@@ -86,6 +86,9 @@ export const CommentCardImgBox = styled.div`
   flex-wrap: nowrap;
   height: 120px;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   img {
     width: 120px;

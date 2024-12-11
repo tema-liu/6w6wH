@@ -81,6 +81,8 @@ function HotReviews() {
                 <img src="https://picsum.photos/1000/800" alt="" />
                 <img src="https://picsum.photos/1000/800" alt="" />
                 <img src="https://picsum.photos/1000/800" alt="" />
+                <img src="https://picsum.photos/1000/800" alt="" />
+                <img src="https://picsum.photos/1000/800" alt="" />
               </CommentCardImgBox>
               <CommentCardDetail>
                 <Head>

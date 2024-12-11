@@ -181,7 +181,7 @@ function PostComment() {
           content={<SuggestTag />}
         />
         <GoodJobWindow
-          content="add"
+          content="OK"
           id="popup2"
           func={() => {
             navigate("/storeList/:id");
