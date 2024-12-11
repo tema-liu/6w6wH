@@ -184,7 +184,7 @@ function PostComment() {
           content="OK"
           id="popup2"
           func={() => {
-            navigate("/storeList/:id");
+            navigate("/storeList/:id?option=Reviews");
           }}
         />
       </Container>

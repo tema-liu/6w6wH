@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { PrimaryBtn } from "../../component/PrimaryBtn";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TagText = styled.p`
   overflow: hidden;
@@ -133,6 +134,7 @@ const ButtonDiv = styled.div`
 `;
 
 function SuggestTag() {
+  const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
 
   return (
@@ -155,8 +157,9 @@ function SuggestTag() {
         <FooterSection>
           <ButtonDiv>
             <Button
-              onClick={() => {
-                window.location.hash = "#popup2";
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/storeList/:id?option=Reviews");
               }}
             >
               Cancel
