@@ -51,7 +51,7 @@ if (rootElement) {
               {/* 店家詳細 */}
               <Route path="/storeList/:id" element={<StoreDetail />} />
               {/* 發送評論 */}
-              <Route path="/postComment" element={<PostComment />} />
+              <Route path="/postComment/:id" element={<PostComment />} />
               {/* 通知 */}
               <Route path="/notification" element={<App />} />
 

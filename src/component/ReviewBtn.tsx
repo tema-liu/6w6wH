@@ -35,7 +35,7 @@ export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
     <Review
       onClick={(e) => {
         e.stopPropagation();
-        navigator("/postComment");
+        navigator("/postComment/:id");
       }}
       $marginRight={$marginRight}
     >

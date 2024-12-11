@@ -1,6 +1,6 @@
 import Header from "../../component/header";
 import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
-import { PrimaryBtn, Btn } from "../../component/PrimaryBtn";
+import { PrimaryBtn } from "../../component/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import styled from "styled-components";
 import nullPhoto from "../../assets/Rectangle.png";
@@ -8,6 +8,10 @@ import { Photo, PhotosBar } from "../../component/TagsBar";
 import { useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
+import Pure from "../../component/Pure";
+import GoodJobWindow from "../../component/GoodJobWindow";
+import { useNavigate } from "react-router-dom";
+import SuggestTag from "./SuggestTag";
 
 const Section = styled.div`
   display: flex;
@@ -68,6 +72,7 @@ const RatingText = styled.textarea`
 `;
 
 function PostComment() {
+  const navigate = useNavigate();
   const [files, setFiles] = useState<File[]>([]); // 保存文件列表
   const category = ["Food", "Shopping", "Services"];
 
@@ -154,10 +159,34 @@ function PostComment() {
             <PrimaryBtn
               iconName="reviews"
               content="Submit"
-              onClick={() => {}}
+              onClick={() => {
+                //這裡送出API假設成功後
+                window.location.hash = "#popup";
+              }}
             />
           </BtnSection>
         </form>
+        <GoodJobWindow
+          content="OK"
+          id="popup"
+          num={10}
+          func={() => {
+            window.location.hash = "#addTag";
+          }}
+        ></GoodJobWindow>
+        <Pure
+          isActive={false}
+          text="Suggest Tag"
+          id="addTag"
+          content={<SuggestTag />}
+        />
+        <GoodJobWindow
+          content="add"
+          id="popup2"
+          func={() => {
+            navigate("/storeList/:id");
+          }}
+        />
       </Container>
     </Wrapper>
   );
