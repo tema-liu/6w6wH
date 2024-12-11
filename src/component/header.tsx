@@ -19,6 +19,7 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.title2};
+
   img {
     width: 20.57px;
     padding-right: 4px;
@@ -26,12 +27,19 @@ const Title = styled.div`
     padding-bottom: 8px;
   }
 `;
-const BeforeBtn = styled.img`
-  width: 7.4px;
-  height: 12px;
+const BeforeBtn = styled.div`
+  width: 48px;
+  height: 48px;
   position: absolute;
-  left: 20px; /* 確保箭頭在左側，可以根據需要調整距離 */
   cursor: pointer;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Arrow = styled.img`
+  width: 7.4px;
+  height: 12px; /* 確保箭頭在左側，可以根據需要調整距離 */
 `;
 
 interface HeaderProps {
@@ -55,14 +63,14 @@ const Header = ({ title, isBefore = true, beforeClick }: HeaderProps) => {
   return (
     <Wrapper>
       {isBefore && (
-        <BeforeBtn
-          onClick={handleBeforeClick}
-          src={beforeBtn}
-          alt="beforeBtn"
-        />
+        <BeforeBtn onClick={handleBeforeClick}>
+          <Arrow src={beforeBtn} alt="beforeBtn" />
+        </BeforeBtn>
       )}
       <Title>
-        <img src="/Frame65.png" alt="icon" /> {title}
+        <img src="/Frame65.png" alt="icon" />
+
+        {title}
       </Title>
     </Wrapper>
   );
