@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { TagsBar } from "../../component/TagsBar";
-import { Icon } from "../../component/LayoutComponents";
 
 export const Input = styled.input`
   clip: rect(0, 0, 0, 0);

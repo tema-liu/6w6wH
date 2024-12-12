@@ -38,8 +38,6 @@ function AdSwiper() {
         prevEl: ".swiper-button-prev",
       }}
       pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       <ADtag>
         <span>AD</span>
