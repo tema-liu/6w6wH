@@ -9,6 +9,10 @@ import { TagsBar, Tag } from "./TagsBar";
 import { useNavigate } from "react-router-dom";
 import { ReadMore } from "../pages/Reviews/ReadMore";
 import { useState } from "react";
+import { Comment, Reply } from "../type/type";
+import { badgeImages } from "../constants/imageResources";
+import MoreVert from "./MoreVert";
+import useTimeAgo from "../hooks/useTimeAgo";
 
 //==========================評論卡片樣式
 const CommentCardContent = styled.div`
@@ -103,16 +107,16 @@ const ChatIcon = styled(Icon)`
 `;
 //==========================review卡片樣式
 const CommentCards = styled(CommentCardDetail)`
-  position: relative;
   margin: 0;
   padding: 16px 8px;
 `;
 
 const UserReviewTop = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 8px 12px 0;
+  padding: 0px 8px 0px 0;
 `;
 const UserReviewMain = styled.div`
   padding: 4px 0 0 0;
@@ -145,111 +149,123 @@ const MenuOptions = styled.div`
   }
 `;
 
-export function CommentCard() {
+type CommentCard = {
+  data: Comment;
+};
+
+export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
 
   return (
-    <CommentCardContent>
-      <CommentCardImgBox>
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-      </CommentCardImgBox>
-      <CommentCardDetail>
-        <Head>
-          <HeadShot src={headShotIcon} alt="headShot" />
-          <BadgeBox>
-            <img width={22} src={badge} alt="badge" />
-          </BadgeBox>
-        </Head>
-        <HeadRight>
-          <UserCommentTop>
-            <span style={{ display: "block" }}>Ala</span>
-            <StarRating star={3} width={112} height={16} />
-            <Tags>
-              <Tag>Multilingual</Tag>
-              <Tag>Friendly</Tag>
-            </Tags>
-          </UserCommentTop>
-          <UserCommentMain>
-            <p>
-              Kopi susu is super yummy! Nice ambient and service! Come hang out!
-            </p>
-          </UserCommentMain>
-          <UserCommentFooter>
-            <h5>3 hour ago</h5>
-            <SocialBlock>
-              <div>
-                <h4>1.5k</h4>
-                <ChatIcon
-                  className="material-symbols-outlined"
-                  onClick={() => {
-                    navigate("/review/:id");
-                  }}
-                >
-                  chat_bubble
-                </ChatIcon>
-              </div>
-              <div>
-                <h4>999</h4>
-                <HeartIcon />
-              </div>
-            </SocialBlock>
-          </UserCommentFooter>
-        </HeadRight>
-      </CommentCardDetail>
-    </CommentCardContent>
+    data !== null && (
+      <CommentCardContent>
+        {data.photos && (
+          <CommentCardImgBox>
+            {data.photos.map((photo, index) => (
+              <img key={"photo" + index} src={photo} alt="commentPhoto" />
+            ))}
+          </CommentCardImgBox>
+        )}
+        <CommentCardDetail>
+          <Head>
+            <HeadShot src={data.userPhoto} alt="headShot" />
+            <BadgeBox>
+              {data.medal && Object.keys(badgeImages).includes(data.medal) && (
+                <img
+                  width={22}
+                  src={badgeImages[data.medal as keyof typeof badgeImages]}
+                  alt="badge"
+                />
+              )}
+            </BadgeBox>
+          </Head>
+          <HeadRight>
+            <UserCommentTop>
+              <span style={{ display: "block" }}>{data.userName}</span>
+              <StarRating
+                star={data.starCount as 1 | 2 | 3 | 4 | 5}
+                width={112}
+                height={16}
+              />
+              <Tags>
+                {data.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </Tags>
+            </UserCommentTop>
+            <UserCommentMain>
+              <p>{data.comment}</p>
+            </UserCommentMain>
+            <UserCommentFooter>
+              <h5>{useTimeAgo(data.postedAt)}</h5>
+              <SocialBlock>
+                <div>
+                  <h4>{data.replyCount}</h4>
+                  <ChatIcon
+                    className="material-symbols-outlined"
+                    onClick={() => {
+                      navigate("/review/:id");
+                    }}
+                  >
+                    chat_bubble
+                  </ChatIcon>
+                </div>
+                <div>
+                  <HeartIcon
+                    likeCount={data.likeCount ?? 0}
+                    isLike={data.isLike ?? false}
+                  />
+                </div>
+              </SocialBlock>
+            </UserCommentFooter>
+          </HeadRight>
+        </CommentCardDetail>
+      </CommentCardContent>
+    )
   );
 }
 
-export function ReviewsCard() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
-  };
+type ReviewsCard = {
+  data: Reply;
+};
+
+export function ReviewsCard({ data }: ReviewsCard) {
   return (
-    <CommentCards>
-      <Head>
-        <HeadShot src={headShotIcon} alt="headShot" />
-        <BadgeBox>
-          <img width={22} src={badge} alt="badge" />
-        </BadgeBox>
-      </Head>
-      <HeadRight>
-        <UserReviewTop>
-          <span style={{ display: "block" }}>Ala</span>
-          <Icon
-            $color="gray600"
-            onClick={toggleMenu}
-            className="material-symbols-outlined"
-          >
-            more_vert
-          </Icon>
-          {isMenuOpen && (
-            <MenuOptions>
-              <button>delete</button>
-              <button>report</button>
-            </MenuOptions>
-          )}
-        </UserReviewTop>
-        <UserReviewMain>
-          <ReadMore
-            text={
-              "Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-            }
-          />
-        </UserReviewMain>
-        <UserReviewFooter>
-          <h5>3 hour ago</h5>
-          <SocialBlock>
-            <div>
-              <h4>4</h4>
-              <HeartIcon />
-            </div>
-          </SocialBlock>
-        </UserReviewFooter>
-      </HeadRight>
-    </CommentCards>
+    data !== null && (
+      <CommentCards>
+        <Head>
+          <HeadShot src={headShotIcon} alt="headShot" />
+          <BadgeBox>
+            {data.medal && Object.keys(badgeImages).includes(data.medal) && (
+              <img
+                width={22}
+                src={badgeImages[data.medal as keyof typeof badgeImages]}
+                alt="badge"
+              />
+            )}
+          </BadgeBox>
+        </Head>
+        <HeadRight>
+          <UserReviewTop>
+            <span style={{ display: "block" }}>{data.userName}</span>
+            <MoreVert userID={data.userID} replyID={data.replyID} />
+          </UserReviewTop>
+          <UserReviewMain>
+            <ReadMore text={data.comment} />
+          </UserReviewMain>
+          <UserReviewFooter>
+            <h5>{useTimeAgo(data.postedAt)}</h5>
+            <SocialBlock>
+              <div>
+                <HeartIcon
+                  likeCount={data.likeCount ?? 0}
+                  isLike={data.isLike ?? false}
+                />
+              </div>
+            </SocialBlock>
+          </UserReviewFooter>
+        </HeadRight>
+      </CommentCards>
+    )
   );
 }

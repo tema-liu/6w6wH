@@ -73,7 +73,7 @@ function Reviews() {
         <Wrapper>
           <Header title={"Reviews"} />
           <Container>
-            <ReviewSwiper photos={data.photo} />
+            <ReviewSwiper photos={data.photos} />
             <CommentContent>
               <CommentDetail>
                 <Head>
@@ -110,7 +110,7 @@ function Reviews() {
                   </UserReviewTop>
                   <UserReviewMain>
                     <Tags>
-                      {data.tag.map((tag) => (
+                      {data.tags.map((tag) => (
                         <Tag key={tag}>{tag}</Tag>
                       ))}
                     </Tags>

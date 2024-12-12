@@ -1,9 +1,9 @@
 import { useRef, useEffect, ReactNode } from "react";
 
-interface OutsideAlerterProps {
+type OutsideAlerterProps = {
   children: ReactNode;
   onOutsideClick: () => void;
-}
+};
 
 function OutsideAlerter({
   children,

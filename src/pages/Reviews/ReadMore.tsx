@@ -35,22 +35,24 @@ export const ReadMore: React.FC<ReadMoreProps> = ({
 
   return (
     <>
-      <p>
-        {beginText}
+      {text && (
+        <p>
+          {beginText}
 
-        {itCanOverflow && (
-          <>
-            {isExpanded ? endText + " " : " ..."}
-            <ReadMoreBtn
-              onClick={() => {
-                setIsExpanded(!isExpanded);
-              }}
-            >
-              {isExpanded ? "show less" : "show all"}
-            </ReadMoreBtn>
-          </>
-        )}
-      </p>
+          {itCanOverflow && (
+            <>
+              {isExpanded ? endText + " " : " ..."}
+              <ReadMoreBtn
+                onClick={() => {
+                  setIsExpanded(!isExpanded);
+                }}
+              >
+                {isExpanded ? "show less" : "show all"}
+              </ReadMoreBtn>
+            </>
+          )}
+        </p>
+      )}
     </>
   );
 };

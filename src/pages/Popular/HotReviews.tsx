@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Input, Label, Title, Reviews, ReviewContent } from "./styled";
 import { CommentCard, ReviewsCard } from "../../component/ReviewCards";
+import { hotReviewData } from "../../type/type";
 
-function HotReviews() {
+function HotReviews({ res }: { res: hotReviewData }) {
   //單選nav
   const [selectedOption, setSelectedOption] = useState("Popular");
 
@@ -10,6 +11,8 @@ function HotReviews() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
+  const data = res?.data;
+  console.log(data?.popular);
 
   return (
     <Reviews>
@@ -43,21 +46,22 @@ function HotReviews() {
       <ReviewContent>
         {selectedOption == "Popular" && (
           <>
-            <CommentCard />
-            <ReviewsCard />
-            <ReviewsCard />
+            {data?.popular && (
+              <>
+                <CommentCard data={data.popular} />
+                {data.popular.reply?.map((item) => {
+                  return <ReviewsCard key={item.replyID} data={item} />;
+                })}
+              </>
+            )}
           </>
         )}
-        {selectedOption == "Review" && (
-          <>
-            <CommentCard />
-          </>
-        )}
+        {selectedOption == "Review" && <>{/* <CommentCard /> */}</>}
         {selectedOption == "Lastest" && (
           <>
-            <CommentCard />
-            <ReviewsCard />
-            <ReviewsCard />
+            {/* <CommentCard /> */}
+            {/* <ReviewsCard />
+            <ReviewsCard /> */}
           </>
         )}
       </ReviewContent>

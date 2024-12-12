@@ -37,29 +37,8 @@ const CommentCard = styled(CommentCardDetail)`
   padding: 16px 8px;
 `;
 
-const MenuOptions = styled.div`
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
-`;
-
 type RepliesCardProps = {
-  data: Reply; // 更新這裡的型別為 Reply（回覆的陣列）
+  data: Reply[]; // 更新這裡的型別為 Reply（回覆的陣列）
 };
 
 function RepliesCard({ data }: RepliesCardProps) {

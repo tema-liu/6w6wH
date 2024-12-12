@@ -122,7 +122,7 @@ function StoreDetail() {
                     </FilterButtons>
                   </FilterContainer>
                 </FilterColumn>
-                <CommentCards></CommentCards>
+                {/* <CommentCards></CommentCards> */}
               </>
             )}
           </PlaceDetailMain>
