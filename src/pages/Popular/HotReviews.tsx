@@ -61,10 +61,10 @@ function HotReviews({ res }: { res: hotReviewData }) {
         )}
         {selectedOption == "Lastest" && (
           <>
-            {data?.last && (
+            {data?.latest && (
               <>
-                <CommentCard data={data?.last} />
-                {data.last.reply?.map((item) => {
+                <CommentCard data={data?.latest} />
+                {data.latest.reply?.map((item) => {
                   return <ReviewsCard key={item.replyID} data={item} />;
                 })}
               </>
