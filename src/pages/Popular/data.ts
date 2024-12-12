@@ -72,7 +72,7 @@ export const commentData = {
       tags: ["Clean", "Comfortable", "Great service"],
       medal: "badge2",
     },
-    last: {
+    latest: {
       commentID: "comment-99999",
       userID: "user-004",
       userName: "David Lee",
