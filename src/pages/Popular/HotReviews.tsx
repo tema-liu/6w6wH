@@ -35,13 +35,13 @@ function HotReviews({ res }: { res: hotReviewData }) {
         />
         <Label htmlFor="Review">Review</Label>
         <Input
-          id="Lastest"
+          id="Latest"
           type="radio"
-          value="Lastest"
-          checked={selectedOption === "Lastest"}
+          value="Latest"
+          checked={selectedOption === "Latest"}
           onChange={handleOptionChange}
         />
-        <Label htmlFor="Lastest">Lastest</Label>
+        <Label htmlFor="Latest">Latest</Label>
       </div>
       <ReviewContent>
         {selectedOption == "Popular" && (
@@ -59,7 +59,7 @@ function HotReviews({ res }: { res: hotReviewData }) {
         {selectedOption == "Review" && (
           <>{data?.review && <CommentCard data={data?.review} />} </>
         )}
-        {selectedOption == "Lastest" && (
+        {selectedOption == "Latest" && (
           <>
             {data?.latest && (
               <>
