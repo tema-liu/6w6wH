@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import badge from "../assets/badge.png";
-// import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "./StarRating";
 import { Icon } from "./LayoutComponents";
@@ -116,7 +114,7 @@ const UserReviewTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 8px 0px 0;
+  padding: 0px;
 `;
 const UserReviewMain = styled.div`
   padding: 4px 0 0 0;
@@ -127,26 +125,6 @@ const UserReviewFooter = styled.div`
   align-items: center;
   padding: 12px 0;
   color: ${({ theme }) => theme.colors.gray600};
-`;
-const MenuOptions = styled.div`
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
 `;
 
 type CommentCard = {

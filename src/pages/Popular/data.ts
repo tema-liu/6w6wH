@@ -59,6 +59,11 @@ export const commentData = {
       userID: "user-003",
       userName: "Alice Lin",
       userPhoto: "https://picsum.photos/400/400.jpg",
+      photos: [
+        "https://picsum.photos/1000/800",
+        "https://picsum.photos/1000/800",
+        "https://picsum.photos/1000/800",
+      ],
       starCount: 5,
       comment: "員工服務態度很好，環境也很舒適！",
       postedAt: new Date("2024-12-07T15:00:00Z"),
@@ -67,34 +72,48 @@ export const commentData = {
       tags: ["Clean", "Comfortable", "Great service"],
       medal: "badge2",
     },
-    last: [
-      {
-        commentID: "comment-99999",
-        userID: "user-004",
-        userName: "David Lee",
-        userPhoto: "https://picsum.photos/400/400.jpg",
-        starCount: 3,
-        comment: "產品還不錯，但服務有待改進。",
-        postedAt: new Date("2024-12-04T08:00:00Z"),
-        likeCount: 8,
-        isLike: false,
-        tags: ["Average", "Improvement needed", "Quality"],
-        medal: null, // 無獎牌
-        reply: [
-          {
-            replyID: "reply-55555",
-            userID: "user-006",
-            userName: "Emily Wong",
-            userPhoto: "https://picsum.photos/400/400.jpg",
-            comment: "感謝反饋，我們會檢討改進！",
-            postedAt: new Date("2024-12-05T10:45:00Z"),
-            medal: "badge", // 假設銀獎
-            likeCount: 3,
-            isLike: false,
-          },
-        ],
-      },
-    ],
+    last: {
+      commentID: "comment-99999",
+      userID: "user-004",
+      userName: "David Lee",
+      userPhoto: "https://picsum.photos/400/400.jpg",
+      photos: [
+        "https://picsum.photos/1000/800",
+        "https://picsum.photos/1000/800",
+        "https://picsum.photos/1000/800",
+      ],
+      starCount: 3,
+      comment: "產品還不錯，但服務有待改進。",
+      postedAt: new Date("2024-12-04T08:00:00Z"),
+      likeCount: 8,
+      isLike: false,
+      tags: ["Average", "Improvement needed", "Quality"],
+      medal: null, // 無獎牌
+      reply: [
+        {
+          replyID: "reply-55555",
+          userID: "user-006",
+          userName: "Emily Wong",
+          userPhoto: "https://picsum.photos/400/400.jpg",
+          comment: "感謝反饋，我們會檢討改進！",
+          postedAt: new Date("2024-12-05T10:45:00Z"),
+          medal: "badge", // 假設銀獎
+          likeCount: 3,
+          isLike: false,
+        },
+        {
+          replyID: "reply-55444",
+          userID: "user-007",
+          userName: "tema liu",
+          userPhoto: "https://picsum.photos/400/400.jpg",
+          comment: "好吃咖哩一直吃",
+          postedAt: new Date("2024-12-05T10:45:00Z"),
+          medal: "badge", // 假設銀獎
+          likeCount: 3,
+          isLike: false,
+        },
+      ],
+    },
   },
 };
 

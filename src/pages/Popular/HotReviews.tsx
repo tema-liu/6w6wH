@@ -12,7 +12,7 @@ function HotReviews({ res }: { res: hotReviewData }) {
     setSelectedOption(event.target.value);
   };
   const data = res?.data;
-  console.log(data?.popular);
+  console.log(data);
 
   return (
     <Reviews>
@@ -56,12 +56,19 @@ function HotReviews({ res }: { res: hotReviewData }) {
             )}
           </>
         )}
-        {selectedOption == "Review" && <>{/* <CommentCard /> */}</>}
+        {selectedOption == "Review" && (
+          <>{data?.review && <CommentCard data={data?.review} />} </>
+        )}
         {selectedOption == "Lastest" && (
           <>
-            {/* <CommentCard /> */}
-            {/* <ReviewsCard />
-            <ReviewsCard /> */}
+            {data?.last && (
+              <>
+                <CommentCard data={data?.last} />
+                {data.last.reply?.map((item) => {
+                  return <ReviewsCard key={item.replyID} data={item} />;
+                })}
+              </>
+            )}
           </>
         )}
       </ReviewContent>
