@@ -29,7 +29,7 @@ import {
 import navigateIcon from "../../assets/logo_done.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
-import CommentCard from "./CommentCard";
+import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
@@ -122,7 +122,7 @@ function StoreDetail() {
                     </FilterButtons>
                   </FilterContainer>
                 </FilterColumn>
-                <CommentCard></CommentCard>
+                <CommentCards></CommentCards>
               </>
             )}
           </PlaceDetailMain>
