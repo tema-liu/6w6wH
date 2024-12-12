@@ -1,35 +1,25 @@
 import { Wrapper, Container } from "../../component/LayoutComponents";
 import Header from "../../component/header";
-import bugIcon from "../../assets/bug.png";
-import { TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 import {
   SuggestBtn,
   SearchContainer,
-  StyledTagBox,
-  StyledTitleBox,
   SegmentedControlInner,
   RadioInput,
   Label,
   StationList,
   IconImg,
 } from "./styled";
-import CheckBox from "./CheckBox";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Radio from "./Radio";
 import LocationMap from "./LocationMap";
+import TagCheckBox from "../../component/TagCheckBox";
 
 function Search() {
   const navigate = useNavigate();
 
-  type CheckedState = {
-    [key: string]: boolean;
-  };
-
   //單選nav
   const [selectedOption, setSelectedOption] = useState("North");
-
-  //保存單選中的定位("MRT","R13 Aozihdi")
   const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
     null,
     null,
@@ -40,29 +30,15 @@ function Search() {
     setSelectedOption(event.target.value);
   };
 
-  const [category, setCategoryState] = useState<CheckedState>({
-    Food: false,
-    Shopping: false,
-    Services: false,
-  });
+  const category = ["Food", "Shopping", "Services"];
 
-  const [friendly, setFriendlyState] = useState<CheckedState>({
-    Friendly: false,
-    Halal: false,
-    Multilingual: false,
-    "Communication aids": false,
-    "online shopping": false,
-  });
-
-  const handleCheckboxChange = (
-    tag: string,
-    setState: React.Dispatch<React.SetStateAction<CheckedState>>
-  ) => {
-    setState((checkedState) => ({
-      ...checkedState,
-      [tag]: !checkedState[tag],
-    }));
-  };
+  const friendly = [
+    "Friendly",
+    "Halal",
+    "Multilingual",
+    "Communication aids",
+    "online shopping",
+  ];
 
   const location: {
     North: string[];
@@ -152,37 +128,10 @@ function Search() {
           }}
         >
           <div>
-            <StyledTitleBox>
-              <TitleBoxIcon src={bugIcon} alt="bugIcon" />
-              <TitleBoxText>Category</TitleBoxText>
-            </StyledTitleBox>
-            <StyledTagBox>
-              {/* 獲取obj的所有key值 */}
-              {Object.keys(category).map((tag) => (
-                <CheckBox
-                  key={tag}
-                  content={tag}
-                  isChecked={category[tag]}
-                  onChange={() => handleCheckboxChange(tag, setCategoryState)}
-                />
-              ))}
-            </StyledTagBox>
+            <TagCheckBox tags={category} />
           </div>
           <div>
-            <StyledTitleBox>
-              <TitleBoxIcon src={bugIcon} alt="bugIcon" />
-              <TitleBoxText>Friendly</TitleBoxText>
-            </StyledTitleBox>
-            <StyledTagBox>
-              {Object.keys(friendly).map((tag) => (
-                <CheckBox
-                  key={tag} // 唯一标识
-                  content={tag}
-                  isChecked={friendly[tag]}
-                  onChange={() => handleCheckboxChange(tag, setFriendlyState)}
-                />
-              ))}
-            </StyledTagBox>
+            <TagCheckBox tags={friendly} />
           </div>
           <div
             style={{

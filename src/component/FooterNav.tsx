@@ -7,6 +7,7 @@ const Footer = styled.div`
   display: flex;
   justify-content: space-evenly;
   position: sticky;
+  z-index: 10;
   bottom: 0;
   background-color: ${({ theme }) => theme.colors.gray200};
   color: #fff;

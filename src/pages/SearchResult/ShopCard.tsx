@@ -18,6 +18,7 @@ const ShopCardBox = styled.div`
 const ShopCardImg = styled.img<DonateProps>`
   width: 100%;
   aspect-ratio: 1 / 1;
+  max-height: 424px;
   border-radius: 32px;
   object-fit: cover;
   object-position: center;
@@ -25,10 +26,10 @@ const ShopCardImg = styled.img<DonateProps>`
     $isDonate ? `8px solid ${theme.colors.container2}` : "none"};
 `;
 const ShopCardMain = styled.div`
+  box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   margin-top: -200px;
   position: relative;
-  min-width: 350px;
-  margin-right: 74px;
+  max-width: 350px;
   border-radius: 32px;
   padding: 24px;
   background-color: ${({ theme }) => theme.colors.light};

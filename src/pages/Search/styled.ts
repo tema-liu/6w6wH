@@ -1,13 +1,4 @@
 import styled from "styled-components";
-import { TitleBox, TagBox } from "../../component/TitleBox";
-
-export const StyledTitleBox = styled(TitleBox)`
-  box-shadow: 0px 4px 16px 4px #0000000a, 0px 2px 8px 0px #0000001a;
-`;
-
-export const StyledTagBox = styled(TagBox)`
-  box-shadow: 0px 4px 16px 4px #0000000a, 0px 2px 8px 0px #0000001a;
-`;
 
 export const SearchContainer = styled.form`
   display: flex;

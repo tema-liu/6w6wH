@@ -29,14 +29,16 @@ import {
 import navigateIcon from "../../assets/logo_done.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
-import CommentCard from "./CommentCard";
+import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
+import { useSearchParams } from "react-router-dom";
 
 function StoreDetail() {
-  const [selectedOption, setSelectedOption] = useState("Detail");
-
+  const [searchParams] = useSearchParams();
+  const initialOption = searchParams.get("option") || "Detail";
+  const [selectedOption, setSelectedOption] = useState(initialOption);
   // 處理選擇的變更
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
@@ -120,7 +122,7 @@ function StoreDetail() {
                     </FilterButtons>
                   </FilterContainer>
                 </FilterColumn>
-                <CommentCard></CommentCard>
+                <CommentCards></CommentCards>
               </>
             )}
           </PlaceDetailMain>

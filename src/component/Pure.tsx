@@ -3,6 +3,7 @@ import bugIcon from "../assets/bug2.png";
 import { TitleBoxIcon, TitleBoxText } from "../component/TitleBox";
 
 const Overlay = styled.div`
+  z-index: 5;
   position: fixed;
   top: 0;
   bottom: 0;
