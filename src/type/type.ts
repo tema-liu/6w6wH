@@ -43,6 +43,6 @@ export type hotReviewData = null | {
   data: {
     popular: Comment;
     review: Comment;
-    last: Comment;
+    latest: Comment;
   };
 };
