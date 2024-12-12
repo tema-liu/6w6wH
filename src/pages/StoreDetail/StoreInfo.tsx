@@ -1,7 +1,7 @@
-import advertisImg from "../../assets/Frame 18.png";
 import styled from "styled-components";
 import { Icon } from "./styled";
 import { Icon as IconImg } from "../../component/LayoutComponents";
+import ADblock from "../../component/AdBlock";
 
 const Store = styled.div`
   display: flex;
@@ -19,24 +19,16 @@ const BusinessHours = styled.div`
   }
 `;
 const ContentDetail = styled.div`
-  padding: 0 16px;
+  padding: 16px 16px 0 16px;
   border-radius: 0 0 32px 32px;
   background-color: ${({ theme }) => theme.colors.light};
-`;
-
-const AdvertisingContent = styled.img`
-  margin: 16px 0 16px 0;
-  width: 100%;
-  height: 238px;
-  object-fit: cover;
-  object-position: center;
 `;
 
 function StoreInfo() {
   return (
     <>
       <ContentDetail>
-        <AdvertisingContent src={advertisImg} alt="advertising" />
+        <ADblock />
         <Store>
           <Icon className="material-symbols-outlined">train</Icon>
           <h2>336m from Kaohsiung Railway Station</h2>

@@ -92,7 +92,7 @@ export const SuggestBtn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.gray200};
+  background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 16px;
   padding: 13px 0;
   margin-bottom: 25px;
