@@ -37,6 +37,7 @@ const Icon = styled.span<IconProps>`
   height: 24px;
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.gray900};
+  cursor: default;
 `;
 
 export { Wrapper, Container, IconImg, Icon, Img };
