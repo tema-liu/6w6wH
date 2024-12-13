@@ -54,6 +54,8 @@ if (rootElement) {
               <Route path="/postComment/:id" element={<PostComment />} />
               {/* 通知 */}
               <Route path="/notification" element={<App />} />
+              {/*評論頁面*/}
+              <Route path="/review/:id" element={<Reviews />} />
 
               {/* 登入頁面 */}
               <Route path="/login" element={<App />} />
@@ -71,7 +73,6 @@ if (rootElement) {
               </Route>
               <Route path="*" element={<Popular />} />
             </Route>
-            <Route path="/review/:id" element={<Reviews />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

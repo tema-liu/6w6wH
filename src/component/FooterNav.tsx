@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, matchPath } from "react-router-dom";
 import { IconImg, Icon } from "./LayoutComponents";
 import search from "../assets/Frame65.png";
 
@@ -45,6 +45,24 @@ const NavIcon = styled(Icon)<fillProps>`
 function FooterNav() {
   const location = useLocation();
 
+  const storeList = ["/storeList", "/storeList/:id"];
+  const profileList = [
+    "/login",
+    "/faqs",
+    "/TermsAndConditions",
+    "/PrivacyPolicy",
+    "/Add&EditStoreInformation",
+    "/settings",
+    "/editProfile",
+    "/profile",
+  ];
+  const isStoreListActive = storeList.some((pathPattern) =>
+    matchPath(pathPattern, location.pathname)
+  );
+  const isProfileListActive = profileList.some((pathPattern) =>
+    matchPath(pathPattern, location.pathname)
+  );
+
   return (
     <Footer>
       <StyledNavLink to="/">
@@ -66,10 +84,7 @@ function FooterNav() {
           <ImgIcon
             src={search}
             alt="search"
-            $opacity={
-              isActive ||
-              ["/storeList", "/storeList/:id"].includes(location.pathname)
-            }
+            $opacity={isActive || isStoreListActive}
           />
         )}
       </StyledNavLink>
@@ -83,19 +98,7 @@ function FooterNav() {
       <StyledNavLink to="/profile">
         {({ isActive }) => (
           <NavIcon
-            $fill={
-              isActive ||
-              [
-                "/login",
-                "/faqs",
-                "/TermsAndConditions",
-                "/PrivacyPolicy",
-                "/Add&EditStoreInformation",
-                "/settings",
-                "/editProfile",
-                "/profile",
-              ].includes(location.pathname)
-            }
+            $fill={isActive || isProfileListActive}
             className="material-symbols-outlined"
           >
             person
