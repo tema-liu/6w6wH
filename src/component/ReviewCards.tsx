@@ -6,7 +6,6 @@ import HeartIcon from "./HeartIcon";
 import { TagsBar, Tag } from "./TagsBar";
 import { useNavigate } from "react-router-dom";
 import { ReadMore } from "../pages/Reviews/ReadMore";
-import { useState } from "react";
 import { Comment, Reply } from "../type/type";
 import { badgeImages } from "../constants/imageResources";
 import MoreVert from "./MoreVert";

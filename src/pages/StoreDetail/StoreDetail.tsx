@@ -27,13 +27,15 @@ import {
   Label,
 } from "../../component/ToggleSwitch";
 import navigateIcon from "../../assets/logo_done.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
 import { useSearchParams } from "react-router-dom";
+import { StoreReviewsData } from "../../type/type";
+import { mockApi } from "./data";
 
 function StoreDetail() {
   const [searchParams] = useSearchParams();
@@ -43,6 +45,32 @@ function StoreDetail() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
+
+  const [storeReviewsData, setStoreReviewsData] =
+    useState<StoreReviewsData>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await mockApi("/api/items");
+        setStoreReviewsData(result ?? null); //假設res為undefined或null 設為null
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Header title={"Store Detail"} />
+      </Wrapper>
+    );
+  }
 
   return (
     <>
@@ -118,16 +146,20 @@ function StoreDetail() {
             )}
             {selectedOption === "Reviews" && (
               <>
-                <FilterColumn>
-                  <FilterContainer>
-                    <FilterButtons name="filter" id="filter">
-                      <option value="popular">Popular</option>
-                      <option value="lastest">Lastest</option>
-                      <option value="Replies">Replies</option>
-                    </FilterButtons>
-                  </FilterContainer>
-                </FilterColumn>
-                {/* <CommentCards></CommentCards> */}
+                {storeReviewsData?.data && (
+                  <>
+                    <FilterColumn>
+                      <FilterContainer>
+                        <FilterButtons name="filter" id="filter">
+                          <option value="popular">Popular</option>
+                          <option value="latest">Latest</option>
+                          <option value="Replies">Replies</option>
+                        </FilterButtons>
+                      </FilterContainer>
+                    </FilterColumn>
+                    <CommentCards data={storeReviewsData.data} />
+                  </>
+                )}
               </>
             )}
           </PlaceDetailMain>

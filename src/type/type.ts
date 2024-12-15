@@ -92,3 +92,17 @@ export type StoreData = {
   url?: string | null; // 網址
   opening_hours?: OpeningHours | null; // 營業時間
 };
+
+export type StoreDetailData = null | {
+  statusCode: number; // 狀態碼
+  status: boolean; // 狀態
+  message: string; // 回應訊息
+  data: StoreData;
+};
+
+export type StoreReviewsData = null | {
+  statusCode: number; // 狀態碼
+  status: boolean; // 狀態
+  message: string; // 回應訊息
+  data: Comment[]; // 單一店家評論資料
+};

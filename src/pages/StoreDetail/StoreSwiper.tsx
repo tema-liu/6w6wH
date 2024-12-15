@@ -29,8 +29,6 @@ function StoreSwiper() {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       <CollectIcon right={32} />
       <SwiperSlide>
