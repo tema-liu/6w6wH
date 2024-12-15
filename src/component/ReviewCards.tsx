@@ -13,6 +13,9 @@ import { useState } from "react";
 //==========================評論卡片樣式
 const CommentCardContent = styled.div`
   padding: 16px 8px 8px 8px;
+  > div + div {
+    padding-top: 8px;
+  }
 `;
 const CommentCardImgBox = styled.div`
   display: flex;
@@ -35,7 +38,6 @@ const CommentCardImgBox = styled.div`
 `;
 const CommentCardDetail = styled.div`
   display: flex;
-  margin-top: 8px;
 `;
 
 const Head = styled.div`
