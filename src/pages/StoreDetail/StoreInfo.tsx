@@ -29,10 +29,10 @@ function StoreInfo() {
     <>
       <ContentDetail>
         <ADblock />
-        <Store>
+        {/* <Store>
           <Icon className="material-symbols-outlined">train</Icon>
           <h2>336m from Kaohsiung Railway Station</h2>
-        </Store>
+        </Store> */}
         <Store>
           <Icon className="material-symbols-outlined">location_on</Icon>
           <h2>高雄市新興區河南一路118號一樓</h2>
@@ -47,6 +47,12 @@ function StoreInfo() {
           >
             volume_up
           </IconImg>
+        </Store>
+        <Store>
+          <Icon className="material-symbols-outlined">location_on</Icon>
+          <h2>
+            800, Kaohsiung City, Sinsing District, Henan 1st Rd, No.118, 1F
+          </h2>
         </Store>
         <Store>
           <Icon className="material-symbols-outlined">attach_money</Icon>
