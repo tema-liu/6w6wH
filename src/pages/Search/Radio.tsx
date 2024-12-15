@@ -42,6 +42,7 @@ const MoonBtn = styled.label`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
   span {
     font-size: 17px;
     font-weight: 400;

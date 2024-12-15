@@ -1,11 +1,14 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, useMatch } from "react-router-dom";
 import FooterNav from "./component/FooterNav";
 
 function StoreListLayout() {
+  const location = useLocation();
+  const isReviewPage = useMatch("/review/:id");
+
   return (
     <>
       <Outlet /> {/* 用於渲染子路由內容 */}
-      <FooterNav />
+      {!isReviewPage && <FooterNav />}
     </>
   );
 }

@@ -44,6 +44,7 @@ export const PlaceName = styled.div`
 
 export const VoiceIcon = styled(IconI)`
   margin: 0 8px;
+  cursor: pointer;
 `;
 
 export const ReviewSection = styled.div`

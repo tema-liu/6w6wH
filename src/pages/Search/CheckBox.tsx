@@ -45,7 +45,7 @@ const Label = styled.label`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.light};
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
-
+  cursor: pointer;
   span {
     padding: 12px 16px 12px 8px;
     font-size: 17px;

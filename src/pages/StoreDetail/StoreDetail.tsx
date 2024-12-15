@@ -73,16 +73,21 @@ function StoreDetail() {
               <StarContent>
                 <StarRating star={5} />
               </StarContent>
-              <div
+
+              <IconImg
                 style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  height: "48px",
                   width: "100%",
                   display: "flex",
-                  flex: "0",
-                  padding: "0 8px 0 24px",
+                  flex: "0 1 0",
+                  padding: "0px 8px 0px 24px",
                 }}
+                className="material-symbols-outlined"
               >
-                <IconImg className="material-symbols-outlined">link</IconImg>
-              </div>
+                link
+              </IconImg>
             </ReviewSection>
           </PlaceDetailHeader>
           <PlaceDetailMain>

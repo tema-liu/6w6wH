@@ -42,6 +42,7 @@ function StoreInfo() {
               marginBottom: "auto",
               marginTop: "auto",
               marginLeft: "auto",
+              cursor: "pointer",
             }}
           >
             volume_up
