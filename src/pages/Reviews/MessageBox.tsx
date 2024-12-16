@@ -5,11 +5,11 @@ import { useState } from "react";
 const Box = styled.div`
   display: flex;
   align-items: center;
-  margin-left: -8px;
   position: sticky;
   padding-top: 8px;
-  padding-bottom: 40px;
+  padding-bottom: 16px;
   bottom: 0;
+  padding: 8px 8px 16px 8px;
 `;
 
 const Message = styled.input`
@@ -17,7 +17,7 @@ const Message = styled.input`
   font-weight: 400;
   line-height: 22px;
   letter-spacing: -0.41px;
-  margin: 0 8px;
+  margin: 0 8px 0 0;
   padding: 12px 16px 14px 16px;
   vertical-align: top;
   flex: 1;

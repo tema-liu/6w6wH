@@ -144,8 +144,8 @@ function Reviews() {
               </CommentDetail>
             </CommentContent>
             {data.reply && <RepliesCard data={data.reply} />}
-            <MessageBox />
           </Container>
+          <MessageBox />
         </Wrapper>
       )}
     </>
