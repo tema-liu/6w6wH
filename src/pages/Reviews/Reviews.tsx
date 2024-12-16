@@ -26,8 +26,15 @@ import { TagsBar, Tag } from "../../component/TagsBar";
 import ReviewSwiper from "./ReviewSwiper";
 // import { useNavigate } from "react-router-dom";
 
-const CommentContent = styled(CommentCardContent)`
-  padding: 8px 8px 16px 8px;
+type CommentContentProps = {
+  $isHavePhoto: boolean;
+};
+
+const CommentContent = styled(CommentCardContent)<CommentContentProps>`
+  padding: ${({ $isHavePhoto }) =>
+    $isHavePhoto ? "8px 8px 16px 8px" : " 16px 8px"};
+  border-radius: ${({ $isHavePhoto }) =>
+    $isHavePhoto ? "0" : " 32px 32px 0 0"};
 `;
 const CommentDetail = styled(CommentCardDetail)`
   margin: 0;
@@ -49,7 +56,7 @@ function Reviews() {
         <Header title={"Reviews"} />
         <Container>
           <ReviewSwiper />
-          <CommentContent>
+          <CommentContent $isHavePhoto={true}>
             <CommentDetail>
               <Head>
                 <HeadShot src={headShotIcon} alt="headShot" />
