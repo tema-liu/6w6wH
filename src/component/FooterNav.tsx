@@ -45,7 +45,7 @@ const NavIcon = styled(Icon)<fillProps>`
 function FooterNav() {
   const location = useLocation();
 
-  const storeList = ["/storeList", "/storeList/:id"];
+  const storeList = ["/storeList", "/storeList/:id", "/postComment/:id"];
   const profileList = [
     "/login",
     "/faqs",
