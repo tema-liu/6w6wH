@@ -28,8 +28,15 @@ import MoreVert from "../../component/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
-const CommentContent = styled(CommentCardContent)`
-  padding: 8px 8px 16px 8px;
+type CommentContentProps = {
+  $isHavePhoto: boolean;
+};
+
+const CommentContent = styled(CommentCardContent)<CommentContentProps>`
+  padding: ${({ $isHavePhoto }) =>
+    $isHavePhoto ? "8px 8px 16px 8px" : " 16px 8px"};
+  border-radius: ${({ $isHavePhoto }) =>
+    $isHavePhoto ? "0" : " 32px 32px 0 0"};
 `;
 const CommentDetail = styled(CommentCardDetail)`
   margin: 0;
@@ -74,7 +81,7 @@ function Reviews() {
           <Header title={"Reviews"} />
           <Container>
             <ReviewSwiper photos={data.photos} />
-            <CommentContent>
+            <CommentContent $isHavePhoto={!!data.photos}>
               <CommentDetail>
                 <Head>
                   <HeadShot src={data.userPhoto} alt="headShot" />
