@@ -9,6 +9,7 @@ export const storeReview = {
       userName: "John Doe",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 4,
+      replyCount: 5,
       comment: "This store has great products, definitely worth recommending!",
       photos: [
         "https://picsum.photos/1000/800",
@@ -27,6 +28,7 @@ export const storeReview = {
       userName: "Alice Smith",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 5,
+      replyCount: 16,
       comment:
         "Excellent customer service and high-quality items. I will come back again!",
       photos: [
@@ -45,6 +47,7 @@ export const storeReview = {
       userName: "Michael Brown",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 3,
+      replyCount: 2,
       comment:
         "The product is good but it took longer to ship than I expected.",
       photos: [
@@ -63,6 +66,7 @@ export const storeReview = {
       userName: "Sarah Lee",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 5,
+      replyCount: 0,
       comment:
         "I love the variety of products they offer. Very satisfied with my purchase.",
       photos: [
@@ -81,6 +85,7 @@ export const storeReview = {
       userName: "David Green",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 4,
+      replyCount: 23,
       comment: "Good quality but the packaging could be better.",
       photos: ["https://picsum.photos/1000/800"],
       postedAt: new Date("2024-12-09T20:00:00Z"),

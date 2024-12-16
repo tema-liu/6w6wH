@@ -179,11 +179,11 @@ export function CommentCard({ data }: CommentCard) {
               <h5>{useTimeAgo(data.postedAt)}</h5>
               <SocialBlock>
                 <div>
-                  <h4>{data.replyCount}</h4>
+                  <h4>{data.replyCount === 0 ? "" : data.replyCount}</h4>
                   <ChatIcon
                     className="material-symbols-outlined"
                     onClick={() => {
-                      navigate("/review/:id");
+                      navigate(`/review/${data.commentID}`);
                     }}
                   >
                     chat_bubble

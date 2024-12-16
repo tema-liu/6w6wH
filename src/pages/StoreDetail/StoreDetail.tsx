@@ -136,7 +136,7 @@ function StoreDetail() {
                   checked={selectedOption === "Reviews"}
                   onChange={handleOptionChange}
                 />
-                <Label htmlFor="Reviews">Reviews (23)</Label>
+                <Label htmlFor="Reviews">{`Reviews (${storeReviewsData?.data.length})`}</Label>
               </SegmentedControlInner>
             </form>
             {selectedOption === "Detail" && (
