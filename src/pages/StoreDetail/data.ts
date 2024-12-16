@@ -85,7 +85,7 @@ export const storeReview = {
       userName: "David Green",
       userPhoto: "https://picsum.photos/400/400.jpg",
       starCount: 4,
-      replyCount: 23,
+      replyCount: 5,
       comment: "Good quality but the packaging could be better.",
       photos: ["https://picsum.photos/1000/800"],
       postedAt: new Date("2024-12-09T20:00:00Z"),

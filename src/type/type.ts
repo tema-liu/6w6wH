@@ -104,5 +104,5 @@ export type StoreReviewsData = null | {
   statusCode: number; // 狀態碼
   status: boolean; // 狀態
   message: string; // 回應訊息
-  data: Comment[]; // 單一店家評論資料
+  data: null | Comment[]; // 單一店家評論資料
 };

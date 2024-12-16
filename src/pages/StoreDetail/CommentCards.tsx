@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { CommentCard } from "../../component/ReviewCards";
 import { Comment } from "../../type/type";
 import { FilterColumn, FilterContainer, FilterButtons } from "./styled";
-import constructWithOptions from "styled-components/dist/constructors/constructWithOptions";
 import { useState } from "react";
 const Container = styled.div`
   border-radius: 0 0 32px 32px;
