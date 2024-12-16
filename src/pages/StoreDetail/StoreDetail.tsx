@@ -15,9 +15,7 @@ import {
   SuggestBtn,
   PlaceDetailMain,
   PrIcon,
-  FilterColumn,
-  FilterContainer,
-  FilterButtons,
+  EmptyContent,
 } from "./styled";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/ReviewBtn";
@@ -33,11 +31,13 @@ import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { StoreReviewsData } from "../../type/type";
 import { mockApi } from "./data";
+import EmptyDisplay from "../../component/EmptyDisplay";
 
 function StoreDetail() {
+  const navigator = useNavigate();
   const [searchParams] = useSearchParams();
   const initialOption = searchParams.get("option") || "Detail";
   const [selectedOption, setSelectedOption] = useState(initialOption);
@@ -146,19 +146,21 @@ function StoreDetail() {
             )}
             {selectedOption === "Reviews" && (
               <>
-                {storeReviewsData?.data && (
+                {storeReviewsData?.data ? (
                   <>
-                    <FilterColumn>
-                      <FilterContainer>
-                        <FilterButtons name="filter" id="filter">
-                          <option value="popular">Popular</option>
-                          <option value="latest">Latest</option>
-                          <option value="Replies">Replies</option>
-                        </FilterButtons>
-                      </FilterContainer>
-                    </FilterColumn>
                     <CommentCards data={storeReviewsData.data} />
                   </>
+                ) : (
+                  <EmptyContent>
+                    <EmptyDisplay
+                      onClick={() => {
+                        navigator("/postComment/:id");
+                      }}
+                      content="There are no review yet"
+                      iconStyle="reviews"
+                      btnText="Leave your review"
+                    />
+                  </EmptyContent>
                 )}
               </>
             )}

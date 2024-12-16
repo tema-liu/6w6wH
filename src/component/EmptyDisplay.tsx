@@ -46,6 +46,7 @@ type EmptyDisplayProps = {
   iconStyle: string; // 定義 iconStyle 是字串
   btnText: string; // 定義 btnText 是字串
   children?: React.ReactNode; // children 是可選的 React 節點
+  onClick?: () => void;
 };
 
 const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
@@ -53,13 +54,14 @@ const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
   iconStyle,
   btnText,
   children,
+  onClick,
 }) => {
   return (
     <ImgContainer>
       <Img src={Icon} alt="6w6wHIcon" />
       <Title>{content}</Title>
       {children}
-      <Button>
+      <Button onClick={onClick}>
         <IconImg className="material-symbols-outlined">{iconStyle}</IconImg>
         {btnText}
       </Button>

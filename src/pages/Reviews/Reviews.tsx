@@ -36,7 +36,7 @@ const CommentContent = styled(CommentCardContent)<CommentContentProps>`
   padding: ${({ $isHavePhoto }) =>
     $isHavePhoto ? "8px 8px 16px 8px" : " 16px 8px"};
   border-radius: ${({ $isHavePhoto }) =>
-    $isHavePhoto ? "0" : " 32px 32px 0 0"};
+    $isHavePhoto ? "0 0 32px 32px " : "32px"};
 `;
 const CommentDetail = styled(CommentCardDetail)`
   margin: 0;
@@ -80,7 +80,7 @@ function Reviews() {
         <Wrapper>
           <Header title={"Reviews"} />
           <Container>
-            <ReviewSwiper photos={data.photos} />
+            {data.photos && <ReviewSwiper photos={data.photos} />}
             <CommentContent $isHavePhoto={!!data.photos}>
               <CommentDetail>
                 <Head>

@@ -133,3 +133,9 @@ export const FilterButtons = styled.select`
   border-radius: 4px;
   width: 100%;
 `;
+
+export const EmptyContent = styled.div`
+  padding: 52px 0;
+  background-color: ${({ theme }) => theme.colors.light};
+  border-radius: 0 0 32px 32px;
+`;
