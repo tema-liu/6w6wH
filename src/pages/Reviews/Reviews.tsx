@@ -19,7 +19,6 @@ import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";

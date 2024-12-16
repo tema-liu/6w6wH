@@ -30,7 +30,6 @@ function ReviewSwiper({ photos }: { photos: string[] | null }) {
         prevEl: ".swiper-button-prev",
       }}
       pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {photos &&
         photos.map((photo, index) => (
