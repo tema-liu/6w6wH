@@ -108,8 +108,8 @@ function Reviews() {
             </CommentDetail>
           </CommentContent>
           <RepliesCard />
-          <MessageBox />
         </Container>
+        <MessageBox />
       </Wrapper>
     </>
   );
