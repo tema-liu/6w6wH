@@ -26,15 +26,18 @@ const Img = styled.img`
 const Button = styled.button`
   font-size: 17px;
   line-height: 22px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.41px;
   padding: 12px 24px;
   margin: 0 auto;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.outline3};
+  box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 8px;
 
   &:active {
     background-color: ${({ theme }) => theme.colors.container3};
