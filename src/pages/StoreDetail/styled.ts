@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Icon as IconI } from "../../component/LayoutComponents";
 
-export const NavigateBtn = styled.button`
+export const NavigateBtn = styled.a`
   display: flex;
   flex-wrap: nowrap;
   z-index: 1;

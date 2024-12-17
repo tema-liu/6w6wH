@@ -48,7 +48,7 @@ export type hotReviewData = null | {
 };
 
 //storeDetail=============================================
-type Advertise = {
+export type Advertise = {
   photo: string; // 廣告照片
   url: string; // 廣告網址
   title: string; // 廣告標題

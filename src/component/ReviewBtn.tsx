@@ -6,6 +6,7 @@ interface ReviewProps {
   $marginRight?: number;
   content?: string;
   setPostCommentOut?: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate?: string;
 }
 
 const Review = styled.button<ReviewProps>`
@@ -28,17 +29,17 @@ const Review = styled.button<ReviewProps>`
   }
 `;
 
-export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
+export const ReviewBtn = ({ $marginRight, content, navigate }: ReviewProps) => {
   const navigator = useNavigate();
 
+  const clickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    const path = `/postComment/${navigate}`;
+    navigator(path);
+  };
+
   return (
-    <Review
-      onClick={(e) => {
-        e.stopPropagation();
-        navigator("/postComment/:id");
-      }}
-      $marginRight={$marginRight}
-    >
+    <Review onClick={clickHandler} $marginRight={$marginRight}>
       <Icon className="material-symbols-outlined">reviews</Icon>
       {content}
     </Review>

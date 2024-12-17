@@ -1,4 +1,4 @@
-export const storeReview = {
+const storeReview = {
   statusCode: 200,
   status: true,
   message: "取得店家評論成功",
@@ -97,11 +97,71 @@ export const storeReview = {
   ],
 };
 
+const mockStoreDetailData = {
+  statusCode: 200,
+  status: true,
+  message: "Successfully fetched store data.",
+  data: {
+    advertise: {
+      photo: "https://picsum.photos/1000/800",
+      url: "https://example.com",
+      title: "Celebrate Eid Al Fitr Offers",
+      slogan: "40% off for four people , 20% off for two people ！",
+    },
+    starCount: 3,
+    tags: [
+      { tagName: "Multilingual", count: 12 },
+      { tagName: "Friendly", count: 9 },
+      { tagName: "Food", count: 5 },
+      { tagName: "Communication aids", count: 3 },
+    ],
+    isFavorited: true,
+    placeId: "ChIJJ9NrOfgFbjQRqofGxIWkhIo",
+    location: {
+      lat: 22.636547721078667,
+      lng: 120.30326733558186,
+    },
+    displayName: "Left Bank Rendezvous Cafe 南國人文美食坊",
+    photos: [
+      "https://picsum.photos/1000/800",
+      "https://picsum.photos/1000/800",
+    ],
+    address: "高雄市新興區河南一路118號一樓",
+    enAddress:
+      "800, Kaohsiung City, Sinsing District, Henan 1st Rd, No.118, 1F",
+    Book: "https://example.com/book-now",
+    budget: "NTD200~400 / Rp1500～3000",
+    phone: "0983387594",
+    url: "https://sunnycafe.example.com",
+    opening_hours: {
+      Monday: "08:00–18:00",
+      Tuesday: "08:00–18:00",
+      Wednesday: "08:00–18:00",
+      Thursday: "08:00–18:00",
+      Friday: "08:00–20:00",
+      Saturday: "09:00–20:00",
+      Sunday: "closed",
+    },
+  },
+};
+
 export const mockApi = async (url: string): Promise<any> => {
   if (url === "/api/items") {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(storeReview);
+      }, 1000); // 模擬延遲 1s
+    });
+  } else {
+    throw new Error("API route not found");
+  }
+};
+
+export const storeResultApi = async (url: string): Promise<any> => {
+  if (url === "/api/items") {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(mockStoreDetailData);
       }, 1000); // 模擬延遲 1s
     });
   } else {

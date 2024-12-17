@@ -19,7 +19,13 @@ const Container = styled(SwiperContainer)`
   background-color: transparent;
 `;
 
-function StoreSwiper() {
+function StoreSwiper({
+  photos,
+  isFavorite,
+}: {
+  photos: string[];
+  isFavorite: boolean;
+}) {
   return (
     <Container
       // install Swiper modules
@@ -30,19 +36,12 @@ function StoreSwiper() {
         prevEl: ".swiper-button-prev",
       }}
     >
-      <CollectIcon right={32} />
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Img src="https://picsum.photos/1000/800" alt="advertise" />
-      </SwiperSlide>
+      <CollectIcon isFavoriteData={isFavorite} right={32} />
+      {photos.map((photo, index) => (
+        <SwiperSlide key={`photo${index}`}>
+          <Img src={photo} alt="storePhoto" />
+        </SwiperSlide>
+      ))}
       <Button $bottom={124} className="swiper-button-next">
         <Icon className="material-symbols-outlined">chevron_right</Icon>
       </Button>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import advertisImg from "../assets/Frame 18.png";
+import { Advertise } from "../type/type";
 
 const AdBox = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const OfferTitle = styled.p`
   font-weight: 700;
 `;
 
-const OfferButton = styled.button`
+const OfferButton = styled.a`
   padding: 12px 16px;
   font-size: 17px;
   font-weight: 700;
@@ -40,16 +40,18 @@ const OfferButton = styled.button`
   background-color: ${({ theme }) => theme.colors.container2};
 `;
 
-function ADblock() {
+type ADblockProps = {
+  data: Advertise;
+};
+
+function ADblock({ data }: ADblockProps) {
   return (
     <AdBox>
-      <Title>Celebrate Eid Al Fitr Offers</Title>
-      <AdvertisingContent src={advertisImg} alt="advertising" />
+      <Title>{data.title}</Title>
+      <AdvertisingContent src={data.photo} alt="advertising" />
       <OfferSection>
-        <OfferTitle>
-          40% off for four people , 20% off for two people ！
-        </OfferTitle>
-        <OfferButton>Menu</OfferButton>
+        <OfferTitle>{data.slogan}</OfferTitle>
+        <OfferButton href={data.url}>Menu</OfferButton>
       </OfferSection>
     </AdBox>
   );

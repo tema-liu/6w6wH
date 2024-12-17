@@ -6,12 +6,12 @@ import star3 from "../assets/3.png";
 import star4 from "../assets/4.png";
 import star5 from "../assets/5.png";
 
-interface StarRatingProps {
+type StarRatingProps = {
   star: 0 | 1 | 2 | 3 | 4 | 5;
   width?: number;
   height?: number;
   marginLeft?: number;
-}
+};
 
 const StarImg = styled.img`
   //星星預設長寬

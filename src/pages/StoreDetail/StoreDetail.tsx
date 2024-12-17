@@ -31,14 +31,18 @@ import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { StoreReviewsData } from "../../type/type";
-import { mockApi } from "./data";
+import { data, useNavigate, useSearchParams } from "react-router-dom";
+import { StoreDetailData, StoreReviewsData } from "../../type/type";
+import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 
 function StoreDetail() {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
+  const [storeData, setStoreData] = useState<StoreDetailData>(null); //商店詳細資料
+  const [storeReviewsData, setStoreReviewsData] =
+    useState<StoreReviewsData>(null); //商店評論
+  const [isLoading, setIsLoading] = useState(true);
   const initialOption = searchParams.get("option") || "Detail";
   const [selectedOption, setSelectedOption] = useState(initialOption);
   // 處理選擇的變更
@@ -46,15 +50,15 @@ function StoreDetail() {
     setSelectedOption(event.target.value);
   };
 
-  const [storeReviewsData, setStoreReviewsData] =
-    useState<StoreReviewsData>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await mockApi("/api/items");
+        const [result, storeDataRes] = await Promise.all([
+          mockApi("/api/items"),
+          storeResultApi("/api/items"),
+        ]);
         setStoreReviewsData(result ?? null); //假設res為undefined或null 設為null
+        setStoreData(storeDataRes ?? null);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,31 +81,41 @@ function StoreDetail() {
       <Wrapper>
         <Header title={"Store Detail"} />
         <Container>
-          <StoreSwiper />
-          <NavigateBtn>
+          {storeData?.data.photos && (
+            <StoreSwiper
+              isFavorite={storeData?.data.isFavorited}
+              photos={storeData?.data.photos}
+            />
+          )}
+          <NavigateBtn
+            href={`https://www.google.com/maps/dir/?api=1&destination=${storeData?.data.location.lat}, ${storeData?.data.location.lng}&destination_place_id=${storeData?.data.placeId}`}
+          >
             <img src={navigateIcon} alt="navigateIcon" />
             <h2>Navigate</h2>
           </NavigateBtn>
           <PlaceDetailHeader>
             <PlaceName>
-              <h1> Left Bank Rendezvous Cafe 南國人文美食坊</h1>
+              <h1>{storeData?.data.displayName}</h1>
               <VoiceIcon className="material-symbols-outlined">
                 volume_up
               </VoiceIcon>
             </PlaceName>
             <TagsBar>
-              <Tag>Multilingual (12)</Tag>
-              <Tag>Multilingual (12)</Tag>
-              <Tag>Multilingual (12)</Tag>
-              <Tag>Multilingual (12)</Tag>
-              <Tag>Multilingual (12)</Tag>
+              {storeData?.data.tags?.map((tag) => (
+                <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
+              ))}
             </TagsBar>
             <ReviewSection>
-              <ReviewBtn $marginRight={16} content={"Review"}></ReviewBtn>
+              <ReviewBtn
+                navigate={storeData?.data.placeId as string}
+                $marginRight={16}
+                content={"Review"}
+              ></ReviewBtn>
               <StarContent>
-                <StarRating star={5} />
+                <StarRating
+                  star={storeData?.data.starCount as 0 | 1 | 2 | 3 | 4 | 5}
+                />
               </StarContent>
-
               <IconImg
                 style={{
                   cursor: "pointer",
@@ -142,9 +156,7 @@ function StoreDetail() {
               </SegmentedControlInner>
             </form>
             {selectedOption === "Detail" && (
-              <>
-                <StoreInfo />
-              </>
+              <>{storeData?.data && <StoreInfo data={storeData?.data} />}</>
             )}
             {selectedOption === "Reviews" && (
               <>
@@ -156,7 +168,7 @@ function StoreDetail() {
                   <EmptyContent>
                     <EmptyDisplay
                       onClick={() => {
-                        navigator("/postComment/:id");
+                        navigator(`/postComment/${storeData?.data.placeId}`);
                       }}
                       content="There are no review yet"
                       iconStyle="reviews"
