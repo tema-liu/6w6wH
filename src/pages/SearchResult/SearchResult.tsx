@@ -1,40 +1,19 @@
-import styled from "styled-components";
 import Header from "../../component/header";
 import { Container, Wrapper } from "../../component/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TagChips } from "../../component/TagChips";
 import ShopCard from "./ShopCard";
-const ChipGroup = styled.div``;
-const TitleBox = styled.div`
-  border-radius: 16px 16px 0 0;
-  background-color: ${({ theme }) => theme.colors.gray100};
-  width: fit-content;
-  padding: 2px 16px 0 16px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
-`;
-const TitleBoxIcon = styled.img`
-  width: 32px;
-  height: auto;
-`;
-const TitleBoxText = styled.h2`
-  margin-left: 8px;
-  display: inline-block;
-`;
-const TagBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: end;
-  padding: 16px;
-  border-radius: 0 16px 16px 16px;
-  background-color: ${({ theme }) => theme.colors.gray100};
-  gap: 8px;
-`;
-const ShopCards = styled.section`
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-`;
+import {
+  ChipGroup,
+  TagBox,
+  TitleBoxIcon,
+  TitleBox,
+  TitleBoxText,
+  FilterButtons,
+  FilterContainer,
+  FilterColumn,
+  ShopCards,
+} from "./style";
 
 function SearchResult() {
   const num = 5;
@@ -55,6 +34,15 @@ function SearchResult() {
               <TagChips label={"Friendly"} />
             </TagBox>
           </ChipGroup>
+          <FilterColumn>
+            <FilterContainer>
+              <FilterButtons name="filter" id="filter">
+                <option value="popular">Popular</option>
+                <option value="lastest">Lastest</option>
+                <option value="Replies">Replies</option>
+              </FilterButtons>
+            </FilterContainer>
+          </FilterColumn>
           <ShopCards>
             <ShopCard />
           </ShopCards>

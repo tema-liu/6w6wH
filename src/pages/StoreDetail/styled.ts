@@ -126,6 +126,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterButtons = styled.select`
+  background-color: ${({ theme }) => theme.colors.light};
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
