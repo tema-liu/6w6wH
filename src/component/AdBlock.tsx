@@ -5,6 +5,7 @@ const AdBox = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  width: 100%;
 `;
 
 const AdvertisingContent = styled.img`
