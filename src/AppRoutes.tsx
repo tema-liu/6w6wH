@@ -8,6 +8,7 @@ import StoreListLayout from "./StoreListLayout.tsx";
 import Popular from "./pages/Popular/Popular.tsx";
 import AddStore from "./pages/AddStore/AddStore.tsx";
 import PostComment from "./pages/PostComment/PostComment.tsx";
+import Notification from "./pages/Notification/Notification.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -43,7 +44,7 @@ function AppRoutes() {
           {/* 發送評論 */}
           <Route path="/postComment/:id" element={<PostComment />} />
           {/* 通知 */}
-          <Route path="/notification" element={<App />} />
+          <Route path="/notification" element={<Notification />} />
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
           {/* 登入頁面 */}
