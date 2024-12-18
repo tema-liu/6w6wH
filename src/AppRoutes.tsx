@@ -51,9 +51,9 @@ function AppRoutes() {
           <Route path="/faqs" element={<App />} />
           <Route path="/TermsAndConditions" element={<App />} />
           <Route path="/PrivacyPolicy" element={<App />} />
-          <Route path="/Add&EditStoreInformation" element={<App />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            <Route path="/menu" element={<div>個人檔案頁</div>} />
             <Route path="/settings" element={<div>設定頁內容</div>} />
             <Route path="/editProfile" element={<div>設定頁內容</div>} />
             <Route path="/profile" element={<div>個人檔案頁</div>} />
