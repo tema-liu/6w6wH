@@ -32,13 +32,57 @@ const OfferTitle = styled.p`
 `;
 
 const OfferButton = styled.button`
-  padding: 12px 16px;
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 22px;
-  letter-spacing: -0.41px;
+  border: 0;
+  overflow: hidden;
+  max-width: 77px;
+  width: 100%;
+  position: relative;
+  background: -webkit-linear-gradient(
+    top,
+    #e59005,
+    #ffdb6b 25%,
+    #ffffff 38%,
+    #ffc002 63%,
+    #ffe59a 87%,
+    #e59005
+  );
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.container2};
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 10%), 0px 0px 4px rgba(0, 0, 0, 20%);
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    right: -100%;
+    width: 50%;
+    height: 300%;
+    transform: rotate(30deg);
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.4) 75%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shine 2s infinite;
+  }
+
+  @keyframes shine {
+    to {
+      opacity: 1;
+      right: 150%;
+    }
+  }
+  a {
+    display: inline-block;
+    padding: 12px 16px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: -0.41px;
+    text-align: center;
+    color: ${({ theme }) => theme.colors.gray900};
+  }
 `;
 
 function ADblock() {
@@ -50,7 +94,9 @@ function ADblock() {
         <OfferTitle>
           40% off for four people , 20% off for two people ！
         </OfferTitle>
-        <OfferButton>Menu</OfferButton>
+        <OfferButton>
+          <a href="#">Menu</a>
+        </OfferButton>
       </OfferSection>
     </AdBox>
   );

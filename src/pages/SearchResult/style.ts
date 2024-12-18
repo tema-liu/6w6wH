@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { Container as Cont } from "../../component/LayoutComponents";
+
+export const Container = styled(Cont)`
+  padding: 16px 8px;
+`;
 
 export const ChipGroup = styled.div``;
 export const TitleBox = styled.div`

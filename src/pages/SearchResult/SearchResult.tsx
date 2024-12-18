@@ -1,9 +1,10 @@
 import Header from "../../component/header";
-import { Container, Wrapper } from "../../component/LayoutComponents";
+import { Wrapper } from "../../component/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TagChips } from "../../component/TagChips";
 import ShopCard from "./ShopCard";
 import {
+  Container,
   ChipGroup,
   TagBox,
   TitleBoxIcon,
