@@ -31,7 +31,7 @@ import CommentCards from "./CommentCards";
 import Pure from "../../component/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
-import { data, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { StoreDetailData, StoreReviewsData } from "../../type/type";
 import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
