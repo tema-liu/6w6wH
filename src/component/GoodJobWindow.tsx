@@ -1,4 +1,3 @@
-import { PrimaryBtn } from "./PrimaryBtn";
 import Pure from "./Pure";
 import styled from "styled-components";
 import photo from "../assets/Frame65Large.svg";
