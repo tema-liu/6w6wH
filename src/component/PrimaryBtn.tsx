@@ -5,16 +5,18 @@ type buttonStyleProps = {
   $bgColor?: string;
   $iconColor?: string;
   $padding?: string;
+  $margin?: string;
 };
 
 type buttonProps = {
   iconName?: string;
-  content: string;
+  content: React.ReactNode;
   $bgColor?: string;
   $iconColor?: string;
   onClick?: () => void; // 可選的點擊事件處理函式
   type?: string;
   $padding?: string;
+  $margin?: string;
 };
 
 const IconImg = styled(Icon)<buttonStyleProps>`
@@ -30,11 +32,13 @@ const Btn = styled.button<buttonStyleProps>`
   background-color: ${({ $bgColor, theme }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.outline3};
   border-radius: 16px;
-  padding: ${({ $padding }) => ($padding ? $padding + "px" : "13px 0")};
+  padding: ${({ $padding }) => ($padding ? $padding : "12px 0")};
+  margin: ${({ $margin }) => ($margin ? $margin : "0")};
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 
 export function PrimaryBtn({
+  $margin,
   iconName,
   content,
   $bgColor,
@@ -43,7 +47,12 @@ export function PrimaryBtn({
   onClick,
 }: buttonProps) {
   return (
-    <Btn $padding={$padding} onClick={onClick} $bgColor={$bgColor}>
+    <Btn
+      $margin={$margin}
+      $padding={$padding}
+      onClick={onClick}
+      $bgColor={$bgColor}
+    >
       {iconName && (
         <IconImg $iconColor={$iconColor} className="material-symbols-outlined">
           {iconName}

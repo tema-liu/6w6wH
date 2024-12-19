@@ -95,7 +95,7 @@ export const SuggestBtn = styled.a`
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 16px;
-  padding: 13px 0;
+  padding: 12px 0;
   margin-bottom: 25px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
