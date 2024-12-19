@@ -1,13 +1,17 @@
-import Header from "../../component/header";
-import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
-import { PrimaryBtn } from "../../component/PrimaryBtn";
+import Header from "../../component/layout/header";
+import {
+  Wrapper,
+  Container,
+  Icon,
+} from "../../component/layout/LayoutComponents";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import nullPhoto from "../../assets/Rectangle.png";
 import { Photo, PhotosBar } from "../../component/TagsBar";
 import { useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
-import Pure from "../../component/Pure";
+import Pure from "../../component/ReviewComponent/Pure";
 import GoodJobWindow from "../../component/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import SuggestTag from "./SuggestTag";

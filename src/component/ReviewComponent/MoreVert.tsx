@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "./LayoutComponents";
+import { Icon } from "../layout/LayoutComponents";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;

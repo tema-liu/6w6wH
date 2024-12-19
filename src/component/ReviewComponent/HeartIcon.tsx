@@ -1,4 +1,4 @@
-import { Icon } from "./LayoutComponents";
+import { Icon } from "../layout/LayoutComponents";
 import { useState } from "react";
 import styled from "styled-components";
 type fillProps = {

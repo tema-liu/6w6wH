@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Icon } from "./styled";
-import { Icon as IconImg } from "../../component/LayoutComponents";
+import { Icon as IconImg } from "../../component/layout/LayoutComponents";
 import ADblock from "../../component/AdBlock";
 
 const Store = styled.div`

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import bugIcon from "../assets/bug2.png";
-import { TitleBoxIcon, TitleBoxText } from "../component/TitleBox";
+import bugIcon from "../../assets/bug2.png";
+import { TitleBoxIcon, TitleBoxText } from "../TitleBox";
 
 const Overlay = styled.div`
   z-index: 5;

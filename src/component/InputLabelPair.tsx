@@ -22,7 +22,7 @@ const FormControl = styled.input`
   border-radius: 8px;
   width: 100%;
   display: block;
-  -webkit-appearance: none;
+  -webkit-appearance: none; /*確保在 IOS瀏覽器中正常顯示 */
   &::-webkit-date-and-time-value {
     text-align: left;
   }

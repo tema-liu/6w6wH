@@ -1,5 +1,5 @@
-import { Wrapper, Container } from "../../component/LayoutComponents";
-import Header from "../../component/header";
+import { Wrapper, Container } from "../../component/layout/LayoutComponents";
+import Header from "../../component/layout/header";
 import {
   SuggestBtn,
   SearchContainer,

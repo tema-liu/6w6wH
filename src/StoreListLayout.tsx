@@ -1,5 +1,5 @@
 import { Outlet, useNavigate, useLocation, useMatch } from "react-router-dom";
-import FooterNav from "./component/FooterNav";
+import FooterNav from "./component/layout/FooterNav";
 
 function StoreListLayout() {
   const location = useLocation();

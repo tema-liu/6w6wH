@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Input, Label, Title, Reviews, ReviewContent } from "./styled";
-import { CommentCard, ReviewsCard } from "../../component/ReviewCards";
+import {
+  CommentCard,
+  ReviewsCard,
+} from "../../component/ReviewComponent/ReviewCards";
 
 function HotReviews() {
   //單選nav

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import beforeBtn from "../assets/navigate_before.png";
+import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.header`
@@ -46,16 +46,16 @@ const Arrow = styled.img`
 interface HeaderProps {
   title?: string; // 這裡應該是 string 類型
   isBefore?: boolean;
-  beforeClick?: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate?: string;
 }
 
-const Header = ({ title, isBefore = true, beforeClick }: HeaderProps) => {
+const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
   const navigator = useNavigate();
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
   const handleBeforeClick = () => {
-    if (beforeClick) {
-      beforeClick((prev: boolean) => !prev);
+    if (navigate) {
+      navigator(navigate);
     } else {
       navigator(-1);
     }

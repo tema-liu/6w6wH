@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon as IconI } from "../../component/LayoutComponents";
+import { Icon as IconI } from "../../component/layout/LayoutComponents";
 
 export const StoreImg = styled.img`
   width: 100%;

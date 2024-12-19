@@ -6,7 +6,7 @@ import { SwiperContainer, Button, Photo } from "../../component/SwiperStyle";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Icon } from "../../component/LayoutComponents";
+import { Icon } from "../../component/layout/LayoutComponents";
 
 const ADtag = styled.div`
   position: absolute;

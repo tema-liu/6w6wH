@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Icon from "../assets/Frame65Large.svg";
-import { Icon as IconImg } from "./LayoutComponents";
+import { Icon as IconImg } from "./layout/LayoutComponents";
 
 const ImgContainer = styled.div`
   width: 100%;

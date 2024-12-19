@@ -1,4 +1,4 @@
-import Pure from "./Pure";
+import Pure from "./ReviewComponent/Pure";
 import styled from "styled-components";
 import photo from "../assets/Frame65Large.svg";
 

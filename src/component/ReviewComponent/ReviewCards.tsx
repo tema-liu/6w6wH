@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import badge from "../assets/badge.png";
+import badge from "../../assets/badge.png";
 // import badge2 from "../../assets/badge2.png";
-import headShotIcon from "../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-import { StarRating } from "./StarRating";
-import { Icon } from "./LayoutComponents";
+import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+import { StarRating } from "../StarRating";
+import { Icon } from "../layout/LayoutComponents";
 import HeartIcon from "./HeartIcon";
-import { TagsBar, Tag } from "./TagsBar";
+import { TagsBar, Tag } from "../TagsBar";
 import { useNavigate } from "react-router-dom";
-import { ReadMore } from "../pages/Reviews/ReadMore";
+import { ReadMore } from "../../pages/Reviews/ReadMore";
 import { useState } from "react";
 
 //==========================評論卡片樣式

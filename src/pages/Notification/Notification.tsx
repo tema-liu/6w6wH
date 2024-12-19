@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Container, Wrapper } from "../../component/LayoutComponents";
-import Header from "../../component/header";
+import { Container, Wrapper } from "../../component/layout/LayoutComponents";
+import Header from "../../component/layout/header";
 import NotifyCard from "./NotifyCard";
 import EmptyDisplay from "../../component/EmptyDisplay";
 

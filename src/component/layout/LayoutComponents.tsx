@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import cubes from "../assets/cubes.png";
+import cubes from "../../assets/cubes.png";
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../../component/LayoutComponents";
+import { Icon } from "../../component/layout/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TitleBox, TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 
