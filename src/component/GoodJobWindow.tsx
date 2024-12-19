@@ -29,6 +29,7 @@ const ThankyouTitle = styled.p`
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.32px;
+  text-align: center;
 `;
 const PointText = styled.h5`
   color: ${({ theme }) => theme.colors.gray600};

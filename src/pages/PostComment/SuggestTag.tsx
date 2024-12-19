@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PrimaryBtn } from "../../component/PrimaryBtn";
+// import { PrimaryBtn } from "../../component/PrimaryBtn";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -91,42 +91,42 @@ const Button = styled.button<buttonProps>`
   font-weight: 700;
 `;
 
-const Label = styled.label`
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: -0.41px;
-  padding: 9px 0;
-`;
-const CheckBox = styled.input`
-  position: relative;
-  appearance: none;
-  border: 3px solid ${({ theme }) => theme.colors.gray600};
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
+// const Label = styled.label`
+//   font-size: 17px;
+//   font-weight: 400;
+//   line-height: 22px;
+//   letter-spacing: -0.41px;
+//   padding: 9px 0;
+// `;
+// const CheckBox = styled.input`
+//   position: relative;
+//   appearance: none;
+//   border: 3px solid ${({ theme }) => theme.colors.gray600};
+//   width: 18px;
+//   height: 18px;
+//   border-radius: 2px;
 
-  &:checked {
-    background-color: ${({ theme }) => theme.colors.light};
-    border-color: ${({ theme }) => theme.colors.gray900};
-  }
+//   &:checked {
+//     background-color: ${({ theme }) => theme.colors.light};
+//     border-color: ${({ theme }) => theme.colors.gray900};
+//   }
 
-  // 添加勾選符號
-  &:checked::after {
-    content: "✔"; // 或者使用其他圖標
-    position: absolute;
-    top: -1px;
-    font-size: 16px;
-    line-height: 1;
-    color: ${({ theme }) => theme.colors.gray900};
-  }
-`;
-const BoxDiv = styled.div`
-  display: flex;
-  align-items: center;
-  column-gap: 6px;
-  margin-top: 4px;
-`;
+//   // 添加勾選符號
+//   &:checked::after {
+//     content: "✔"; // 或者使用其他圖標
+//     position: absolute;
+//     top: -1px;
+//     font-size: 16px;
+//     line-height: 1;
+//     color: ${({ theme }) => theme.colors.gray900};
+//   }
+// `;
+// const BoxDiv = styled.div`
+//   display: flex;
+//   align-items: center;
+//   column-gap: 6px;
+//   margin-top: 4px;
+// `;
 
 const ButtonDiv = styled.div`
   display: flex;
@@ -175,11 +175,10 @@ function SuggestTag() {
               Submit
             </Button>
           </ButtonDiv>
-
-          <BoxDiv>
+          {/* <BoxDiv>
             <CheckBox id="naverAppToday" type="checkbox" />
             <Label htmlFor="naverAppToday">Never appear again today</Label>
-          </BoxDiv>
+          </BoxDiv> */}
         </FooterSection>
       </Container>
     </form>
