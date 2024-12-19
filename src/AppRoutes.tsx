@@ -9,6 +9,7 @@ import Popular from "./pages/Popular/Popular.tsx";
 import AddStore from "./pages/AddStore/AddStore.tsx";
 import PostComment from "./pages/PostComment/PostComment.tsx";
 import Notification from "./pages/Notification/Notification.tsx";
+import Login from "./pages/Login/Login.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -48,7 +49,7 @@ function AppRoutes() {
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
           {/* 登入頁面 */}
-          <Route path="/login" element={<App />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/faqs" element={<App />} />
           <Route path="/TermsAndConditions" element={<App />} />
           <Route path="/PrivacyPolicy" element={<App />} />
