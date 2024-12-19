@@ -10,6 +10,7 @@ import AddStore from "./pages/AddStore/AddStore.tsx";
 import PostComment from "./pages/PostComment/PostComment.tsx";
 import Notification from "./pages/Notification/Notification.tsx";
 import Login from "./pages/Login/Login.tsx";
+import Setup from "./pages/Setup/Setup.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -50,9 +51,10 @@ function AppRoutes() {
           <Route path="/review/:id" element={<Reviews />} />
           {/* 登入頁面 */}
           <Route path="/login" element={<Login />} />
+          <Route path="/setup" element={<Setup />} />
           <Route path="/faqs" element={<App />} />
-          <Route path="/TermsAndConditions" element={<App />} />
-          <Route path="/PrivacyPolicy" element={<App />} />
+          <Route path="/termsAndConditions" element={<App />} />
+          <Route path="/privacyPolicy" element={<App />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/menu" element={<div>個人檔案頁</div>} />

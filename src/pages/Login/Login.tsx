@@ -57,7 +57,7 @@ function Login() {
           <TextContent>
             <p>
               {"I agree to 6w6wH of Use and "}
-              <Link to={"/PrivacyPolicy"}>Privacy Policy</Link>
+              <Link to={"/privacyPolicy"}>Privacy Policy</Link>
             </p>
           </TextContent>
         </Content>
