@@ -3,10 +3,11 @@ import styled from "styled-components";
 import photo from "../assets/Frame65Large.svg";
 
 type windowProps = {
-  id: string;
   num?: number;
   content: string;
   func?: () => void;
+  isActive: boolean;
+  onClose?: () => void;
 };
 
 const Content = styled.div`
@@ -42,12 +43,13 @@ const Btn = styled.button`
   padding: 9px 0;
 `;
 
-function GoodJobWindow({ id, content, num, func }: windowProps) {
+function GoodJobWindow({ content, num, func, isActive, onClose }: windowProps) {
   return (
     <Pure
-      isActive={false}
+      isActive={isActive}
+      canActive={false}
       text="Good job"
-      id={id}
+      onClose={onClose}
       content={
         <>
           <Content>

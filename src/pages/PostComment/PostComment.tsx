@@ -26,6 +26,19 @@ import {
 } from "./style";
 
 function PostComment() {
+  //控制彈跳式窗
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalTagOpen, setIsModalTagOpen] = useState(false);
+  const [isModalPointOpen, setModalPointOpen] = useState(false);
+
+  const toggleModal = (e?: "TagOpen" | "PointOpen") => {
+    e === "TagOpen"
+      ? setIsModalTagOpen((prev) => !prev)
+      : e === "PointOpen"
+      ? setModalPointOpen((prev) => !prev)
+      : setIsModalOpen((prev) => !prev);
+  };
+
   const navigate = useNavigate();
   const [files, setFiles] = useState<File[]>([]); // 保存文件列表
   const category = ["Food", "Shopping", "Services"];
@@ -113,34 +126,48 @@ function PostComment() {
             <PrimaryBtn
               iconName="reviews"
               content="Submit"
-              onClick={() => {
+              onClick={
                 //這裡送出API假設成功後
-                window.location.hash = "#popup";
-              }}
+                toggleModal
+              }
             />
           </BtnSection>
         </form>
-        <GoodJobWindow
-          content="OK"
-          id="popup"
-          num={10}
-          func={() => {
-            window.location.hash = "#addTag";
-          }}
-        ></GoodJobWindow>
-        <Pure
-          isActive={false}
-          text="Suggest Tag"
-          id="addTag"
-          content={<SuggestTag />}
-        />
-        <GoodJobWindow
-          content="OK"
-          id="popup2"
-          func={() => {
-            navigate("/storeList/:id?option=Reviews");
-          }}
-        />
+        {isModalOpen && (
+          <GoodJobWindow
+            isActive={isModalOpen}
+            content="OK"
+            num={10}
+            func={() => {
+              toggleModal();
+              toggleModal("TagOpen");
+            }}
+          ></GoodJobWindow>
+        )}
+        {isModalTagOpen && (
+          <Pure
+            isActive={isModalTagOpen}
+            canActive={false}
+            text="Suggest Tag"
+            content={
+              <SuggestTag
+                closeWindow={() => {
+                  toggleModal("TagOpen");
+                  toggleModal("PointOpen");
+                }}
+              />
+            }
+          />
+        )}
+        {isModalPointOpen && (
+          <GoodJobWindow
+            isActive={isModalPointOpen}
+            content="OK"
+            func={() => {
+              navigate("/storeList/:id?option=Reviews");
+            }}
+          />
+        )}
       </Container>
     </Wrapper>
   );

@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import { PrimaryBtn } from "../../component/PrimaryBtn";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import GoodJobWindow from "../../component/GoodJobWindow";
 
 const TagText = styled.p`
   overflow: hidden;
@@ -133,55 +134,58 @@ const ButtonDiv = styled.div`
   column-gap: 8px;
 `;
 
-function SuggestTag() {
+function SuggestTag({ closeWindow }: { closeWindow: () => void }) {
   const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
 
   return (
-    <form>
-      <Container>
-        <TopSection>
-          <TagChip>
-            <TagText>...... |</TagText>
-          </TagChip>
-          <p>Suggest Tags you want to add.</p>
-        </TopSection>
-        <MainSection>
-          <Input
-            onChange={(e) => {
-              setSubmit(e.target.value.trim().length > 0);
-            }}
-            placeholder="add...｜"
-          ></Input>
-        </MainSection>
-        <FooterSection>
-          <ButtonDiv>
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/storeList/:id?option=Reviews");
+    <>
+      <form>
+        <Container>
+          <TopSection>
+            <TagChip>
+              <TagText>...... |</TagText>
+            </TagChip>
+            <p>Suggest Tags you want to add.</p>
+          </TopSection>
+          <MainSection>
+            <Input
+              onChange={(e) => {
+                setSubmit(e.target.value.trim().length > 0);
               }}
-            >
-              Cancel
-            </Button>
-            <Button
-              $color={submit ? "dark" : "gray600"}
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.hash = "#popup2";
-              }}
-              disabled={!submit}
-            >
-              Submit
-            </Button>
-          </ButtonDiv>
-          {/* <BoxDiv>
+              placeholder="add...｜"
+            ></Input>
+          </MainSection>
+          <FooterSection>
+            <ButtonDiv>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/storeList/:id?option=Reviews");
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                $color={submit ? "dark" : "gray600"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeWindow();
+                }}
+                disabled={!submit}
+              >
+                Submit
+              </Button>
+            </ButtonDiv>
+
+            {/* <BoxDiv>
             <CheckBox id="naverAppToday" type="checkbox" />
             <Label htmlFor="naverAppToday">Never appear again today</Label>
           </BoxDiv> */}
-        </FooterSection>
-      </Container>
-    </form>
+          </FooterSection>
+        </Container>
+      </form>
+    </>
   );
 }
 

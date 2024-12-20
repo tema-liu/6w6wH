@@ -62,17 +62,16 @@ const Info = styled.div`
 `;
 
 type PureProps = {
-  id: string; // id 是字串
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
   canActive: boolean;
   isActive: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
-function Pure({ id, content, text, canActive, isActive, onClose }: PureProps) {
+function Pure({ content, text, canActive, isActive, onClose }: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (canActive && e.target instanceof Element && e.target.id === id) {
+    if (canActive && e.target instanceof Element && onClose) {
       onClose(); // 調用傳入的關閉函數
     }
   };
@@ -80,7 +79,6 @@ function Pure({ id, content, text, canActive, isActive, onClose }: PureProps) {
   return (
     <Overlay
       isVisible={isActive}
-      id={id}
       onClick={canActive ? handleOverlayClick : undefined}
     >
       <Popup isVisible={isActive}>
