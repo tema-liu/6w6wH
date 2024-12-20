@@ -1,8 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import bugIcon from "../../assets/bug2.png";
 import { TitleBoxIcon, TitleBoxText } from "../TitleBox";
 
-const Overlay = styled.div`
+// 淡入動畫
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+// 淡出動畫
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const Overlay = styled.div<{ isVisible: boolean }>`
   z-index: 5;
   position: fixed;
   top: 0;
@@ -10,31 +30,29 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   background: #00000080;
-  transition: opacity 500ms;
-  visibility: hidden;
-  opacity: 0;
-
-  &:target {
-    visibility: visible;
-    opacity: 1;
-  }
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.2s ease-out;
 `;
+
 const TitleBox = styled.div`
   text-align: center;
   margin: 0 24px;
   border-radius: 16px 16px 0 0;
   background-color: ${({ theme }) => theme.colors.outline2};
-  padding: 2px 16px 0 16px;
+  padding: 4px 16px 0 16px;
 `;
 const Text = styled(TitleBoxText)`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.gray900};
+  padding-bottom: 2px;
 `;
 
-const Popup = styled.div`
-  transition: all 5s ease-in-out;
+const Popup = styled.div<{ isVisible: boolean }>`
+  transition: all 0.5s ease-in-out;
   position: relative;
-  top: 10%;
+  top: 12%;
+  margin: 0 auto;
+  max-width: 956px;
+  animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.5s ease-out;
 `;
 const Info = styled.div`
   border-radius: 0 0 16px 16px;
@@ -47,25 +65,30 @@ type PureProps = {
   id: string; // id 是字串
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
+  canActive: boolean;
   isActive: boolean;
+  onClose: () => void;
 };
 
-function Pure({ id, content, text, isActive }: PureProps) {
+function Pure({ id, content, text, canActive, isActive, onClose }: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // 如果點擊的是 Overlay 本身 (非彈窗內部)
-    if (isActive && e.target instanceof Element && e.target.id === id) {
-      window.location.hash = "#close";
+    if (canActive && e.target instanceof Element && e.target.id === id) {
+      onClose(); // 調用傳入的關閉函數
     }
   };
 
   return (
-    <Overlay id={id} onClick={isActive ? handleOverlayClick : undefined}>
-      <Popup>
+    <Overlay
+      isVisible={isActive}
+      id={id}
+      onClick={canActive ? handleOverlayClick : undefined}
+    >
+      <Popup isVisible={isActive}>
         <TitleBox>
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />
           <Text>{text}</Text>
         </TitleBox>
-        <Info> {content}</Info>
+        <Info>{content}</Info>
       </Popup>
     </Overlay>
   );

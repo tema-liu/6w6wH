@@ -34,6 +34,7 @@ import Pure from "../../component/ReviewComponent/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
 import { useSearchParams } from "react-router-dom";
+import SuggestModalButton from "./SuggestModalButton";
 
 function StoreDetail() {
   const [searchParams] = useSearchParams();
@@ -131,20 +132,7 @@ function StoreDetail() {
               </>
             )}
           </PlaceDetailMain>
-          {selectedOption === "Detail" && (
-            <>
-              <SuggestBtn href="#popup">
-                <PrIcon className="material-symbols-outlined">edit</PrIcon>
-                Suggest an edit
-              </SuggestBtn>
-              <Pure
-                isActive={true}
-                text="Suggest an edit"
-                id="popup"
-                content={<SuggestForm />}
-              />
-            </>
-          )}
+          {selectedOption === "Detail" && <SuggestModalButton />}
         </Container>
       </Wrapper>
     </>
