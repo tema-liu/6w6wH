@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import bugIcon from "../assets/bug2.png";
-import { TitleBoxIcon, TitleBoxText } from "../component/TitleBox";
+import bugIcon from "../../assets/bug2.png";
+import { TitleBoxIcon, TitleBoxText } from "../TitleBox";
 
 const Overlay = styled.div`
   z-index: 5;
@@ -53,7 +53,7 @@ type PureProps = {
 function Pure({ id, content, text, isActive }: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // 如果點擊的是 Overlay 本身 (非彈窗內部)
-    if (isActive && e.target instanceof Element && e.target.id === "popup") {
+    if (isActive && e.target instanceof Element && e.target.id === id) {
       window.location.hash = "#close";
     }
   };

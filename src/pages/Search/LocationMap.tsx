@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Icon from "../../assets/Frame65Large.svg";
-import { Icon as IconImg } from "../../component/LayoutComponents";
+import { Icon as IconImg } from "../../component/layout/LayoutComponents";
 
 type pdProps = {
   $padding: string;

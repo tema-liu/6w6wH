@@ -52,14 +52,9 @@ interface TagChipProps {
 export const TagChips = ({ label, onRemove }: TagChipProps) => (
   <TagChip>
     <Content>{label}</Content>
+    {/* 帶入刪除函式 */}
     <CloseButton onClick={onRemove}>
-      <img
-        src={closeIcon}
-        onClick={() => {
-          console.log("刪除");
-        }}
-        alt="close"
-      />
+      <img src={closeIcon} alt="close" />
     </CloseButton>
   </TagChip>
 );

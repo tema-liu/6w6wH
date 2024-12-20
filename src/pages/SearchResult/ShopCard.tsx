@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CollectIcon from "../../component/CollectIcon";
 import { TagsBar, Tag } from "../../component/TagsBar";
-import { ReviewBtn } from "../../component/ReviewBtn";
+import { ReviewBtn } from "../../component/Button/ReviewBtn";
 import { StarRating } from "../../component/StarRating";
 import arrowIcon from "../../assets/arrow.png";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";

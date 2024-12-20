@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import beforeBtn from "../assets/navigate_before.png";
+import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.header`
   width: 100%;
+  min-height: 48px;
   background-color: ${({ theme }) => theme.colors.gray200};
   display: flex;
   align-items: center;
@@ -19,12 +20,12 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.title2};
+  column-gap: 4px;
+  padding: 8px 0;
 
   img {
     width: 20.57px;
-    padding-right: 4px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    height: 32px;
   }
 `;
 const BeforeBtn = styled.div`
@@ -43,18 +44,18 @@ const Arrow = styled.img`
 `;
 
 interface HeaderProps {
-  title: string; // 這裡應該是 string 類型
+  title?: string; // 這裡應該是 string 類型
   isBefore?: boolean;
-  beforeClick?: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate?: string;
 }
 
-const Header = ({ title, isBefore = true, beforeClick }: HeaderProps) => {
+const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
   const navigator = useNavigate();
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
   const handleBeforeClick = () => {
-    if (beforeClick) {
-      beforeClick((prev: boolean) => !prev);
+    if (navigate) {
+      navigator(navigate);
     } else {
       navigator(-1);
     }
@@ -67,11 +68,12 @@ const Header = ({ title, isBefore = true, beforeClick }: HeaderProps) => {
           <Arrow src={beforeBtn} alt="beforeBtn" />
         </BeforeBtn>
       )}
-      <Title>
-        <img src="/Frame65.png" alt="icon" />
-
-        {title}
-      </Title>
+      {title && (
+        <Title>
+          <img src="/Frame65.png" alt="icon" />
+          {title}
+        </Title>
+      )}
     </Wrapper>
   );
 };

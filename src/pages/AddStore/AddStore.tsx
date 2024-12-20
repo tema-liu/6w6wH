@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Header from "../../component/header";
-import { Wrapper, Container } from "../../component/LayoutComponents";
+import Header from "../../component/layout/header";
+import { Wrapper, Container } from "../../component/layout/LayoutComponents";
 import Radio from "../Search/Radio";
 import LocationMap from "../Search/LocationMap";
 import { useState } from "react";

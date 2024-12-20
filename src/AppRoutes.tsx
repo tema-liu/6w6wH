@@ -8,6 +8,9 @@ import StoreListLayout from "./StoreListLayout.tsx";
 import Popular from "./pages/Popular/Popular.tsx";
 import AddStore from "./pages/AddStore/AddStore.tsx";
 import PostComment from "./pages/PostComment/PostComment.tsx";
+import Notification from "./pages/Notification/Notification.tsx";
+import Login from "./pages/Login/Login.tsx";
+import Setup from "./pages/Setup/Setup.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -43,17 +46,18 @@ function AppRoutes() {
           {/* 發送評論 */}
           <Route path="/postComment/:id" element={<PostComment />} />
           {/* 通知 */}
-          <Route path="/notification" element={<App />} />
+          <Route path="/notification" element={<Notification />} />
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
           {/* 登入頁面 */}
-          <Route path="/login" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/setup" element={<Setup />} />
           <Route path="/faqs" element={<App />} />
-          <Route path="/TermsAndConditions" element={<App />} />
-          <Route path="/PrivacyPolicy" element={<App />} />
-          <Route path="/Add&EditStoreInformation" element={<App />} />
+          <Route path="/termsAndConditions" element={<App />} />
+          <Route path="/privacyPolicy" element={<App />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            <Route path="/menu" element={<div>個人檔案頁</div>} />
             <Route path="/settings" element={<div>設定頁內容</div>} />
             <Route path="/editProfile" element={<div>設定頁內容</div>} />
             <Route path="/profile" element={<div>個人檔案頁</div>} />

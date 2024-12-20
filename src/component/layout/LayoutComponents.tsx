@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import cubes from "../assets/cubes.png";
+import cubes from "../../assets/cubes.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,11 +30,11 @@ const Img = styled.img`
 `;
 type IconProps = {
   $color?: string;
+  $fontSize?: string;
 };
 
 const Icon = styled.span<IconProps>`
-  width: 24px;
-  height: 24px;
+  font-size: ${({ $fontSize }) => ($fontSize ? $fontSize + "px" : "24px")};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.gray900};
   cursor: default;

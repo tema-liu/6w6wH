@@ -15,7 +15,7 @@ const Input = styled.input`
   border-radius: 2px;
 
   &:checked {
-    background-color: ${({ theme }) => theme.colors.gray800};
+    background-color: ${({ theme }) => theme.colors.light};
     border-color: ${({ theme }) => theme.colors.gray800};
   }
 
@@ -23,10 +23,11 @@ const Input = styled.input`
   &:checked::after {
     content: "✔"; // 或者使用其他圖標
     position: absolute;
-    top: 0px;
-    font-size: 16px;
+    top: -1px;
+    left: -1px;
+    font-size: 12px;
     line-height: 1;
-    color: white;
+    color: ${({ theme }) => theme.colors.gray800};
   }
 `;
 

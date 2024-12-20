@@ -1,9 +1,9 @@
-import Header from "../../component/header";
+import Header from "../../component/layout/header";
 import {
   Wrapper,
   Container,
   Icon as IconImg,
-} from "../../component/LayoutComponents";
+} from "../../component/layout/LayoutComponents";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import {
   NavigateBtn,
@@ -18,7 +18,7 @@ import {
   EmptyContent,
 } from "./styled";
 import { StarRating } from "../../component/StarRating";
-import { ReviewBtn } from "../../component/ReviewBtn";
+import { ReviewBtn } from "../../component/Button/ReviewBtn";
 import {
   SegmentedControlInner,
   RadioInput,
@@ -28,7 +28,7 @@ import navigateIcon from "../../assets/logo_done.png";
 import { useEffect, useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
-import Pure from "../../component/Pure";
+import Pure from "../../component/ReviewComponent/Pure";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
 import { useNavigate, useSearchParams } from "react-router-dom";

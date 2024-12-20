@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Icon } from "./LayoutComponents";
-import OutsideAlerter from "../hooks/OutsideAlerter";
+import OutsideAlerter from "../../hooks/OutsideAlerter";
+import { Icon } from "../layout/LayoutComponents";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;

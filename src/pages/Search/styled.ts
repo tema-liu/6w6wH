@@ -14,7 +14,7 @@ export const SuggestBtn = styled.button`
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 16px;
-  padding: 13px 0;
+  padding: 12px 0;
   margin: 24px 0 16px 0;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;

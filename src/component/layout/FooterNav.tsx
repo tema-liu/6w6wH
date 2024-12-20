@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink, useLocation, matchPath } from "react-router-dom";
 import { IconImg, Icon } from "./LayoutComponents";
-import search from "../assets/Frame65.png";
+import search from "../../assets/Frame65.png";
 
 const Footer = styled.div`
   display: flex;

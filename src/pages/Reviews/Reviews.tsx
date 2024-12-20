@@ -1,6 +1,12 @@
-import Header from "../../component/header";
+import Header from "../../component/layout/header";
+import badge from "../../assets/badge.png";
+// import badge2 from "../../assets/badge2.png";
 import { StarRating } from "../../component/StarRating";
-import { Wrapper, Container, Icon } from "../../component/LayoutComponents";
+import {
+  Wrapper,
+  Container,
+  Icon,
+} from "../../component/layout/LayoutComponents";
 import {
   UserReviewFooter,
   CommentCardContent,
@@ -16,7 +22,7 @@ import {
 } from "../Reviews/styled";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
-import HeartIcon from "../../component/HeartIcon";
+import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/TagsBar";
 import { useEffect, useState } from "react";

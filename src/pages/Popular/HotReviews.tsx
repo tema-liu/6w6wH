@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Input, Label, Title, Reviews, ReviewContent } from "./styled";
-import { CommentCard, ReviewsCard } from "../../component/ReviewCards";
 import { hotReviewData } from "../../type/type";
+import {
+  CommentCard,
+  ReviewsCard,
+} from "../../component/ReviewComponent/ReviewCards";
 
 function HotReviews({ res }: { res: hotReviewData }) {
   //單選nav

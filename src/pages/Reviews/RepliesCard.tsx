@@ -12,7 +12,7 @@ import {
   SocialBlock,
 } from "../Reviews/styled";
 import { ReadMore } from "./ReadMore";
-import HeartIcon from "../../component/HeartIcon";
+import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import { useState } from "react";
 import { Reply } from "../../type/type";
 import { badgeImages } from "../../constants/imageResources";

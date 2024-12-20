@@ -1,5 +1,4 @@
-import { PrimaryBtn } from "./PrimaryBtn";
-import Pure from "./Pure";
+import Pure from "./ReviewComponent/Pure";
 import styled from "styled-components";
 import photo from "../assets/Frame65Large.svg";
 
@@ -29,6 +28,7 @@ const ThankyouTitle = styled.p`
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.32px;
+  text-align: center;
 `;
 const PointText = styled.h5`
   color: ${({ theme }) => theme.colors.gray600};
