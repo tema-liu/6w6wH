@@ -16,7 +16,7 @@ import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import { useState } from "react";
 import { Reply } from "../../type/type";
 import { badgeImages } from "../../constants/imageResources";
-import MoreVert from "../../component/MoreVert";
+import MoreVert from "../../component/ReviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
 const CommentCards = styled(CommentCardContent)`

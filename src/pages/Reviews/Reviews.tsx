@@ -29,7 +29,7 @@ import { useEffect, useState } from "react";
 import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";
 import { badgeImages } from "../../constants/imageResources";
-import MoreVert from "../../component/MoreVert";
+import MoreVert from "../../component/ReviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
