@@ -81,7 +81,12 @@ function Pure({ content, text, canActive, isActive, onClose }: PureProps) {
       isVisible={isActive}
       onClick={canActive ? handleOverlayClick : undefined}
     >
-      <Popup isVisible={isActive}>
+      <Popup
+        isVisible={isActive}
+        onClick={(e) => {
+          e.stopPropagation;
+        }}
+      >
         <TitleBox>
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />
           <Text>{text}</Text>
