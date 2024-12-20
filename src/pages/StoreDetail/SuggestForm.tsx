@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const InputCheck = styled.div`
   display: flex;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 6px;
   column-gap: 8px;
   align-items: center;
 `;
@@ -23,8 +23,9 @@ const Input = styled.input`
   &:checked::after {
     content: "✔"; // 或者使用其他圖標
     position: absolute;
-    top: -1px;
-    left: -1px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 12px;
     line-height: 1;
     color: ${({ theme }) => theme.colors.gray800};
