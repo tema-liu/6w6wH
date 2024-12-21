@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "./LayoutComponents";
 
 const Wrapper = styled.header`
   width: 100%;
@@ -43,13 +44,19 @@ const Arrow = styled.img`
   height: 12px; /* 確保箭頭在左側，可以根據需要調整距離 */
 `;
 
+const Menu = styled.span`
+  position: absolute;
+  right: 15px;
+`;
+
 interface HeaderProps {
   title?: string; // 這裡應該是 string 類型
   isBefore?: boolean;
   navigate?: string;
+  menu?: boolean;
 }
 
-const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
+const Header = ({ title, isBefore = true, navigate, menu }: HeaderProps) => {
   const navigator = useNavigate();
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
@@ -74,6 +81,7 @@ const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
           {title}
         </Title>
       )}
+      {menu && <Menu className="material-symbols-outlined">menu</Menu>}
     </Wrapper>
   );
 };
