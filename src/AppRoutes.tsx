@@ -11,6 +11,7 @@ import PostComment from "./pages/PostComment/PostComment.tsx";
 import Notification from "./pages/Notification/Notification.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Setup from "./pages/Setup/Setup.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -28,7 +29,7 @@ function App() {
 }
 
 function AppRoutes() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <BrowserRouter>
       <Routes>
@@ -60,7 +61,7 @@ function AppRoutes() {
             <Route path="/menu" element={<div>個人檔案頁</div>} />
             <Route path="/settings" element={<div>設定頁內容</div>} />
             <Route path="/editProfile" element={<div>設定頁內容</div>} />
-            <Route path="/profile" element={<div>個人檔案頁</div>} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           {/* 404頁面 */}
           <Route path="*" element={<Popular />} />
