@@ -72,7 +72,6 @@ export const Content = styled.div`
   }
 `;
 export const TabBox = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 16px 16px 0 0;
