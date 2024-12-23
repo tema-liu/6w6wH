@@ -18,6 +18,13 @@ const Container = styled.div`
   background-color: transparent;
 `;
 
+const ContainerPd16 = styled.div`
+  padding: 16px 8px;
+  width: 100%;
+  flex: 1;
+  background-color: transparent;
+`;
+
 const IconImg = styled.img`
   width: 24px;
   height: 24px;
@@ -40,4 +47,4 @@ const Icon = styled.span<IconProps>`
   cursor: default;
 `;
 
-export { Wrapper, Container, IconImg, Icon, Img };
+export { Wrapper, Container, ContainerPd16, IconImg, Icon, Img };
