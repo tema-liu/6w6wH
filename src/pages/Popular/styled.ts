@@ -17,7 +17,7 @@ export const Label = styled.label`
   letter-spacing: -0.41px;
   font-weight: 700;
   text-align: center;
-  transition: background, color 0.4s ease;
+  transition: background 0.2s ease, color 0.2s ease;
   color: rgba(33, 33, 33, 0.5);
 
   /* First label */

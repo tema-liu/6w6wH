@@ -27,7 +27,7 @@ export const Label = styled.label<LabelProps>`
   padding: ${({ $padding }) => ($padding ? $padding : "8px 0")};
   letter-spacing: -0.41px;
   text-align: center;
-  transition: background, color 0.4s ease;
+  transition: background 0.2s ease, color 0.2s ease;
   background: ${({ $background, theme }) =>
     $background ? theme.colors[$background] : theme.colors.outline4};
   color: ${({ theme }) => theme.colors.gray600};
