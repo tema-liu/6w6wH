@@ -10,6 +10,7 @@ const Card = styled.div`
   box-shadow: 0px 4px 16px 4px #0000000a, 0px 2px 8px 0px #0000001a;
   display: flex;
   position: relative;
+  margin-bottom: 16px;
 `;
 const HeadShot = styled.img`
   width: 200px;
@@ -21,6 +22,8 @@ const HeadShot = styled.img`
 const Content = styled.div`
   padding: 16px;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 `;
 const AreaLabel = styled.div`
   padding: 8px 0;
@@ -71,12 +74,14 @@ const AreaMarquee = styled.div`
   padding-left: 6px;
   width: 100%;
   display: flex;
+  overflow: hidden;
 `;
 const TextBox = styled.div`
   display: flex;
+  flex-direction: row;
   column-gap: 2px;
   align-items: center;
-  overflow-y: hidden;
+  overflow: hidden;
   margin-left: 8px;
 `;
 
