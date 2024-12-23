@@ -12,6 +12,7 @@ import Notification from "./pages/Notification/Notification.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Setup from "./pages/Setup/Setup.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
+import OtherProfile from "./pages/Profile/OtherProfile.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -50,6 +51,8 @@ function AppRoutes() {
           <Route path="/notification" element={<Notification />} />
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
+          {/* {瀏覽個人頁面} */}
+          <Route path="/otherProfile" element={<OtherProfile />} />
           {/* 登入頁面 */}
           <Route path="/login" element={<Login />} />
           <Route path="/setup" element={<Setup />} />

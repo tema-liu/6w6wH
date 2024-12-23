@@ -8,9 +8,11 @@ type buttonStyleProps = {
   $margin?: string;
   $fill?: boolean;
   $fontWeight?: number;
+  $Width?: string;
 };
 
 type buttonProps = {
+  $Width?: string;
   iconName?: string;
   content: React.ReactNode;
   $bgColor?: string;
@@ -29,7 +31,7 @@ const IconImg = styled(Icon)<buttonStyleProps>`
 `;
 
 const Btn = styled.button<buttonStyleProps>`
-  width: 100%;
+  width: ${({ $Width }) => ($Width ? $Width : "100%")};
   column-gap: 8px;
   display: flex;
   align-items: center;
@@ -44,6 +46,7 @@ const Btn = styled.button<buttonStyleProps>`
 `;
 
 export function PrimaryBtn({
+  $Width,
   $margin,
   iconName,
   content,
@@ -56,6 +59,7 @@ export function PrimaryBtn({
 }: buttonProps) {
   return (
     <Btn
+      $Width={$Width}
       $margin={$margin}
       $padding={$padding}
       onClick={onClick}

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { ToggleSwitch } from "./ProfileTab";
-import { ProfileReviewsCard } from "../../component/ReviewComponent/ReviewCards";
-import EmptyDisplay from "../../component/EmptyDisplay";
+import { ProfileReviewsCard } from "../ReviewComponent/ReviewCards";
+import EmptyDisplay from "../EmptyDisplay";
+import { useNavigate } from "react-router-dom";
 
 const EmptyBox = styled.div`
   display: flex;
@@ -12,6 +13,8 @@ const EmptyBox = styled.div`
 `;
 
 function ReviewListItem() {
+  const navigator = useNavigate();
+
   const options = ["Reviews", "Following", "Bookmarks"];
   const content = {
     Reviews: (
@@ -23,6 +26,9 @@ function ReviewListItem() {
             webIcon={true}
             content="No review left yet"
             btnText="Explore places"
+            btnClick={() => {
+              navigator("/popular");
+            }}
           />
         </EmptyBox>
         {/* 
@@ -38,6 +44,9 @@ function ReviewListItem() {
             iconStyle="local_fire_department"
             content="There are no people following"
             btnText="View popular threads"
+            btnClick={() => {
+              navigator("/popular");
+            }}
           />
         </EmptyBox>
       </>
@@ -51,6 +60,9 @@ function ReviewListItem() {
             iconStyle="local_fire_department"
             content="No bookmarks"
             btnText="View popular places"
+            btnClick={() => {
+              navigator("/search");
+            }}
           />
         </EmptyBox>
       </>

@@ -38,6 +38,7 @@ const Img = styled.img`
 type IconProps = {
   $color?: string;
   $fontSize?: string;
+  $fill?: boolean;
 };
 
 const Icon = styled.span<IconProps>`
@@ -45,6 +46,7 @@ const Icon = styled.span<IconProps>`
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.gray900};
   cursor: default;
+  font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
 
 export { Wrapper, Container, ContainerPd16, IconImg, Icon, Img };

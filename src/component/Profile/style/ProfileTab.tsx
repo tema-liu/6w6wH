@@ -1,11 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 
-const SegmentedControlInner = styled.div`
+export const SegmentedControlInner = styled.div`
   display: flex;
 `;
 
-const RadioInput = styled.input`
+export const RadioInput = styled.input`
   clip: rect(0, 0, 0, 0);
   opacity: 0;
   position: absolute;
@@ -18,7 +17,7 @@ type LabelProps = {
   $backgroundActive?: string;
 };
 
-const Label = styled.label<LabelProps>`
+export const Label = styled.label<LabelProps>`
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
@@ -65,71 +64,17 @@ const Label = styled.label<LabelProps>`
   }
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.gray100};
   > div + div {
     border-top: 1px solid ${({ theme }) => theme.colors.gray400};
   }
 `;
-const TabBox = styled.div`
+export const TabBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 16px 16px 0 0;
   box-shadow: 0px -8px 16px 4px #0000000a, 0px -4px 8px 0px #0000001a;
 `;
-
-export function ToggleSwitch({
-  inputList,
-  contentMapping,
-}: {
-  inputList: string[];
-  contentMapping: { [key: string]: React.ReactNode };
-}) {
-  const [selectedOption, setSelectedOption] = useState(inputList[0]);
-  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
-  };
-  const bgColor = [
-    {
-      normal: "secondary50",
-      focus: "secondary",
-    },
-    {
-      normal: "outline150",
-      focus: "outline1",
-    },
-    { normal: "outline250", focus: "outline2" },
-  ];
-
-  return (
-    <TabBox>
-      <SegmentedControlInner>
-        {inputList.map((input, index) => {
-          return (
-            <>
-              <RadioInput
-                id={input}
-                type="radio"
-                value={input}
-                checked={selectedOption === input}
-                onChange={handleOptionChange}
-              />
-              <Label
-                $background={bgColor[index].normal}
-                $backgroundActive={bgColor[index].focus}
-                $padding="12px 0"
-                $borderRadius={16}
-                htmlFor={input}
-              >
-                {input}
-              </Label>
-            </>
-          );
-        })}
-      </SegmentedControlInner>
-      <Content>{contentMapping[selectedOption]}</Content>
-    </TabBox>
-  );
-}

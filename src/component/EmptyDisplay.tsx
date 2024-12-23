@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import icon from "../assets/Frame65Large.svg";
-import iconDark from "../assets/logo_done.svg";
 import { Icon as IconImg } from "./layout/LayoutComponents";
 
 const ImgContainer = styled.div`
@@ -62,6 +61,7 @@ type EmptyDisplayProps = {
   iconStyle?: string; // 定義 iconStyle 是字串
   btnText: string; // 定義 btnText 是字串
   children?: React.ReactNode; // children 是可選的 React 節點
+  btnClick?: () => void;
 };
 
 const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
@@ -71,13 +71,14 @@ const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
   btnText,
   children,
   webIcon = false,
+  btnClick,
 }) => {
   return (
     <ImgContainer>
       <Img $isIconDark={$isIconDark} src={icon} alt="6w6wHIcon" />
       <Title>{content}</Title>
       {children}
-      <Button>
+      <Button onClick={btnClick}>
         {iconStyle && (
           <IconImg className="material-symbols-outlined">{iconStyle}</IconImg>
         )}
