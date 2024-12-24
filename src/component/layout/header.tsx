@@ -56,7 +56,12 @@ interface HeaderProps {
   menu?: boolean;
 }
 
-const Header = ({ title, isBefore = true, navigate, menu }: HeaderProps) => {
+const Header = ({
+  title,
+  isBefore = true,
+  navigate,
+  menu = false,
+}: HeaderProps) => {
   const navigator = useNavigate();
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
