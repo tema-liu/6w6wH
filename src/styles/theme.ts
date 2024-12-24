@@ -1,4 +1,5 @@
 const colors = {
+  danger: "#FF0000",
   light: "#FFFFFF",
   dark: "#000000",
   primary: "#ED008C",

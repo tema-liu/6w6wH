@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 // 通用元件的樣式
@@ -9,7 +10,7 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.gray900};
 `;
 
-const FormControl = styled.input`
+const Input = styled.input`
   margin: 8px 0 2px 0;
   padding: 12px 16px;
   font-size: 17px;
@@ -26,9 +27,13 @@ const FormControl = styled.input`
   &::-webkit-date-and-time-value {
     text-align: left;
   }
+  &:-webkit-autofill {
+    background-color: transparent !important; /* 背景设为透明 */
+    box-shadow: 0 0 0px 1000px ${({ theme }) => theme.colors.gray100} inset !important; /* 移除背景色的阴影效果 */
+  }
 `;
 
-const FormControl1 = styled.textarea`
+const TextArea = styled.textarea`
   margin: 8px 0 2px 0;
   padding: 12px 16px;
   font-size: 17px;
@@ -45,7 +50,7 @@ const FormControl1 = styled.textarea`
   resize: none;
 `;
 
-const SelectControl = styled.select`
+const Select = styled.select`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -79,17 +84,21 @@ const SelectContainer = styled.div`
     font-size: 24px;
   }
 `;
-
-const FieldError = styled.span`
+type FieldErrorProps = {
+  $isError: boolean;
+};
+const FieldError = styled.span<FieldErrorProps>`
   padding-left: 16px;
   font-size: 11px;
   font-weight: 400;
   line-height: 13px;
   letter-spacing: 0.07px;
-  color: ${({ theme }) => theme.colors.gray600};
+  color: ${({ theme, $isError }) =>
+    $isError ? theme.colors.danger : theme.colors.gray600};
 `;
 
 type InputLabelPairProps = {
+  $isError: boolean;
   idFor: string; //id跟for對應
   fieldError?: string; //注意事項
   label: string; // label 的文字
@@ -101,7 +110,7 @@ type InputLabelPairProps = {
     | "password"
     | "select"
     | "textArea"; // 支援的 input 類型
-  options?: { value: string; label: string }[]; // 若是 select 類型，則有 options 屬性
+  options?: string[]; // 若是 select 類型，則有 options 屬性
   [key: string]: any; // 允許傳遞其他所有的 props，如 onChange、defaultValue 等
 };
 
@@ -116,34 +125,40 @@ export const Content = styled.div`
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 
-export const InputLabelPair = ({
-  fieldError,
-  idFor,
-  label,
-  type,
-  options,
-  ...props
-}: InputLabelPairProps) => {
+export const InputLabelPair = forwardRef<
+  HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement,
+  InputLabelPairProps // 支援不同類型的 ref
+>(({ $isError, fieldError, idFor, label, type, options, ...props }, ref) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Label htmlFor={idFor}>{label}</Label>
 
+      {/* 判斷元件是input,select或textarea */}
       {type === "textArea" ? (
-        <FormControl1 />
+        <TextArea ref={ref as React.Ref<HTMLTextAreaElement>} {...props} />
       ) : type === "select" ? (
         <SelectContainer>
-          <SelectControl id={idFor} {...props}>
-            {options?.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
+          <Select
+            id={idFor}
+            {...props}
+            ref={ref as React.Ref<HTMLSelectElement>}
+          >
+            {options?.map((option: string) => (
+              <option key={option} value={option}>
+                {option}
               </option>
             ))}
-          </SelectControl>
+          </Select>
         </SelectContainer>
       ) : (
-        <FormControl id={idFor} type={type} {...props} />
+        <Input
+          ref={ref as React.Ref<HTMLInputElement>}
+          id={idFor}
+          type={type}
+          {...props}
+        />
       )}
-      {fieldError && <FieldError>{fieldError}</FieldError>}
+      {fieldError && <FieldError $isError={$isError}>{fieldError}</FieldError>}
     </div>
   );
-};
+});

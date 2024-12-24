@@ -25,37 +25,32 @@ function Setup() {
               label="Country"
               type="select"
               options={[
-                { value: "indonesia", label: "Indonesia" },
-                { value: "china", label: "China" },
-                { value: "japan", label: "Japan" },
-                { value: "south_korea", label: "South Korea" },
-                { value: "thailand", label: "Thailand" },
-                { value: "malaysia", label: "Malaysia" },
-                { value: "singapore", label: "Singapore" },
-                { value: "vietnam", label: "Vietnam" },
-                { value: "philippines", label: "Philippines" },
-                { value: "india", label: "India" },
-                { value: "united_states", label: "United States" },
-                { value: "united_kingdom", label: "United Kingdom" },
-                { value: "france", label: "France" },
-                { value: "germany", label: "Germany" },
-                { value: "canada", label: "Canada" },
-                { value: "australia", label: "Australia" },
-                { value: "new_zealand", label: "New Zealand" },
-                { value: "brazil", label: "Brazil" },
-                { value: "mexico", label: "Mexico" },
+                "Indonesia",
+                "China",
+                "Japan",
+                "South Korea",
+                "Thailand",
+                "Malaysia",
+                "Singapore",
+                "Vietnam",
+                "Philippines",
+                "India",
+                "United States",
+                "United Kingdom",
+                "France",
+                "Germany",
+                "Canada",
+                "Australia",
+                "New Zealand",
+                "Brazil",
+                "Mexico",
               ]}
-              defaultValue="male"
             />
             <InputLabelPair
               idFor="sex"
               label="Gender"
               type="select"
-              options={[
-                { value: "male", label: "Male" },
-                { value: "female", label: "Female" },
-                { value: "other", label: "Other" },
-              ]}
+              options={["Male", "Female", "Other"]}
               defaultValue="male"
             />
             <InputLabelPair

@@ -4,6 +4,7 @@ import Header from "../../component/layout/header";
 import PhotoCard from "./PhotoCard";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
+import { useForm } from "react-hook-form";
 
 const EditForm = styled.form`
   margin-bottom: 47px;
@@ -12,26 +13,49 @@ const EditForm = styled.form`
   row-gap: 16px;
 `;
 
+type EditProfileForm = {
+  name: string;
+  comeFrom: string;
+};
+
 function EditProfile() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<EditProfileForm>();
+  const onSubmit = (formData: EditProfileForm) => {
+    console.log(formData);
+  };
+
   return (
     <Wrapper>
       <Header title="Edit Profile" menu={true} />
       <Container>
-        <EditForm
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <PhotoCard />
+        <EditForm onSubmit={handleSubmit(onSubmit)}>
+          {/* <PhotoCard /> */}
           <Content>
             <InputLabelPair
               fieldError="No spaces"
+              $isError={!!errors.name}
               type="text"
               idFor="name"
               label="Name"
+              {...register("name", {
+                required: true,
+                pattern: {
+                  value: /\S/, //输入至少包含一个非空白字符
+                  message: "No spaces", // 错误消息
+                },
+              })}
             />
-            <InputLabelPair type="text" idFor="comeFrom" label="Come from" />
-            <InputLabelPair type="text" idFor="nowLiveIn" label="Now live in" />
+            <InputLabelPair
+              type="text"
+              idFor="comeFrom"
+              label="Come from"
+              {...register("comeFrom")}
+            />
+            {/* <InputLabelPair type="text" idFor="nowLiveIn" label="Now live in" />
             <InputLabelPair type="text" idFor="comeFrom" label="Come from" />
             <InputLabelPair type="textArea" idFor="bio" label="Bio" />
             <InputLabelPair
@@ -76,13 +100,14 @@ function EditProfile() {
               label="Birth date"
               type="date"
               defaultValue="2024-12-19"
-            />
+            /> */}
           </Content>
           <PrimaryBtn
             $fill={true}
             $fontWeight={700}
             iconName="how_to_reg"
             content="Submit"
+            type="submit"
           />
         </EditForm>
       </Container>

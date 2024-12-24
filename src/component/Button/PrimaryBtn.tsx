@@ -19,7 +19,7 @@ type buttonProps = {
   $bgColor?: string;
   $iconColor?: string;
   onClick?: () => void; // 可選的點擊事件處理函式
-  type?: string;
+  type?: "button" | "submit" | "reset";
   $padding?: string;
   $margin?: string;
   $fill?: boolean;
@@ -59,10 +59,12 @@ export function PrimaryBtn({
   $fill,
   $fontWeight,
   $borderRadius,
+  type,
   onClick,
 }: buttonProps) {
   return (
     <Btn
+      type={type}
       $Width={$Width}
       $margin={$margin}
       $padding={$padding}
