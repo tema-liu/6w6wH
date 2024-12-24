@@ -28,6 +28,23 @@ const FormControl = styled.input`
   }
 `;
 
+const FormControl1 = styled.textarea`
+  margin: 8px 0 2px 0;
+  padding: 12px 16px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  height: 96px;
+  color: ${({ theme }) => theme.colors.gray900};
+  background-color: ${({ theme }) => theme.colors.gray100};
+  border: 1px solid ${({ theme }) => theme.colors.gray400};
+  letter-spacing: -0.41px;
+  border-radius: 8px;
+  width: 100%;
+  display: block;
+  resize: none;
+`;
+
 const SelectControl = styled.select`
   appearance: none;
   -webkit-appearance: none;
@@ -76,7 +93,14 @@ type InputLabelPairProps = {
   idFor: string; //id跟for對應
   fieldError?: string; //注意事項
   label: string; // label 的文字
-  type: "text" | "number" | "date" | "email" | "password" | "select"; // 支援的 input 類型
+  type:
+    | "text"
+    | "number"
+    | "date"
+    | "email"
+    | "password"
+    | "select"
+    | "textArea"; // 支援的 input 類型
   options?: { value: string; label: string }[]; // 若是 select 類型，則有 options 屬性
   [key: string]: any; // 允許傳遞其他所有的 props，如 onChange、defaultValue 等
 };
@@ -103,7 +127,10 @@ export const InputLabelPair = ({
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Label htmlFor={idFor}>{label}</Label>
-      {type === "select" ? (
+
+      {type === "textArea" ? (
+        <FormControl1 />
+      ) : type === "select" ? (
         <SelectContainer>
           <SelectControl id={idFor} {...props}>
             {options?.map((option, index) => (

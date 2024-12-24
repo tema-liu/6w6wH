@@ -9,6 +9,7 @@ type buttonStyleProps = {
   $fill?: boolean;
   $fontWeight?: number;
   $Width?: string;
+  $borderRadius?: number;
 };
 
 type buttonProps = {
@@ -23,6 +24,7 @@ type buttonProps = {
   $margin?: string;
   $fill?: boolean;
   $fontWeight?: number;
+  $borderRadius?: number;
 };
 
 const IconImg = styled(Icon)<buttonStyleProps>`
@@ -38,23 +40,25 @@ const Btn = styled.button<buttonStyleProps>`
   justify-content: center;
   background-color: ${({ $bgColor, theme }) =>
     $bgColor ? theme.colors[$bgColor] : theme.colors.outline3};
-  border-radius: 16px;
-  padding: ${({ $padding }) => ($padding ? $padding : "12px 0")};
+  border-radius: ${({ $borderRadius }) =>
+    $borderRadius ? $borderRadius + "px" : "16px"};
+  padding: ${({ $padding }) => ($padding ? $padding : "12px 16px")};
   margin: ${({ $margin }) => ($margin ? $margin : "0")};
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : 400)};
 `;
 
 export function PrimaryBtn({
-  $Width,
-  $margin,
   iconName,
   content,
+  $Width,
+  $margin,
   $bgColor,
   $iconColor,
   $padding,
   $fill,
   $fontWeight,
+  $borderRadius,
   onClick,
 }: buttonProps) {
   return (
@@ -64,6 +68,7 @@ export function PrimaryBtn({
       $padding={$padding}
       onClick={onClick}
       $bgColor={$bgColor}
+      $borderRadius={$borderRadius}
       $fontWeight={$fontWeight}
     >
       {iconName && (
