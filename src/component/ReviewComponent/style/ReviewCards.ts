@@ -151,6 +151,7 @@ export const NameRating = styled.div`
 export const ProfileReviewTop = styled(UserReviewTop)`
   padding: 0;
   padding-top: 8px;
+  position: relative;
 `;
 
 export const ProfileTags = styled(TagsBar)`
