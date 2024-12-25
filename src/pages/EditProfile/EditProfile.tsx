@@ -1,18 +1,11 @@
-import styled from "styled-components";
 import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 import PhotoCard from "./PhotoCard";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-
-const EditForm = styled.form`
-  margin-bottom: 47px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-`;
+import { EditForm } from "./styled";
 
 type EditProfileForm = {
   photo: string;
@@ -43,17 +36,27 @@ function EditProfile() {
       photo: photo,
     },
   });
+
   const onSubmit = (formData: EditProfileForm) => {
     console.log(formData);
   };
+  const onError = (errors: FieldErrors<EditProfileForm>) => {
+    console.log(errors.photo?.message);
+  };
+
   const photoUrl = watch("photo") || photo;
 
   return (
     <Wrapper>
       <Header title="Edit Profile" menu={true} />
       <Container>
-        <EditForm onSubmit={handleSubmit(onSubmit)}>
-          <PhotoCard register={register} photo={photoUrl} />
+        <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
+          <PhotoCard
+            register={register}
+            firstPhoto={photo}
+            photoUrl={photoUrl}
+            errorMessage={errors.photo?.message}
+          />
           <Content>
             <InputLabelPair
               fieldError="No spaces"
@@ -62,13 +65,14 @@ function EditProfile() {
               idFor="name"
               label="Name"
               {...register("name", {
-                required: true,
+                required: "No spaces",
                 pattern: {
                   value: /\S/, //输入至少包含一个非空白字符
                   message: "No spaces", // 错误消息
                 },
               })}
             />
+
             <InputLabelPair
               type="text"
               idFor="comeFrom"
