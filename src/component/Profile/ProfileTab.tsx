@@ -6,6 +6,7 @@ import {
   Label,
   Content,
 } from "./style/ProfileTab";
+import React from "react";
 
 export function ToggleSwitch({
   inputList,
@@ -35,8 +36,9 @@ export function ToggleSwitch({
       <SegmentedControlInner>
         {inputList.map((input, index) => {
           return (
-            <>
+            <React.Fragment key={input}>
               <RadioInput
+                key={input}
                 id={input}
                 type="radio"
                 value={input}
@@ -52,7 +54,7 @@ export function ToggleSwitch({
               >
                 {input}
               </Label>
-            </>
+            </React.Fragment>
           );
         })}
       </SegmentedControlInner>

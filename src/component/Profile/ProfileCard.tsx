@@ -19,12 +19,15 @@ import {
   Button,
   FollowBtn,
 } from "./style/ProfileCard";
+import { useNavigate } from "react-router-dom";
 
 type ProfileProps = {
   isUserProfile: Boolean;
 };
 
 function ProfileCard({ isUserProfile }: ProfileProps) {
+  const navigator = useNavigate();
+
   const [isFollow, setFollow] = useState(false);
   const followClickHandler = () => {
     setFollow(!isFollow);
@@ -61,7 +64,11 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
           <Message>Give a man a fish and you feed him for a day. </Message>
         </Content>
         {isUserProfile ? (
-          <Button>
+          <Button
+            onClick={() => {
+              navigator("/editProfile");
+            }}
+          >
             <Icon $color="primary" className="material-symbols-outlined">
               edit
             </Icon>
