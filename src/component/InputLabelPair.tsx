@@ -135,7 +135,11 @@ export const InputLabelPair = forwardRef<
 
       {/* 判斷元件是input,select或textarea */}
       {type === "textArea" ? (
-        <TextArea ref={ref as React.Ref<HTMLTextAreaElement>} {...props} />
+        <TextArea
+          ref={ref as React.Ref<HTMLTextAreaElement>}
+          id={idFor}
+          {...props}
+        />
       ) : type === "select" ? (
         <SelectContainer>
           <Select

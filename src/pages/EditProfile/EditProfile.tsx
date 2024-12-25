@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
-import PhotoCard from "./PhotoCard";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
 import { useForm } from "react-hook-form";
+import PhotoCard from "./PhotoCard";
+import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 
 const EditForm = styled.form`
   margin-bottom: 47px;
@@ -14,8 +15,14 @@ const EditForm = styled.form`
 `;
 
 type EditProfileForm = {
+  photo: string;
   name: string;
   comeFrom: string;
+  nowLiveIn: string;
+  bio: string;
+  country: string;
+  gender: string;
+  birth: string;
 };
 
 function EditProfile() {
@@ -23,17 +30,30 @@ function EditProfile() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<EditProfileForm>();
+    watch,
+  } = useForm<EditProfileForm>({
+    defaultValues: {
+      name: "Ala",
+      comeFrom: "Java",
+      nowLiveIn: "kaohsiung",
+      bio: "Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime.",
+      country: "Indonesia",
+      gender: "Male",
+      birth: "2024-12-19",
+      photo: photo,
+    },
+  });
   const onSubmit = (formData: EditProfileForm) => {
     console.log(formData);
   };
+  const photoUrl = watch("photo") || photo;
 
   return (
     <Wrapper>
       <Header title="Edit Profile" menu={true} />
       <Container>
         <EditForm onSubmit={handleSubmit(onSubmit)}>
-          {/* <PhotoCard /> */}
+          <PhotoCard register={register} photo={photoUrl} />
           <Content>
             <InputLabelPair
               fieldError="No spaces"
@@ -55,52 +75,59 @@ function EditProfile() {
               label="Come from"
               {...register("comeFrom")}
             />
-            {/* <InputLabelPair type="text" idFor="nowLiveIn" label="Now live in" />
-            <InputLabelPair type="text" idFor="comeFrom" label="Come from" />
-            <InputLabelPair type="textArea" idFor="bio" label="Bio" />
+            <InputLabelPair
+              type="text"
+              idFor="nowLiveIn"
+              label="Now live in"
+              {...register("nowLiveIn")}
+            />
+            <InputLabelPair
+              type="textArea"
+              idFor="bio"
+              label="Bio"
+              {...register("bio")}
+            />
             <InputLabelPair
               idFor="country"
               label="Country"
               type="select"
               options={[
-                { value: "indonesia", label: "Indonesia" },
-                { value: "china", label: "China" },
-                { value: "japan", label: "Japan" },
-                { value: "south_korea", label: "South Korea" },
-                { value: "thailand", label: "Thailand" },
-                { value: "malaysia", label: "Malaysia" },
-                { value: "singapore", label: "Singapore" },
-                { value: "vietnam", label: "Vietnam" },
-                { value: "philippines", label: "Philippines" },
-                { value: "india", label: "India" },
-                { value: "united_states", label: "United States" },
-                { value: "united_kingdom", label: "United Kingdom" },
-                { value: "france", label: "France" },
-                { value: "germany", label: "Germany" },
-                { value: "canada", label: "Canada" },
-                { value: "australia", label: "Australia" },
-                { value: "new_zealand", label: "New Zealand" },
-                { value: "brazil", label: "Brazil" },
-                { value: "mexico", label: "Mexico" },
+                "Indonesia",
+                "China",
+                "Japan",
+                "South Korea",
+                "Thailand",
+                "Malaysia",
+                "Singapore",
+                "Vietnam",
+                "Philippines",
+                "India",
+                "United States",
+                "United Kingdom",
+                "France",
+                "Germany",
+                "Canada",
+                "Australia",
+                "New Zealand",
+                "Brazil",
+                "Mexico",
               ]}
+              {...register("country")}
             />
             <InputLabelPair
-              idFor="sex"
+              idFor="gender"
               label="Gender"
               type="select"
-              options={[
-                { value: "male", label: "Male" },
-                { value: "female", label: "Female" },
-                { value: "other", label: "Other" },
-              ]}
-              defaultValue="male"
+              options={["Male", "Female", "Other"]}
+              {...register("gender")}
             />
             <InputLabelPair
               idFor="birth"
               label="Birth date"
               type="date"
-              defaultValue="2024-12-19"
-            /> */}
+              {...register("birth")}
+              // defaultValue="2024-12-19"
+            />
           </Content>
           <PrimaryBtn
             $fill={true}

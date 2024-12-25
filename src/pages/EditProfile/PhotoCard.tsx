@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+// import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+import { UseFormRegister } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.gray200};
@@ -36,15 +38,55 @@ const AddPhotoBtn = styled.label`
 export const Input = styled.input`
   display: none;
 `;
+type EditProfileForm = {
+  photo: string;
+  name: string;
+  comeFrom: string;
+  nowLiveIn: string;
+  bio: string;
+  country: string;
+  gender: string;
+  birth: string;
+};
 
-function PhotoCard() {
+type PhotoCardProps = {
+  register: UseFormRegister<EditProfileForm>; // 添加 register prop
+  photo: any;
+};
+
+function PhotoCard({ register, photo }: PhotoCardProps) {
+  // 用來存儲圖片預覽 URL
+  const [renderPhoto, setPhoto] = useState<string>(photo);
+
+  useEffect(() => {
+    if (photo && photo[0] instanceof Blob) {
+      const render = new FileReader();
+      //設定渲染圖片
+      render.onload = () => {
+        if (typeof render.result === "string") {
+          setPhoto(render.result); // 這會是 base64 格式的圖像數據
+        }
+      };
+
+      render.onerror = (error) => {
+        console.error("文件讀取錯誤", error);
+      };
+      // 最後開始讀取
+      render.readAsDataURL(photo[0]);
+    }
+  }, [photo]);
+
   return (
     <Card>
-      <HeadShot src={photo} alt="headShot" />
+      <HeadShot src={renderPhoto} alt="headShot" />
       <RightDiv>
         <AddPhotoBtn>
           Change Photo
-          <Input type="file" />
+          <Input
+            type="file"
+            {...register("photo")}
+            accept="image/jpeg, image/png"
+          />
         </AddPhotoBtn>
       </RightDiv>
     </Card>
