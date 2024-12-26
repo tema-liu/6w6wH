@@ -11,7 +11,7 @@ import { Photo, PhotosBar } from "../../component/TagsBar";
 import { useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
-import Pure from "../../component/ReviewComponent/Pure";
+import { PopupModal } from "../../component/ReviewComponent/PopupModal";
 import GoodJobWindow from "../../component/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import SuggestTag from "./SuggestTag";
@@ -126,10 +126,10 @@ function PostComment() {
             <PrimaryBtn
               iconName="reviews"
               content="Submit"
-              onClick={
+              onClick={() => {
                 //這裡送出API假設成功後
-                toggleModal
-              }
+                toggleModal;
+              }}
             />
           </BtnSection>
         </form>
@@ -145,7 +145,7 @@ function PostComment() {
           ></GoodJobWindow>
         )}
         {isModalTagOpen && (
-          <Pure
+          <PopupModal
             isActive={isModalTagOpen}
             canActive={false}
             text="Suggest Tag"

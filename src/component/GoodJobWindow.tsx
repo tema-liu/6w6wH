@@ -1,4 +1,4 @@
-import Pure from "./ReviewComponent/Pure";
+import { PopupModal } from "./ReviewComponent/PopupModal";
 import styled from "styled-components";
 import photo from "../assets/Frame65Large.svg";
 
@@ -45,7 +45,7 @@ const Btn = styled.button`
 
 function GoodJobWindow({ content, num, func, isActive, onClose }: windowProps) {
   return (
-    <Pure
+    <PopupModal
       isActive={isActive}
       canActive={false}
       text="Good job"

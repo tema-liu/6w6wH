@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Pure from "../../component/ReviewComponent/Pure";
+import { PopupModal } from "../../component/ReviewComponent/PopupModal";
 import SuggestForm from "./SuggestForm";
 import { SuggestBtn, PrIcon } from "./styled";
 
@@ -15,7 +15,7 @@ function SuggestModalButton() {
         Suggest an edit
       </SuggestBtn>
       {isModalOpen && (
-        <Pure
+        <PopupModal
           canActive={true}
           isActive={isModalOpen}
           text="Suggest an edit"

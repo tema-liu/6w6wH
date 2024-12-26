@@ -62,8 +62,11 @@ const Info = styled.div`
   background-color: ${({ theme }) => theme.colors.light};
   margin: 0 24px;
 `;
+const GeneralInfo = styled(Info)`
+  border-radius: 16px;
+`;
 
-type PureProps = {
+type PopupModalProps = {
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
   canActive?: boolean; //是否可點擊黑色區域關閉
@@ -71,13 +74,20 @@ type PureProps = {
   onClose?: () => void;
 };
 
-function Pure({
+type GeneralPopupModal = {
+  content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
+  canActive?: boolean; //是否可點擊黑色區域關閉
+  isActive?: boolean;
+  onClose?: () => void;
+};
+
+export function PopupModal({
   content,
   text,
   canActive = false,
   isActive = false,
   onClose,
-}: PureProps) {
+}: PopupModalProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (canActive && e.target instanceof Element && onClose) {
       onClose(); // 調用傳入的關閉函數
@@ -105,4 +115,31 @@ function Pure({
   );
 }
 
-export default Pure;
+export function GeneralPopupModal({
+  content,
+  canActive = false,
+  isActive = false,
+  onClose,
+}: GeneralPopupModal) {
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (canActive && e.target instanceof Element && onClose) {
+      onClose(); // 調用傳入的關閉函數
+    }
+  };
+
+  return (
+    <Overlay
+      $isVisible={isActive}
+      onClick={canActive ? handleOverlayClick : undefined}
+    >
+      <Popup
+        $isVisible={isActive}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <GeneralInfo>{content}</GeneralInfo>
+      </Popup>
+    </Overlay>
+  );
+}
