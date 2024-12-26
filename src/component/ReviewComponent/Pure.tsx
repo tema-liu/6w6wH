@@ -22,7 +22,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const Overlay = styled.div<{ isVisible: boolean }>`
+const Overlay = styled.div<{ $isVisible: boolean }>`
   z-index: 5;
   position: fixed;
   top: 0;
@@ -30,7 +30,8 @@ const Overlay = styled.div<{ isVisible: boolean }>`
   left: 0;
   right: 0;
   background: #00000080;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.2s ease-out;
+  animation: ${({ $isVisible }) => ($isVisible ? fadeIn : fadeOut)} 0.2s
+    ease-out;
 `;
 
 const TitleBox = styled.div`
@@ -46,13 +47,14 @@ const Text = styled(TitleBoxText)`
   padding-bottom: 2px;
 `;
 
-const Popup = styled.div<{ isVisible: boolean }>`
+const Popup = styled.div<{ $isVisible: boolean }>`
   transition: all 0.5s ease-in-out;
   position: relative;
   top: 12%;
   margin: 0 auto;
   max-width: 956px;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.5s ease-out;
+  animation: ${({ $isVisible }) => ($isVisible ? fadeIn : fadeOut)} 0.5s
+    ease-out;
 `;
 const Info = styled.div`
   border-radius: 0 0 16px 16px;
@@ -64,12 +66,18 @@ const Info = styled.div`
 type PureProps = {
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
-  canActive: boolean;
-  isActive: boolean;
+  canActive?: boolean; //是否可點擊黑色區域關閉
+  isActive?: boolean;
   onClose?: () => void;
 };
 
-function Pure({ content, text, canActive, isActive, onClose }: PureProps) {
+function Pure({
+  content,
+  text,
+  canActive = false,
+  isActive = false,
+  onClose,
+}: PureProps) {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (canActive && e.target instanceof Element && onClose) {
       onClose(); // 調用傳入的關閉函數
@@ -78,13 +86,13 @@ function Pure({ content, text, canActive, isActive, onClose }: PureProps) {
 
   return (
     <Overlay
-      isVisible={isActive}
+      $isVisible={isActive}
       onClick={canActive ? handleOverlayClick : undefined}
     >
       <Popup
-        isVisible={isActive}
+        $isVisible={isActive}
         onClick={(e) => {
-          e.stopPropagation;
+          e.stopPropagation();
         }}
       >
         <TitleBox>

@@ -7,6 +7,9 @@ import {
 } from "../../component/layout/LayoutComponents";
 
 import { useNavigate } from "react-router-dom";
+import Pure from "../../component/ReviewComponent/Pure";
+import { useState } from "react";
+import ContactInfo from "./CountactInfo";
 
 const Content = styled.main`
   flex: 1;
@@ -58,6 +61,7 @@ const ItemList = [
   {
     iconName: "send",
     title: "Contact us",
+    window: "Contact us",
   },
   {
     iconName: "sentiment_very_satisfied",
@@ -80,6 +84,11 @@ const GrayButton = styled.button`
 
 function Menu() {
   const navigator = useNavigate();
+  //控制彈跳視窗
+  const [modalContent, setModalContent] = useState<React.ReactNode | null>(
+    null
+  );
+
   return (
     <Wrapper>
       <Header title="Menu" />
@@ -91,6 +100,9 @@ function Menu() {
               onClick={() => {
                 if (item.path) {
                   navigator(item.path);
+                }
+                if (item.window) {
+                  setModalContent(item.window);
                 }
               }}
             >
@@ -112,6 +124,23 @@ function Menu() {
           </Icon>
           Log Out
         </GrayButton>
+        {modalContent && (
+          <Pure
+            canActive={true}
+            isActive={modalContent === "Contact us"}
+            text="Contact us"
+            content={
+              <ContactInfo
+                closeWindow={() => {
+                  setModalContent(null);
+                }}
+              />
+            }
+            onClose={() => {
+              setModalContent(null);
+            }}
+          />
+        )}
       </Container>
     </Wrapper>
   );
