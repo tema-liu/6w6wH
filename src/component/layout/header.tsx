@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
-import { Icon } from "./LayoutComponents";
 
 const Wrapper = styled.header`
   width: 100%;
@@ -86,7 +85,16 @@ const Header = ({
           {title}
         </Title>
       )}
-      {menu && <Menu className="material-symbols-outlined">menu</Menu>}
+      {menu && (
+        <Menu
+          className="material-symbols-outlined"
+          onClick={() => {
+            navigator("/menu");
+          }}
+        >
+          menu
+        </Menu>
+      )}
     </Wrapper>
   );
 };

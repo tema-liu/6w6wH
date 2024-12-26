@@ -64,6 +64,7 @@ function EditProfile() {
               type="text"
               idFor="name"
               label="Name"
+              autoComplete="name"
               {...register("name", {
                 required: "No spaces",
                 pattern: {
@@ -95,6 +96,7 @@ function EditProfile() {
               idFor="country"
               label="Country"
               type="select"
+              autoComplete="off"
               options={[
                 "Indonesia",
                 "China",
@@ -130,7 +132,6 @@ function EditProfile() {
               label="Birth date"
               type="date"
               {...register("birth")}
-              // defaultValue="2024-12-19"
             />
           </Content>
           <PrimaryBtn

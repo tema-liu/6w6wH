@@ -14,6 +14,7 @@ import Setup from "./pages/Setup/Setup.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
 import OtherProfile from "./pages/Profile/OtherProfile.tsx";
 import EditProfile from "./pages/EditProfile/EditProfile.tsx";
+import Menu from "./pages/Menu/Menu.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -62,7 +63,7 @@ function AppRoutes() {
           <Route path="/privacyPolicy" element={<App />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-            <Route path="/menu" element={<div>個人檔案頁</div>} />
+            <Route path="/menu" element={<Menu />} />
             <Route path="/settings" element={<div>設定頁內容</div>} />
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/profile" element={<Profile />} />
