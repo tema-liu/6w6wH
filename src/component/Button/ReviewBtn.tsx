@@ -21,10 +21,13 @@ const Review = styled.button<ReviewProps>`
   border-radius: 8px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.container3};
+    background-color: ${({ theme }) => theme.colors.success};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors.container3};
+  }
+  span {
+    cursor: pointer;
   }
 `;
 

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Icon } from "../../component/layout/LayoutComponents";
 
 const SelectBox = styled.label`
   display: flex;

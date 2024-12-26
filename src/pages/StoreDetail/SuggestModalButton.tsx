@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PopupModal } from "../../component/PopupModel/PopupModal";
 import SuggestForm from "./SuggestForm";
-import { SuggestBtn, PrIcon } from "./styled";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 
 function SuggestModalButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,10 +10,14 @@ function SuggestModalButton() {
 
   return (
     <>
-      <SuggestBtn onClick={toggleModal}>
-        <PrIcon className="material-symbols-outlined">edit</PrIcon>
-        Suggest an edit
-      </SuggestBtn>
+      <PrimaryBtn
+        content="Suggest an edit"
+        $iconColor="primary"
+        $bgColor="gray100"
+        iconName="edit"
+        $margin="0 0 24px"
+        onClick={toggleModal}
+      />
       {isModalOpen && (
         <PopupModal
           canActive={true}

@@ -34,6 +34,7 @@ type buttonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconImg = styled(Icon)<buttonStyleProps>`
+  cursor: pointer;
   color: ${({ $iconColor, theme }) => $iconColor && theme.colors[$iconColor]};
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
