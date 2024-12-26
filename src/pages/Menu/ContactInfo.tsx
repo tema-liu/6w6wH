@@ -27,6 +27,10 @@ function ContactInfo({ closeWindow }: { closeWindow: () => void }) {
         placeholder="If you have any reporting system issues, feedback, or cross-industry cooperation issues, you can report them to us here."
         {...register("contactUs", {
           required: "No spaces",
+          pattern: {
+            value: /\S/, //输入至少包含一个非空白字符
+            message: "No spaces", // 错误消息
+          },
         })}
       ></Textarea>
 
