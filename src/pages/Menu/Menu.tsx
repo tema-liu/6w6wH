@@ -7,15 +7,41 @@ import {
 } from "../../component/PopupModel/PopupModal";
 import { useState } from "react";
 import ContactInfo from "./ContactInfo";
-import {
-  Container,
-  Content,
-  ItemList,
-  Item,
-  ItemText,
-  GrayButton,
-} from "./style/menu";
+import { Container, Content, Item, ItemText } from "./style/menu";
 import ModelInfo from "../../component/PopupModel/ModelInfo";
+import GrayButton from "../../component/Button/GrayBtn";
+
+export const ItemList = [
+  {
+    iconName: "quiz",
+    title: "FAQ",
+    path: "/faqs",
+  },
+  {
+    iconName: "settings",
+    title: "Setting",
+    path: "/settings",
+  },
+  {
+    iconName: "security",
+    title: "Privacy Policy",
+    path: "/privacyPolicy",
+  },
+  {
+    iconName: "list_alt",
+    title: "Terms and Conditions",
+    path: "/termsAndConditions",
+  },
+  {
+    iconName: "send",
+    title: "Contact us",
+    window: "Contact us",
+  },
+  {
+    iconName: "sentiment_very_satisfied",
+    title: "Recommended Ｗebsite",
+  },
+];
 
 function Menu() {
   const navigator = useNavigate();
@@ -54,15 +80,12 @@ function Menu() {
           ))}
         </Content>
         <GrayButton
+          title="Log Out"
+          iconName="output"
           onClick={() => {
             setModalContent("logOut");
           }}
-        >
-          <Icon $color="gray600" className="material-symbols-outlined">
-            output
-          </Icon>
-          Log Out
-        </GrayButton>
+        ></GrayButton>
         {modalContent === "Contact us" && (
           <PopupModal
             canActive={true}

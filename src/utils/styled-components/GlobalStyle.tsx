@@ -19,6 +19,7 @@ margin: 0;
 padding: 0;
 border: none;
 outline: none;
+-webkit-tap-highlight-color: transparent;
 }
 
 a,button{

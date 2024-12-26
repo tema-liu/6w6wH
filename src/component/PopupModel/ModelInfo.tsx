@@ -57,6 +57,7 @@ function ModelInfo({
           $padding="9px 0"
           $borderRadius={8}
           $border="1px solid #FF0000"
+          $color="danger"
           $fontWeight={700}
           $bgColor="light"
           content={btnText}
