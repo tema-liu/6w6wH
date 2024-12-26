@@ -22,6 +22,8 @@ const Title = styled.div`
   font-size: ${({ theme }) => theme.fontSize.title2};
   column-gap: 4px;
   padding: 8px 0;
+  line-height: 28px;
+  letter-spacing: 0.35px;
 
   img {
     width: 20.57px;
