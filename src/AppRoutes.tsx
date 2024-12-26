@@ -16,6 +16,7 @@ import OtherProfile from "./pages/Profile/OtherProfile.tsx";
 import EditProfile from "./pages/EditProfile/EditProfile.tsx";
 import Menu from "./pages/Menu/Menu.tsx";
 import Settings from "./pages/Settings/Settings.tsx";
+import Faqs from "./pages/Faqs/Faqs.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -59,7 +60,7 @@ function AppRoutes() {
           {/* 登入頁面 */}
           <Route path="/login" element={<Login />} />
           <Route path="/setup" element={<Setup />} />
-          <Route path="/faqs" element={<App />} />
+          <Route path="/faqs" element={<Faqs />} />
           <Route path="/termsAndConditions" element={<App />} />
           <Route path="/privacyPolicy" element={<App />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
