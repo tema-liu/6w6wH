@@ -11,8 +11,8 @@ import { Photo, PhotosBar } from "../../component/TagsBar";
 import { useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
-import { PopupModal } from "../../component/ReviewComponent/PopupModal";
-import GoodJobWindow from "../../component/GoodJobWindow";
+import { PopupModal } from "../../component/PopupModel/PopupModal";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import SuggestTag from "./SuggestTag";
 import {
@@ -128,7 +128,7 @@ function PostComment() {
               content="Submit"
               onClick={() => {
                 //這裡送出API假設成功後
-                toggleModal;
+                toggleModal();
               }}
             />
           </BtnSection>

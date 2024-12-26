@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   ContainerPd16,
   Wrapper,

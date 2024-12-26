@@ -30,7 +30,7 @@ import navigateIcon from "../../assets/logo_done.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
-import Pure from "../../component/ReviewComponent/PopupModal";
+import Pure from "../../component/PopupModel/PopupModal";
 import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
 import { useSearchParams } from "react-router-dom";

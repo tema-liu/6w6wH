@@ -1,6 +1,6 @@
-import { PopupModal } from "./ReviewComponent/PopupModal";
+import { PopupModal } from "./PopupModal";
 import styled from "styled-components";
-import photo from "../assets/Frame65Large.svg";
+import photo from "../../assets/Frame65Large.svg";
 
 type windowProps = {
   num?: number;

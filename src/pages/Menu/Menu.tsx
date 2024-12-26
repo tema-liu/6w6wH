@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   GeneralPopupModal,
   PopupModal,
-} from "../../component/ReviewComponent/PopupModal";
+} from "../../component/PopupModel/PopupModal";
 import { useState } from "react";
 import ContactInfo from "./ContactInfo";
 import {
@@ -15,6 +15,7 @@ import {
   ItemText,
   GrayButton,
 } from "./style/menu";
+import ModelInfo from "../../component/PopupModel/ModelInfo";
 
 function Menu() {
   const navigator = useNavigate();
@@ -83,7 +84,16 @@ function Menu() {
           <GeneralPopupModal
             canActive={true}
             isActive={modalContent === "logOut"}
-            content={<></>}
+            content={
+              <ModelInfo
+                title="Log out 6w6wH ?"
+                btnText="Log out"
+                btnClick={() => {}} //5
+                cancelClick={() => {
+                  setModalContent(null);
+                }}
+              />
+            }
             onClose={() => {
               setModalContent(null);
             }}

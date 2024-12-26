@@ -50,7 +50,8 @@ const Text = styled(TitleBoxText)`
 const Popup = styled.div<{ $isVisible: boolean }>`
   transition: all 0.5s ease-in-out;
   position: relative;
-  top: 12%;
+  top: calc((100dvh - 120px) / 2);
+  transform: translateY(-40%);
   margin: 0 auto;
   max-width: 956px;
   animation: ${({ $isVisible }) => ($isVisible ? fadeIn : fadeOut)} 0.5s

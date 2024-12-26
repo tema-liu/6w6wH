@@ -2,7 +2,7 @@ import styled from "styled-components";
 // import { PrimaryBtn } from "../../component/PrimaryBtn";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoodJobWindow from "../../component/GoodJobWindow";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 
 const TagText = styled.p`
   overflow: hidden;

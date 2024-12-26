@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PopupModal } from "../../component/ReviewComponent/PopupModal";
+import { PopupModal } from "../../component/PopupModel/PopupModal";
 import SuggestForm from "./SuggestForm";
 import { SuggestBtn, PrIcon } from "./styled";
 
