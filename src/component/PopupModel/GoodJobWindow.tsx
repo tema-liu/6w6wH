@@ -4,8 +4,6 @@ import photo from "../../assets/Frame65Large.svg";
 
 type windowProps = {
   num?: number;
-  content: string;
-  func?: () => void;
   isActive: boolean;
   onClose?: () => void;
 };
@@ -15,7 +13,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center; /* 垂直居中 */
   align-items: center; /* 水平居中 */
-  padding-bottom: 24px;
+  /* padding-bottom: 24px; */
   row-gap: 8px;
 `;
 
@@ -43,11 +41,11 @@ const Btn = styled.button`
   padding: 9px 0;
 `;
 
-function GoodJobWindow({ content, num, func, isActive, onClose }: windowProps) {
+function GoodJobWindow({ num, isActive, onClose }: windowProps) {
   return (
     <PopupModal
       isActive={isActive}
-      canActive={false}
+      canActive={true}
       text="Good job"
       onClose={onClose}
       content={
@@ -59,7 +57,6 @@ function GoodJobWindow({ content, num, func, isActive, onClose }: windowProps) {
             </ThankyouTitle>
             <PointText>{`+${num ? num : 1} points`}</PointText>
           </Content>
-          <Btn onClick={func}>{content}</Btn>
         </>
       }
     />

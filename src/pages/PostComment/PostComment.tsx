@@ -136,12 +136,11 @@ function PostComment() {
         {isModalOpen && (
           <GoodJobWindow
             isActive={isModalOpen}
-            content="OK"
-            num={10}
-            func={() => {
+            onClose={() => {
               toggleModal();
               toggleModal("TagOpen");
             }}
+            num={10}
           ></GoodJobWindow>
         )}
         {isModalTagOpen && (
@@ -162,8 +161,7 @@ function PostComment() {
         {isModalPointOpen && (
           <GoodJobWindow
             isActive={isModalPointOpen}
-            content="OK"
-            func={() => {
+            onClose={() => {
               navigate("/storeList/:id?option=Reviews");
             }}
           />

@@ -39,7 +39,7 @@ const TitleBox = styled.div`
   margin: 0 24px;
   border-radius: 16px 16px 0 0;
   background-color: ${({ theme }) => theme.colors.outline2};
-  padding: 4px 16px 0 16px;
+  padding: 6px 16px 0 16px;
 `;
 const Text = styled(TitleBoxText)`
   font-weight: 700;
