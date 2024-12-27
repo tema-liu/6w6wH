@@ -111,7 +111,11 @@ function PostComment() {
               }}
             />
             <PhotoAddLabel $bgColor="light" htmlFor="addPhoto">
-              <Icon $color="primary" className="material-symbols-outlined">
+              <Icon
+                $isPointer={true}
+                $color="primary"
+                className="material-symbols-outlined"
+              >
                 add_a_photo
               </Icon>
               Add photo

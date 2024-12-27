@@ -72,7 +72,11 @@ function RepliesCard() {
         <HeadRight>
           <UserReviewTop>
             <span style={{ display: "block" }}>Ala</span>
-            <Icon onClick={toggleMenu} className="material-symbols-outlined">
+            <Icon
+              $isPointer={true}
+              onClick={toggleMenu}
+              className="material-symbols-outlined"
+            >
               more_vert
             </Icon>
             {isMenuOpen && (

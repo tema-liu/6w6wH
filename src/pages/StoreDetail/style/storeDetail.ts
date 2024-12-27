@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon as IconI } from "../../component/layout/LayoutComponents";
+import { Icon as IconI } from "../../../component/layout/LayoutComponents";
 
 export const StoreImg = styled.img`
   width: 100%;
@@ -50,7 +50,6 @@ export const PlaceName = styled.div`
 
 export const VoiceIcon = styled(IconI)`
   margin: 0 8px;
-  cursor: pointer;
 `;
 
 export const ReviewSection = styled.div`
@@ -109,6 +108,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterButtons = styled.select`
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.light};
   appearance: none;
   -webkit-appearance: none;

@@ -55,10 +55,14 @@ function AdSwiper() {
         <Photo src={photo} alt="advertise" />
       </SwiperSlide>
       <Button className="swiper-button-next">
-        <Icon className="material-symbols-outlined">chevron_right</Icon>
+        <Icon $isPointer={true} className="material-symbols-outlined">
+          chevron_right
+        </Icon>
       </Button>
       <Button className="swiper-button-prev">
-        <Icon className="material-symbols-outlined">chevron_left</Icon>
+        <Icon $isPointer={true} className="material-symbols-outlined">
+          chevron_left
+        </Icon>
       </Button>
     </SwiperContainer>
   );

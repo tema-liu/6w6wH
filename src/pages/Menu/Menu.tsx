@@ -10,38 +10,7 @@ import ContactInfo from "./ContactInfo";
 import { Container, Content, Item, ItemText } from "./style/menu";
 import ModelInfo from "../../component/PopupModel/ModelInfo";
 import GrayButton from "../../component/Button/GrayBtn";
-
-export const ItemList = [
-  {
-    iconName: "quiz",
-    title: "FAQ",
-    path: "/faqs",
-  },
-  {
-    iconName: "settings",
-    title: "Setting",
-    path: "/settings",
-  },
-  {
-    iconName: "security",
-    title: "Privacy Policy",
-    path: "/privacyPolicy",
-  },
-  {
-    iconName: "list_alt",
-    title: "Terms and Conditions",
-    path: "/termsAndConditions",
-  },
-  {
-    iconName: "send",
-    title: "Contact us",
-    window: "Contact us",
-  },
-  {
-    iconName: "sentiment_very_satisfied",
-    title: "Recommended Ｗebsite",
-  },
-];
+import { ItemList } from "./data";
 
 function Menu() {
   const navigator = useNavigate();
@@ -68,12 +37,20 @@ function Menu() {
               }}
             >
               <ItemText>
-                <Icon $color="gray900" className="material-symbols-outlined">
+                <Icon
+                  $isPointer={true}
+                  $color="gray900"
+                  className="material-symbols-outlined"
+                >
                   {item.iconName}
                 </Icon>
                 <p>{item.title}</p>
               </ItemText>
-              <Icon $color="gray900" className="material-symbols-outlined">
+              <Icon
+                $isPointer={true}
+                $color="gray900"
+                className="material-symbols-outlined"
+              >
                 chevron_right
               </Icon>
             </Item>

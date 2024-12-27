@@ -20,6 +20,7 @@ export const Item = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 export const ItemText = styled.div`
   display: flex;

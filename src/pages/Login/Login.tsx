@@ -46,7 +46,7 @@ function Login() {
           <PrimaryBtn
             $margin="16px 0px"
             $padding="16px 0"
-            content={
+            children={
               <>
                 <img src={googleIcon} />
                 Log in with Google

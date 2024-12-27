@@ -18,7 +18,11 @@ type btnProps = {
 function GrayButton({ title, iconName, ...props }: btnProps) {
   return (
     <Button {...props}>
-      <Icon $color="gray600" className="material-symbols-outlined">
+      <Icon
+        $isPointer={true}
+        $color="gray600"
+        className="material-symbols-outlined"
+      >
         {iconName}
       </Icon>
       {title}

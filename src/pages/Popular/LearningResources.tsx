@@ -112,7 +112,9 @@ function LearningResources() {
           <ShopCardFooter>
             <FooterTitle>Free Download</FooterTitle>
             <Review>
-              <Icon className="material-symbols-outlined">download</Icon>
+              <Icon $isPointer={true} className="material-symbols-outlined">
+                download
+              </Icon>
             </Review>
           </ShopCardFooter>
         </ShopCardMain>
@@ -137,7 +139,9 @@ function LearningResources() {
           <ShopCardFooter>
             <FooterTitle>Free Download</FooterTitle>
             <Review>
-              <Icon className="material-symbols-outlined">download</Icon>
+              <Icon $isPointer={true} className="material-symbols-outlined">
+                download
+              </Icon>
             </Review>
           </ShopCardFooter>
         </ShopCardMain>

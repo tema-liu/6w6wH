@@ -12,13 +12,11 @@ import {
   VoiceIcon,
   ReviewSection,
   StarContent,
-  SuggestBtn,
   PlaceDetailMain,
-  PrIcon,
   FilterColumn,
   FilterContainer,
   FilterButtons,
-} from "./styled";
+} from "./style/storeDetail";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/Button/ReviewBtn";
 import {
@@ -30,8 +28,6 @@ import navigateIcon from "../../assets/logo_done.png";
 import { useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
-import Pure from "../../component/PopupModel/PopupModal";
-import SuggestForm from "./SuggestForm";
 import StoreSwiper from "./StoreSwiper";
 import { useSearchParams } from "react-router-dom";
 import SuggestModalButton from "./SuggestModalButton";
@@ -58,7 +54,10 @@ function StoreDetail() {
           <PlaceDetailHeader>
             <PlaceName>
               <h1> Left Bank Rendezvous Cafe 南國人文美食坊</h1>
-              <VoiceIcon className="material-symbols-outlined">
+              <VoiceIcon
+                $isPointer={true}
+                className="material-symbols-outlined"
+              >
                 volume_up
               </VoiceIcon>
             </PlaceName>
@@ -76,8 +75,8 @@ function StoreDetail() {
               </StarContent>
 
               <IconImg
+                $isPointer={true}
                 style={{
-                  cursor: "pointer",
                   alignItems: "center",
                   height: "48px",
                   width: "100%",

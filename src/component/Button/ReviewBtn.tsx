@@ -42,7 +42,9 @@ export const ReviewBtn = ({ $marginRight, content }: ReviewProps) => {
       }}
       $marginRight={$marginRight}
     >
-      <Icon className="material-symbols-outlined">reviews</Icon>
+      <Icon $isPointer={true} className="material-symbols-outlined">
+        reviews
+      </Icon>
       {content}
     </Review>
   );

@@ -13,6 +13,7 @@ const Content = styled.p`
   color: ${({ theme }) => theme.colors.gray600};
 `;
 const TagChip = styled.div`
+  cursor: pointer;
   display: flex;
   height: 46px;
   align-items: center;

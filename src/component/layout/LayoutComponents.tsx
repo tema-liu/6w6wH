@@ -43,13 +43,14 @@ type IconProps = {
   $color?: string;
   $fontSize?: string;
   $fill?: boolean;
+  $isPointer: boolean;
 };
 
 const Icon = styled.span<IconProps>`
+  cursor: ${({ $isPointer }) => $isPointer && "pointer"};
   font-size: ${({ $fontSize }) => ($fontSize ? $fontSize + "px" : "24px")};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.gray900};
-  cursor: default;
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
 

@@ -18,7 +18,7 @@ type buttonStyleProps = {
 type buttonProps = {
   $Width?: string;
   iconName?: string;
-  content: React.ReactNode;
+  content?: string;
   $bgColor?: string;
   $iconColor?: string;
   onClick?: () => void; // 可選的點擊事件處理函式
@@ -62,6 +62,7 @@ const Btn = styled.button<buttonStyleProps>`
 `;
 
 export function PrimaryBtn({
+  children,
   iconName,
   type,
   onClick,
@@ -96,6 +97,7 @@ export function PrimaryBtn({
     >
       {iconName && (
         <IconImg
+          $isPointer={true}
           $fill={$fill}
           $iconColor={$iconColor}
           className="material-symbols-outlined"
@@ -103,7 +105,8 @@ export function PrimaryBtn({
           {iconName}
         </IconImg>
       )}
-      {content}
+      {children}
+      {content && content}
     </Btn>
   );
 }
