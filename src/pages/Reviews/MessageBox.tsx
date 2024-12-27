@@ -59,7 +59,9 @@ function MessageBox() {
       ></Message>
 
       <Button $bgColor={inputValue} onClick={handleBtnClick}>
-        <Icon className="material-symbols-outlined">add_comment</Icon>
+        <Icon $isPointer={true} className="material-symbols-outlined">
+          add_comment
+        </Icon>
       </Button>
     </Box>
   );

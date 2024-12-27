@@ -48,6 +48,7 @@ const Arrow = styled.img`
 const Menu = styled.span`
   position: absolute;
   right: 15px;
+  cursor: pointer;
 `;
 
 interface HeaderProps {

@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import bugIcon from "../../assets/bug2.png";
 import { TitleBoxIcon, TitleBoxText } from "../TitleBox";
+import { createPortal } from "react-dom";
 
 // 淡入動畫
 const fadeIn = keyframes`
@@ -30,8 +31,7 @@ const Overlay = styled.div<{ $isVisible: boolean }>`
   left: 0;
   right: 0;
   background: #00000080;
-  animation: ${({ $isVisible }) => ($isVisible ? fadeIn : fadeOut)} 0.2s
-    ease-out;
+  animation: 0.2s ease-out;
 `;
 
 const TitleBox = styled.div`
@@ -71,7 +71,7 @@ type PopupModalProps = {
   content: React.ReactNode; // content 是 React 節點，可以是字串、HTML 或 React 元素
   text: string;
   canActive?: boolean; //是否可點擊黑色區域關閉
-  isActive?: boolean;
+  isActive?: boolean; //控制$isVisible,是true時使用 fadeIn 動畫
   onClose?: () => void;
 };
 
@@ -128,7 +128,7 @@ export function GeneralPopupModal({
     }
   };
 
-  return (
+  return createPortal(
     <Overlay
       $isVisible={isActive}
       onClick={canActive ? handleOverlayClick : undefined}
@@ -141,6 +141,7 @@ export function GeneralPopupModal({
       >
         <GeneralInfo>{content}</GeneralInfo>
       </Popup>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 }

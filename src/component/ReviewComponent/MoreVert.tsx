@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import OutsideAlerter from "../../hooks/OutsideAlerter";
 import { Icon } from "../layout/LayoutComponents";
+import { GeneralPopupModal } from "../PopupModel/PopupModal";
+import ModelInfo from "../PopupModel/ModelInfo";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -29,32 +31,28 @@ const MenuOptions = styled.div`
 `;
 
 type moreProps = {
+  reviewOrReply: "review" | "reply"; //判斷是評論或留言
   userID: string;
   replyID: string;
-  activeUserID?: string;
+  activeUserID?: string; //登入者的ID
 };
 
 function MoreVert({
-  activeUserID = "isAnonymous",
+  reviewOrReply,
+  // "isAnonymous"
+  activeUserID = "reply-54321",
   userID,
   replyID,
 }: moreProps) {
-  const [menuOpenID, setMenuOpenID] = useState<string | null>(null);
+  const [menuOpenID, setMenuOpenID] = useState(false);
 
   const toggleMenu = (replyID: string) => {
-    if (menuOpenID === replyID) {
-      setMenuOpenID(null); // 再次點擊時關閉
-    } else {
-      setMenuOpenID(replyID); // 打開菜單
-    }
-  };
-
-  const closeMenu = () => {
-    setMenuOpenID(null); // 點擊外部時關閉
+    setMenuOpenID(!menuOpenID);
+    console.log(`這個ID是${replyID}`, reviewOrReply);
   };
 
   return (
-    <OutsideAlerter onOutsideClick={closeMenu}>
+    <>
       <IconImg
         $isPointer={true}
         onClick={() => toggleMenu(replyID)}
@@ -62,13 +60,26 @@ function MoreVert({
       >
         more_vert
       </IconImg>
-      {menuOpenID !== null && menuOpenID === replyID && (
-        <MenuOptions role="menu">
-          {userID === activeUserID && <button role="menuitem">delete</button>}
-          <button role="menuitem">report</button>
-        </MenuOptions>
+      {menuOpenID && (
+        <GeneralPopupModal
+          content={
+            <ModelInfo
+              title=""
+              btnText={`Delete ${reviewOrReply}`}
+              btnClick={() => {}}
+              cancelClick={() => {
+                setMenuOpenID(!menuOpenID);
+              }}
+            />
+          }
+          canActive={true}
+          isActive={menuOpenID}
+          onClose={() => {
+            setMenuOpenID(!menuOpenID);
+          }}
+        />
       )}
-    </OutsideAlerter>
+    </>
   );
 }
 
