@@ -46,6 +46,7 @@ function Settings() {
             isActive={windowOpen}
             content={
               <ModelInfo
+                isBtnDanger={true}
                 text="Deleting your account will permanently remove:All your Details, Reviews, Favorites, Followers etc."
                 title="Delete your account ?"
                 btnText="Delete account"

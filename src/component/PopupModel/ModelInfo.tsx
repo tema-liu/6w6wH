@@ -32,7 +32,8 @@ const BtnBox = styled.div`
 `;
 
 type ModelInfoProps = {
-  title: string; // 標題文字
+  isBtnDanger: boolean;
+  title?: string; // 標題文字
   text?: string; // 內容文字
   btnText: string; // 按鈕文字
   btnClick: () => void; // 確定按鈕的點擊事件
@@ -40,6 +41,7 @@ type ModelInfoProps = {
 };
 
 function ModelInfo({
+  isBtnDanger,
   title,
   text,
   btnText,
@@ -48,16 +50,18 @@ function ModelInfo({
 }: ModelInfoProps) {
   return (
     <Container>
-      <TextContent>
-        <Title>{title}</Title>
-        {text && <Text>{text}</Text>}
-      </TextContent>
+      {(title || text) && (
+        <TextContent>
+          {title && <Title>{title}</Title>}
+          {text && <Text>{text}</Text>}
+        </TextContent>
+      )}
       <BtnBox>
         <PrimaryBtn
           $padding="9px 0"
           $borderRadius={8}
-          $border="1px solid #FF0000"
-          $color="danger"
+          $border={isBtnDanger ? "1px solid #FF0000" : "1px solid #D4D4D4"}
+          $color={isBtnDanger ? "danger" : "gray600"}
           $fontWeight={700}
           $bgColor="light"
           content={btnText}

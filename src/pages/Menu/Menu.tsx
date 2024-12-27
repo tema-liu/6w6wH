@@ -86,6 +86,7 @@ function Menu() {
             isActive={modalContent === "logOut"}
             content={
               <ModelInfo
+                isBtnDanger={true}
                 title="Log out 6w6wH ?"
                 btnText="Log out"
                 btnClick={() => {}} //5
