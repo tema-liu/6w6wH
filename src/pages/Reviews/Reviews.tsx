@@ -75,7 +75,10 @@ function Reviews() {
                     <StarRating star={3} width={112} height={16} />
                   </UserRating>
                   <div>
-                    <IconImg className="material-symbols-outlined">
+                    <IconImg
+                      $isPointer={true}
+                      className="material-symbols-outlined"
+                    >
                       more_vert
                     </IconImg>
                   </div>
@@ -98,7 +101,10 @@ function Reviews() {
                   <SocialBlock>
                     <div>
                       <h4>1.5k</h4>
-                      <ChatIcon className="material-symbols-outlined">
+                      <ChatIcon
+                        $isPointer={true}
+                        className="material-symbols-outlined"
+                      >
                         chat_bubble
                       </ChatIcon>
                     </div>

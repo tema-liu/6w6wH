@@ -80,7 +80,9 @@ const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
       {children}
       <Button onClick={btnClick}>
         {iconStyle && (
-          <IconImg className="material-symbols-outlined">{iconStyle}</IconImg>
+          <IconImg $isPointer={true} className="material-symbols-outlined">
+            {iconStyle}
+          </IconImg>
         )}
         {webIcon && <BtnIcon src={icon} />}
         {btnText}
