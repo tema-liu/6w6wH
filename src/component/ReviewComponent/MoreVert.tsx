@@ -56,6 +56,7 @@ function MoreVert({
   return (
     <OutsideAlerter onOutsideClick={closeMenu}>
       <IconImg
+        $isPointer={true}
         onClick={() => toggleMenu(replyID)}
         className="material-symbols-outlined"
       >

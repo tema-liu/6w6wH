@@ -32,6 +32,7 @@ function HeartIcon({
     <>
       <h4>{count === 0 ? "" : count}</h4>
       <LikeIcon
+        $isPointer={true}
         onClick={clickHandler}
         $fill={Liked}
         className="material-symbols-outlined"
