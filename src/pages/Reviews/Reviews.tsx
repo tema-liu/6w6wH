@@ -133,7 +133,10 @@ function Reviews() {
                     <SocialBlock>
                       <div>
                         <h4>{data.reply?.length}</h4>
-                        <ChatIcon className="material-symbols-outlined">
+                        <ChatIcon
+                          $isPointer={true}
+                          className="material-symbols-outlined"
+                        >
                           chat_bubble
                         </ChatIcon>
                       </div>

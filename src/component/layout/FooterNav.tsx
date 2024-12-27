@@ -45,7 +45,7 @@ const NavIcon = styled(Icon)<fillProps>`
 function FooterNav() {
   const location = useLocation();
 
-  const storeList = ["/storeList", "/storeList/:id", "/postComment/:id"];
+  const storeList = ["/storeList", "/storeList/:id", "postComment/:id"];
   const profileList = [
     "/login",
     "/faqs",
@@ -67,14 +67,22 @@ function FooterNav() {
     <Footer>
       <StyledNavLink to="/">
         {({ isActive }) => (
-          <NavIcon $fill={isActive} className="material-symbols-outlined">
+          <NavIcon
+            $isPointer={true}
+            $fill={isActive}
+            className="material-symbols-outlined"
+          >
             local_fire_department
           </NavIcon>
         )}
       </StyledNavLink>
       <StyledNavLink to="/addShop">
         {({ isActive }) => (
-          <NavIcon $fill={isActive} className="material-symbols-outlined">
+          <NavIcon
+            $isPointer={true}
+            $fill={isActive}
+            className="material-symbols-outlined"
+          >
             add_circle
           </NavIcon>
         )}
@@ -90,7 +98,11 @@ function FooterNav() {
       </StyledNavLink>
       <StyledNavLink to="/notification">
         {({ isActive }) => (
-          <NavIcon $fill={isActive} className="material-symbols-outlined">
+          <NavIcon
+            $isPointer={true}
+            $fill={isActive}
+            className="material-symbols-outlined"
+          >
             notifications
           </NavIcon>
         )}
@@ -98,6 +110,7 @@ function FooterNav() {
       <StyledNavLink to="/profile">
         {({ isActive }) => (
           <NavIcon
+            $isPointer={true}
             $fill={isActive || isProfileListActive}
             className="material-symbols-outlined"
           >

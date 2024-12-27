@@ -17,6 +17,7 @@ const Icon = styled.div<CollectIconProps>`
   border-radius: 4px 4px 0 0; /* 上方圓角 */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
   padding: 4px;
+
   .ribbon {
     position: relative;
     display: inline-block;
@@ -44,6 +45,7 @@ const Icon = styled.div<CollectIconProps>`
 `;
 
 const IconDiv = styled.div<CollectIconProps>`
+  cursor: pointer;
   position: absolute;
   z-index: 1;
   top: 0;

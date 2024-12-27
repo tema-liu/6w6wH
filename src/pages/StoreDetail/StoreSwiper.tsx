@@ -43,10 +43,14 @@ function StoreSwiper({
         </SwiperSlide>
       ))}
       <Button $bottom={124} className="swiper-button-next">
-        <Icon className="material-symbols-outlined">chevron_right</Icon>
+        <Icon $isPointer={true} className="material-symbols-outlined">
+          chevron_right
+        </Icon>
       </Button>
       <Button $bottom={124} className="swiper-button-prev">
-        <Icon className="material-symbols-outlined">chevron_left</Icon>
+        <Icon $isPointer={true} className="material-symbols-outlined">
+          chevron_left
+        </Icon>
       </Button>
     </Container>
   );

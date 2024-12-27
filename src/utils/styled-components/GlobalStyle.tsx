@@ -19,6 +19,7 @@ margin: 0;
 padding: 0;
 border: none;
 outline: none;
+-webkit-tap-highlight-color: transparent;
 }
 
 a,button{
@@ -78,6 +79,13 @@ span{
 
 }
 
+label{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.41px;
+}
+
 p{
     font-size: 17px;
     line-height: 22px;
@@ -92,7 +100,13 @@ button{
 
     background: transparent;
 }
-
+textArea{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.41px;
+ 
+}
 
 @font-face {
     font-family: "mix";

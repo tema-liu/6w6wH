@@ -16,6 +16,7 @@ type labelProps = {
 };
 
 export const PhotoAddLabel = styled.label<labelProps>`
+  cursor: pointer;
   width: 100%;
   column-gap: 8px;
   display: flex;

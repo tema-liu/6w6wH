@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import Icon from "../assets/Frame65Large.svg";
+import icon from "../assets/Frame65Large.svg";
 import { Icon as IconImg } from "./layout/LayoutComponents";
 
 const ImgContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+`;
+const BtnIcon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const Title = styled.p`
@@ -17,10 +21,16 @@ const Title = styled.p`
   color: ${({ theme }) => theme.colors.dark};
   padding: 8px 0 16px 0;
 `;
-const Img = styled.img`
+type ImgPops = {
+  $isIconDark: boolean;
+};
+
+const Img = styled.img<ImgPops>`
   width: 56.57px;
   height: 88px;
   margin: 0 auto;
+
+  filter: ${({ $isIconDark }) => ($isIconDark ? "grayscale(1)" : "none")};
 `;
 
 const Button = styled.button`
@@ -45,27 +55,37 @@ const Button = styled.button`
 `;
 
 type EmptyDisplayProps = {
+  $isIconDark?: boolean;
+  webIcon?: boolean;
   content: string; // 定義 content 是字串
-  iconStyle: string; // 定義 iconStyle 是字串
+  iconStyle?: string; // 定義 iconStyle 是字串
   btnText: string; // 定義 btnText 是字串
   children?: React.ReactNode; // children 是可選的 React 節點
   onClick?: () => void;
 };
 
 const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
+  $isIconDark = false,
   content,
   iconStyle,
   btnText,
   children,
   onClick,
+  webIcon,
 }) => {
   return (
     <ImgContainer>
-      <Img src={Icon} alt="6w6wHIcon" />
+      <Img $isIconDark={$isIconDark} src={icon} alt="6w6wHIcon" />
       <Title>{content}</Title>
       {children}
+
       <Button onClick={onClick}>
-        <IconImg className="material-symbols-outlined">{iconStyle}</IconImg>
+        {iconStyle && (
+          <IconImg $isPointer={true} className="material-symbols-outlined">
+            {iconStyle}
+          </IconImg>
+        )}
+        {webIcon && <BtnIcon src={icon} />}
         {btnText}
       </Button>
     </ImgContainer>

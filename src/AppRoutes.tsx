@@ -11,6 +11,13 @@ import PostComment from "./pages/PostComment/PostComment.tsx";
 import Notification from "./pages/Notification/Notification.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Setup from "./pages/Setup/Setup.tsx";
+import Profile from "./pages/Profile/Profile.tsx";
+import OtherProfile from "./pages/Profile/OtherProfile.tsx";
+import EditProfile from "./pages/EditProfile/EditProfile.tsx";
+import Menu from "./pages/Menu/Menu.tsx";
+import Settings from "./pages/Settings/Settings.tsx";
+import Faqs from "./pages/Faqs/Faqs.tsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -28,7 +35,7 @@ function App() {
 }
 
 function AppRoutes() {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   return (
     <BrowserRouter>
       <Routes>
@@ -49,18 +56,20 @@ function AppRoutes() {
           <Route path="/notification" element={<Notification />} />
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
+          {/* {瀏覽個人頁面} */}
+          <Route path="/otherProfile" element={<OtherProfile />} />
           {/* 登入頁面 */}
           <Route path="/login" element={<Login />} />
           <Route path="/setup" element={<Setup />} />
-          <Route path="/faqs" element={<App />} />
+          <Route path="/faqs" element={<Faqs />} />
           <Route path="/termsAndConditions" element={<App />} />
-          <Route path="/privacyPolicy" element={<App />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-            <Route path="/menu" element={<div>個人檔案頁</div>} />
-            <Route path="/settings" element={<div>設定頁內容</div>} />
-            <Route path="/editProfile" element={<div>設定頁內容</div>} />
-            <Route path="/profile" element={<div>個人檔案頁</div>} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/editProfile" element={<EditProfile />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           {/* 404頁面 */}
           <Route path="*" element={<Popular />} />

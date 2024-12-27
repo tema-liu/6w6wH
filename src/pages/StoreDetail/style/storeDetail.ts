@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon as IconI } from "../../component/layout/LayoutComponents";
+import { Icon as IconI } from "../../../component/layout/LayoutComponents";
 
 export const NavigateBtn = styled.a`
   display: flex;
@@ -44,7 +44,6 @@ export const PlaceName = styled.div`
 
 export const VoiceIcon = styled(IconI)`
   margin: 0 8px;
-  cursor: pointer;
 `;
 
 export const ReviewSection = styled.div`
@@ -69,29 +68,12 @@ export const StarContent = styled.div`
 export const Icon = styled(IconI)`
   margin-right: 8px;
 `;
-export const PrIcon = styled(IconI)`
-  margin-right: 8px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
 
 export const PlaceDetailMain = styled.div`
   margin-top: -38px;
   margin-bottom: 16px;
   border-radius: 32px;
   box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a;
-`;
-
-export const SuggestBtn = styled.a`
-  text-decoration: none;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.gray100};
-  border-radius: 16px;
-  padding: 12px 0;
-  margin-bottom: 25px;
-  box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 
 export const FilterColumn = styled.div`
@@ -120,6 +102,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterButtons = styled.select`
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.light};
   appearance: none;
   -webkit-appearance: none;

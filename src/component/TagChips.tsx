@@ -16,7 +16,7 @@ const TagChip = styled.div`
   flex-wrap: nowrap;
   background: ${({ theme }) => theme.colors.light};
   max-width: 100%;
-
+  cursor: pointer;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 
   // 左側紅色條
@@ -52,7 +52,6 @@ interface TagChipProps {
 export const TagChips = ({ label, onRemove }: TagChipProps) => (
   <TagChip>
     <Content>{label}</Content>
-    {/* 帶入刪除函式 */}
     <CloseButton onClick={onRemove}>
       <img src={closeIcon} alt="close" />
     </CloseButton>

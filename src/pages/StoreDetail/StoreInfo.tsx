@@ -1,29 +1,8 @@
-import styled from "styled-components";
-import { Icon } from "./styled";
+import { Icon } from "./style/storeDetail";
 import { Icon as IconImg } from "../../component/layout/LayoutComponents";
 import ADblock from "../../component/AdBlock";
 import { StoreData } from "../../type/type";
-
-const Store = styled.div`
-  display: flex;
-  color: ${({ theme }) => theme.colors.gray900};
-  padding: 12px 0;
-
-  a {
-    text-decoration: underline;
-  }
-`;
-
-const BusinessHours = styled.div`
-  h2 + h2 {
-    margin-top: 8px;
-  }
-`;
-const ContentDetail = styled.div`
-  padding: 16px 16px 0 16px;
-  border-radius: 0 0 32px 32px;
-  background-color: ${({ theme }) => theme.colors.light};
-`;
+import { ContentDetail, Store, BusinessHours } from "./style/storeInfo";
 
 function StoreInfo({ data }: { data: StoreData }) {
   return (
@@ -33,9 +12,12 @@ function StoreInfo({ data }: { data: StoreData }) {
 
         {data.address && (
           <Store>
-            <Icon className="material-symbols-outlined">location_on</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              location_on
+            </Icon>
             <h2>{data.address}</h2>
             <IconImg
+              $isPointer={true}
               className="material-symbols-outlined"
               style={{
                 marginBottom: "auto",
@@ -50,37 +32,49 @@ function StoreInfo({ data }: { data: StoreData }) {
         )}
         {data.enAddress && (
           <Store>
-            <Icon className="material-symbols-outlined">location_on</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              location_on
+            </Icon>
             <h2>{data.enAddress}</h2>
           </Store>
         )}
         {data.budget && (
           <Store>
-            <Icon className="material-symbols-outlined">attach_money</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              attach_money
+            </Icon>
             <h2>{data.budget}</h2>
           </Store>
         )}
         {data.phone && (
           <Store>
-            <Icon className="material-symbols-outlined">call</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              call
+            </Icon>
             <h2>{data.phone}</h2>
           </Store>
         )}
         {data.url && (
           <Store>
-            <Icon className="material-symbols-outlined">language</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              language
+            </Icon>
             <a href={data.url}>Website</a>
           </Store>
         )}
         {data.Book && (
           <Store>
-            <Icon className="material-symbols-outlined">today</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              today
+            </Icon>
             <a href={data.Book}>Book</a>
           </Store>
         )}
         {data.opening_hours && (
           <Store>
-            <Icon className="material-symbols-outlined">schedule</Icon>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              schedule
+            </Icon>
             <BusinessHours>
               <h2 style={{ fontWeight: "700" }}>Business hours</h2>
               <h2>{`Monday ${data.opening_hours?.Monday}`}</h2>

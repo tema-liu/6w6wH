@@ -11,8 +11,8 @@ import { Photo, PhotosBar } from "../../component/TagsBar";
 import { useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
-import Pure from "../../component/ReviewComponent/Pure";
-import GoodJobWindow from "../../component/GoodJobWindow";
+import { PopupModal } from "../../component/PopupModel/PopupModal";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import SuggestTag from "./SuggestTag";
 import {
@@ -26,6 +26,19 @@ import {
 } from "./style";
 
 function PostComment() {
+  //控制彈跳式窗
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalTagOpen, setIsModalTagOpen] = useState(false);
+  const [isModalPointOpen, setModalPointOpen] = useState(false);
+
+  const toggleModal = (e?: "TagOpen" | "PointOpen") => {
+    e === "TagOpen"
+      ? setIsModalTagOpen((prev) => !prev)
+      : e === "PointOpen"
+      ? setModalPointOpen((prev) => !prev)
+      : setIsModalOpen((prev) => !prev);
+  };
+
   const navigate = useNavigate();
   const [files, setFiles] = useState<File[]>([]); // 保存文件列表
   const category = ["Food", "Shopping", "Services"];
@@ -98,7 +111,11 @@ function PostComment() {
               }}
             />
             <PhotoAddLabel $bgColor="light" htmlFor="addPhoto">
-              <Icon $color="primary" className="material-symbols-outlined">
+              <Icon
+                $isPointer={true}
+                $color="primary"
+                className="material-symbols-outlined"
+              >
                 add_a_photo
               </Icon>
               Add photo
@@ -115,32 +132,44 @@ function PostComment() {
               content="Submit"
               onClick={() => {
                 //這裡送出API假設成功後
-                window.location.hash = "#popup";
+                toggleModal();
               }}
             />
           </BtnSection>
         </form>
-        <GoodJobWindow
-          content="OK"
-          id="popup"
-          num={10}
-          func={() => {
-            window.location.hash = "#addTag";
-          }}
-        ></GoodJobWindow>
-        <Pure
-          isActive={false}
-          text="Suggest Tag"
-          id="addTag"
-          content={<SuggestTag />}
-        />
-        <GoodJobWindow
-          content="OK"
-          id="popup2"
-          func={() => {
-            navigate("/storeList/:id?option=Reviews");
-          }}
-        />
+        {isModalOpen && (
+          <GoodJobWindow
+            isActive={isModalOpen}
+            onClose={() => {
+              toggleModal();
+              toggleModal("TagOpen");
+            }}
+            num={10}
+          ></GoodJobWindow>
+        )}
+        {isModalTagOpen && (
+          <PopupModal
+            isActive={isModalTagOpen}
+            canActive={false}
+            text="Suggest Tag"
+            content={
+              <SuggestTag
+                closeWindow={() => {
+                  toggleModal("TagOpen");
+                  toggleModal("PointOpen");
+                }}
+              />
+            }
+          />
+        )}
+        {isModalPointOpen && (
+          <GoodJobWindow
+            isActive={isModalPointOpen}
+            onClose={() => {
+              navigate("/storeList/:id?option=Reviews");
+            }}
+          />
+        )}
       </Container>
     </Wrapper>
   );

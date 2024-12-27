@@ -22,6 +22,8 @@ const Title = styled.div`
   font-size: ${({ theme }) => theme.fontSize.title2};
   column-gap: 4px;
   padding: 8px 0;
+  line-height: 28px;
+  letter-spacing: 0.35px;
 
   img {
     width: 20.57px;
@@ -43,13 +45,24 @@ const Arrow = styled.img`
   height: 12px; /* 確保箭頭在左側，可以根據需要調整距離 */
 `;
 
+const Menu = styled.span`
+  position: absolute;
+  right: 15px;
+`;
+
 interface HeaderProps {
   title?: string; // 這裡應該是 string 類型
   isBefore?: boolean;
   navigate?: string;
+  menu?: boolean;
 }
 
-const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
+const Header = ({
+  title,
+  isBefore = true,
+  navigate,
+  menu = false,
+}: HeaderProps) => {
   const navigator = useNavigate();
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
@@ -73,6 +86,16 @@ const Header = ({ title, isBefore = true, navigate }: HeaderProps) => {
           <img src="/Frame65.png" alt="icon" />
           {title}
         </Title>
+      )}
+      {menu && (
+        <Menu
+          className="material-symbols-outlined"
+          onClick={() => {
+            navigator("/menu");
+          }}
+        >
+          menu
+        </Menu>
       )}
     </Wrapper>
   );

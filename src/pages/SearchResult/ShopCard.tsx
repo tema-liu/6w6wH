@@ -14,6 +14,7 @@ type DonateProps = {
 
 const ShopCardBox = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 const ShopCardImg = styled.img<DonateProps>`
   width: 100%;
@@ -44,10 +45,6 @@ const PlaceName = styled.div`
     line-height: 25px;
     letter-spacing: 0.38px;
     margin-right: 36px;
-  }
-  h6 {
-    margin-top: 8px;
-    color: ${({ theme }) => theme.colors.gray600};
   }
 `;
 const RantingConTainer = styled.div`
@@ -143,7 +140,6 @@ function ShopCard() {
           <CollectIcon right={28} />
           <PlaceName>
             <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
-            <h6>336m from R11 Kaohsiung Main Station</h6>
           </PlaceName>
           <TagsBar>
             <Tag>Multilingual (12)</Tag>
@@ -198,7 +194,6 @@ function ShopCard() {
           <CollectIcon right={28} />
           <PlaceName>
             <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
-            <h6>336m from R11 Kaohsiung Main Station</h6>
           </PlaceName>
           <TagsBar>
             <Tag>Multilingual (12)</Tag>

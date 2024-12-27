@@ -22,10 +22,13 @@ const Review = styled.button<ReviewProps>`
   border-radius: 8px;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.container3};
+    background-color: ${({ theme }) => theme.colors.success};
   }
   &:active {
     background-color: ${({ theme }) => theme.colors.container3};
+  }
+  span {
+    cursor: pointer;
   }
 `;
 
@@ -40,7 +43,9 @@ export const ReviewBtn = ({ $marginRight, content, navigate }: ReviewProps) => {
 
   return (
     <Review onClick={clickHandler} $marginRight={$marginRight}>
-      <Icon className="material-symbols-outlined">reviews</Icon>
+      <Icon $isPointer={true} className="material-symbols-outlined">
+        reviews
+      </Icon>
       {content}
     </Review>
   );
