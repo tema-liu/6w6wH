@@ -225,8 +225,7 @@ export function ProfileReviewsCard() {
               </ChatIcon>
             </div>
             <div>
-              <h4>999</h4>
-              {/* <HeartIcon /> */}
+              <HeartIcon isLike={true} likeCount={10} />
             </div>
           </SocialBlock>
         </UserReviewFooter>

@@ -44,7 +44,7 @@ function ReviewListItem() {
             iconStyle="local_fire_department"
             content="There are no people following"
             btnText="View popular threads"
-            btnClick={() => {
+            onClick={() => {
               navigator("/popular");
             }}
           />
@@ -60,7 +60,7 @@ function ReviewListItem() {
             iconStyle="local_fire_department"
             content="No bookmarks"
             btnText="View popular places"
-            btnClick={() => {
+            onClick={() => {
               navigator("/search");
             }}
           />

@@ -15,11 +15,7 @@ type GeneralNotificationProps = {
 };
 
 const AdNotification = () => {
-  return (
-    <CardWrapper>
-      <ADblock />
-    </CardWrapper>
-  );
+  return <CardWrapper>{/* <ADblock /> */}</CardWrapper>;
 };
 
 const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
@@ -51,6 +47,7 @@ const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
   return (
     <CardWrapper>
       <Icon
+        $isPointer={true}
         $color={iconColor}
         style={{ fontVariationSettings: fill }}
         className="material-symbols-outlined"

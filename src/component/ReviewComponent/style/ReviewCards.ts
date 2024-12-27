@@ -104,7 +104,6 @@ export const UserReviewTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 8px 12px 0;
 `;
 export const UserReviewMain = styled.div`
   padding: 4px 0 0 0;

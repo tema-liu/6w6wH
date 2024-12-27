@@ -50,6 +50,7 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
                   <TextBox>
                     <Text>Java</Text>
                     <Icon
+                      $isPointer={false}
                       $color="gray600"
                       className="material-symbols-outlined"
                     >
@@ -69,7 +70,11 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
               navigator("/editProfile");
             }}
           >
-            <Icon $color="primary" className="material-symbols-outlined">
+            <Icon
+              $isPointer={true}
+              $color="primary"
+              className="material-symbols-outlined"
+            >
               edit
             </Icon>
             Edit
@@ -77,6 +82,7 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
         ) : (
           <FollowBtn $isFollowing={isFollow} onClick={followClickHandler}>
             <Icon
+              $isPointer={true}
               $fill={!isFollow}
               $color="gray900"
               className="material-symbols-outlined"
