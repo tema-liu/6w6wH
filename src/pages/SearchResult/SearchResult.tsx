@@ -2,7 +2,7 @@ import Header from "../../component/layout/header";
 import { Wrapper } from "../../component/layout/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TagChips } from "../../component/TagChips";
-import ShopCard from "./ShopCard";
+import ShopCard from "../../component/shop/ShopCard";
 import {
   Container,
   ChipGroup,

@@ -4,7 +4,7 @@ import {
   Container,
   Icon as IconImg,
 } from "../../component/layout/LayoutComponents";
-import { TagsBar, Tag } from "../../component/TagsBar";
+import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import {
   NavigateBtn,
   PlaceDetailHeader,
@@ -18,7 +18,7 @@ import {
   FilterButtons,
 } from "./style/storeDetail";
 import { StarRating } from "../../component/StarRating";
-import { ReviewBtn } from "../../component/Button/ReviewBtn";
+import { ReviewBtn } from "../../component/button/ReviewBtn";
 import {
   SegmentedControlInner,
   RadioInput,

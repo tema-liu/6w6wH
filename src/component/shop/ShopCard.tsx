@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import CollectIcon from "../../component/CollectIcon";
-import { TagsBar, Tag } from "../../component/TagsBar";
-import { ReviewBtn } from "../../component/Button/ReviewBtn";
-import { StarRating } from "../../component/StarRating";
+import CollectIcon from "./CollectIcon";
+import { TagsBar, Tag } from "./TagsBar";
+import { ReviewBtn } from "../button/ReviewBtn";
+import { StarRating } from "../StarRating";
 import arrowIcon from "../../assets/arrow.png";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-import { ReadMore } from "./ReadMore";
+import { ReadMore } from "../../pages/SearchResult/ReadMore";
 import { useNavigate } from "react-router-dom";
 
 type DonateProps = {

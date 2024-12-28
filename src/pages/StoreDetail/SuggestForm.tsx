@@ -8,7 +8,7 @@ import {
   Label,
   TextAreaTitle,
 } from "./style/suggestForm";
-import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 import { useEffect, useState } from "react";
 
 type textForm = {

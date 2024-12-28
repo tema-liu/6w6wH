@@ -9,7 +9,7 @@ import {
 import {
   CommentCard,
   ReviewsCard,
-} from "../../component/ReviewComponent/ReviewCards";
+} from "../../component/reviewComponent/ReviewCards";
 
 function HotReviews() {
   //單選nav

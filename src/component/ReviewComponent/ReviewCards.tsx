@@ -4,7 +4,7 @@ import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../StarRating";
 import { Icon } from "../layout/LayoutComponents";
 import HeartIcon from "./HeartIcon";
-import { Tag } from "../TagsBar";
+import { Tag } from "../shop/TagsBar";
 import { useNavigate } from "react-router-dom";
 import { ReadMore } from "../../pages/Reviews/ReadMore";
 import { useState } from "react";

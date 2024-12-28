@@ -1,4 +1,4 @@
-import { PrimaryBtn } from "../Button/PrimaryBtn";
+import { PrimaryBtn } from "../button/PrimaryBtn";
 import { useForm } from "react-hook-form";
 import { Textarea, Label, BtnBox } from "../../pages/Menu/style/contactInfo";
 

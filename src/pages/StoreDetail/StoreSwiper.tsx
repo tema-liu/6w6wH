@@ -1,4 +1,4 @@
-import CollectIcon from "../../component/CollectIcon";
+import CollectIcon from "../../component/shop/CollectIcon";
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { SwiperContainer, Button } from "../../component/SwiperStyle";

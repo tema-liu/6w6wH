@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { ToggleSwitch } from "./ProfileTab";
-import { ProfileReviewsCard } from "../ReviewComponent/ReviewCards";
+import {
+  CommentCard,
+  ProfileReviewsCard,
+} from "../reviewComponent/ReviewCards";
 import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
 
@@ -31,13 +34,14 @@ function ReviewListItem() {
             }}
           />
         </EmptyBox> */}
-        {/* 
-        <ProfileReviewsCard /> */}
       </>
     ),
     Following: (
       <>
-        <EmptyBox>
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
             webIcon={false}
@@ -48,7 +52,7 @@ function ReviewListItem() {
               navigator("/popular");
             }}
           />
-        </EmptyBox>
+        </EmptyBox> */}
       </>
     ),
     Bookmarks: (

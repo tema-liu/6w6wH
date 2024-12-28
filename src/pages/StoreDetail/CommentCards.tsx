@@ -1,4 +1,4 @@
-import { CommentCard } from "../../component/ReviewComponent/ReviewCards";
+import { CommentCard } from "../../component/reviewComponent/ReviewCards";
 import { Container } from "./style/commentCards";
 
 function CommentCards() {

@@ -3,7 +3,7 @@ import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import siteIcon from "../../assets/6w6wH.svg";
 import styled from "styled-components";
 import googleIcon from "../../assets/Social Icons.svg";
-import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 // import { GoogleLogin } from "@react-oauth/google";
 import { Link } from "react-router-dom";
 

@@ -24,9 +24,9 @@ import {
 } from "../Reviews/styled";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
-import HeartIcon from "../../component/ReviewComponent/HeartIcon";
+import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import styled from "styled-components";
-import { TagsBar, Tag } from "../../component/TagsBar";
+import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import ReviewSwiper from "./ReviewSwiper";
 // import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import { Icon } from "./style/storeDetail";
 import { Icon as IconImg } from "../../component/layout/LayoutComponents";
-import ADblock from "../../component/AdBlock";
+import ADblock from "../../component/shop/AdBlock";
 import { ContentDetail, Store, BusinessHours } from "./style/storeInfo";
 
 function StoreInfo() {
