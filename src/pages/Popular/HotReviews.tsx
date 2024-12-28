@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Input, Label, Title, Reviews, ReviewContent } from "./styled";
+import {
+  Input,
+  Label,
+  Title,
+  Reviews,
+  ReviewContent,
+} from "./style/hotReviews";
 import {
   CommentCard,
   ReviewsCard,

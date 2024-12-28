@@ -7,24 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../../component/layout/LayoutComponents";
-
-const ADtag = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 24px;
-  width: 30px;
-  height: 30px;
-  padding: 4px;
-  background: #00000080;
-  border-radius: 0 0 4px 4px;
-  span {
-    color: ${({ theme }) => theme.colors.light};
-    font-size: 17px;
-    line-height: 22px;
-    letter-spacing: -0.41px;
-  }
-`;
+import { ADtag } from "./style/adSwiper";
 
 function AdSwiper() {
   return (
