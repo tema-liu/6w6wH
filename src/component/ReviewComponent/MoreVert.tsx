@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Icon } from "../layout/LayoutComponents";
 import { GeneralPopupModal, PopupModal } from "../PopupModel/PopupModal";
 import ModelInfo from "../PopupModel/ModelInfo";
+import TextAreaInfo from "../PopupModel/TextAreaInfo";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -54,7 +55,16 @@ function MoreVert({
       <PopupModal
         isActive={window === "report"}
         canActive={true}
-        content={<>123</>}
+        content={
+          <TextAreaInfo
+            idFor="report"
+            title="Describe the reason for inappropriateness."
+            placeholder="Describe the reason for inappropriateness."
+            closeWindow={() => {
+              setWindow(null);
+            }}
+          />
+        }
         text="Report Inappropriate Content"
         onClose={() => {
           setWindow(null);
