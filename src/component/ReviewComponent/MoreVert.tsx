@@ -1,33 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
-import OutsideAlerter from "../../hooks/OutsideAlerter";
 import { Icon } from "../layout/LayoutComponents";
-import { GeneralPopupModal } from "../PopupModel/PopupModal";
+import { GeneralPopupModal, PopupModal } from "../PopupModel/PopupModal";
 import ModelInfo from "../PopupModel/ModelInfo";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
   color: ${({ theme }) => theme.colors.gray600};
-`;
-const MenuOptions = styled.div`
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
 `;
 
 type moreProps = {
@@ -40,45 +19,94 @@ type moreProps = {
 function MoreVert({
   reviewOrReply,
   // "isAnonymous"
-  activeUserID = "reply-54321",
+  activeUserID = "comment-12345",
   userID,
   replyID,
 }: moreProps) {
-  const [menuOpenID, setMenuOpenID] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [window, setWindow] = useState<"delete" | "report" | null>(null);
 
-  const toggleMenu = (replyID: string) => {
-    setMenuOpenID(!menuOpenID);
-    console.log(`這個ID是${replyID}`, reviewOrReply);
+  const windowList = {
+    delete: (
+      <GeneralPopupModal
+        content={
+          <ModelInfo
+            isBtnDanger={true}
+            title={`Delete your ${reviewOrReply}`}
+            text="This operation is irreversible"
+            btnText="Delete"
+            btnClick={() => {
+              setWindow(null);
+            }}
+            cancelClick={() => {
+              setWindow(null);
+            }}
+          />
+        }
+        canActive={true}
+        isActive={window === "delete"}
+        onClose={() => {
+          setWindow(null);
+        }}
+      />
+    ),
+    report: (
+      <PopupModal
+        isActive={window === "report"}
+        canActive={true}
+        content={<>123</>}
+        text="Report Inappropriate Content"
+        onClose={() => {
+          setWindow(null);
+        }}
+      />
+    ),
   };
 
   return (
     <>
       <IconImg
         $isPointer={true}
-        onClick={() => toggleMenu(replyID)}
+        onClick={() => setMenuOpen(!menuOpen)}
         className="material-symbols-outlined"
       >
         more_vert
       </IconImg>
-      {menuOpenID && (
+      {/* 如果當前userID是此留言UserID則顯示可刪除 */}
+      {menuOpen && (
         <GeneralPopupModal
           content={
             <ModelInfo
-              title=""
-              btnText={`Delete ${reviewOrReply}`}
-              btnClick={() => {}}
+              isBtnDanger={false}
+              btnText={
+                replyID === activeUserID
+                  ? `Delete ${reviewOrReply}`
+                  : "Report Inappropriate Content"
+              }
+              btnClick={() => {
+                setMenuOpen(!menuOpen);
+                if (replyID === activeUserID) {
+                  setMenuOpen(!menuOpen);
+                  setWindow("delete");
+                } else {
+                  setMenuOpen(!menuOpen);
+                  setWindow("report");
+                }
+              }}
               cancelClick={() => {
-                setMenuOpenID(!menuOpenID);
+                setMenuOpen(!menuOpen);
               }}
             />
           }
           canActive={true}
-          isActive={menuOpenID}
+          isActive={menuOpen}
           onClose={() => {
-            setMenuOpenID(!menuOpenID);
+            setMenuOpen(!menuOpen);
           }}
         />
       )}
+      {/* 顯示刪除或檢舉視窗 */}
+      {window && windowList[window]}
     </>
   );
 }

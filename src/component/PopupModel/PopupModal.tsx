@@ -95,7 +95,7 @@ export function PopupModal({
     }
   };
 
-  return (
+  return createPortal(
     <Overlay
       $isVisible={isActive}
       onClick={canActive ? handleOverlayClick : undefined}
@@ -112,7 +112,8 @@ export function PopupModal({
         </TitleBox>
         <Info>{content}</Info>
       </Popup>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 }
 
