@@ -6,7 +6,7 @@ import {
   PopupModal,
 } from "../../component/PopupModel/PopupModal";
 import { useState } from "react";
-import ContactInfo from "./ContactInfo";
+import TextAreaInfo from "../../component/PopupModel/TextAreaInfo";
 import { Container, Content, Item, ItemText } from "./style/menu";
 import ModelInfo from "../../component/PopupModel/ModelInfo";
 import GrayButton from "../../component/Button/GrayBtn";
@@ -69,7 +69,12 @@ function Menu() {
             isActive={modalContent === "Contact us"}
             text="Contact us"
             content={
-              <ContactInfo
+              <TextAreaInfo
+                placeholder={
+                  "If you have any reporting system issues, feedback, or cross-industry cooperation issues, you can report them to us here."
+                }
+                idFor="contactUs"
+                title="What do you want to tell 6w6wH?"
                 closeWindow={() => {
                   setModalContent(null);
                 }}

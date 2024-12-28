@@ -1,37 +1,52 @@
-import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
+import { PrimaryBtn } from "../Button/PrimaryBtn";
 import { useForm } from "react-hook-form";
-import { Textarea, Label, BtnBox } from "./style/contactInfo";
+import { Textarea, Label, BtnBox } from "../../pages/Menu/style/contactInfo";
 
-type ContactUsForm = {
-  contactUs: string;
+type textForm = {
+  textArea: string;
 };
 
-function ContactInfo({ closeWindow }: { closeWindow: () => void }) {
+type TextAreaInfoProps = {
+  title: string;
+  idFor: string;
+  closeWindow: () => void;
+} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+function TextAreaInfo({
+  title,
+  idFor,
+  closeWindow,
+  ...props
+}: TextAreaInfoProps) {
   const {
     register,
     formState: { isValid },
     handleSubmit,
-  } = useForm<ContactUsForm>({
+  } = useForm<textForm>({
     mode: "onChange",
   });
 
-  const onSubmit = (formData: ContactUsForm) => {
-    console.log(formData);
+  const onSubmit = async (formData: textForm) => {
+    try {
+      console.log(formData);
+    } catch (error) {
+      console.log("錯誤", error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Label htmlFor="contactUs">What do you want to tell 6w6wH?</Label>
+      <Label htmlFor={idFor}>{title}</Label>
       <Textarea
-        id="contactUs"
-        placeholder="If you have any reporting system issues, feedback, or cross-industry cooperation issues, you can report them to us here."
-        {...register("contactUs", {
+        id={idFor}
+        {...register("textArea", {
           required: "No spaces",
           pattern: {
             value: /\S/, //输入至少包含一个非空白字符
             message: "No spaces", // 错误消息
           },
         })}
+        {...props}
       ></Textarea>
 
       <BtnBox>
@@ -63,4 +78,4 @@ function ContactInfo({ closeWindow }: { closeWindow: () => void }) {
   );
 }
 
-export default ContactInfo;
+export default TextAreaInfo;
