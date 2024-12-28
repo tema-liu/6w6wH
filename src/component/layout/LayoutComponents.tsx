@@ -29,6 +29,16 @@ const ContainerPd16 = styled.div`
   background-color: transparent;
 `;
 
+const ContainerPd32 = styled.div`
+  padding: 32px 16px;
+  width: 100%;
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+`;
+
 const IconImg = styled.img`
   width: 24px;
   height: 24px;
@@ -54,4 +64,13 @@ const Icon = styled.span<IconProps>`
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
 
-export { Wrapper, WhiteWrapper, Container, ContainerPd16, IconImg, Icon, Img };
+export {
+  Wrapper,
+  WhiteWrapper,
+  Container,
+  ContainerPd16,
+  ContainerPd32,
+  IconImg,
+  Icon,
+  Img,
+};
