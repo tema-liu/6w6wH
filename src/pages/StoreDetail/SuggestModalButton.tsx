@@ -23,7 +23,7 @@ function SuggestModalButton() {
           canActive={true}
           isActive={isModalOpen}
           text="Suggest an edit"
-          content={<SuggestForm />}
+          content={<SuggestForm windowOpen={toggleModal} />}
           onClose={toggleModal} // 讓遮罩層可以切換關閉
         />
       )}

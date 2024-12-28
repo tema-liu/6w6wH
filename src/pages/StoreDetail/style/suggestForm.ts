@@ -52,21 +52,9 @@ export const InputText = styled.textarea`
   font-weight: 400;
   line-height: 22px;
   letter-spacing: -0.41px;
+  margin-bottom: 16px;
 `;
 
-export const Button = styled.button`
-  display: block;
-  width: 100%;
-  border-radius: 8px;
-  padding: 12px 0;
-  margin-top: 24px;
-  font-weight: 700;
-  background-color: ${({ theme }) => theme.colors.outline2};
-  opacity: 0.5;
-  &:active {
-    opacity: 1;
-  }
-`;
 export const TextAreaTitle = styled.p`
   padding-top: 16px;
 `;
