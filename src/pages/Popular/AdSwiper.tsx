@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import photo from "../../assets/b166552d01f7fc185b15236002eda985.png";
 import { SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";

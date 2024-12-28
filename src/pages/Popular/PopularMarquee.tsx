@@ -28,7 +28,7 @@ function PopularMarquee() {
       <Marquee pauseOnClick={true} style={{ gap: "8px" }}>
         <TagList>
           {tagArr.map((e) => {
-            return <TagChips label={e} />;
+            return <TagChips key={e} label={e} />;
           })}
         </TagList>
       </Marquee>
