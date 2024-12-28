@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import advertisImg from "../assets/Frame 18.png";
+import advertisImg from "../../assets/Frame 18.png";
 
 const AdBox = styled.div`
   display: flex;

@@ -6,6 +6,8 @@ import {
 } from "../reviewComponent/ReviewCards";
 import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
+import ShopCard from "../shop/ShopCard";
+import { ContainerPd16 } from "../layout/LayoutComponents";
 
 const EmptyBox = styled.div`
   display: flex;
@@ -15,13 +17,26 @@ const EmptyBox = styled.div`
   height: calc(100dvh - 415px); /* 扣除 header 和 footer 高度 */
 `;
 
+const GrayBorderBox = styled.div`
+  > div + div {
+    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
+  }
+`;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 16px;
+`;
+
 function ReviewListItem() {
   const navigator = useNavigate();
 
   const options = ["Reviews", "Following", "Bookmarks"];
   const content = {
     Reviews: (
-      <>
+      <GrayBorderBox>
+        <ProfileReviewsCard />
         <ProfileReviewsCard />
         {/* <EmptyBox>
           <EmptyDisplay
@@ -34,10 +49,10 @@ function ReviewListItem() {
             }}
           />
         </EmptyBox> */}
-      </>
+      </GrayBorderBox>
     ),
     Following: (
-      <>
+      <GrayBorderBox>
         <CommentCard />
         <CommentCard />
         <CommentCard />
@@ -53,11 +68,12 @@ function ReviewListItem() {
             }}
           />
         </EmptyBox> */}
-      </>
+      </GrayBorderBox>
     ),
     Bookmarks: (
-      <>
-        <EmptyBox>
+      <Container>
+        <ShopCard />
+        {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
             webIcon={false}
@@ -68,8 +84,8 @@ function ReviewListItem() {
               navigator("/search");
             }}
           />
-        </EmptyBox>
-      </>
+        </EmptyBox> */}
+      </Container>
     ),
   };
 
