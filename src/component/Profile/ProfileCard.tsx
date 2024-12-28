@@ -20,6 +20,7 @@ import {
   FollowBtn,
 } from "./style/ProfileCard";
 import { useNavigate } from "react-router-dom";
+import Badges from "./Badge";
 
 type ProfileProps = {
   isUserProfile: Boolean;
@@ -43,7 +44,7 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
             <AreaLabel>
               <AreaBox>
                 <Img src={country} />
-                <Img src={country} />
+                <Badges level="level1" />
               </AreaBox>
               <AreaMarquee>
                 <Marquee>

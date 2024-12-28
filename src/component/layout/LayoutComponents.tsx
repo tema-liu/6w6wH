@@ -44,6 +44,13 @@ const IconImg = styled.img`
   height: 24px;
   object-fit: cover;
 `;
+const CircleImg = styled.img`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
 const Img = styled.img`
   width: 100%;
   height: 100%;
@@ -71,6 +78,7 @@ export {
   ContainerPd16,
   ContainerPd32,
   IconImg,
+  CircleImg,
   Icon,
   Img,
 };

@@ -38,6 +38,7 @@ export const Img = styled.img`
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  object-fit: cover;
 `;
 export const Profile = styled.div`
   width: 100%;
