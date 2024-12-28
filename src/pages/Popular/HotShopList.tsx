@@ -1,92 +1,18 @@
-import styled from "styled-components";
 import bugIcon from "../../assets/bug.png";
-import {
-  TagBox,
-  TitleBox,
-  TitleBoxIcon,
-  TitleBoxText,
-} from "../../component/TitleBox";
+import { TitleBox, TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 import { StarRating } from "../../component/StarRating";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-
-const ShopCard = styled.div``;
-const Box = styled(TagBox)`
-  padding: 32px 16px 96px 16px;
-  justify-content: start;
-  flex-direction: column;
-  gap: 0;
-  row-gap: 8px;
-  max-width: 340px;
-`;
-const ShopName = styled.div`
-  position: absolute;
-  width: 216px;
-  display: flex;
-  flex-direction: column;
-  transform: rotate(-90deg);
-  overflow: hidden;
-  top: 86px;
-  left: -63px;
-  gap: 6px;
-
-  h2 {
-    white-space: nowrap;
-    overflow: hidden;
-    font-family: mix;
-  }
-`;
-
-const ShopImg = styled.img`
-  border-radius: 24px;
-  width: 236px;
-  height: 216px;
-  object-fit: cover;
-  object-position: center;
-`;
-const ShopMain = styled.div`
-  display: flex;
-`;
-const ShopNameContainer = styled.div`
-  position: relative;
-  width: 64px;
-  margin-right: 8px;
-  overflow: hidden;
-`;
-
-const Review = styled.div`
-  display: flex;
-  p {
-    padding: 8px;
-  }
-`;
-const HeadShot = styled.img`
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  margin: auto auto;
-`;
-const ShopCards = styled.div`
-  /* filter: drop-shadow(0px 4px 16px #0000000a) drop-shadow(0px 2px 8px #0000002a);
-  will-change: filter; */
-  display: flex;
-  column-gap: 4px;
-  overflow-x: auto;
-  margin-left: -8px;
-  margin-right: -8px;
-  padding: 0 8px;
-  /* 隱藏滾動條 - Chrome, Safari, Edge */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Firefox */
-  scrollbar-width: none;
-
-  /* IE */
-  -ms-overflow-style: none;
-`;
+import {
+  ShopCard,
+  ShopCards,
+  Box,
+  ShopMain,
+  ShopNameContainer,
+  ShopImg,
+  ShopName,
+  Review,
+  HeadShot,
+} from "./style/hotShopList";
 
 function HotShopList() {
   return (
