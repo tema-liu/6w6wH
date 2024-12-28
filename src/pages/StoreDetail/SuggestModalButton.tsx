@@ -2,12 +2,20 @@ import { useState } from "react";
 import { PopupModal } from "../../component/PopupModel/PopupModal";
 import SuggestForm from "./SuggestForm";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 
 function SuggestModalButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modals, setModals] = useState({
+    isModalOpen: false,
+    isGoodJobWindowOpen: false,
+  });
 
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
-
+  const toggleModal = (modalName: keyof typeof modals) => {
+    setModals((prev) => ({
+      ...prev,
+      [modalName]: !prev[modalName],
+    }));
+  };
   return (
     <>
       <PrimaryBtn
@@ -16,15 +24,34 @@ function SuggestModalButton() {
         $bgColor="gray100"
         iconName="edit"
         $margin="0 0 24px"
-        onClick={toggleModal}
+        onClick={() => {
+          toggleModal("isModalOpen");
+        }}
       />
-      {isModalOpen && (
+      {modals["isModalOpen"] && (
         <PopupModal
           canActive={true}
-          isActive={isModalOpen}
+          isActive={modals["isModalOpen"]}
           text="Suggest an edit"
-          content={<SuggestForm windowOpen={toggleModal} />}
-          onClose={toggleModal} // 讓遮罩層可以切換關閉
+          content={
+            <SuggestForm
+              windowOpen={() => {
+                toggleModal("isModalOpen");
+                toggleModal("isGoodJobWindowOpen");
+              }}
+            />
+          }
+          onClose={() => {
+            toggleModal("isModalOpen");
+          }} // 讓遮罩層可以切換關閉
+        />
+      )}
+      {modals["isGoodJobWindowOpen"] && (
+        <GoodJobWindow
+          isActive={modals["isGoodJobWindowOpen"]}
+          onClose={() => {
+            toggleModal("isGoodJobWindowOpen");
+          }}
         />
       )}
     </>
