@@ -31,6 +31,7 @@ import CommentCards from "./CommentCards";
 import StoreSwiper from "./StoreSwiper";
 import { useSearchParams } from "react-router-dom";
 import SuggestModalButton from "./SuggestModalButton";
+import Placeholder from "./Placeholder";
 
 function StoreDetail() {
   const [searchParams] = useSearchParams();
