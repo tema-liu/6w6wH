@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
+import noPhotoImg from "../../assets/Item-1.png";
 
 const Container = styled(SwiperContainer)`
   position: relative;

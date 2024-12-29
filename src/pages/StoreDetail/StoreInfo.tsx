@@ -1,7 +1,12 @@
 import { Icon } from "./style/storeDetail";
 import { Icon as IconImg } from "../../component/layout/LayoutComponents";
 import ADblock from "../../component/shop/AdBlock";
-import { ContentDetail, Store, BusinessHours } from "./style/storeInfo";
+import {
+  ContentDetail,
+  Store,
+  BusinessHours,
+  BusinessHoursTitle,
+} from "./style/storeInfo";
 
 function StoreInfo() {
   return (
@@ -67,7 +72,9 @@ function StoreInfo() {
             schedule
           </Icon>
           <BusinessHours>
-            <h2 style={{ fontWeight: "700" }}>Business hours</h2>
+            <BusinessHoursTitle $colors="gray900">
+              Business hours
+            </BusinessHoursTitle>
             <h2>Monday closed</h2>
             <h2>Tuesday closed</h2>
             <h2>Wednesday 14:00–18:00</h2>
