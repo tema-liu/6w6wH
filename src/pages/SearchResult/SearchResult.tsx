@@ -20,6 +20,7 @@ import {
 import EmptyDisplay from "../../component/EmptyDisplay";
 import EmptyChildren from "./emptyChildren";
 import { useNavigate } from "react-router-dom";
+import Placeholder from "./Placeholder";
 
 function SearchResult() {
   const navigate = useNavigate();

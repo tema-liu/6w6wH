@@ -41,4 +41,11 @@ const Content = styled.div<ContentProps>`
   row-gap: ${({ $rowGap }) => $rowGap && $rowGap + "px"};
 `;
 
-export { Content, AnimationLine, Animation };
+const Circle = styled.div`
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  ${Animation}
+`;
+
+export { Content, AnimationLine, Animation, Circle };
