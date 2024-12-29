@@ -28,6 +28,7 @@ import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import ReviewSwiper from "./ReviewSwiper";
+import Placeholder from "./Placeholder";
 // import { useNavigate } from "react-router-dom";
 
 type CommentContentProps = {

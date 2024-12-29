@@ -22,6 +22,7 @@ type LineProps = {
 type ContentProps = {
   $rowGap?: number;
   $padding: string;
+  $borderRadius?: string;
 };
 
 const AnimationLine = styled.div<LineProps>`
@@ -38,6 +39,8 @@ const Content = styled.div<ContentProps>`
   background-color: ${({ theme }) => theme.colors.gray100};
   display: flex;
   flex-direction: column;
+  border-radius: ${({ $borderRadius }) =>
+    $borderRadius ? $borderRadius : "none"};
   row-gap: ${({ $rowGap }) => $rowGap && $rowGap + "px"};
 `;
 
