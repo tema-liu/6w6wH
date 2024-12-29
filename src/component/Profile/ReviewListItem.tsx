@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { ToggleSwitch } from "./ProfileTab";
 import {
   CommentCard,
@@ -7,27 +6,7 @@ import {
 import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
 import ShopCard from "../shop/ShopCard";
-import { ContainerPd16 } from "../layout/LayoutComponents";
-
-const EmptyBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  height: calc(100dvh - 415px); /* 扣除 header 和 footer 高度 */
-`;
-
-const GrayBorderBox = styled.div`
-  > div + div {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-`;
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-  padding: 16px;
-`;
+import { EmptyBox, Container, GrayBorderBox } from "./style/reviewListItem";
 
 function ReviewListItem() {
   const navigator = useNavigate();
