@@ -174,60 +174,6 @@ function ShopCard() {
           </RatingContent>
         </ShopCardMain>
       </ShopCardBox>
-      <ShopCardBox
-        onClick={() => {
-          navigate("/storeList/:id");
-        }}
-      >
-        {isAdvertise && (
-          <ADtag>
-            <span>AD</span>
-          </ADtag>
-        )}
-        <ShopCardImg
-          $isDonate={isAdvertise}
-          src="https://picsum.photos/1000/800"
-          alt="shopImg"
-        />
-
-        <ShopCardMain>
-          <CollectIcon right={28} />
-          <PlaceName>
-            <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
-          </PlaceName>
-          <TagsBar>
-            <Tag>Multilingual (12)</Tag>
-            <Tag>Friendly (9)</Tag>
-            <Tag>Food (5)</Tag>
-            <Tag>Food (5)</Tag>
-          </TagsBar>
-          <MessageBox>
-            <ReadMore
-              text={
-                " Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-              }
-            />
-
-            <HeadShot src={photo} />
-          </MessageBox>
-
-          <RatingContent>
-            <ReviewBtn />
-            <RantingConTainer>
-              <StarRating star={3} width={112} height={16} />
-              <RepliesBox>
-                <RepliesNum>23 Reviews</RepliesNum>
-                <h5>/</h5>
-                <RepliesNum>35 Replies</RepliesNum>
-              </RepliesBox>
-            </RantingConTainer>
-            <BorderBox />
-            <ArrowIcon>
-              <img src={arrowIcon} />
-            </ArrowIcon>
-          </RatingContent>
-        </ShopCardMain>
-      </ShopCardBox>
     </>
   );
 }

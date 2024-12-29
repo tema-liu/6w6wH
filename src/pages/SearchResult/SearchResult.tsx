@@ -14,9 +14,16 @@ import {
   FilterContainer,
   FilterColumn,
   ShopCards,
+  EmptyContent,
+  EmptyText,
 } from "./style";
+import EmptyDisplay from "../../component/EmptyDisplay";
+import EmptyChildren from "./emptyChildren";
+import { useNavigate } from "react-router-dom";
 
 function SearchResult() {
+  const navigate = useNavigate();
+
   const num = 5;
 
   return (
@@ -44,9 +51,25 @@ function SearchResult() {
               </FilterButtons>
             </FilterContainer>
           </FilterColumn>
-          <ShopCards>
-            <ShopCard />
-          </ShopCards>
+          {/* 若是沒有資料則出現Empty */}
+          {/* <EmptyContent>
+            <EmptyDisplay
+              content="No venues match the filter criteria"
+              iconStyle="add_circle"
+              btnText="Add places you know"
+              children={<EmptyChildren />}
+              btnClick={() => {
+                navigate("/addShop");
+              }}
+            />
+          </EmptyContent> */}
+          <div>
+            {/* <EmptyText>maybe you will like......</EmptyText> */}
+            <ShopCards>
+              <ShopCard />
+              <ShopCard />
+            </ShopCards>
+          </div>
         </Container>
       </Wrapper>
     </>
