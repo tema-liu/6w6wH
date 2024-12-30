@@ -1,19 +1,22 @@
-import { WhiteWrapper } from "../../component/layout/LayoutComponents";
+import {
+  WhiteWrapper,
+  ContainerPd32,
+} from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
 import { addEditList, textList } from "./data";
-import { Content, Title, Container, Section, SubTag, Ul } from "./style";
+import { Content, Title, Section, SubTag, Ul } from "./style";
 
 function Faqs() {
   return (
     <WhiteWrapper>
       <Header title="FAQs" />
-      <Container>
+      <ContainerPd32>
         <div>
           <Title>Frequently Asked Questions (FAQ)</Title>
           <Content>
-            {textList.map((item) => {
+            {textList.map((item, index) => {
               return (
-                <Section>
+                <Section key={"item" + index}>
                   <SubTag>{item.title}</SubTag>
                   <p>{item.content}</p>
                 </Section>
@@ -24,13 +27,13 @@ function Faqs() {
         <div>
           <Title>Add&Edit Store Information</Title>
           <Content>
-            {addEditList.map((item) => {
+            {addEditList.map((item, index) => {
               return (
-                <Section>
+                <Section key={"item" + index}>
                   <SubTag>{item.title}</SubTag>
                   <Ul>
-                    {item.li.map((text) => {
-                      return <li>{text}</li>;
+                    {item.li.map((text, index) => {
+                      return <li key={"text" + index}>{text}</li>;
                     })}
                   </Ul>
                 </Section>
@@ -38,7 +41,7 @@ function Faqs() {
             })}
           </Content>
         </div>
-      </Container>
+      </ContainerPd32>
     </WhiteWrapper>
   );
 }

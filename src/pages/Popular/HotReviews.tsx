@@ -10,7 +10,7 @@ import {
 import {
   CommentCard,
   ReviewsCard,
-} from "../../component/ReviewComponent/ReviewCards";
+} from "../../component/reviewComponent/ReviewCards";
 import styled from "styled-components";
 
 const Div = styled.div`

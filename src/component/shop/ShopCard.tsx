@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import CollectIcon from "../../component/CollectIcon";
-import { TagsBar, Tag } from "../../component/TagsBar";
-import { ReviewBtn } from "../../component/Button/ReviewBtn";
-import { StarRating } from "../../component/StarRating";
+import CollectIcon from "./CollectIcon";
+import { TagsBar, Tag } from "./TagsBar";
+import { ReviewBtn } from "../button/ReviewBtn";
+import { StarRating } from "../StarRating";
 import arrowIcon from "../../assets/arrow.png";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-import { ReadMore } from "./ReadMore";
+import { ReadMore } from "../../pages/SearchResult/ReadMore";
 import { useNavigate } from "react-router-dom";
 
 type DonateProps = {
@@ -120,60 +120,6 @@ function ShopCard() {
   const navigate = useNavigate();
   return (
     <>
-      <ShopCardBox
-        onClick={() => {
-          navigate("/storeList/:id");
-        }}
-      >
-        {isAdvertise && (
-          <ADtag>
-            <span>AD</span>
-          </ADtag>
-        )}
-        <ShopCardImg
-          $isDonate={isAdvertise}
-          src="https://picsum.photos/1000/800"
-          alt="shopImg"
-        />
-
-        <ShopCardMain>
-          <CollectIcon right={28} />
-          <PlaceName>
-            <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
-          </PlaceName>
-          <TagsBar>
-            <Tag>Multilingual (12)</Tag>
-            <Tag>Friendly (9)</Tag>
-            <Tag>Food (5)</Tag>
-            <Tag>Food (5)</Tag>
-          </TagsBar>
-          <MessageBox>
-            <ReadMore
-              text={
-                " Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-              }
-            />
-
-            <HeadShot src={photo} />
-          </MessageBox>
-
-          <RatingContent>
-            <ReviewBtn />
-            <RantingConTainer>
-              <StarRating star={3} width={112} height={16} />
-              <RepliesBox>
-                <RepliesNum>23 Reviews</RepliesNum>
-                <h5>/</h5>
-                <RepliesNum>35 Replies</RepliesNum>
-              </RepliesBox>
-            </RantingConTainer>
-            <BorderBox />
-            <ArrowIcon>
-              <img src={arrowIcon} />
-            </ArrowIcon>
-          </RatingContent>
-        </ShopCardMain>
-      </ShopCardBox>
       <ShopCardBox
         onClick={() => {
           navigate("/storeList/:id");

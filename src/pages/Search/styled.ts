@@ -4,6 +4,7 @@ export const SearchContainer = styled.form`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  height: 100%;
 `;
 
 export const SuggestBtn = styled.button`
@@ -15,7 +16,7 @@ export const SuggestBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 16px;
   padding: 12px 0;
-  margin: 24px 0 16px 0;
+  margin: auto 0 16px 0;
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
 `;
 

@@ -9,7 +9,6 @@ export const SwiperContainer = styled(Swiper)`
   background-color: ${({ theme }) => theme.colors.outline1};
   display: flex;
   align-items: center;
-
   --swiper-pagination-color: #fff;
   --swiper-pagination-bullet-inactive-color: #fff;
   --swiper-pagination-bullet-inactive-opacity: 0.5;

@@ -29,11 +29,28 @@ const ContainerPd16 = styled.div`
   background-color: transparent;
 `;
 
+const ContainerPd32 = styled.div`
+  padding: 32px 16px;
+  width: 100%;
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+`;
+
 const IconImg = styled.img`
   width: 24px;
   height: 24px;
   object-fit: cover;
 `;
+const CircleImg = styled.img`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
 const Img = styled.img`
   width: 100%;
   height: 100%;
@@ -54,4 +71,14 @@ const Icon = styled.span<IconProps>`
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
 
-export { Wrapper, WhiteWrapper, Container, ContainerPd16, IconImg, Icon, Img };
+export {
+  Wrapper,
+  WhiteWrapper,
+  Container,
+  ContainerPd16,
+  ContainerPd32,
+  IconImg,
+  CircleImg,
+  Icon,
+  Img,
+};

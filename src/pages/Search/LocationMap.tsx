@@ -57,7 +57,7 @@ function LocationMap({
       <Title>{content}</Title>
       {!noBtn && (
         <Button>
-          <IconImg className="material-symbols-outlined">
+          <IconImg $isPointer={true} className="material-symbols-outlined">
             person_pin_circle
           </IconImg>
           Turn on location

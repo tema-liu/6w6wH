@@ -3,6 +3,9 @@ import { Container as Cont } from "../../component/layout/LayoutComponents";
 
 export const Container = styled(Cont)`
   padding: 16px 8px;
+  flex-direction: column;
+  display: flex;
+  row-gap: 24px;
 `;
 
 export const ChipGroup = styled.div``;
@@ -31,16 +34,22 @@ export const TagBox = styled.div`
   gap: 8px;
 `;
 export const ShopCards = styled.section`
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
 `;
+export const EmptyContent = styled.div`
+  padding: 16px;
+`;
+export const EmptyText = styled.p`
+  padding: 14px 16px;
+  color: ${({ theme }) => theme.colors.gray600};
+`;
+
 export const FilterColumn = styled.div`
   background-color: transparent;
   display: flex;
   justify-content: flex-end;
-  margin-top: 24px;
 `;
 export const FilterContainer = styled.div`
   position: relative;

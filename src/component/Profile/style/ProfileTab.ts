@@ -67,9 +67,6 @@ export const Label = styled.label<LabelProps>`
 export const Content = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.gray100};
-  > div + div {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
 `;
 export const TabBox = styled.div`
   display: flex;

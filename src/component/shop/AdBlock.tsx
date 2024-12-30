@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Advertise } from "../type/type";
+import { Advertise } from "../../type/type";
 
 const AdBox = styled.div`
   display: flex;

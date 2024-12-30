@@ -24,7 +24,7 @@ import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
 import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import styled from "styled-components";
-import { TagsBar, Tag } from "../../component/TagsBar";
+import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
 import { ResponseData } from "../../type/type";
 import { mockApi } from "./data";
@@ -32,6 +32,7 @@ import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/ReviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
+import Placeholder from "./Placeholder";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;

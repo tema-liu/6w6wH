@@ -1,16 +1,12 @@
-import styled from "styled-components";
 import { ToggleSwitch } from "./ProfileTab";
-import { ProfileReviewsCard } from "../ReviewComponent/ReviewCards";
+import {
+  CommentCard,
+  ProfileReviewsCard,
+} from "../reviewComponent/ReviewCards";
 import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
-
-const EmptyBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  height: calc(100dvh - 415px); /* 扣除 header 和 footer 高度 */
-`;
+import ShopCard from "../shop/ShopCard";
+import { EmptyBox, Container, GrayBorderBox } from "./style/reviewListItem";
 
 function ReviewListItem() {
   const navigator = useNavigate();
@@ -18,7 +14,8 @@ function ReviewListItem() {
   const options = ["Reviews", "Following", "Bookmarks"];
   const content = {
     Reviews: (
-      <>
+      <GrayBorderBox>
+        <ProfileReviewsCard />
         <ProfileReviewsCard />
         {/* <EmptyBox>
           <EmptyDisplay
@@ -31,13 +28,14 @@ function ReviewListItem() {
             }}
           />
         </EmptyBox> */}
-        {/* 
-        <ProfileReviewsCard /> */}
-      </>
+      </GrayBorderBox>
     ),
     Following: (
-      <>
-        <EmptyBox>
+      <GrayBorderBox>
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
             webIcon={false}
@@ -48,12 +46,13 @@ function ReviewListItem() {
               navigator("/popular");
             }}
           />
-        </EmptyBox>
-      </>
+        </EmptyBox> */}
+      </GrayBorderBox>
     ),
     Bookmarks: (
-      <>
-        <EmptyBox>
+      <Container>
+        <ShopCard />
+        {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
             webIcon={false}
@@ -64,8 +63,8 @@ function ReviewListItem() {
               navigator("/search");
             }}
           />
-        </EmptyBox>
-      </>
+        </EmptyBox> */}
+      </Container>
     ),
   };
 

@@ -1,23 +1,26 @@
-import { WhiteWrapper } from "../../component/layout/LayoutComponents";
+import {
+  WhiteWrapper,
+  ContainerPd32,
+} from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
-import { Content, Container, Section, SubTag, Ul } from "../Faqs/style";
+import { Content, Section, SubTag, Ul } from "../Faqs/style";
 import { textList } from "./data";
 
 function PrivacyPolicy() {
   return (
     <WhiteWrapper>
       <Header title="Privacy Policy" />
-      <Container>
+      <ContainerPd32>
         <Content>
-          {textList.map((item) => {
+          {textList.map((item, index) => {
             return (
-              <Section>
+              <Section key={"item" + index}>
                 <SubTag>{item.title}</SubTag>
                 <p>{item.content}</p>
                 {item.li && (
                   <Ul>
-                    {item.li.map((text) => {
-                      return <li>{text}</li>;
+                    {item.li.map((text, index) => {
+                      return <li key={"text" + index}>{text}</li>;
                     })}
                   </Ul>
                 )}
@@ -26,7 +29,7 @@ function PrivacyPolicy() {
             );
           })}
         </Content>
-      </Container>
+      </ContainerPd32>
     </WhiteWrapper>
   );
 }

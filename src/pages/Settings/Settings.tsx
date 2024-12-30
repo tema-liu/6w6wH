@@ -1,10 +1,10 @@
 import { Container, Content, Item, ItemText } from "./style/settings";
 import { Wrapper, Icon } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
-import GrayButton from "../../component/Button/GrayBtn";
+import GrayButton from "../../component/button/GrayBtn";
 import { useState } from "react";
-import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";
-import ModelInfo from "../../component/PopupModel/ModelInfo";
+import { GeneralPopupModal } from "../../component/popupModel/PopupModal";
+import ModelInfo from "../../component/popupModel/ModelInfo";
 import { itemList } from "./data/settings";
 
 function Settings() {

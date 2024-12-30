@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
-import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
 const SetupForm = styled.form`
   width: 100%;

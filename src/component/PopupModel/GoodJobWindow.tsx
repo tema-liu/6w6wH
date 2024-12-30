@@ -33,14 +33,6 @@ const PointText = styled.h5`
   color: ${({ theme }) => theme.colors.gray600};
 `;
 
-const Btn = styled.button`
-  width: 100%;
-  font-weight: 700;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.outline2};
-  padding: 9px 0;
-`;
-
 function GoodJobWindow({ num, isActive, onClose }: windowProps) {
   return (
     <PopupModal

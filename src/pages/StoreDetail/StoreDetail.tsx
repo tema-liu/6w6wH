@@ -4,7 +4,7 @@ import {
   Container,
   Icon as IconImg,
 } from "../../component/layout/LayoutComponents";
-import { TagsBar, Tag } from "../../component/TagsBar";
+import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import {
   NavigateBtn,
   PlaceDetailHeader,
@@ -16,7 +16,7 @@ import {
   EmptyContent,
 } from "./style/storeDetail";
 import { StarRating } from "../../component/StarRating";
-import { ReviewBtn } from "../../component/Button/ReviewBtn";
+import { ReviewBtn } from "../../component/button/ReviewBtn";
 import {
   SegmentedControlInner,
   RadioInput,
@@ -32,6 +32,7 @@ import { StoreDetailData, StoreReviewsData } from "../../type/type";
 import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import SuggestModalButton from "./SuggestModalButton";
+import Placeholder from "./Placeholder";
 
 function StoreDetail() {
   const navigator = useNavigate();

@@ -1,12 +1,4 @@
 import styled from "styled-components";
-import { ContainerPd16 } from "../../component/layout/LayoutComponents";
-
-export const Container = styled(ContainerPd16)`
-  padding: 32px 16px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 32px;
-`;
 
 export const Section = styled.section`
   display: flex;

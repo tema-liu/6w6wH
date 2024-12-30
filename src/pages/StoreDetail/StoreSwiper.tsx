@@ -1,4 +1,4 @@
-import CollectIcon from "../../component/CollectIcon";
+import CollectIcon from "../../component/shop/CollectIcon";
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { SwiperContainer, Button } from "../../component/SwiperStyle";
@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
+import noPhotoImg from "../../assets/Item-1.png";
 
 const Container = styled(SwiperContainer)`
   position: relative;

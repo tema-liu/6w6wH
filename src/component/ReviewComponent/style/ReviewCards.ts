@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Icon } from "../../layout/LayoutComponents";
-import { TagsBar } from "../../TagsBar";
+import { TagsBar } from "../../shop/TagsBar";
 
 //==========================評論卡片樣式
 export const CommentCardContent = styled.div`

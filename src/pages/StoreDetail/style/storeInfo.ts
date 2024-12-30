@@ -15,6 +15,15 @@ export const BusinessHours = styled.div`
     margin-top: 8px;
   }
 `;
+
+type Colors = { $colors: string };
+
+export const BusinessHoursTitle = styled.h2<Colors>`
+  font-weight: 700;
+  color: ${({ theme, $colors }) =>
+    $colors ? theme.colors[$colors] : theme.colors.gray900};
+`;
+
 export const ContentDetail = styled.div`
   padding: 16px 16px 0 16px;
   border-radius: 0 0 32px 32px;
