@@ -81,3 +81,15 @@ export const locationList: Regions = {
     },
   ],
 };
+
+export const locationTab = [
+  { title: "Location", idFor: "Location", value: "location" },
+  { title: "North", idFor: "North", value: "north" },
+  { title: "Center", idFor: "Center", value: "center" },
+  { title: "South", idFor: "South", value: "south" },
+  {
+    title: "East",
+    idFor: "East",
+    value: "east",
+  },
+];

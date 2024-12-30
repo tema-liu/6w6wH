@@ -63,9 +63,10 @@ type EmptyDisplayProps = {
   webIcon?: boolean;
   content: string; // 定義 content 是字串
   iconStyle?: string; // 定義 iconStyle 是字串
-  btnText: string; // 定義 btnText 是字串
+  btnText?: string; // 定義 btnText 是字串
   children?: React.ReactNode; // children 是可選的 React 節點
   onClick?: () => void;
+  showButton?: boolean; //是否顯示按鈕
 };
 
 const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
@@ -77,21 +78,25 @@ const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
   children,
   onClick,
   webIcon,
+  showButton = true,
 }) => {
   return (
     <ImgContainer>
       <Img $isIconDark={$isIconDark} src={icon} alt="6w6wHIcon" />
       <Title>{content}</Title>
       {children}
-      <Button $fontWeight={$fontWeight} onClick={onClick}>
-        {iconStyle && (
-          <IconImg $isPointer={true} className="material-symbols-outlined">
-            {iconStyle}
-          </IconImg>
-        )}
-        {webIcon && <BtnIcon src={icon} />}
-        {btnText}
-      </Button>
+
+      {showButton && (
+        <Button $fontWeight={$fontWeight} onClick={onClick}>
+          {iconStyle && (
+            <IconImg $isPointer={true} className="material-symbols-outlined">
+              {iconStyle}
+            </IconImg>
+          )}
+          {webIcon && <BtnIcon src={icon} />}
+          {btnText}
+        </Button>
+      )}
     </ImgContainer>
   );
 };

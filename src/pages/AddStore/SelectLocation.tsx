@@ -7,26 +7,60 @@ import {
   SegmentedControlInner,
   StationList,
 } from "./style/addStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmptyDisplay from "../../component/EmptyDisplay";
-import LocationMap from "../Search/LocationMap";
-import { locationList } from "./data";
+import { locationList, locationTab } from "./data";
 import { Location } from "../../type/type";
 import useUserLocation from "../../hooks/useUseLocation";
+import React from "react";
+import { GeneralPopupModal } from "../../component/popupModel/PopupModal";
+import LocationMap from "../Search/LocationMap";
+import { useNavigate } from "react-router-dom";
 
-function SelectLocation() {
+type SelectLocationProps = {
+  selectLocation: Location | null;
+  setSelectLocation: React.Dispatch<React.SetStateAction<Location | null>>;
+};
+
+function SelectLocation({
+  selectLocation,
+  setSelectLocation,
+}: SelectLocationProps) {
   const { location, error, getUserLocation } = useUserLocation();
-  const [selectedOption, setSelectedOption] = useState("North");
-  const [selectLocation, setSelectLocation] = useState<Location | null>(null);
-  console.log("selectLocation: " + selectLocation?.lat, selectLocation?.lng);
+  const [selectedOption, setSelectedOption] = useState("south");
+  const [errorWindowOpen, setErrorWindowOpen] = useState(false);
+  const navigator = useNavigate();
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
 
+  //透過點擊取得定位
+  const handleLocation = (location: Location | null) => {
+    if (selectLocation !== null) {
+      return;
+    } else {
+      setSelectLocation(location);
+    }
+  };
+  // useEffect監聽定位值
+  useEffect(() => {
+    //如果取得定位則設定定位
+    if (location) {
+      handleLocation(location);
+    }
+  }, [location]);
+
+  // useEffect監聽error變化
+  useEffect(() => {
+    if (error) {
+      setErrorWindowOpen(!errorWindowOpen);
+    }
+  }, [error]);
+
   const RenderTransportOptions = () => {
     switch (selectedOption) {
-      case "Location":
+      case "location":
         return (
           <EmptyDisplay
             $fontWeight={700}
@@ -35,11 +69,10 @@ function SelectLocation() {
             btnText="Turn on location"
             onClick={() => {
               getUserLocation();
-              setSelectLocation(location);
             }}
           />
         );
-      case "North":
+      case "north":
         return (
           <>
             <LocationMap
@@ -53,13 +86,13 @@ function SelectLocation() {
                 content={item.station}
                 isCheck={selectLocation === item.location}
                 onChange={() => {
-                  setSelectLocation(item.location);
+                  handleLocation(item.location);
                 }}
               />
             ))}
           </>
         );
-      case "Center":
+      case "center":
         return (
           <>
             <LocationMap
@@ -73,14 +106,14 @@ function SelectLocation() {
                 content={item.station}
                 isCheck={selectLocation === item.location}
                 onChange={() => {
-                  setSelectLocation(item.location);
+                  handleLocation(item.location);
                 }}
               />
             ))}
           </>
         );
 
-      case "South":
+      case "south":
         return (
           <>
             <LocationMap
@@ -94,13 +127,13 @@ function SelectLocation() {
                 content={item.station}
                 isCheck={selectLocation === item.location}
                 onChange={() => {
-                  setSelectLocation(item.location);
+                  handleLocation(item.location);
                 }}
               />
             ))}
           </>
         );
-      case "East":
+      case "east":
         return (
           <>
             <LocationMap
@@ -114,7 +147,7 @@ function SelectLocation() {
                 content={item.station}
                 isCheck={selectLocation === item.location}
                 onChange={() => {
-                  setSelectLocation(item.location);
+                  handleLocation(item.location);
                 }}
               />
             ))}
@@ -126,52 +159,48 @@ function SelectLocation() {
   return (
     <AddStoreContainer>
       <SegmentedControlInner>
-        <RadioInput
-          id="Location"
-          type="radio"
-          value="Location"
-          checked={selectedOption === "Location"}
-          onChange={handleOptionChange}
-        />
-        <Label htmlFor="Location">Location</Label>
-        <RadioInput
-          id="North"
-          type="radio"
-          value="North"
-          checked={selectedOption === "North"}
-          onChange={handleOptionChange}
-        />
-        <Label htmlFor="North">North</Label>
-        <RadioInput
-          id="Center"
-          type="radio"
-          value="Center"
-          checked={selectedOption === "Center"}
-          onChange={handleOptionChange}
-        />
-        <Label htmlFor="Center">Center</Label>
-        <RadioInput
-          id="South"
-          type="radio"
-          value="South"
-          checked={selectedOption === "South"}
-          onChange={handleOptionChange}
-        />
-        <Label htmlFor="South">South</Label>
-        <RadioInput
-          id="East"
-          type="radio"
-          value="East"
-          checked={selectedOption === "East"}
-          onChange={handleOptionChange}
-        />
-        <Label htmlFor="East">East</Label>
+        {locationTab.map((item) => {
+          return (
+            <React.Fragment key={item.idFor}>
+              <RadioInput
+                id={item.idFor}
+                type="radio"
+                value={item.value}
+                checked={selectedOption === item.value}
+                onChange={handleOptionChange}
+              />
+              <Label htmlFor={item.idFor}>{item.title}</Label>
+            </React.Fragment>
+          );
+        })}
       </SegmentedControlInner>
       <SelectBox>
         <StationList>
           <RenderTransportOptions />
         </StationList>
       </SelectBox>
+      {errorWindowOpen && (
+        <GeneralPopupModal
+          onClose={() => {
+            setErrorWindowOpen(!errorWindowOpen);
+            navigator(0);
+          }}
+          isActive={errorWindowOpen}
+          canActive={true}
+          content={
+            <EmptyDisplay
+              showButton={false}
+              $isIconDark={true}
+              content="Unable to get location"
+              children={
+                <h5 style={{ textAlign: "center" }}>
+                  Please confirm your targeting settings
+                </h5>
+              }
+            />
+          }
+        />
+      )}
     </AddStoreContainer>
   );
 }
