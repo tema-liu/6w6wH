@@ -29,14 +29,17 @@ const Img = styled.img<ImgPops>`
   width: 56.57px;
   height: 88px;
   margin: 0 auto;
-
   filter: ${({ $isIconDark }) => ($isIconDark ? "grayscale(1)" : "none")};
 `;
 
-const Button = styled.button`
+type BtnProps = {
+  $fontWeight: number;
+};
+
+const Button = styled.button<BtnProps>`
   font-size: 17px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : 400)};
   letter-spacing: -0.41px;
   padding: 12px 24px;
   margin: 8px auto 0 auto;
@@ -55,6 +58,7 @@ const Button = styled.button`
 `;
 
 type EmptyDisplayProps = {
+  $fontWeight?: number;
   $isIconDark?: boolean;
   webIcon?: boolean;
   content: string; // 定義 content 是字串
@@ -65,6 +69,7 @@ type EmptyDisplayProps = {
 };
 
 const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
+  $fontWeight = 400,
   $isIconDark = false,
   content,
   iconStyle,
@@ -78,8 +83,7 @@ const EmptyDisplay: React.FC<EmptyDisplayProps> = ({
       <Img $isIconDark={$isIconDark} src={icon} alt="6w6wHIcon" />
       <Title>{content}</Title>
       {children}
-
-      <Button onClick={onClick}>
+      <Button $fontWeight={$fontWeight} onClick={onClick}>
         {iconStyle && (
           <IconImg $isPointer={true} className="material-symbols-outlined">
             {iconStyle}
