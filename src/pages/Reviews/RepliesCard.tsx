@@ -16,7 +16,7 @@ import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import { useState } from "react";
 import { Reply } from "../../type/type";
 import { badgeImages } from "../../constants/imageResources";
-import MoreVert from "../../component/ReviewComponent/MoreVert";
+import MoreVert from "../../component/reviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
 const CommentCards = styled(CommentCardContent)`
@@ -57,7 +57,7 @@ function RepliesCard({ data }: RepliesCardProps) {
           <HeadRight>
             <UserReviewTop>
               <span style={{ display: "block" }}>{data.userName}</span>
-              <MoreVert userID={data.userID} replyID={data.replyID} />
+              <MoreVert reviewOrReply={"reply"} userID={data.userID} />
             </UserReviewTop>
             <UserReviewMain>
               <ReadMore text={data.comment} />

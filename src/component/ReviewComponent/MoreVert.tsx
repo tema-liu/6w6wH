@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Icon } from "../layout/LayoutComponents";
-import { GeneralPopupModal, PopupModal } from "../PopupModel/PopupModal";
-import ModelInfo from "../PopupModel/ModelInfo";
-import TextAreaInfo from "../PopupModel/TextAreaInfo";
+import { GeneralPopupModal, PopupModal } from "../popupModel//PopupModal";
+import ModelInfo from "../popupModel/ModelInfo";
+import TextAreaInfo from "../popupModel/TextAreaInfo";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -13,16 +13,13 @@ const IconImg = styled(Icon)`
 type moreProps = {
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
   userID: string;
-  replyID: string;
   activeUserID?: string; //登入者的ID
 };
 
 function MoreVert({
   reviewOrReply,
-  // "isAnonymous"
-  activeUserID = "comment-12345",
+  activeUserID = "isAnonymous",
   userID,
-  replyID,
 }: moreProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [window, setWindow] = useState<"delete" | "report" | null>(null);
@@ -89,13 +86,13 @@ function MoreVert({
             <ModelInfo
               isBtnDanger={false}
               btnText={
-                replyID === activeUserID
+                userID === activeUserID
                   ? `Delete ${reviewOrReply}`
                   : "Report Inappropriate Content"
               }
               btnClick={() => {
                 setMenuOpen(!menuOpen);
-                if (replyID === activeUserID) {
+                if (userID === activeUserID) {
                   setMenuOpen(!menuOpen);
                   setWindow("delete");
                 } else {

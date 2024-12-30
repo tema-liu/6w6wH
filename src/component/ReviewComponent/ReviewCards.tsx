@@ -139,11 +139,7 @@ export function ReviewsCard({ data }: ReviewsCard) {
         <HeadRight>
           <UserReviewTop>
             <span style={{ display: "block" }}>{data.userName}</span>
-            <MoreVert
-              reviewOrReply="reply"
-              userID={data.userID}
-              replyID={data.replyID}
-            />
+            <MoreVert reviewOrReply="reply" userID={data.userID} />
           </UserReviewTop>
           <UserReviewMain>
             <ReadMore text={data.comment} />

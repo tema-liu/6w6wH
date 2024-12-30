@@ -1,3 +1,11 @@
+//==========呼叫API使用型別===========
+export type ResponseData<T = unknown> = null | {
+  statusCode: number; // 狀態碼
+  status: boolean; // 狀態
+  message: string; // 回應訊息
+  data: T;
+};
+
 //=========Reviews====================================
 export type Reply = {
   replyID: string; // 留言ID
@@ -28,23 +36,11 @@ export type Comment = null | {
   reply?: null | Reply[]; // 留言回覆
 };
 
-export type ResponseData = null | {
-  statusCode: number; // 狀態碼
-  status: boolean; // 狀態
-  message: string; // 回應訊息
-  data: Comment; // 單一店家評論資料
-};
-
 //hotReview===================================================
-export type hotReviewData = null | {
-  statusCode: number; // 狀態碼
-  status: boolean; // 狀態
-  message: string; // 回應訊息
-  data: {
-    popular: Comment;
-    review: Comment;
-    latest: Comment;
-  };
+export type ReviewOrReply = null | {
+  popular: Comment;
+  review: Comment;
+  latest: Comment;
 };
 
 //storeDetail=============================================
@@ -91,18 +87,4 @@ export type StoreData = {
   phone?: string | null; // 電話
   url?: string | null; // 網址
   opening_hours?: OpeningHours | null; // 營業時間
-};
-
-export type StoreDetailData = null | {
-  statusCode: number; // 狀態碼
-  status: boolean; // 狀態
-  message: string; // 回應訊息
-  data: StoreData;
-};
-
-export type StoreReviewsData = null | {
-  statusCode: number; // 狀態碼
-  status: boolean; // 狀態
-  message: string; // 回應訊息
-  data: null | Comment[]; // 單一店家評論資料
 };

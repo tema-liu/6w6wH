@@ -28,7 +28,7 @@ import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
 import StoreSwiper from "./StoreSwiper";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { StoreDetailData, StoreReviewsData } from "../../type/type";
+import { Comment, ResponseData, StoreData } from "../../type/type";
 import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import SuggestModalButton from "./SuggestModalButton";
@@ -37,9 +37,9 @@ import Placeholder from "./Placeholder";
 function StoreDetail() {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
-  const [storeData, setStoreData] = useState<StoreDetailData>(null); //商店詳細資料
+  const [storeData, setStoreData] = useState<ResponseData<StoreData>>(null); //商店詳細資料
   const [storeReviewsData, setStoreReviewsData] =
-    useState<StoreReviewsData>(null); //商店評論
+    useState<ResponseData<null | Comment[]>>(null); //商店評論
   const [isLoading, setIsLoading] = useState(true);
   const initialOption = searchParams.get("option") || "Detail";
   const [selectedOption, setSelectedOption] = useState(initialOption);

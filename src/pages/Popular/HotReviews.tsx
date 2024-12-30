@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { hotReviewData } from "../../type/type";
+import { ReviewOrReply } from "../../type/type";
 import {
   Input,
   Label,
@@ -28,7 +28,7 @@ const Div = styled.div`
   }
 `;
 
-function HotReviews({ res }: { res: hotReviewData }) {
+function HotReviews({ data }: { data: ReviewOrReply }) {
   //單選nav
   const [selectedOption, setSelectedOption] = useState("Popular");
 
@@ -36,7 +36,6 @@ function HotReviews({ res }: { res: hotReviewData }) {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
-  const data = res?.data;
 
   return (
     <Div>

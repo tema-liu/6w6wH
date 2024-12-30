@@ -22,14 +22,14 @@ import {
 } from "../Reviews/styled";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
-import HeartIcon from "../../component/ReviewComponent/HeartIcon";
+import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
-import { ResponseData } from "../../type/type";
+import { Comment, ResponseData } from "../../type/type";
 import { mockApi } from "./data";
 import { badgeImages } from "../../constants/imageResources";
-import MoreVert from "../../component/ReviewComponent/MoreVert";
+import MoreVert from "../../component/reviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Placeholder from "./Placeholder";
@@ -58,7 +58,7 @@ const ChatIcon = styled(Icon)`
 `;
 
 function Reviews() {
-  const [response, setResponse] = useState<ResponseData>(null);
+  const [response, setResponse] = useState<ResponseData<Comment>>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
 
   useEffect(() => {
@@ -115,11 +115,7 @@ function Reviews() {
                       />
                     </UserRating>
                     <div>
-                      <MoreVert
-                        reviewOrReply="review"
-                        userID={data.userID!}
-                        replyID={data.commentID!}
-                      />
+                      <MoreVert reviewOrReply="review" userID={data.userID!} />
                     </div>
                   </UserReviewTop>
                   <UserReviewMain>

@@ -7,7 +7,7 @@ import HotShopList from "./HotShopList";
 import HotReviews from "./HotReviews";
 import LearningResources from "./LearningResources";
 import { useEffect, useState } from "react";
-import { hotReviewData } from "../../type/type";
+import { ResponseData, ReviewOrReply } from "../../type/type";
 import { mockApi } from "./data";
 
 const HomeContainer = styled(Container)`
@@ -15,7 +15,7 @@ const HomeContainer = styled(Container)`
 `;
 
 function Popular() {
-  const [response, setResponse] = useState<hotReviewData>(null);
+  const [response, setResponse] = useState<ResponseData<ReviewOrReply>>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Popular() {
           <AdSwiper />
           <PopularMarquee />
           <HotShopList />
-          {response && <HotReviews res={response} />}
+          {response && <HotReviews data={response.data} />}
           <LearningResources />
         </HomeContainer>
       </Wrapper>
