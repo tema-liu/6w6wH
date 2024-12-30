@@ -3,6 +3,7 @@ import Header from "../../component/layout/header";
 import { Wrapper } from "../../component/layout/LayoutComponents";
 import SelectLocation from "./SelectLocation";
 import { Location } from "../../type/type";
+import GoogleMap from "./GoogleMap";
 
 function AddStore() {
   const [selectLocation, setSelectLocation] = useState<Location | null>(null);
@@ -17,6 +18,8 @@ function AddStore() {
           setSelectLocation={setSelectLocation}
         />
       )}
+
+      {selectLocation && <GoogleMap location={selectLocation} />}
     </Wrapper>
   );
 }
