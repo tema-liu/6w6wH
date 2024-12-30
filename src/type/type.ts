@@ -66,7 +66,7 @@ type Tag = {
   count: number;
 };
 
-type Location = {
+export type Location = {
   lat: number;
   lng: number;
 };

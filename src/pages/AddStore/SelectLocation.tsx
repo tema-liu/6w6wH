@@ -10,13 +10,16 @@ import {
 import { useState } from "react";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import LocationMap from "../Search/LocationMap";
-import { Location, location } from "./data";
+import { locationList } from "./data";
+import { Location } from "../../type/type";
+import useUserLocation from "../../hooks/useUseLocation";
 
 function SelectLocation() {
+  const { location, error, getUserLocation } = useUserLocation();
   const [selectedOption, setSelectedOption] = useState("North");
-
   const [selectLocation, setSelectLocation] = useState<Location | null>(null);
-  console.log(selectLocation);
+  console.log("selectLocation: " + selectLocation?.lat, selectLocation?.lng);
+
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
@@ -30,6 +33,10 @@ function SelectLocation() {
             content="Use your location to explore your surroundings"
             iconStyle="person_pin_circle"
             btnText="Turn on location"
+            onClick={() => {
+              getUserLocation();
+              setSelectLocation(location);
+            }}
           />
         );
       case "North":
@@ -40,7 +47,7 @@ function SelectLocation() {
               noBtn={true}
               content="Select the  where the venue is located"
             />
-            {location.North.map((item) => (
+            {locationList.North.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
@@ -60,7 +67,7 @@ function SelectLocation() {
               noBtn={true}
               content="Select the  where the venue is located"
             />
-            {location.Center.map((item) => (
+            {locationList.Center.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
@@ -81,7 +88,7 @@ function SelectLocation() {
               noBtn={true}
               content="Select the  where the venue is located"
             />
-            {location.South.map((item) => (
+            {locationList.South.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
@@ -101,7 +108,7 @@ function SelectLocation() {
               noBtn={true}
               content="Select the  where the venue is located"
             />
-            {location.East.map((item) => (
+            {locationList.East.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
