@@ -70,6 +70,9 @@ function StoreDetail() {
     return (
       <Wrapper>
         <Header title={"Store Detail"} />
+        <Container>
+          <Placeholder />
+        </Container>
       </Wrapper>
     );
   }

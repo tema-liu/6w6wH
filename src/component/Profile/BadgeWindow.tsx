@@ -1,47 +1,11 @@
 import { useState } from "react";
-import level1 from "../../assets/medal/Frame 1984077552.svg";
-import level2 from "../../assets/medal/Frame 1984077549.svg";
-import level3 from "../../assets/medal/Frame 1984077550.svg";
-import level4 from "../../assets/medal/Group 48097690.svg";
-import level5 from "../../assets/medal/Frame 1984077553.svg";
-import level6 from "../../assets/medal/Frame 1984077554.svg";
 import { CircleImg } from "../layout/LayoutComponents";
 import { PopupModal } from "../popupModel/PopupModal";
 import { Item, Content, Title, TopSection, BottomSection } from "./style/badge";
-
-const badgeList = {
-  level1: level1,
-  level2: level2,
-  level3: level3,
-  level4: level4,
-  level5: level5,
-  level6: level6,
-};
-
-const badgeRuleList = {
-  grade: [
-    "Grade",
-    "Level 1",
-    "Level 2",
-    "Level 3",
-    "Level 4",
-    "Level 5",
-    "Level 6",
-  ],
-  Integral: [
-    "Integral",
-    "0 points",
-    "50 points",
-    "100 points",
-    "500 points",
-    "1000 points",
-    "2000+ points",
-  ],
-  badge: ["Badge", "level1", "level2", "level3", "level4", "level5", "level6"],
-};
+import { badgeImgList, badgeRuleList } from "./data/badge";
 
 type BadgeProps = {
-  level: keyof typeof badgeList; // 限制 country 為 countryList 的鍵值
+  level: keyof typeof badgeImgList; // 限制 country 為 countryList 的鍵值
 };
 
 function Badges({ level }: BadgeProps) {
@@ -54,7 +18,7 @@ function Badges({ level }: BadgeProps) {
         onClick={() => {
           setWindowOpen(!isWindowOpen);
         }}
-        src={badgeList[level]}
+        src={badgeImgList[level]}
         alt={level}
       />
       {isWindowOpen && (
@@ -80,13 +44,15 @@ function Badges({ level }: BadgeProps) {
                       {items.map((item, index) => {
                         if (
                           key === "badge" &&
-                          badgeList[item as keyof typeof badgeList]
+                          badgeImgList[item as keyof typeof badgeImgList]
                         ) {
                           return (
                             <CircleImg
                               style={{ width: "22px", height: "22px" }}
                               key={item}
-                              src={badgeList[item as keyof typeof badgeList]}
+                              src={
+                                badgeImgList[item as keyof typeof badgeImgList]
+                              }
                               alt={item}
                             />
                           );
