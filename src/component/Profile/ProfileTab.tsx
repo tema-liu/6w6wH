@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   TabBox,
   SegmentedControlInner,
@@ -6,7 +6,6 @@ import {
   Label,
   Content,
 } from "./style/ProfileTab";
-import React from "react";
 
 export function ToggleSwitch({
   inputList,
@@ -36,7 +35,7 @@ export function ToggleSwitch({
       <SegmentedControlInner>
         {inputList.map((input, index) => {
           return (
-            <React.Fragment key={input}>
+            <Fragment key={input}>
               <RadioInput
                 key={input}
                 id={input}
@@ -54,7 +53,7 @@ export function ToggleSwitch({
               >
                 {input}
               </Label>
-            </React.Fragment>
+            </Fragment>
           );
         })}
       </SegmentedControlInner>

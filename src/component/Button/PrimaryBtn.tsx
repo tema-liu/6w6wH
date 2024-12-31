@@ -13,6 +13,7 @@ type buttonStyleProps = {
   $boxShadow?: string;
   $border?: string;
   $color?: string;
+  $opacity?: number;
 };
 
 type buttonProps = {
@@ -31,6 +32,7 @@ type buttonProps = {
   $boxShadow?: string;
   $border?: string;
   $color?: string;
+  $opacity?: number;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const IconImg = styled(Icon)<buttonStyleProps>`
@@ -40,6 +42,7 @@ const IconImg = styled(Icon)<buttonStyleProps>`
 `;
 
 const Btn = styled.button<buttonStyleProps>`
+  opacity: ${({ $opacity }) => ($opacity ? $opacity : 1)};
   width: ${({ $Width }) => ($Width ? $Width : "100%")};
   border: ${({ $border }) => ($border ? $border : "none")};
   color: ${({ $color, theme }) =>
@@ -78,10 +81,12 @@ export function PrimaryBtn({
   $boxShadow,
   $border,
   $color,
+  $opacity,
   ...props
 }: buttonProps) {
   return (
     <Btn
+      $opacity={$opacity}
       $color={$color}
       $boxShadow={$boxShadow}
       type={type}
