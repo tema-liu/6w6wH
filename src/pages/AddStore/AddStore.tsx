@@ -7,8 +7,6 @@ import GoogleMap from "./GoogleMap";
 
 function AddStore() {
   const [selectLocation, setSelectLocation] = useState<Location | null>(null);
-  console.log(selectLocation);
-
   return (
     <Wrapper>
       <Header isBefore={false} title={"Add friendly store"} />

@@ -24,11 +24,11 @@ export const Photo = styled.img`
   object-fit: contain;
 `;
 type ButtonProps = {
-  $bottom?: number; // 定義屬性類型，可選屬性
+  $bottom?: string; // 定義屬性類型，可選屬性
 };
 
 export const Button = styled.div<ButtonProps>`
-  bottom: ${({ $bottom }) => ($bottom ? $bottom + "px" : "104px")};
+  bottom: ${({ $bottom }) => ($bottom ? $bottom : "104px")};
   margin-top: 0px;
   top: auto;
   background-color: ${({ theme }) => theme.colors.light};

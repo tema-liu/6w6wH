@@ -88,3 +88,12 @@ export type StoreData = {
   url?: string | null; // 網址
   opening_hours?: OpeningHours | null; // 營業時間
 };
+
+//AddShop=================================
+export type AddPlaceList = {
+  location: Location;
+  photos: string | null;
+  placeId: string;
+  displayName: string;
+  address: string;
+};

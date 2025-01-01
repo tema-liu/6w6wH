@@ -43,12 +43,12 @@ function StoreSwiper({
           <Img src={photo} alt="storePhoto" />
         </SwiperSlide>
       ))}
-      <Button $bottom={124} className="swiper-button-next">
+      <Button $bottom={"124px"} className="swiper-button-next">
         <Icon $isPointer={true} className="material-symbols-outlined">
           chevron_right
         </Icon>
       </Button>
-      <Button $bottom={124} className="swiper-button-prev">
+      <Button $bottom={"124px"} className="swiper-button-prev">
         <Icon $isPointer={true} className="material-symbols-outlined">
           chevron_left
         </Icon>

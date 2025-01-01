@@ -193,7 +193,7 @@ function SelectLocation({
               $isIconDark={true}
               content="Unable to get location"
               children={
-                <h5 style={{ textAlign: "center" }}>
+                <h5 style={{ color: "#7F7F7F", textAlign: "center" }}>
                   Please confirm your targeting settings
                 </h5>
               }
