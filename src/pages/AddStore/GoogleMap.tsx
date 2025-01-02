@@ -15,6 +15,7 @@ import { Icon } from "../../component/layout/LayoutComponents";
 import NearbyPlaces from "../../hooks/NearbyPlaces";
 import AddStoreCard from "./AddStoreCard";
 import { Button } from "../../component/SwiperStyle";
+import AddStoreForm from "./AddStoreForm";
 
 type GoogleMapProps = {
   location: Location;
@@ -27,8 +28,8 @@ function GoogleMap({ location }: GoogleMapProps) {
   const [pinLocation, setPinLocation] = useState<Location | null>(null); //主要pin的定位
   const [isLocationConfirmed, setLocationConfirmed] = useState(false); //是否確認定位
   const [placeList, setPlaceList] = useState<AddPlaceList[] | null>(null); //搜尋後的商店列表
-  const [placeIndex, setPlaceIndex] = useState(0);
-  const [currentStore, setCurrentStore] = useState<AddPlaceList | null>(null);
+  const [placeIndex, setPlaceIndex] = useState(0); //現在瀏覽店家的index
+  const [currentStore, setCurrentStore] = useState<AddPlaceList | null>(null); //最終選擇的店家
 
   const handleCounter = (
     min: number,
@@ -46,17 +47,18 @@ function GoogleMap({ location }: GoogleMapProps) {
 
   return (
     <MapContainer $padding={placeList ? "16px 8px" : "0"}>
+      {/* 地圖渲染區域 */}
       <APIProvider apiKey={apiKey} language="id">
         <MapBox
           onCameraChanged={(e) => {
             const newZoom = e.detail.zoom;
-            //避免重複更新
+            //調整地圖大小避免重複更新
             if (newZoom !== zoom) {
               setZoom(e.detail.zoom);
             }
           }}
           onClick={(e) => {
-            //選定地點後禁制更動地標
+            //選定地點後禁止更動地標
             if (!isLocationConfirmed) {
               setPinLocation(e.detail.latLng);
             }
@@ -71,13 +73,14 @@ function GoogleMap({ location }: GoogleMapProps) {
           disableDefaultUI={true} // 禁用其他 UI
           mapId={mapId}
         >
+          {/*確認地點以及pinLocation定位時觸發搜尋商家API */}
           {isLocationConfirmed && pinLocation && (
             <NearbyPlaces location={pinLocation} setPlaceList={setPlaceList} />
           )}
+          {/* 商家列表Maker */}
           <AdvancedMarker zIndex={10} position={pinLocation}>
             <OfficialPin src={webIcon} />
           </AdvancedMarker>
-
           {placeList?.map((item, index) => {
             const match = index === placeIndex;
             return (
@@ -95,7 +98,8 @@ function GoogleMap({ location }: GoogleMapProps) {
               </AdvancedMarker>
             );
           })}
-          {placeList && placeList.length > 0 && (
+          {/* 還沒選擇店家以及有商家列表才出現按鈕 */}
+          {!currentStore && placeList && placeList.length > 0 && (
             <>
               <Button
                 onClick={() => {
@@ -134,29 +138,30 @@ function GoogleMap({ location }: GoogleMapProps) {
             </>
           )}
         </MapBox>
-        {!placeList && (
-          <ZoomBtnBox>
-            <ZoomBtn
-              onClick={() => {
-                handleCounter(0, 22, "add", zoom, setZoom);
-              }}
-            >
-              <Icon $isPointer={true} className="material-symbols-outlined">
-                add
-              </Icon>
-            </ZoomBtn>
-            <ZoomBtn
-              onClick={() => {
-                handleCounter(0, 22, "subtract", zoom, setZoom);
-              }}
-            >
-              <Icon $isPointer={true} className="material-symbols-outlined">
-                check_indeterminate_small
-              </Icon>
-            </ZoomBtn>
-          </ZoomBtnBox>
-        )}
       </APIProvider>
+
+      {!placeList && (
+        <ZoomBtnBox>
+          <ZoomBtn
+            onClick={() => {
+              handleCounter(0, 22, "add", zoom, setZoom);
+            }}
+          >
+            <Icon $isPointer={true} className="material-symbols-outlined">
+              add
+            </Icon>
+          </ZoomBtn>
+          <ZoomBtn
+            onClick={() => {
+              handleCounter(0, 22, "subtract", zoom, setZoom);
+            }}
+          >
+            <Icon $isPointer={true} className="material-symbols-outlined">
+              check_indeterminate_small
+            </Icon>
+          </ZoomBtn>
+        </ZoomBtnBox>
+      )}
       {!isLocationConfirmed && (
         <BtnBox>
           <PrimaryBtn
@@ -182,6 +187,7 @@ function GoogleMap({ location }: GoogleMapProps) {
           />
         </>
       )}
+      {currentStore && <AddStoreForm {...currentStore} />}
     </MapContainer>
   );
 }

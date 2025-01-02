@@ -14,10 +14,28 @@ import { useNavigate } from "react-router-dom";
 import Radio from "./Radio";
 import LocationMap from "./LocationMap";
 import TagCheckBox from "../../component/TagCheckBox";
+import { FormTags } from "../../type/formType";
+import { useForm } from "react-hook-form";
+
+const category = [
+  { id: 1, name: "Food" },
+  { id: 2, name: "Shopping" },
+  { id: 3, name: "Services" },
+  { id: 4, name: "Traffic" },
+  { id: 5, name: "Leisure" },
+  { id: 6, name: "Medical" },
+];
+
+const friendly = [
+  { id: 7, name: "Friendly" },
+  { id: 8, name: "Halal" },
+  { id: 9, name: "Multilingual" },
+  { id: 10, name: "Communication aids" },
+  { id: 11, name: "online shopping" },
+];
 
 function Search() {
   const navigate = useNavigate();
-
   //單選nav
   const [selectedOption, setSelectedOption] = useState("North");
   const [selectedStation, setSelectedStation] = useState<(string | null)[]>([
@@ -29,16 +47,6 @@ function Search() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
-
-  const category = ["Food", "Shopping", "Services"];
-
-  const friendly = [
-    "Friendly",
-    "Halal",
-    "Multilingual",
-    "Communication aids",
-    "online shopping",
-  ];
 
   const location: {
     North: string[];
@@ -118,20 +126,37 @@ function Search() {
     }
   };
 
+  const { register, handleSubmit } = useForm<FormTags>({
+    defaultValues: {
+      tags: [],
+    },
+  });
+
+  const onSubmit = (data: FormTags) => {
+    const transformedData = data.tags.map(Number); // 自定義數據轉換
+    console.log(transformedData);
+  };
+
   return (
     <Wrapper>
       <Header title={"Search"} />
       <Container>
-        <SearchContainer
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <SearchContainer onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <TagCheckBox tags={category} />
+            <TagCheckBox
+              register={register}
+              required={false}
+              title="Category"
+              tags={category}
+            />
           </div>
           <div>
-            <TagCheckBox tags={friendly} />
+            <TagCheckBox
+              register={register}
+              required={false}
+              title="Friendly"
+              tags={friendly}
+            />
           </div>
           <div
             style={{

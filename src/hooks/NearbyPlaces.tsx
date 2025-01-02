@@ -39,7 +39,7 @@ const NearbyPlaces = ({ location, setPlaceList }: NearbyProps) => {
           );
           const photoImg = place.photos?.length
             ? place.photos.map((photo) => photo.getUrl({ maxWidth: 600 }))
-            : null;
+            : [];
           return {
             location: place.geometry!.location!.toJSON(),
             photos: photoImg,

@@ -47,7 +47,6 @@ function AddStoreCard({
         </ImgBox>
         <DisplayName>
           <DisplayNameText>{data.displayName}</DisplayNameText>
-
           <Icon
             $isPointer={true}
             color="900"

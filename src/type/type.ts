@@ -92,8 +92,15 @@ export type StoreData = {
 //AddShop=================================
 export type AddPlaceList = {
   location: Location;
-  photos: string | null;
+  photos: string[];
   placeId: string;
   displayName: string;
   address: string;
+};
+
+//Tag===========================
+export type SearchTag = {
+  id: number;
+  name: string;
+  [key: string]: unknown; // 允許其他屬性，但類型為未知
 };

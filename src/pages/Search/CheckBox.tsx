@@ -1,4 +1,6 @@
+import { UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
+import { FormTags } from "../../type/formType";
 
 const Input = styled.input`
   @keyframes changeBackground {
@@ -64,25 +66,30 @@ const Label = styled.label`
 `;
 
 type CheckProps = {
-  content: string;
-  isChecked: boolean; // 是否選中
-  onChange: (tag: string) => void;
+  value: number;
+  idFor: string;
+  name: string;
+  register: UseFormRegister<FormTags>; //不一定需要表單驗證
+  required: boolean;
 };
 
-function CheckBox({ content, isChecked, onChange }: CheckProps) {
+function CheckBox({ value, idFor, name, register, required }: CheckProps) {
   return (
     <>
       <Input
         type="checkbox"
-        id={content}
-        checked={isChecked}
-        onChange={() => onChange(content)}
+        id={idFor}
+        value={value}
+        {...register("tags", {
+          validate: required
+            ? (value) => value.length > 0 || "至少選擇一個標籤"
+            : undefined, // 如果非必填，則不應用驗證規則
+        })}
       />
-      <Label htmlFor={content}>
-        <span>{content}</span>
+      <Label htmlFor={idFor}>
+        <span>{name}</span>
       </Label>
     </>
   );
 }
-
 export default CheckBox;
