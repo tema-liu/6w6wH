@@ -14,7 +14,6 @@ import { Location } from "../../type/type";
 import useUserLocation from "../../hooks/useUseLocation";
 import React from "react";
 import { GeneralPopupModal } from "../../component/popupModel/PopupModal";
-import LocationMap from "../Search/LocationMap";
 import { useNavigate } from "react-router-dom";
 
 type SelectLocationProps = {
