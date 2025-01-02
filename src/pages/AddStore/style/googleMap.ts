@@ -11,12 +11,12 @@ export const MapContainer = styled.div<MapContainer>`
   flex-direction: column;
   padding: ${({ $padding }) => $padding && $padding};
   width: 100%;
-  height: calc(100dvh - 120px);
+  height: 100%; //calc(100dvh - 120px);
 `;
 
 type MapBox = {
   $borderRadius: string;
-  //   $height:string;
+  $height: string;
 };
 
 export const MapBox = styled(Map)<MapBox>`
@@ -24,9 +24,11 @@ export const MapBox = styled(Map)<MapBox>`
   border-radius: ${({ $borderRadius }) => $borderRadius && $borderRadius};
   overflow: hidden;
   width: 100%;
-  flex: 1;
+  height: ${({ $height }) => $height && $height};
+  min-height: calc((100dvh - 131px) / 2);
 `;
 export const BtnBox = styled.div`
+  max-width: 956px;
   width: 100%;
   padding: 0 8px;
   position: fixed;

@@ -32,8 +32,10 @@ const NearbyPlaces = ({ location, setPlaceList }: NearbyProps) => {
     placesService.nearbySearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         const filteredResults = results.map((place) => {
+          //取得
           const city = place.plus_code?.compound_code?.slice(
-            place.plus_code?.compound_code?.indexOf("台灣") + 2
+            place.plus_code?.compound_code?.indexOf("台灣") + 2,
+            place.plus_code?.compound_code?.indexOf("台灣") + 5
           );
           const photoImg = place.photos
             ? place.photos[0].getUrl({ maxWidth: 600 })

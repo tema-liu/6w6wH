@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   MapContainer,
   MapBox,
@@ -14,7 +13,7 @@ import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 import { useState } from "react";
 import { Icon } from "../../component/layout/LayoutComponents";
 import NearbyPlaces from "../../hooks/NearbyPlaces";
-import AddStoreCard from "./AddStoreCatd";
+import AddStoreCard from "./AddStoreCard";
 import { Button } from "../../component/SwiperStyle";
 
 type GoogleMapProps = {
@@ -61,10 +60,12 @@ function GoogleMap({ location }: GoogleMapProps) {
               setPinLocation(e.detail.latLng);
             }
           }}
+          $height={placeList ? "calc((100dvh - 131px) / 2)" : "100%"}
           $borderRadius={placeList ? "32px 32px 0 0" : "none"}
           reuseMaps={true}
+          center={placeList && pinLocation}
           defaultCenter={location}
-          zoom={zoom} //初始化時使用defaultZoom
+          zoom={zoom}
           gestureHandling={"greedy"}
           disableDefaultUI={true} // 禁用其他 UI
           mapId={mapId}
