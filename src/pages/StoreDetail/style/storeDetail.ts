@@ -42,10 +42,6 @@ export const PlaceName = styled.div`
   }
 `;
 
-export const VoiceIcon = styled(IconI)`
-  margin: 0 8px;
-`;
-
 export const ReviewSection = styled.div`
   display: flex;
   align-items: center;

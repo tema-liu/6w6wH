@@ -14,6 +14,7 @@ import {
   SelectText,
   SelectBtnBox,
 } from "./style/addStoreCard";
+import VoiceReader from "../../component/shop/VoiceReader";
 
 type AddStoreCardProps = {
   data: AddPlaceList;
@@ -47,33 +48,21 @@ function AddStoreCard({
         </ImgBox>
         <DisplayName>
           <DisplayNameText>{data.displayName}</DisplayNameText>
-          <Icon
-            $isPointer={true}
-            color="900"
-            className="material-symbols-outlined"
-          >
-            volume_up
-          </Icon>
+          <VoiceReader $color="gray900" text={data.displayName} />
         </DisplayName>
       </div>
       <AddressContent>
         <AddressTextBox>
           <Icon
             $isPointer={true}
-            color="900"
+            $color="gray900"
             className="material-symbols-outlined"
           >
             location_on
           </Icon>
           <AddressText>{data.address}</AddressText>
         </AddressTextBox>
-        <Icon
-          $isPointer={true}
-          color="900"
-          className="material-symbols-outlined"
-        >
-          volume_up
-        </Icon>
+        <VoiceReader $color="gray900" text={data.address} />
       </AddressContent>
       {!currentStore && (
         <Footer>

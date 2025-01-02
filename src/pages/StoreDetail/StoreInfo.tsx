@@ -1,5 +1,4 @@
 import { Icon } from "./style/storeDetail";
-import { Icon as IconImg } from "../../component/layout/LayoutComponents";
 import ADblock from "../../component/shop/AdBlock";
 import {
   ContentDetail,
@@ -8,6 +7,7 @@ import {
   BusinessHoursTitle,
 } from "./style/storeInfo";
 import { StoreData } from "../../type/type";
+import VoiceReader from "../../component/shop/VoiceReader";
 
 function StoreInfo({ data }: { data: StoreData }) {
   return (
@@ -21,18 +21,7 @@ function StoreInfo({ data }: { data: StoreData }) {
               location_on
             </Icon>
             <h2>{data.address}</h2>
-            <IconImg
-              $isPointer={true}
-              className="material-symbols-outlined"
-              style={{
-                marginBottom: "auto",
-                marginTop: "auto",
-                marginLeft: "auto",
-                cursor: "pointer",
-              }}
-            >
-              volume_up
-            </IconImg>
+            <VoiceReader text={data.address} $margin={"0 0 0 auto"} />
           </Store>
         )}
         {data.enAddress && (

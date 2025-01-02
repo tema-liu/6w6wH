@@ -61,6 +61,7 @@ type IconProps = {
   $fontSize?: string;
   $fill?: boolean;
   $isPointer: boolean;
+  $margin?: string;
 };
 
 const Icon = styled.span<IconProps>`
@@ -68,6 +69,7 @@ const Icon = styled.span<IconProps>`
   font-size: ${({ $fontSize }) => ($fontSize ? $fontSize + "px" : "24px")};
   color: ${({ theme, $color }) =>
     $color ? theme.colors[$color] : theme.colors.gray900};
+  margin: ${({ $margin }) => $margin && $margin};
   font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
 `;
 

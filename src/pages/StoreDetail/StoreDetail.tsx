@@ -9,7 +9,6 @@ import {
   NavigateBtn,
   PlaceDetailHeader,
   PlaceName,
-  VoiceIcon,
   ReviewSection,
   StarContent,
   PlaceDetailMain,
@@ -33,6 +32,7 @@ import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import SuggestModalButton from "./SuggestModalButton";
 import Placeholder from "./Placeholder";
+import VoiceReader from "../../component/shop/VoiceReader";
 
 function StoreDetail() {
   const navigator = useNavigate();
@@ -97,12 +97,12 @@ function StoreDetail() {
           <PlaceDetailHeader>
             <PlaceName>
               <h1>{storeData?.data.displayName}</h1>
-              <VoiceIcon
-                $isPointer={true}
-                className="material-symbols-outlined"
-              >
-                volume_up
-              </VoiceIcon>
+              <VoiceReader
+                text={
+                  storeData?.data.displayName ? storeData?.data.displayName : ""
+                }
+                $margin={"0 8px"}
+              />
             </PlaceName>
             <TagsBar>
               {storeData?.data.tags?.map((tag) => (
