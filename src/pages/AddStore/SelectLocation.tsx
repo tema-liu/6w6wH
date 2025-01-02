@@ -27,6 +27,7 @@ function SelectLocation({
   setSelectLocation,
 }: SelectLocationProps) {
   const { location, error, getUserLocation } = useUserLocation();
+  const [activeStation, setActiveStation] = useState("");
   const [selectedOption, setSelectedOption] = useState("south");
   const [errorWindowOpen, setErrorWindowOpen] = useState(false);
   const navigator = useNavigate();
@@ -43,6 +44,17 @@ function SelectLocation({
       setSelectLocation(location);
     }
   };
+
+  const handleStationChange = (item: {
+    station: string;
+    location: Location;
+  }) => {
+    setActiveStation(item.station); // 立即執行
+    setTimeout(() => {
+      handleLocation(item.location); // 延遲 0.5 秒執行
+    }, 500); // 500 毫秒延遲
+  };
+
   // useEffect監聽定位值
   useEffect(() => {
     //如果取得定位則設定定位
@@ -75,18 +87,17 @@ function SelectLocation({
       case "north":
         return (
           <>
-            <LocationMap
-              padding="0"
-              noBtn={true}
+            <EmptyDisplay
+              showButton={false}
               content="Select the  where the venue is located"
             />
             {locationList.North.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
-                isCheck={selectLocation === item.location}
+                isCheck={activeStation === item.station}
                 onChange={() => {
-                  handleLocation(item.location);
+                  handleStationChange(item);
                 }}
               />
             ))}
@@ -95,18 +106,17 @@ function SelectLocation({
       case "center":
         return (
           <>
-            <LocationMap
-              padding="0"
-              noBtn={true}
+            <EmptyDisplay
+              showButton={false}
               content="Select the  where the venue is located"
             />
             {locationList.Center.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
-                isCheck={selectLocation === item.location}
+                isCheck={activeStation === item.station}
                 onChange={() => {
-                  handleLocation(item.location);
+                  handleStationChange(item);
                 }}
               />
             ))}
@@ -116,18 +126,17 @@ function SelectLocation({
       case "south":
         return (
           <>
-            <LocationMap
-              padding="0"
-              noBtn={true}
+            <EmptyDisplay
+              showButton={false}
               content="Select the  where the venue is located"
             />
             {locationList.South.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
-                isCheck={selectLocation === item.location}
+                isCheck={activeStation === item.station}
                 onChange={() => {
-                  handleLocation(item.location);
+                  handleStationChange(item);
                 }}
               />
             ))}
@@ -136,18 +145,17 @@ function SelectLocation({
       case "east":
         return (
           <>
-            <LocationMap
-              padding="0"
-              noBtn={true}
+            <EmptyDisplay
+              showButton={false}
               content="Select the  where the venue is located"
             />
             {locationList.East.map((item) => (
               <Radio
                 key={item.station}
                 content={item.station}
-                isCheck={selectLocation === item.location}
+                isCheck={activeStation === item.station}
                 onChange={() => {
-                  handleLocation(item.location);
+                  handleStationChange(item);
                 }}
               />
             ))}
