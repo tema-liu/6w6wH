@@ -28,6 +28,7 @@ function GoogleMap({ location }: GoogleMapProps) {
   const [isLocationConfirmed, setLocationConfirmed] = useState(false); //是否確認定位
   const [placeList, setPlaceList] = useState<AddPlaceList[] | null>(null); //搜尋後的商店列表
   const [placeIndex, setPlaceIndex] = useState(0);
+  const [currentStore, setCurrentStore] = useState<AddPlaceList | null>(null);
 
   const handleCounter = (
     min: number,
@@ -73,14 +74,18 @@ function GoogleMap({ location }: GoogleMapProps) {
           {isLocationConfirmed && pinLocation && (
             <NearbyPlaces location={pinLocation} setPlaceList={setPlaceList} />
           )}
-          <AdvancedMarker position={pinLocation}>
+          <AdvancedMarker zIndex={10} position={pinLocation}>
             <OfficialPin src={webIcon} />
           </AdvancedMarker>
 
           {placeList?.map((item, index) => {
             const match = index === placeIndex;
             return (
-              <AdvancedMarker key={item.placeId} position={item.location}>
+              <AdvancedMarker
+                zIndex={match ? 5 : 1}
+                key={item.placeId}
+                position={item.location}
+              >
                 <Pin
                   background={match ? "#FF0000" : "#171D1E"}
                   borderColor={"none"}
@@ -172,6 +177,8 @@ function GoogleMap({ location }: GoogleMapProps) {
             index={placeList.length - 1 === placeIndex ? 0 : placeIndex + 1}
             data={placeList[placeIndex]}
             setIndex={setPlaceIndex}
+            currentStore={currentStore}
+            setCurrentStore={setCurrentStore}
           />
         </>
       )}

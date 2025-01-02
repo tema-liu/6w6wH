@@ -37,8 +37,8 @@ const NearbyPlaces = ({ location, setPlaceList }: NearbyProps) => {
             place.plus_code?.compound_code?.indexOf("台灣") + 2,
             place.plus_code?.compound_code?.indexOf("台灣") + 5
           );
-          const photoImg = place.photos
-            ? place.photos[0].getUrl({ maxWidth: 600 })
+          const photoImg = place.photos?.length
+            ? place.photos.map((photo) => photo.getUrl({ maxWidth: 600 }))
             : null;
           return {
             location: place.geometry!.location!.toJSON(),
