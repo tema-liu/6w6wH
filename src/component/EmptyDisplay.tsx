@@ -65,7 +65,7 @@ type EmptyDisplayProps = {
   iconStyle?: string; // 定義 iconStyle 是字串
   btnText?: string; // 定義 btnText 是字串
   children?: React.ReactNode; // children 是可選的 React 節點
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.MouseEvent<HTMLButtonElement>) => void);
   showButton?: boolean; //是否顯示按鈕
 };
 

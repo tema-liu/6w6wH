@@ -1,9 +1,9 @@
 //==========呼叫API使用型別===========
-export type ResponseData<T = unknown> = null | {
+export type ResponseData<T = unknown> = {
   statusCode: number; // 狀態碼
   status: boolean; // 狀態
   message: string; // 回應訊息
-  data: T;
+  data?: T;
 };
 
 //=========Reviews====================================
@@ -19,7 +19,7 @@ export type Reply = {
   isLike: boolean; // 是否已按愛心
 };
 
-export type Comment = null | {
+export type Comment = {
   commentID: string; // 評論ID
   userID: string; // 評論人ID
   userName: string; // 評論人名稱
@@ -101,6 +101,13 @@ export type AddPlaceList = {
 //Tag===========================
 export type SearchTag = {
   id: number;
+  group: "Category" | "Friendly";
   name: string;
-  [key: string]: unknown; // 允許其他屬性，但類型為未知
+};
+
+export type SearchStationTag = {
+  id: number;
+  area: string;
+  county: string;
+  countyName: string;
 };

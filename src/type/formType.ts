@@ -11,5 +11,6 @@ export type AddPlaceList = {
 //tags=======================
 export type FormTags = {
   tags: number[];
+  cityId: string;
   [key: string]: unknown; // 允許其他屬性，但類型為未知
 };

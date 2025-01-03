@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { FormTags } from "../../type/formType";
+import { UseFormRegister } from "react-hook-form";
 
 const Input = styled.input`
   @keyframes changeBackground {
@@ -54,20 +56,14 @@ const MoonBtn = styled.label`
 
 type CheckProps = {
   content: string;
-  isCheck: boolean;
-  onChange: () => void;
+  value: number;
+  register: UseFormRegister<FormTags>;
 };
 
-function Radio({ content, isCheck, onChange }: CheckProps) {
+function Radio({ value, content, register }: CheckProps) {
   return (
     <>
-      <Input
-        type="radio"
-        id={content}
-        name="location"
-        checked={isCheck}
-        onChange={onChange}
-      />
+      <Input value={value} type="radio" id={content} {...register("cityId")} />
       <MoonBtn htmlFor={content}>
         <span>{content}</span>
       </MoonBtn>

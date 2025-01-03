@@ -1,20 +1,30 @@
 import styled from "styled-components";
 import EmptyDisplay from "../../component/EmptyDisplay";
-import useUserLocation from "../../hooks/useUseLocation";
+import { Location } from "../../type/type";
 
-type pdProps = {
-  $padding: string;
-};
 const ImgContainer = styled.div<pdProps>`
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: ${({ $padding }) => $padding};
 `;
+type pdProps = {
+  $padding: string;
+};
 
-function LocationMap() {
-  const { location, error, getUserLocation } = useUserLocation();
+type LocationMapProps = {
+  getUserLocation: () => void;
+  error: string | null;
+  location: Location | null;
+};
+
+function LocationMap({ location, error, getUserLocation }: LocationMapProps) {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    getUserLocation();
+  };
 
   return (
     <>
@@ -37,8 +47,8 @@ function LocationMap() {
             }
             showButton={error ? false : true}
             btnText="Turn on location"
-            onClick={() => {
-              getUserLocation();
+            onClick={(event) => {
+              clickHandler(event);
             }}
           />
         </ImgContainer>

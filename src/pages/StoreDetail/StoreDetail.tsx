@@ -37,9 +37,12 @@ import VoiceReader from "../../component/shop/VoiceReader";
 function StoreDetail() {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
-  const [storeData, setStoreData] = useState<ResponseData<StoreData>>(null); //商店詳細資料
-  const [storeReviewsData, setStoreReviewsData] =
-    useState<ResponseData<null | Comment[]>>(null); //商店評論
+  const [storeData, setStoreData] = useState<ResponseData<StoreData> | null>(
+    null
+  ); //商店詳細資料
+  const [storeReviewsData, setStoreReviewsData] = useState<ResponseData<
+    Comment[]
+  > | null>(null); //商店評論
   const [isLoading, setIsLoading] = useState(true);
   const initialOption = searchParams.get("option") || "Detail";
   const [selectedOption, setSelectedOption] = useState(initialOption);
