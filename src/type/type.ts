@@ -108,6 +108,6 @@ export type SearchTag = {
 export type SearchStationTag = {
   id: number;
   area: string;
-  county: string;
-  countyName: string;
+  country: string;
+  countryName: string;
 };

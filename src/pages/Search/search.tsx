@@ -15,50 +15,38 @@ import Radio from "./Radio";
 import LocationMap from "./LocationMap";
 import TagCheckBox from "../../component/TagCheckBox";
 import { FormTags } from "../../type/formType";
-import { useForm } from "react-hook-form";
-import { getSearchTags, getStationTags } from "../../apis/getTagsList";
-import { Location, SearchStationTag, SearchTag } from "../../type/type";
+import { useForm, useWatch } from "react-hook-form";
+import { Location } from "../../type/type";
 import useUserLocation from "../../hooks/useUseLocation";
-
-const filter = <T extends Record<string, any>>(
-  data: T[],
-  filterKey: keyof T,
-  group: string
-) => {
-  return data.filter((tag) => tag[filterKey] === group);
-};
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../redux/store";
+import { fetchTagsData } from "../../redux/tagList/slice";
 
 function Search() {
+  const dispatch: Dispatch = useDispatch();
+  const cityTags = useSelector((state: RootState) => state.tags.cityTags);
+  const categoryTags = useSelector(
+    (state: RootState) => state.tags.categoryTags
+  );
+  const friendlyTags = useSelector(
+    (state: RootState) => state.tags.friendlyTags
+  );
+  const status = useSelector((state: RootState) => state.tags.status);
+  const errorMessage = useSelector((state: RootState) => state.tags.error);
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("North"); //初始選擇Tab
-  const [categoryTags, setCategoryTags] = useState<SearchTag[] | null>(null); //服務標籤
-  const [friendlyTags, setFriendlyTags] = useState<SearchTag[] | null>(null); //友善標籤
-  const [cityTags, setCityTags] = useState<{
-    north: SearchStationTag[];
-    center: SearchStationTag[];
-    south: SearchStationTag[];
-    east: SearchStationTag[];
-  }>({
-    north: [],
-    center: [],
-    south: [],
-    east: [],
-  });
   const { location, error, getUserLocation } = useUserLocation(); //取得定位
   const [locationType, setLocationType] = useState<"user" | "station">(
     "station"
   ); //設定使用者是用定位還是區域
-
-  const prevStateRef = useRef({
-    location: null as Location | null,
-    cityId: "",
-  });
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
 
   const RenderTransportOptions = () => {
+    if (!cityTags) return null;
+
     switch (selectedOption) {
       case "Location":
         return (
@@ -73,8 +61,8 @@ function Search() {
           <Radio
             register={register}
             value={city.id}
-            key={city.county}
-            content={city.county}
+            key={city.country}
+            content={city.country}
           />
         ));
       case "Center":
@@ -82,8 +70,8 @@ function Search() {
           <Radio
             register={register}
             value={city.id}
-            key={city.county}
-            content={city.county}
+            key={city.country}
+            content={city.country}
           />
         ));
       case "South":
@@ -91,8 +79,8 @@ function Search() {
           <Radio
             register={register}
             value={city.id}
-            key={city.county}
-            content={city.county}
+            key={city.country}
+            content={city.country}
           />
         ));
       case "East":
@@ -100,8 +88,8 @@ function Search() {
           <Radio
             register={register}
             value={city.id}
-            key={city.county}
-            content={city.county}
+            key={city.country}
+            content={city.country}
           />
         ));
       default:
@@ -110,13 +98,14 @@ function Search() {
   };
 
   //表單格式
-  const { watch, register, handleSubmit } = useForm<FormTags>({
+  const { control, register, handleSubmit } = useForm<FormTags>({
     defaultValues: {
       tags: [],
       cityId: "",
     },
   });
   //表單POST
+
   const onSubmit = (data: FormTags) => {
     const transformedData = data.tags.map(Number); // 自定義數據轉換
     console.log({
@@ -126,11 +115,16 @@ function Search() {
       locationType: locationType,
     });
   };
+  const prevStateRef = useRef({
+    location: null as Location | null,
+    cityId: "",
+  });
+  const cityId = useWatch({
+    control,
+    name: "cityId",
+  });
 
   useEffect(() => {
-    const formData = watch();
-    const cityId = formData.cityId;
-
     if (location !== prevStateRef.current.location) {
       location && setLocationType("user");
       prevStateRef.current.location = location;
@@ -138,35 +132,17 @@ function Search() {
       cityId && setLocationType("station");
       prevStateRef.current.cityId = cityId;
     }
-  }, [location, watch("cityId")]); // 監聽location跟cityId 的變化
+  }, [location, cityId]); // 監聽location跟cityId 的變化
 
+  //避免重複調用 API
   useEffect(() => {
-    const fetchData = async () => {
-      const cityResult = await getStationTags();
-      const result = await getSearchTags(); // 調用 API 函式
-      if (cityResult.status) {
-        // 更新 cityTags 狀態
-        setCityTags({
-          north: filter(cityResult.data!, "area", "North"),
-          center: filter(cityResult.data!, "area", "Center"),
-          south: filter(cityResult.data!, "area", "South"),
-          east: filter(cityResult.data!, "area", "East"),
-        });
-      } else {
-        console.log(result.message || "Failed to fetch tags"); // 設置錯誤訊息
-      }
-      if (result.status) {
-        const category = filter(result.data!, "group", "Category");
-        const friendly = filter(result.data!, "group", "Friendly");
-        setCategoryTags(category);
-        setFriendlyTags(friendly);
-      } else {
-        console.log(result.message || "Failed to fetch tags"); // 設置錯誤訊息
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (!cityTags || !categoryTags || !friendlyTags) {
+      dispatch(fetchTagsData());
+    }
+  }, [dispatch, cityTags, categoryTags, friendlyTags]);
+  if (errorMessage) {
+    console.log(errorMessage);
+  }
 
   return (
     <Wrapper>

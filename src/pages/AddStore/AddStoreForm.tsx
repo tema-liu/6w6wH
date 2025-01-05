@@ -4,36 +4,44 @@ import { useForm } from "react-hook-form";
 import { AddPlaceList } from "../../type/type";
 import { FormTags } from "../../type/formType";
 import { TagsContent } from "./style/addStoreForm";
-const category = [
-  { id: 1, name: "Food" },
-  { id: 2, name: "Shopping" },
-  { id: 3, name: "Services" },
-  { id: 4, name: "Traffic" },
-  { id: 5, name: "Leisure" },
-  { id: 6, name: "Medical" },
-];
-
-const friendly = [
-  { id: 7, name: "Friendly" },
-  { id: 8, name: "Halal" },
-  { id: 9, name: "Multilingual" },
-  { id: 10, name: "Communication aids" },
-  { id: 11, name: "online shopping" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../redux/store";
+import { useEffect } from "react";
+import { fetchTagsData } from "../../redux/tagList/slice";
 
 function AddStoreForm({ ...props }: AddPlaceList) {
-  console.log(props);
+  const dispatch: Dispatch = useDispatch();
+  const categoryTags = useSelector(
+    (state: RootState) => state.tags.categoryTags
+  );
+  const friendlyTags = useSelector(
+    (state: RootState) => state.tags.friendlyTags
+  );
+  const errorMessage = useSelector((state: RootState) => state.tags.error);
+
   const { register, handleSubmit, watch } = useForm<FormTags>({
     defaultValues: {
       tags: [],
     },
   });
+
+  //避免重複調用 API
+  useEffect(() => {
+    if (!categoryTags || !friendlyTags) {
+      dispatch(fetchTagsData());
+    }
+  }, [dispatch, categoryTags, friendlyTags]);
+  if (errorMessage) {
+    console.log(errorMessage);
+  }
+
   //監聽tags是否有內容
   const haveTags = watch("tags");
 
   const onSubmit = (data: FormTags) => {
     const transformedData = data.tags.map(Number); // 自定義數據轉換
     const completeData = { ...props, tags: transformedData }; // 合併 props 和表單數據，ＡＰＩ請送出這筆資料
+    console.log(completeData);
   };
 
   return (
@@ -43,13 +51,13 @@ function AddStoreForm({ ...props }: AddPlaceList) {
           required={true}
           register={register}
           title="Category"
-          tags={category}
+          tags={categoryTags || []}
         />
         <TagCheckBox
           required={true}
           register={register}
           title="Friendly"
-          tags={friendly}
+          tags={friendlyTags || []}
         />
       </TagsContent>
       <PrimaryBtn

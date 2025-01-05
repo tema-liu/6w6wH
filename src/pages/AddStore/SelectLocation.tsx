@@ -1,4 +1,4 @@
-import Radio from "../Search/Radio";
+import Radio from "../AddStore/Radio";
 import {
   AddStoreContainer,
   SelectBox,
