@@ -10,7 +10,7 @@ import {
   IconImg,
 } from "./styled";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Radio from "./Radio";
 import LocationMap from "./LocationMap";
 import TagCheckBox from "../../component/TagCheckBox";
@@ -23,6 +23,7 @@ import { Dispatch, RootState } from "../../redux/store";
 import { fetchTagsData } from "../../redux/tagList/slice";
 
 function Search() {
+  const navigate = useNavigate();
   const dispatch: Dispatch = useDispatch();
   const cityTags = useSelector((state: RootState) => state.tags.cityTags);
   const categoryTags = useSelector(
@@ -31,9 +32,8 @@ function Search() {
   const friendlyTags = useSelector(
     (state: RootState) => state.tags.friendlyTags
   );
-  const status = useSelector((state: RootState) => state.tags.status);
   const errorMessage = useSelector((state: RootState) => state.tags.error);
-  const navigate = useNavigate();
+  //API錯誤message
   const [selectedOption, setSelectedOption] = useState("North"); //初始選擇Tab
   const { location, error, getUserLocation } = useUserLocation(); //取得定位
   const [locationType, setLocationType] = useState<"user" | "station">(
@@ -108,12 +108,14 @@ function Search() {
 
   const onSubmit = (data: FormTags) => {
     const transformedData = data.tags.map(Number); // 自定義數據轉換
-    console.log({
-      tags: transformedData,
-      cityId: data.cityId,
-      location: location,
-      locationType: locationType,
+    const newParams = new URLSearchParams({
+      tags: transformedData.join(","),
+      cityId: data.cityId || "",
+      location: location ? `${location.lat},${location.lng}` : "",
+      locationType: locationType || "",
     });
+
+    navigate(`/storeList?${newParams.toString()}`);
   };
   const prevStateRef = useRef({
     location: null as Location | null,

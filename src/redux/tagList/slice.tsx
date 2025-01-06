@@ -60,6 +60,7 @@ export const fetchTagsData =
     try {
       const cityResult = await getStationTags();
       const result = await getSearchTags();
+      console.log(cityResult);
 
       //如果status為true賦值cityTags跟categoryTags,friendlyTags
       if (cityResult.status && result.status) {
