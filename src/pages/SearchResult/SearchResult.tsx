@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../redux/store";
 import { useEffect } from "react";
 import { fetchTagsData } from "../../redux/tagList/slice";
+import { getStoreResult } from "../../apis/getStoreResult";
 
 function SearchResult() {
   const dispatch: Dispatch = useDispatch();
@@ -42,12 +43,13 @@ function SearchResult() {
   //網址取得的queryString
   const [searchParams] = useSearchParams();
   const tags = searchParams.get("tags")?.split(",").map(Number) || [];
-  const cityId = Number(searchParams.get("cityId")) || 0;
+  const cityId = searchParams.get("cityId") || "";
   const location = searchParams.get("location");
   const locationType = searchParams.get("locationType");
   const [lat, lng] = location ? location.split(",").map(Number) : [0, 0];
   //API搜尋參數
   const searchCriteria = {
+    // manberID:0, //之後登入要帶入的ID
     tags: tags,
     cityId: cityId,
     location: { lat: lat, lng: lng },
@@ -67,7 +69,7 @@ function SearchResult() {
       return "Location";
     } else {
       const result = cityTags && Object.values(cityTags).flat();
-      const foundItem = result?.find((item) => item.id === cityId);
+      const foundItem = result?.find((item) => item.id === Number(cityId));
       return foundItem?.country || "ShopList"; // 使用可選鏈結確保安全
     }
   };
@@ -83,12 +85,21 @@ function SearchResult() {
 
   const num = 5;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getStoreResult(searchCriteria);
+    };
+    fetchData(); // 呼叫非同步函式
+  }, []);
+
   //移除tag並且再搜尋
   const clickFilterTag = (tagId: number) => {
     const removeTags = tags.filter((itemId) => itemId !== tagId);
     searchParams.set("tags", removeTags.join(","));
     navigate(`${webLocation.pathname}?${searchParams.toString()}`);
   };
+
+  console.log(searchCriteria);
 
   return (
     <>

@@ -13,7 +13,7 @@ function StoreInfo({ data }: { data: StoreData }) {
   return (
     <>
       <ContentDetail>
-        {data.advertise && <ADblock data={data.advertise} />}
+        {data.advertise?.title && <ADblock data={data.advertise} />}
 
         {data.address && (
           <Store>
@@ -37,7 +37,7 @@ function StoreInfo({ data }: { data: StoreData }) {
             <Icon $isPointer={false} className="material-symbols-outlined">
               attach_money
             </Icon>
-            <h2>{data.budget}</h2>
+            <h2>{data.budget.replace(/\s*/g, "").replace(/\//g, " / ")}</h2>
           </Store>
         )}
         {data.phone && (
@@ -45,7 +45,7 @@ function StoreInfo({ data }: { data: StoreData }) {
             <Icon $isPointer={false} className="material-symbols-outlined">
               call
             </Icon>
-            <h2>{data.phone}</h2>
+            <h2>{data.phone.replace(/\s*/g, "")}</h2>
           </Store>
         )}
         {data.url && (

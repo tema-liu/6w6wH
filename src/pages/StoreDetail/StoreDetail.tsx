@@ -26,17 +26,19 @@ import { useEffect, useState } from "react";
 import StoreInfo from "./StoreInfo";
 import CommentCards from "./CommentCards";
 import StoreSwiper from "./StoreSwiper";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Comment, ResponseData, StoreData } from "../../type/type";
 import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import SuggestModalButton from "./SuggestModalButton";
 import Placeholder from "./Placeholder";
 import VoiceReader from "../../component/shop/VoiceReader";
+import { getStoreDetail } from "../../apis/getStoreDetail";
 
 function StoreDetail() {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
+  const { id } = useParams();
   const [storeData, setStoreData] = useState<ResponseData<StoreData> | null>(
     null
   ); //商店詳細資料
@@ -53,20 +55,18 @@ function StoreDetail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const [result, storeDataRes] = await Promise.all([
-          mockApi("/api/items"),
-          storeResultApi("/api/items"),
-        ]);
-        setStoreReviewsData(result ?? null); //假設res為undefined或null 設為null
-        setStoreData(storeDataRes ?? null);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+      const result = await getStoreDetail(Number(id));
+      console.log(result);
 
-    fetchData();
+      //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面
+      if (!result.status) {
+        navigator("/popular");
+      }
+
+      setStoreData(result ?? null);
+      setIsLoading(false);
+    };
+    fetchData(); // 呼叫非同步函式
   }, []);
 
   if (isLoading) {
@@ -82,113 +82,115 @@ function StoreDetail() {
 
   return (
     <>
-      <Wrapper>
-        <Header title={"Store Detail"} />
-        <Container>
-          {storeData?.data.photos && (
+      {storeData?.data && (
+        <Wrapper>
+          <Header title={"Store Detail"} />
+
+          <Container>
             <StoreSwiper
-              isFavorite={storeData?.data.isFavorited}
-              photos={storeData?.data.photos}
+              isFavorite={storeData.data.isFavorited}
+              photos={storeData.data.photos ?? []}
             />
-          )}
-          <NavigateBtn
-            href={`https://www.google.com/maps/dir/?api=1&destination=${storeData?.data.location.lat}, ${storeData?.data.location.lng}&destination_place_id=${storeData?.data.placeId}`}
-          >
-            <img src={navigateIcon} alt="navigateIcon" />
-            <h2>Navigate</h2>
-          </NavigateBtn>
-          <PlaceDetailHeader>
-            <PlaceName>
-              <h1>{storeData?.data.displayName}</h1>
-              <VoiceReader
-                text={
-                  storeData?.data.displayName ? storeData?.data.displayName : ""
-                }
-                $margin={"0 8px"}
-              />
-            </PlaceName>
-            <TagsBar>
-              {storeData?.data.tags?.map((tag) => (
-                <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
-              ))}
-            </TagsBar>
-            <ReviewSection>
-              <ReviewBtn
-                navigate={storeData?.data.placeId as string}
-                $marginRight={16}
-                content={"Review"}
-              ></ReviewBtn>
-              <StarContent>
-                <StarRating
-                  star={storeData?.data.starCount as 0 | 1 | 2 | 3 | 4 | 5}
+
+            <NavigateBtn
+              href={`https://www.google.com/maps/dir/?api=1&destination=${storeData.data.location.lat}, ${storeData.data.location.lng}&destination_place_id=${storeData.data.placeId}`}
+            >
+              <img src={navigateIcon} alt="navigateIcon" />
+              <h2>Navigate</h2>
+            </NavigateBtn>
+            <PlaceDetailHeader>
+              <PlaceName>
+                <h1>{storeData.data.displayName}</h1>
+                <VoiceReader
+                  text={
+                    storeData.data.displayName ? storeData.data.displayName : ""
+                  }
+                  $margin={"0 8px"}
                 />
-              </StarContent>
-              <IconImg
-                $isPointer={true}
-                style={{
-                  alignItems: "center",
-                  height: "48px",
-                  width: "100%",
-                  display: "flex",
-                  flex: "0 1 0",
-                  padding: "0px 8px 0px 24px",
-                }}
-                className="material-symbols-outlined"
-              >
-                link
-              </IconImg>
-            </ReviewSection>
-          </PlaceDetailHeader>
-          <PlaceDetailMain>
-            <form>
-              <SegmentedControlInner>
-                <RadioInput
-                  id="Detail"
-                  type="radio"
-                  value="Detail"
-                  checked={selectedOption === "Detail"}
-                  onChange={handleOptionChange}
-                />
-                <Label htmlFor="Detail">Detail</Label>
-                <RadioInput
-                  id="Reviews"
-                  type="radio"
-                  value="Reviews"
-                  checked={selectedOption === "Reviews"}
-                  onChange={handleOptionChange}
-                />
-                <Label htmlFor="Reviews">{`Reviews (${
-                  storeReviewsData?.data?.length ?? 0
-                })`}</Label>
-              </SegmentedControlInner>
-            </form>
-            {selectedOption === "Detail" && (
-              <>{storeData?.data && <StoreInfo data={storeData?.data} />}</>
-            )}
-            {selectedOption === "Reviews" && (
-              <>
-                {storeReviewsData?.data ? (
-                  <>
-                    <CommentCards data={storeReviewsData.data} />
-                  </>
-                ) : (
-                  <EmptyContent>
-                    <EmptyDisplay
-                      onClick={() => {
-                        navigator(`/postComment/${storeData?.data.placeId}`);
-                      }}
-                      content="There are no review yet"
-                      iconStyle="reviews"
-                      btnText="Leave your review"
-                    />
-                  </EmptyContent>
-                )}
-              </>
-            )}
-          </PlaceDetailMain>
-          {selectedOption === "Detail" && <SuggestModalButton />}
-        </Container>
-      </Wrapper>
+              </PlaceName>
+              <TagsBar>
+                {storeData.data.tags?.map((tag) => (
+                  <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
+                ))}
+              </TagsBar>
+              <ReviewSection>
+                <ReviewBtn
+                  navigate={storeData.data.placeId}
+                  $marginRight={16}
+                  content={"Review"}
+                ></ReviewBtn>
+                <StarContent>
+                  <StarRating
+                    star={storeData.data.starCount as 0 | 1 | 2 | 3 | 4 | 5}
+                  />
+                </StarContent>
+                <IconImg
+                  $isPointer={true}
+                  style={{
+                    alignItems: "center",
+                    height: "48px",
+                    width: "100%",
+                    display: "flex",
+                    flex: "0 1 0",
+                    padding: "0px 8px 0px 24px",
+                  }}
+                  className="material-symbols-outlined"
+                >
+                  link
+                </IconImg>
+              </ReviewSection>
+            </PlaceDetailHeader>
+            <PlaceDetailMain>
+              <form>
+                <SegmentedControlInner>
+                  <RadioInput
+                    id="Detail"
+                    type="radio"
+                    value="Detail"
+                    checked={selectedOption === "Detail"}
+                    onChange={handleOptionChange}
+                  />
+                  <Label htmlFor="Detail">Detail</Label>
+                  <RadioInput
+                    id="Reviews"
+                    type="radio"
+                    value="Reviews"
+                    checked={selectedOption === "Reviews"}
+                    onChange={handleOptionChange}
+                  />
+                  <Label htmlFor="Reviews">{`Reviews (${
+                    storeReviewsData?.data?.length ?? 0
+                  })`}</Label>
+                </SegmentedControlInner>
+              </form>
+              {selectedOption === "Detail" && (
+                <>{storeData.data && <StoreInfo data={storeData.data} />}</>
+              )}
+              {selectedOption === "Reviews" && (
+                <>
+                  {storeReviewsData?.data ? (
+                    <>
+                      <CommentCards data={storeReviewsData.data} />
+                    </>
+                  ) : (
+                    <EmptyContent>
+                      <EmptyDisplay
+                        onClick={() => {
+                          navigator(`/postComment/${storeData.data?.placeId}`);
+                        }}
+                        content="There are no review yet"
+                        iconStyle="reviews"
+                        btnText="Leave your review"
+                      />
+                    </EmptyContent>
+                  )}
+                </>
+              )}
+            </PlaceDetailMain>
+            {selectedOption === "Detail" && <SuggestModalButton />}
+          </Container>
+        </Wrapper>
+      )}
     </>
   );
 }

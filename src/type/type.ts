@@ -79,7 +79,7 @@ export type StoreData = {
   placeId: string; // Google 地點 ID
   location: Location; // 經緯度
   displayName: string; // 店名
-  photos?: string[] | null; // 店鋪照片
+  photos?: string[]; // 店鋪照片
   address?: string | null; // 地址
   enAddress?: string | null; // 英文地址
   Book?: string | null; // 預約網址
@@ -110,4 +110,24 @@ export type SearchStationTag = {
   area: string;
   country: string;
   countryName: string;
+};
+
+//storeResult===========================
+export type StoreResult = {
+  placeId: string; //Google的ID
+  displayName: string; //店名
+  photo: string; //店家照片
+  starCount: number; //星星數量
+  isAdvertise: boolean; //是否為贊助店家
+  isFavorited: boolean; //是否收藏
+  reviewCount: number; //留言數
+  tags: [
+    { tagName: string; count: number },
+    { tagName: string; count: number }
+  ];
+  comment: {
+    commentId: number; //評論ID
+    userPhoto: string; //使用者圖片
+    content: string; //評論內容
+  };
 };

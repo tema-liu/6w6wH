@@ -38,11 +38,17 @@ function StoreSwiper({
       }}
     >
       <CollectIcon isFavoriteData={isFavorite} right={32} />
-      {photos.map((photo, index) => (
-        <SwiperSlide key={`photo${index}`}>
-          <Img src={photo} alt="storePhoto" />
+      {photos ? (
+        photos.map((photo, index) => (
+          <SwiperSlide key={`photo${index}`}>
+            <Img src={photo} alt="storePhoto" />
+          </SwiperSlide>
+        ))
+      ) : (
+        <SwiperSlide key={`noPhotoImg`}>
+          <Img src={noPhotoImg} alt="storePhoto" />
         </SwiperSlide>
-      ))}
+      )}
       <Button $bottom={"124px"} className="swiper-button-next">
         <Icon $isPointer={true} className="material-symbols-outlined">
           chevron_right
