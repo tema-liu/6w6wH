@@ -5,7 +5,7 @@ const Content = styled.p`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 17px;
   line-height: 22px;
   letter-spacing: -0.41px;
@@ -47,12 +47,13 @@ const CloseButton = styled.button`
 interface TagChipProps {
   label: string;
   onRemove?: () => void;
+  value: number;
 }
 
-export const TagChips = ({ label, onRemove }: TagChipProps) => (
+export const TagChips = ({ value, label, onRemove }: TagChipProps) => (
   <TagChip>
     <Content>{label}</Content>
-    <CloseButton onClick={onRemove}>
+    <CloseButton value={value} onClick={onRemove}>
       <img src={closeIcon} alt="close" />
     </CloseButton>
   </TagChip>
