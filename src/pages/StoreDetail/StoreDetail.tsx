@@ -1,9 +1,5 @@
 import Header from "../../component/layout/header";
-import {
-  Wrapper,
-  Container,
-  Icon as IconImg,
-} from "../../component/layout/LayoutComponents";
+import { Wrapper, Container } from "../../component/layout/LayoutComponents";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import {
   NavigateBtn,
@@ -13,6 +9,7 @@ import {
   StarContent,
   PlaceDetailMain,
   EmptyContent,
+  LinkIcon,
 } from "./style/storeDetail";
 import { StarRating } from "../../component/StarRating";
 import { ReviewBtn } from "../../component/button/ReviewBtn";
@@ -34,6 +31,7 @@ import SuggestModalButton from "./SuggestModalButton";
 import Placeholder from "./Placeholder";
 import VoiceReader from "../../component/shop/VoiceReader";
 import { getStoreDetail } from "../../apis/getStoreDetail";
+import { getStoreCommit } from "../../apis/getStoreCommit";
 
 function StoreDetail() {
   const navigator = useNavigate();
@@ -55,16 +53,29 @@ function StoreDetail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getStoreDetail(Number(id));
-      console.log(result);
+      const numericId = Number(id);
+      try {
+        const [result, commitList] = await Promise.all([
+          getStoreDetail(numericId),
+          getStoreCommit(numericId),
+        ]);
+        console.log(commitList);
 
-      //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面
-      if (!result.status) {
-        navigator("/popular");
+        // //假資料串接
+        // const result = await storeResultApi("/api/items");
+        // const commitList = await mockApi("/api/items");
+
+        //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面
+        if (!result.status) {
+          // navigator("/popular");
+          // return;
+        }
+        setStoreData(result ?? null);
+        setStoreReviewsData(commitList ?? null);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-
-      setStoreData(result ?? null);
-      setIsLoading(false);
     };
     fetchData(); // 呼叫非同步函式
   }, []);
@@ -91,7 +102,6 @@ function StoreDetail() {
               isFavorite={storeData.data.isFavorited}
               photos={storeData.data.photos ?? []}
             />
-
             <NavigateBtn
               href={`https://www.google.com/maps/dir/?api=1&destination=${storeData.data.location.lat}, ${storeData.data.location.lng}&destination_place_id=${storeData.data.placeId}`}
             >
@@ -109,9 +119,9 @@ function StoreDetail() {
                 />
               </PlaceName>
               <TagsBar>
-                {storeData.data.tags?.map((tag) => (
+                {/* {storeData.data.tags?.map((tag) => (
                   <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
-                ))}
+                ))} */}
               </TagsBar>
               <ReviewSection>
                 <ReviewBtn
@@ -124,20 +134,12 @@ function StoreDetail() {
                     star={storeData.data.starCount as 0 | 1 | 2 | 3 | 4 | 5}
                   />
                 </StarContent>
-                <IconImg
+                <LinkIcon
                   $isPointer={true}
-                  style={{
-                    alignItems: "center",
-                    height: "48px",
-                    width: "100%",
-                    display: "flex",
-                    flex: "0 1 0",
-                    padding: "0px 8px 0px 24px",
-                  }}
-                  className="material-symbols-outlined"
+                  className={"material-symbols-outlined"}
                 >
                   link
-                </IconImg>
+                </LinkIcon>
               </ReviewSection>
             </PlaceDetailHeader>
             <PlaceDetailMain>
@@ -168,7 +170,8 @@ function StoreDetail() {
               )}
               {selectedOption === "Reviews" && (
                 <>
-                  {storeReviewsData?.data ? (
+                  {storeReviewsData?.data &&
+                  storeReviewsData.data.length > 0 ? (
                     <>
                       <CommentCards data={storeReviewsData.data} />
                     </>

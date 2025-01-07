@@ -1,5 +1,8 @@
-import styled from "styled-components";
-import { Icon as IconI } from "../../../component/layout/LayoutComponents";
+import styled, { keyframes } from "styled-components";
+import {
+  Icon as IconI,
+  IconImg,
+} from "../../../component/layout/LayoutComponents";
 
 export const NavigateBtn = styled.a`
   display: flex;
@@ -39,6 +42,35 @@ export const PlaceName = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
   h1 {
     font-family: "mix";
+  }
+`;
+
+export const LinkIcon = styled(IconI)`
+  position: relative;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  display: flex;
+  flex: 0 1 0;
+  padding: 0px 8px 0px 24px;
+
+  &::before {
+    content: "";
+    font-family: roboto;
+    position: absolute;
+    bottom: 15%;
+    left: 30%;
+    background: ${({ theme }) => theme.colors.gray400};
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease-out;
+  }
+
+  &:active::before {
+    opacity: 0.5;
   }
 `;
 

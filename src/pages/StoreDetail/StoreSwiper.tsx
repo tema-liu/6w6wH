@@ -9,6 +9,7 @@ import "swiper/css/scrollbar";
 import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
 import noPhotoImg from "../../assets/Item-1.png";
+import { Photo } from "../../type/type";
 
 const Container = styled(SwiperContainer)`
   position: relative;
@@ -24,9 +25,12 @@ function StoreSwiper({
   photos,
   isFavorite,
 }: {
-  photos: string[];
+  photos: Photo[];
   isFavorite: boolean;
 }) {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  console.log(photos);
+
   return (
     <Container
       // install Swiper modules
@@ -38,10 +42,10 @@ function StoreSwiper({
       }}
     >
       <CollectIcon isFavoriteData={isFavorite} right={32} />
-      {photos ? (
-        photos.map((photo, index) => (
-          <SwiperSlide key={`photo${index}`}>
-            <Img src={photo} alt="storePhoto" />
+      {photos.length > 0 ? (
+        photos.map((photo) => (
+          <SwiperSlide key={`photo${photo.Id}`}>
+            <Img src={`${apiUrl}/${photo.PictureUrl}`} alt="storePhoto" />
           </SwiperSlide>
         ))
       ) : (

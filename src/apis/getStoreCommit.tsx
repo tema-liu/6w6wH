@@ -1,10 +1,10 @@
-import { ResponseData, StoreData } from "../type/type";
+import { Comment, ResponseData } from "../type/type";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const getStoreDetail = async (
+export const getStoreCommit = async (
   id: number
-): Promise<ResponseData<StoreData>> => {
-  const url = `${apiUrl}/api/stores/${id}/1`;
+): Promise<ResponseData<Comment[]>> => {
+  const url = `${apiUrl}/api/storescomments/${id}`;
 
   try {
     const res = await fetch(url);
@@ -19,13 +19,14 @@ export const getStoreDetail = async (
     }
 
     const json = await res.json();
+    console.log("回應資料：", json);
 
     // 檢查回應中的 status 屬性
     if (!json.status) {
       return {
         statusCode: res.status,
         status: false,
-        message: json?.message || "沒有店家資料",
+        message: json?.message || "沒有店家評論",
       };
     }
 
