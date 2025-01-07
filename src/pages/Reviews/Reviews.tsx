@@ -1,6 +1,4 @@
 import Header from "../../component/layout/header";
-import badge from "../../assets/badge.png";
-// import badge2 from "../../assets/badge2.png";
 import { StarRating } from "../../component/StarRating";
 import {
   Wrapper,
@@ -28,11 +26,12 @@ import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
 import { Comment, ResponseData } from "../../type/type";
 import { mockApi } from "./data";
-import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/reviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Placeholder from "./Placeholder";
+import Badges from "../../component/Profile/BadgeWindow";
+import Country from "../../component/Profile/ConuntryIcon";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;
@@ -58,7 +57,7 @@ const ChatIcon = styled(Icon)`
 `;
 
 function Reviews() {
-  const [response, setResponse] = useState<ResponseData<Comment>>(null);
+  const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
 
   useEffect(() => {
@@ -92,16 +91,8 @@ function Reviews() {
                 <Head>
                   <HeadShot src={data.userPhoto} alt="headShot" />
                   <BadgeBox>
-                    {data.medal &&
-                      Object.keys(badgeImages).includes(data.medal) && (
-                        <img
-                          width={22}
-                          src={
-                            badgeImages[data.medal as keyof typeof badgeImages]
-                          }
-                          alt="badge"
-                        />
-                      )}
+                    <Country country={data.country} />
+                    <Badges level={data.badge} />
                   </BadgeBox>
                 </Head>
                 <HeadRight>

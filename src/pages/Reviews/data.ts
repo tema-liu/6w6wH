@@ -18,7 +18,8 @@ export const mockData = {
     likeCount: 15,
     isLike: true,
     tags: ["Multilingual", "Friendly", "Communication aids"],
-    medal: "badge", // 假設有一個金獎的字串
+    babel: "level2", // 假設有一個金獎的字串
+    country: "Taiwan",
     reply: [
       {
         replyID: "reply-54321",
@@ -27,7 +28,8 @@ export const mockData = {
         userPhoto: "https://picsum.photos/400/400.jpg",
         comment: "謝謝你的評論！我們會繼續努力！",
         postedAt: new Date("2024-12-06T12:30:00Z"),
-        medal: "badge", // 假設這是銀獎
+        babel: "level3", // 假設這是銀獎
+        country: "Taiwan",
         likeCount: 5,
         isLike: false,
       },
@@ -38,7 +40,8 @@ export const mockData = {
         userPhoto: "https://picsum.photos/400/400.jpg",
         comment: "感謝推薦，會告訴朋友們！",
         postedAt: new Date("2024-12-09T00:30:00Z"),
-        medal: null, // 沒有獎牌
+        babel: "level1", // 沒有獎牌
+        country: "Taiwan",
         likeCount: 10,
         isLike: true,
       },

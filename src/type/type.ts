@@ -14,9 +14,21 @@ export type Reply = {
   userPhoto: string;
   comment: string; // 留言內容
   postedAt: Date; // 發布時間
-  medal: string | null; // 獎牌
+  country:
+    | "Taiwan"
+    | "Cambodia"
+    | "Philippines"
+    | "Indonesia"
+    | "Thailand"
+    | "Vietnam";
+  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
   likeCount: number; // 愛心數
   isLike: boolean; // 是否已按愛心
+};
+export type Photo = {
+  Id: number;
+  StoreId: number;
+  PictureUrl: string;
 };
 
 export type Comment = {
@@ -24,7 +36,7 @@ export type Comment = {
   userID: string; // 評論人ID
   userName: string; // 評論人名稱
   userPhoto: string;
-  photos: string[] | null; //照片
+  photos: Photo[]; //照片
   starCount: number; // 星星數量
   comment: string | null; // 評論內容
   replyCount?: number;
@@ -32,7 +44,14 @@ export type Comment = {
   likeCount: number; // 愛心數
   isLike: boolean; // 是否已按愛心
   tags: string[]; // 評價標籤
-  medal: string | null; // 獎牌
+  country:
+    | "Taiwan"
+    | "Cambodia"
+    | "Philippines"
+    | "Indonesia"
+    | "Thailand"
+    | "Vietnam";
+  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
   reply?: null | Reply[]; // 留言回覆
 };
 
@@ -79,7 +98,7 @@ export type StoreData = {
   placeId: string; // Google 地點 ID
   location: Location; // 經緯度
   displayName: string; // 店名
-  photos?: string[]; // 店鋪照片
+  photos?: Photo[]; // 店鋪照片
   address?: string | null; // 地址
   enAddress?: string | null; // 英文地址
   Book?: string | null; // 預約網址

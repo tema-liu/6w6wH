@@ -1,5 +1,3 @@
-import badge from "../../assets/badge.png";
-// import badge2 from "../../assets/badge2.png";
 import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { StarRating } from "../StarRating";
 import { Icon } from "../layout/LayoutComponents";
@@ -7,7 +5,6 @@ import HeartIcon from "./HeartIcon";
 import { Tag } from "../shop/TagsBar";
 import { useNavigate } from "react-router-dom";
 import { Comment, Reply } from "../../type/type";
-import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "./MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import { ReadMore } from "../../pages/Reviews/ReadMore";
@@ -39,6 +36,9 @@ import {
   ProfileTags,
   UserProfileMain,
 } from "./style/ReviewCards";
+import Badges from "../Profile/BadgeWindow";
+import noImgHeadShot from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+import Country from "../Profile/ConuntryIcon";
 
 type CommentCard = {
   data: Comment;
@@ -51,22 +51,21 @@ export function CommentCard({ data }: CommentCard) {
       <CommentCardContent>
         {data.photos && (
           <CommentCardImgBox>
-            {data.photos.map((photo, index) => (
-              <img key={"photo" + index} src={photo} alt="commentPhoto" />
+            {data.photos.map((photo) => (
+              <img
+                key={"photo" + photo.Id}
+                src={photo.PictureUrl}
+                alt="commentPhoto"
+              />
             ))}
           </CommentCardImgBox>
         )}
         <CommentCardDetail>
           <Head>
-            <HeadShot src={data.userPhoto} alt="headShot" />
+            <HeadShot src={data.userPhoto || noImgHeadShot} alt="headShot" />
             <BadgeBox>
-              {data.medal && Object.keys(badgeImages).includes(data.medal) && (
-                <img
-                  width={22}
-                  src={badgeImages[data.medal as keyof typeof badgeImages]}
-                  alt="badge"
-                />
-              )}
+              <Country country={data.country} />
+              <Badges level={data.badge} />
             </BadgeBox>
           </Head>
           <HeadRight>
@@ -77,11 +76,11 @@ export function CommentCard({ data }: CommentCard) {
                 width={112}
                 height={16}
               />
-              <Tags>
+              {/* <Tags>
                 {data.tags.map((tag) => (
                   <Tag key={tag}>{tag}</Tag>
                 ))}
-              </Tags>
+              </Tags> */}
             </UserCommentTop>
             <UserCommentMain>
               <p>{data.comment}</p>
@@ -127,13 +126,10 @@ export function ReviewsCard({ data }: ReviewsCard) {
         <Head>
           <HeadShot src={headShotIcon} alt="headShot" />
           <BadgeBox>
-            {data.medal && Object.keys(badgeImages).includes(data.medal) && (
-              <img
-                width={22}
-                src={badgeImages[data.medal as keyof typeof badgeImages]}
-                alt="badge"
-              />
-            )}
+            <BadgeBox>
+              <Country country={data.country} />
+              <Badges level={data.badge} />
+            </BadgeBox>
           </BadgeBox>
         </Head>
         <HeadRight>

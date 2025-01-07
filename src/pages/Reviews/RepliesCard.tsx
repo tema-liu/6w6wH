@@ -15,9 +15,10 @@ import { ReadMore } from "./ReadMore";
 import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import { useState } from "react";
 import { Reply } from "../../type/type";
-import { badgeImages } from "../../constants/imageResources";
 import MoreVert from "../../component/reviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
+import Country from "../../component/Profile/ConuntryIcon";
+import Badges from "../../component/Profile/BadgeWindow";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -45,13 +46,8 @@ function RepliesCard({ data }: RepliesCardProps) {
           <Head>
             <HeadShot src={data.userPhoto} alt="headShot" />
             <BadgeBox>
-              {data.medal && Object.keys(badgeImages).includes(data.medal) && (
-                <img
-                  width={22}
-                  src={badgeImages[data.medal as keyof typeof badgeImages]}
-                  alt="badge"
-                />
-              )}
+              <Country country={data.country} />
+              <Badges level={data.badge} />
             </BadgeBox>
           </Head>
           <HeadRight>

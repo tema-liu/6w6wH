@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
+import { Photo } from "../../type/type";
 
 const Container = styled(SwiperContainer)`
   position: relative;
@@ -19,7 +20,11 @@ const Container = styled(SwiperContainer)`
   background-color: transparent;
 `;
 
-function ReviewSwiper({ photos }: { photos: string[] | null }) {
+type PhotosProps = {
+  photos: Photo[];
+};
+
+function ReviewSwiper({ photos }: PhotosProps) {
   return (
     <Container
       // install Swiper modules
@@ -32,9 +37,9 @@ function ReviewSwiper({ photos }: { photos: string[] | null }) {
       pagination={{ clickable: true }}
     >
       {photos &&
-        photos.map((photo, index) => (
-          <SwiperSlide key={"photo" + index}>
-            <Img src={photo} alt="reviewPhoto" />
+        photos.map((photo) => (
+          <SwiperSlide key={"photo" + photo.Id}>
+            <Img src={photo.PictureUrl} alt="reviewPhoto" />
           </SwiperSlide>
         ))}
       <Button className="swiper-button-next">
