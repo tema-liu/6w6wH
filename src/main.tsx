@@ -9,17 +9,18 @@ import { Provider } from "react-redux";
 import store from "./redux/store.tsx";
 
 const rootElement = document.getElementById("root");
+const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENTID;
 if (rootElement) {
   createRoot(rootElement).render(
     <>
-      {/* <GoogleOAuthProvider clientId="274028404949-uou5r18tkq1dns3alkqcpvo5183lq839.apps.googleusercontent.com"> */}
-      <Provider store={store}>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <AppRoutes />
-        </ThemeProvider>
-      </Provider>
-      {/* </GoogleOAuthProvider> */}
+      <GoogleOAuthProvider clientId={clientId}>
+        <Provider store={store}>
+          <GlobalStyle />
+          <ThemeProvider theme={theme}>
+            <AppRoutes />
+          </ThemeProvider>
+        </Provider>
+      </GoogleOAuthProvider>
     </>
   );
 } else {
