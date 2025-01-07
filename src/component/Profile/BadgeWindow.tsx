@@ -11,7 +11,6 @@ type BadgeProps = {
 function Badges({ level }: BadgeProps) {
   const [isWindowOpen, setWindowOpen] = useState(false);
 
-  console.log(Object.keys(badgeRuleList));
   return (
     <>
       <CircleImg
