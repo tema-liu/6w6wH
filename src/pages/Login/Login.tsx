@@ -35,26 +35,7 @@ const BrnBox = styled.div`
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   padding: 16px 0;
-  width: 408px; /* 根據需求調整寬度 */
   text-align: center;
-
-  @media screen and (max-width: 400px) {
-    width: 375px;
-  }
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  iframe[id^="gsi_"] {
-    margin: 0 !important;
-    display: flex;
-    justify-content: center;
-    width: 100% !important;
-    height: 70px !important;
-  }
 `;
 
 function useIsSmallScreen() {
@@ -78,7 +59,7 @@ function useIsSmallScreen() {
 
 function Login() {
   const isSmallScreen = useIsSmallScreen();
-  const googleLoginWidth = isSmallScreen ? "230px" : "250px";
+  const googleLoginWidth = isSmallScreen ? "359px" : "408px";
 
   return (
     <Wrapper>
@@ -103,7 +84,7 @@ function Login() {
           /> */}
           <BrnBox>
             <GoogleLogin
-              size="medium"
+              size="large"
               logo_alignment="center"
               text="signin"
               shape="pill"
@@ -111,7 +92,7 @@ function Login() {
               width={googleLoginWidth}
               onSuccess={async (credentialResponse) => {
                 try {
-                  console.log(credentialResponse.credential);
+                  console.log(credentialResponse);
                   const response = await postLogin(
                     credentialResponse.credential ?? ""
                   );
