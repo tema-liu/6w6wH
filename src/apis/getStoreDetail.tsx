@@ -1,12 +1,13 @@
+import { useSelector } from "react-redux";
 import { ResponseData, StoreData } from "../type/type";
+import { RootState } from "../redux/store";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getStoreDetail = async (
-  id: number
+  id: number,
+  token: string | null
 ): Promise<ResponseData<StoreData>> => {
   const url = `${apiUrl}/api/stores/${id}`;
-  const token =
-    "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiRW1haWwiOiJ2aWNreWxpdTIyMjA1OTYwQGdtYWlsLmNvbSIsIkNvdW50cnkiOiJUYWl3YW4iLCJFeHAiOiIxLzgvMjAyNSAzOjEzOjUxIFBNIn0.eddNlS-8AVbxeNR2vNJXUPfTaIc68DZz7EiIrt-29QlfUcq0UVawLSN5ZAOUok_qCmXp-BnnxrGkwynNlEQVlw";
 
   try {
     const headers: HeadersInit = {

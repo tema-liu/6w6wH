@@ -21,7 +21,7 @@ export type Reply = {
     | "Indonesia"
     | "Thailand"
     | "Vietnam";
-  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
+  badge: "Level1" | "Level2" | "Level3" | "Level4" | "Level5" | "Level6"; // 獎牌
   likeCount: number; // 愛心數
   isLike: boolean; // 是否已按愛心
 };
@@ -51,7 +51,7 @@ export type Comment = {
     | "Indonesia"
     | "Thailand"
     | "Vietnam";
-  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
+  badge: "Level1" | "Level2" | "Level3" | "Level4" | "Level5" | "Level6"; // 獎牌
   reply?: null | Reply[]; // 留言回覆
 };
 

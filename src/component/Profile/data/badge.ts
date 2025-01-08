@@ -7,12 +7,12 @@ import level6 from "../../../assets/medal/Frame 1984077554.svg";
 
 //badgeList對應圖片
 export const badgeImgList = {
-  level1: level1,
-  level2: level2,
-  level3: level3,
-  level4: level4,
-  level5: level5,
-  level6: level6,
+  Level1: level1,
+  Level2: level2,
+  Level3: level3,
+  Level4: level4,
+  Level5: level5,
+  Level6: level6,
 };
 
 export const badgeRuleList = {

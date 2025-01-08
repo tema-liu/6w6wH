@@ -32,11 +32,14 @@ import Placeholder from "./Placeholder";
 import VoiceReader from "../../component/shop/VoiceReader";
 import { getStoreDetail } from "../../apis/getStoreDetail";
 import { getStoreCommit } from "../../apis/getStoreCommit";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 function StoreDetail() {
   const navigator = useNavigate();
   const [searchParams] = useSearchParams();
   const { id } = useParams();
+  const userToken = useSelector((state: RootState) => state.auth.token);
   const [storeData, setStoreData] = useState<ResponseData<StoreData> | null>(
     null
   ); //商店詳細資料
@@ -56,8 +59,8 @@ function StoreDetail() {
       const numericId = Number(id);
       try {
         const [result, commitList] = await Promise.all([
-          getStoreDetail(numericId),
-          getStoreCommit(numericId),
+          getStoreDetail(numericId, userToken),
+          getStoreCommit(numericId, userToken),
         ]);
         console.log(commitList);
 
@@ -67,8 +70,8 @@ function StoreDetail() {
 
         //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面
         if (!result.status) {
-          // navigator("/popular");
-          // return;
+          navigator("/popular");
+          return;
         }
         setStoreData(result ?? null);
         setStoreReviewsData(commitList ?? null);

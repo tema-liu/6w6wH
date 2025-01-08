@@ -2,12 +2,25 @@ import { Comment, ResponseData } from "../type/type";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getStoreCommit = async (
-  id: number
+  id: number,
+  token: string | null
 ): Promise<ResponseData<Comment[]>> => {
   const url = `${apiUrl}/api/storescomments/${id}`;
 
   try {
-    const res = await fetch(url);
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    // 如果有 token，則加入 Authorization 標頭
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers,
+    });
 
     if (!res.ok) {
       return {
