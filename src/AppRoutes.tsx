@@ -1,7 +1,7 @@
 import StoreDetail from "./pages/StoreDetail/StoreDetail.tsx";
 import Reviews from "./pages/Reviews/Reviews.tsx";
 import SearchResult from "./pages/SearchResult/SearchResult.tsx";
-import Search from "./pages/Search/Search.tsx";
+import Search from "./pages/Search/Aearch.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigate, Outlet } from "react-router-dom";
 import StoreListLayout from "./StoreListLayout.tsx";
@@ -31,12 +31,8 @@ function ProtectedRoute({ isAuthenticated }: ProtectedRouteProps) {
   return <Outlet />;
 }
 
-function App() {
-  return <h1>app</h1>;
-}
-
 function AppRoutes() {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return (
     <BrowserRouter>
       <Routes>
