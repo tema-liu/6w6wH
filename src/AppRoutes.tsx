@@ -1,9 +1,8 @@
 import StoreDetail from "./pages/StoreDetail/StoreDetail.tsx";
 import Reviews from "./pages/Reviews/Reviews.tsx";
 import SearchResult from "./pages/SearchResult/SearchResult.tsx";
-import Search from "./pages/Search/Aearch.tsx";
+import Search from "./pages/Search/Search.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Navigate, Outlet } from "react-router-dom";
 import StoreListLayout from "./StoreListLayout.tsx";
 import Popular from "./pages/Popular/Popular.tsx";
 import AddStore from "./pages/AddStore/AddStore.tsx";
@@ -19,17 +18,7 @@ import Settings from "./pages/Settings/Settings.tsx";
 import Faqs from "./pages/Faqs/Faqs.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions.tsx";
-
-type ProtectedRouteProps = {
-  isAuthenticated: boolean; // 驗證是否登入
-};
-
-function ProtectedRoute({ isAuthenticated }: ProtectedRouteProps) {
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-  return <Outlet />;
-}
+import ProtectedRoute from "./pages/ProtectedRoute/ProtectRoute.tsx";
 
 function AppRoutes() {
   const isAuthenticated = false;
@@ -49,8 +38,7 @@ function AppRoutes() {
           <Route path="/storeList/:id" element={<StoreDetail />} />
           {/* 發送評論 */}
           <Route path="/postComment/:id" element={<PostComment />} />
-          {/* 通知 */}
-          <Route path="/notification" element={<Notification />} />
+
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
           {/* {瀏覽個人頁面} */}
@@ -62,11 +50,13 @@ function AppRoutes() {
           <Route path="/termsAndConditions" element={<TermsAndConditions />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
-          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route element={<ProtectedRoute />}>
             <Route path="/menu" element={<Menu />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/profile" element={<Profile />} />
+            {/* 通知 */}
+            <Route path="/notification" element={<Notification />} />
           </Route>
           {/* 404頁面 */}
           <Route path="*" element={<Popular />} />

@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Dispatch } from "../store";
-
-type AuthState = {
-  token: string | null;
-  userId: string | null;
-  userName: string | null;
-  userPhoto: string | null;
-};
+import { AuthState } from "../../type/type";
 
 const initialState: AuthState = {
   token: null,

@@ -2,12 +2,12 @@ import Header from "../../component/layout/header";
 import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import siteIcon from "../../assets/6w6wH.svg";
 import styled from "styled-components";
-import googleIcon from "../../assets/Social Icons.svg";
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
-import { GoogleLogin } from "@react-oauth/google";
-import { Link } from "react-router-dom";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../apis/postLogin";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLoginData } from "../../redux/auth/slice";
 
 const Content = styled.div`
   width: 100%;
@@ -58,8 +58,33 @@ function useIsSmallScreen() {
 }
 
 function Login() {
+  const navigate = useNavigate();
   const isSmallScreen = useIsSmallScreen();
   const googleLoginWidth = isSmallScreen ? "359px" : "408px";
+  const dispatch = useDispatch();
+
+  const loginLogic = async (credentialResponse: CredentialResponse) => {
+    try {
+      console.log(credentialResponse);
+      const response = await postLogin(credentialResponse.credential!);
+      if (response.message === "firstSignUp！") {
+        navigate("/setup");
+        return;
+      }
+      dispatch(
+        fetchLoginData({
+          token: response.data?.token ?? null,
+          userId: response.data?.userId ?? null,
+          userName: response.data?.userName ?? null,
+          userPhoto: response.data?.userPhoto ?? null,
+        })
+      );
+      //驗證之後跳轉個人頁面
+      navigate("/profile");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   return (
     <Wrapper>
@@ -67,21 +92,6 @@ function Login() {
       <Container>
         <Content>
           <WebIcon src={siteIcon} alt="siteIcon" />
-          {/* <PrimaryBtn
-            type="button"
-            $margin="16px 0px"
-            $padding="16px 0"
-            children={
-              <>
-                <img src={googleIcon} />
-                Log in with Google
-              </>
-            }
-            onClick={() => {
-              googleLogin();
-            }}
-            $bgColor="gray100"
-          /> */}
           <BrnBox>
             <GoogleLogin
               size="large"
@@ -90,16 +100,8 @@ function Login() {
               shape="pill"
               locale="en"
               width={googleLoginWidth}
-              onSuccess={async (credentialResponse) => {
-                try {
-                  console.log(credentialResponse);
-                  const response = await postLogin(
-                    credentialResponse.credential ?? ""
-                  );
-                  console.log("Login successful:", response);
-                } catch (error) {
-                  console.error("Login failed:", error);
-                }
+              onSuccess={(credentialResponse: CredentialResponse) => {
+                loginLogic(credentialResponse);
               }}
             />
           </BrnBox>

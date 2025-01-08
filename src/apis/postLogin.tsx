@@ -1,4 +1,9 @@
-import { ResponseData, SearchStationTag, SearchTag } from "../type/type"; // 假設型別定義在 types 檔案中
+import {
+  AuthState,
+  ResponseData,
+  SearchStationTag,
+  SearchTag,
+} from "../type/type"; // 假設型別定義在 types 檔案中
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -28,7 +33,9 @@ export const getSearchTags = async (): Promise<ResponseData<SearchTag[]>> => {
   }
 };
 
-export const postLogin = async (token: string): Promise<ResponseData> => {
+export const postLogin = async (
+  token: string
+): Promise<ResponseData<AuthState>> => {
   const url = `${apiUrl}/api/user/googlelogin?id=${token}`;
   // 檢查 HTTP 回應是否成功
   try {
