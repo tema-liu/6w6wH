@@ -10,7 +10,6 @@ export const getStoreCommit = async (
     const res = await fetch(url);
 
     if (!res.ok) {
-      console.error("HTTP 錯誤，狀態碼：", res.status);
       return {
         statusCode: res.status,
         status: false,

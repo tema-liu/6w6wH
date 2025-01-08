@@ -67,8 +67,15 @@ function Login() {
     try {
       console.log(credentialResponse);
       const response = await postLogin(credentialResponse.credential!);
+      console.log(response);
       if (response.message === "firstSignUp！") {
-        navigate("/setup");
+        navigate("/setup", {
+          state: {
+            email: response.data?.email,
+            userName: response.data?.userName,
+            userPhoto: response.data?.userPhoto,
+          },
+        });
         return;
       }
       dispatch(

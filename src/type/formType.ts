@@ -42,3 +42,18 @@ export type EditProfileForm = {
   gender: string;
   birth: string;
 };
+
+//userSetUp========================
+export type PartialUserSetupForm = {
+  country: string;
+  gender: string;
+  birthDay: string;
+};
+export type UserSetupForm = {
+  country: string;
+  gender: string;
+  birthDay: string;
+  email: string;
+  userName: string;
+  userPhoto: string;
+};

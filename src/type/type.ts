@@ -150,3 +150,12 @@ export type StoreResult = {
     content: string; //評論內容
   };
 };
+
+//Login=========================
+export type AuthState = {
+  token: string | null;
+  userId: string | null;
+  userName: string | null;
+  userPhoto: string | null;
+  email?: string;
+};
