@@ -36,7 +36,7 @@ export type Comment = {
   userID: string; // 評論人ID
   userName: string; // 評論人名稱
   userPhoto: string;
-  photos: Photo[]; //照片
+  photo: Photo[]; //照片
   starCount: number; // 星星數量
   comment: string | null; // 評論內容
   replyCount?: number;

@@ -9,8 +9,37 @@ export type AddPlaceList = {
 };
 
 //tags=======================
+type Tags = string[];
+
+export type TagsField = {
+  tags: Tags;
+};
+
 export type FormTags = {
-  tags: number[];
+  tags: Tags;
   cityId: string;
   [key: string]: unknown; // 允許其他屬性，但類型為未知
+};
+
+//postCommit=======================
+export type addPhoto = string[] | File[];
+
+export type PostCommitForm = {
+  tags: Tags;
+  starCount: number;
+  comment: string;
+  photos: addPhoto;
+  placeId: number;
+};
+
+//editProfile
+export type EditProfileForm = {
+  photo: string;
+  name: string;
+  comeFrom: string;
+  nowLiveIn: string;
+  bio: string;
+  country: string;
+  gender: string;
+  birth: string;
 };

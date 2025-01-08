@@ -8,7 +8,7 @@ import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import nullPhoto from "../../assets/Rectangle.png";
 import { Photo, PhotosBar } from "../../component/shop/TagsBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
 import { PopupModal } from "../../component/popupModel/PopupModal";
@@ -24,13 +24,32 @@ import {
   RatingText,
   Star,
 } from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, RootState } from "../../redux/store";
+import { fetchTagsData } from "../../redux/tagList/slice";
+import { useForm } from "react-hook-form";
+import { PostCommitForm } from "../../type/formType";
+import { postCommit } from "../../apis/postCommit";
+import validateImageFile from "../../hooks/validateImageFile";
+import { FieldError } from "../EditProfile/styled";
 
 function PostComment() {
+  const navigate = useNavigate();
+  //RTK取得TAG
+  const dispatch: Dispatch = useDispatch();
+  const cityTags = useSelector((state: RootState) => state.tags.cityTags);
+  const categoryTags = useSelector(
+    (state: RootState) => state.tags.categoryTags
+  );
+  const friendlyTags = useSelector(
+    (state: RootState) => state.tags.friendlyTags
+  );
+  const errorMessage = useSelector((state: RootState) => state.tags.error);
+
   //控制彈跳式窗
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTagOpen, setIsModalTagOpen] = useState(false);
   const [isModalPointOpen, setModalPointOpen] = useState(false);
-
   const toggleModal = (e?: "TagOpen" | "PointOpen") => {
     e === "TagOpen"
       ? setIsModalTagOpen((prev) => !prev)
@@ -39,25 +58,45 @@ function PostComment() {
       : setIsModalOpen((prev) => !prev);
   };
 
-  const navigate = useNavigate();
-  const [files, setFiles] = useState<File[]>([]); // 保存文件列表
-  const category = ["Food", "Shopping", "Services"];
+  const [photoListBase64, setPhotoListBase64] = useState<string[]>([
+    nullPhoto,
+    nullPhoto,
+    nullPhoto,
+  ]);
+  //表單格式
+  const {
+    formState: { errors, isValid },
+    watch,
+    register,
+    handleSubmit,
+    setValue,
+  } = useForm<PostCommitForm>({
+    mode: "onChange", //觸發及時驗證
+    defaultValues: {
+      tags: [],
+      photos: [],
+      starCount: 0,
+    },
+  });
 
-  const friendly = [
-    "Friendly",
-    "Halal",
-    "Multilingual",
-    "Communication aids",
-    "online shopping",
-  ];
+  const onSubmit = async (data: PostCommitForm) => {
+    const formData = {
+      placeId: 1,
+      comment: data.comment,
+      photos: data.photos ? Array.from(data.photos) : [],
+      starCount: data.starCount,
+      tags: data.tags,
+    };
 
-  const addPhotoHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = event.target.files; // 取得文件列表
-    if (!selectedFiles) return;
-    const fileArray = Array.from(selectedFiles); // 將 FileList 轉為陣列
-    console.log(fileArray); //取得文件陣列
+    try {
+      const res = await postCommit(formData);
+      console.log(res);
+    } catch (error) {
+      console.error("Error posting commit:", error);
+    }
   };
 
+  //評分星數元件
   const StarRating = ({
     value,
     onChange,
@@ -73,7 +112,7 @@ function PostComment() {
             src={value > index ? starOn : star}
             alt={`star+${index + 1}`}
             onClick={() => {
-              // onChange(index + 1);
+              onChange?.(index + 1); //更新starCunt
             }}
           />
         ))}
@@ -81,35 +120,132 @@ function PostComment() {
     );
   };
 
+  //解析圖片
+  const photoList = watch("photos");
+  useEffect(() => {
+    const base64List: string[] = []; // 用於存儲 Base64 圖片數據
+
+    //如果圖片上傳後執行渲染圖片
+    if (photoList.length > 0)
+      if (photoList.length > 0) {
+        const base64List: string[] = [];
+
+        Array.from(photoList).forEach((photo, index) => {
+          const renderPhoto = new FileReader();
+
+          renderPhoto.onload = () => {
+            if (typeof renderPhoto.result === "string") {
+              base64List[index] = renderPhoto.result;
+
+              // 如果所有圖片都已轉換完成，更新狀態
+              if (base64List.length === photoList.length) {
+                setPhotoListBase64([...base64List]); // 確保引用改變
+              }
+            }
+          };
+
+          renderPhoto.onerror = (error) => {
+            console.error("文件讀取錯誤", error);
+          };
+
+          renderPhoto.readAsDataURL(photo);
+        });
+      }
+  }, [photoList]);
+  // 驗證是否留言過,如果有獲取的圖片 URL 列表
+  useEffect(() => {
+    async function fetchPhotosFromServer() {
+      const baseUrl = import.meta.env.VITE_API_URL;
+      //驗證登入API的圖片
+      const serverPhotos = [
+        " https://picsum.photos/400/300",
+        " https://picsum.photos/400/300",
+        " https://picsum.photos/400/300",
+      ]; // 伺服器返回的圖片資料,之後需要加baseUrl
+      const formattedPhotos = serverPhotos.map((photo) => photo);
+      //假設圖片少於三張自動填充
+      const mergedPhotos =
+        formattedPhotos.length > 3
+          ? formattedPhotos
+          : [
+              ...formattedPhotos,
+              ...Array(3 - formattedPhotos.length).fill(nullPhoto),
+            ];
+      setPhotoListBase64(mergedPhotos);
+    }
+
+    fetchPhotosFromServer();
+  }, []);
+
+  //避免重複調用 API
+  useEffect(() => {
+    if (!cityTags || !categoryTags || !friendlyTags) {
+      dispatch(fetchTagsData());
+    }
+  }, [dispatch, cityTags, categoryTags, friendlyTags]);
+  if (errorMessage) {
+    console.log(errorMessage);
+  }
+
   return (
     <Wrapper>
       <Header title="Review" />
       <Container>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Section>
-            <TagCheckBox tags={category} />
-            <TagCheckBox tags={friendly} />
+            <TagCheckBox
+              register={register}
+              required={true}
+              title="Category"
+              tags={categoryTags || []}
+            />
+            <TagCheckBox
+              register={register}
+              required={true}
+              title="Friendly"
+              tags={friendlyTags || []}
+            />
           </Section>
           <Section>
-            <PhotosBar>
-              <Photo src={nullPhoto}></Photo>
-              <Photo src={nullPhoto}></Photo>
-              <Photo src={nullPhoto}></Photo>
-            </PhotosBar>
+            <div>
+              <PhotosBar>
+                {photoListBase64.map((photo, index) => {
+                  return <Photo key={"photo" + index} src={photo}></Photo>;
+                })}
+              </PhotosBar>
+              <FieldError> {errors.photos?.message}</FieldError>
+            </div>
             <Input
               id="addPhoto"
-              name="addPhoto"
               type="file"
               accept="image/jpeg,image/png"
               multiple
+              {...register("photos", {
+                validate: {
+                  notImage: async (fileList: File[] | []) => {
+                    if (!fileList || fileList.length === 0) {
+                      return true; // 沒有上傳檔案，驗證通過
+                    }
+                    const files = Array.from(fileList);
+                    const validationResults = await Promise.all(
+                      files.map((file) => validateImageFile(file))
+                    );
+
+                    // 檢查是否有任何驗證失敗的結果
+                    const invalidFile = validationResults.find(
+                      (result) => result !== true
+                    );
+
+                    return invalidFile || true; // 如果有錯誤訊息，返回錯誤；否則通過驗證
+                  },
+                },
+              })}
               onChange={(e) => {
-                addPhotoHandler(e);
+                const files = Array.from(e.target.files || []);
+                setValue("photos", files.slice(0, 5)); // 限制最多 5 張
               }}
             />
+
             <PhotoAddLabel $bgColor="light" htmlFor="addPhoto">
               <Icon
                 $isPointer={true}
@@ -122,22 +258,30 @@ function PostComment() {
             </PhotoAddLabel>
           </Section>
           <RatingSection>
-            {/* reactForm使用controll */}
-            <StarRating value={0} />
-            <RatingText placeholder="Share details of your own experience at this place..."></RatingText>
+            <StarRating
+              value={watch("starCount")}
+              onChange={(value) => setValue("starCount", value)}
+            />
+            <RatingText
+              placeholder="Share details of your own experience at this place..."
+              {...register("comment")}
+            ></RatingText>
           </RatingSection>
           <BtnSection>
             <PrimaryBtn
+              $bgColor={isValid ? "outline3" : "gray400"}
+              $color={isValid ? "gray900" : "gray600"}
+              $iconColor={isValid ? "gray900" : "gray600"}
               iconName="reviews"
               content="Submit"
               onClick={() => {
-                //這裡送出API假設成功後
-                toggleModal();
+                // //這裡送出API假設成功後
+                // toggleModal();
               }}
             />
           </BtnSection>
         </form>
-        {isModalOpen && (
+        {/* {isModalOpen && (
           <GoodJobWindow
             isActive={isModalOpen}
             onClose={() => {
@@ -169,7 +313,7 @@ function PostComment() {
               navigate("/storeList/:id?option=Reviews");
             }}
           />
-        )}
+        )} */}
       </Container>
     </Wrapper>
   );

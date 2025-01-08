@@ -6,17 +6,7 @@ import { FieldErrors, useForm } from "react-hook-form";
 import PhotoCard from "./PhotoCard";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { EditForm } from "./styled";
-
-type EditProfileForm = {
-  photo: string;
-  name: string;
-  comeFrom: string;
-  nowLiveIn: string;
-  bio: string;
-  country: string;
-  gender: string;
-  birth: string;
-};
+import { EditProfileForm } from "../../type/formType";
 
 function EditProfile() {
   const {
@@ -44,7 +34,7 @@ function EditProfile() {
     console.log(errors.photo?.message);
   };
 
-  const photoUrl = watch("photo") || photo;
+  const photoUrl = watch("photo");
 
   return (
     <Wrapper>
