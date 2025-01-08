@@ -96,7 +96,6 @@ function StoreDetail() {
       {storeData?.data && (
         <Wrapper>
           <Header title={"Store Detail"} />
-
           <Container>
             <StoreSwiper
               isFavorite={storeData.data.isFavorited}

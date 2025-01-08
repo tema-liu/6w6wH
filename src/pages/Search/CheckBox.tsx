@@ -1,6 +1,6 @@
-import { UseFormRegister } from "react-hook-form";
+import { Path, UseFormRegister } from "react-hook-form";
 import styled from "styled-components";
-import { FormTags } from "../../type/formType";
+import { TagsField } from "../../type/formType";
 
 const Input = styled.input`
   @keyframes changeBackground {
@@ -65,24 +65,30 @@ const Label = styled.label`
   }
 `;
 
-type CheckProps = {
+type CheckProps<T extends TagsField> = {
   value: number;
   idFor: string;
   name: string;
-  register: UseFormRegister<FormTags>; //不一定需要表單驗證
+  register: UseFormRegister<T>;
   required: boolean;
 };
 
-function CheckBox({ value, idFor, name, register, required }: CheckProps) {
+function CheckBox<T extends TagsField>({
+  value,
+  idFor,
+  name,
+  register,
+  required,
+}: CheckProps<T>) {
   return (
     <>
       <Input
         type="checkbox"
         id={idFor}
         value={value}
-        {...register("tags", {
+        {...register("tags" as Path<T>, {
           validate: required
-            ? (value) => value.length > 0 || "至少選擇一個標籤"
+            ? (value: string[]) => value.length > 0 || "至少選擇一個標籤"
             : undefined, // 如果非必填，則不應用驗證規則
         })}
       />

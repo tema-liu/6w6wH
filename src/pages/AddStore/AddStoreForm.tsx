@@ -2,7 +2,7 @@ import { PrimaryBtn } from "../../component/button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import { useForm } from "react-hook-form";
 import { AddPlaceList } from "../../type/type";
-import { FormTags } from "../../type/formType";
+import { TagsField } from "../../type/formType";
 import { TagsContent } from "./style/addStoreForm";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../redux/store";
@@ -19,7 +19,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
   );
   const errorMessage = useSelector((state: RootState) => state.tags.error);
 
-  const { register, handleSubmit, watch } = useForm<FormTags>({
+  const { register, handleSubmit, watch } = useForm<TagsField>({
     defaultValues: {
       tags: [],
     },
@@ -38,8 +38,8 @@ function AddStoreForm({ ...props }: AddPlaceList) {
   //監聽tags是否有內容
   const haveTags = watch("tags");
 
-  const onSubmit = (data: FormTags) => {
-    const transformedData = data.tags.map(Number); // 自定義數據轉換
+  const onSubmit = (data: TagsField) => {
+    const transformedData = data.tags.map((tag) => Number(tag)); // 自定義數據轉換
     const completeData = { ...props, tags: transformedData }; // 合併 props 和表單數據，ＡＰＩ請送出這筆資料
     console.log(completeData);
   };

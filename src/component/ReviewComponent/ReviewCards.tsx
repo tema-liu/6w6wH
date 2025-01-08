@@ -43,18 +43,19 @@ import Country from "../Profile/ConuntryIcon";
 type CommentCard = {
   data: Comment;
 };
-
+const apiUrl = import.meta.env.VITE_API_URL;
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
+  console.log(data.photo);
   return (
     data !== null && (
       <CommentCardContent>
-        {data.photos && (
+        {data.photo && (
           <CommentCardImgBox>
-            {data.photos.map((photo) => (
+            {data.photo.map((photo) => (
               <img
                 key={"photo" + photo.Id}
-                src={photo.PictureUrl}
+                src={`${apiUrl}/Picture/Comment/${photo.PictureUrl}`}
                 alt="commentPhoto"
               />
             ))}

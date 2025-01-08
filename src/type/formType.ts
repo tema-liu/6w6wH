@@ -22,8 +22,7 @@ export type FormTags = {
 };
 
 //postCommit=======================
-export type addPhoto = string[] | File[];
-
+export type addPhoto = File[];
 export type PostCommitForm = {
   tags: Tags;
   starCount: number;
