@@ -68,8 +68,12 @@ function StoreDetail() {
         // const result = await storeResultApi("/api/items");
         // const commitList = await mockApi("/api/items");
 
-        //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面
+        //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面 之後都要倒轉那裏
         if (!result.status) {
+          navigator("/popular");
+          return;
+        }
+        if (result.message === "查無店家資料") {
           navigator("/popular");
           return;
         }
