@@ -8,8 +8,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PartialUserSetupForm } from "../../type/formType";
 import { postSignUp } from "../../apis/postSignUp";
-import { useDispatch } from "react-redux";
-import { fetchLoginData } from "../../redux/auth/slice";
+
 const SetupForm = styled.form`
   width: 100%;
   height: 100%;
@@ -24,11 +23,6 @@ function Setup() {
   const navigate = useNavigate();
   const location = useLocation();
   const { email, userPhoto, userName } = location.state || {};
-  const dispatch = useDispatch();
-
-  console.log("email:", email);
-  console.log("User Name:", userName);
-  console.log("userPhoto:", userPhoto);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {

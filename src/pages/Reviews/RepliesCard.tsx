@@ -19,6 +19,7 @@ import MoreVert from "../../component/reviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";
+import defaultUserPhoto from "../../assets/user-3296.svg";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -42,9 +43,12 @@ function RepliesCard({ data }: RepliesCardProps) {
   return (
     <CommentCards>
       {data.map((data) => (
-        <CommentCard key={data.replyID}>
+        <CommentCard key={data.replyId}>
           <Head>
-            <HeadShot src={data.userPhoto} alt="headShot" />
+            <HeadShot
+              src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
+              alt="headShot"
+            />
             <BadgeBox>
               <Country country={data.country} />
               <Badges level={data.badge} />
@@ -53,13 +57,13 @@ function RepliesCard({ data }: RepliesCardProps) {
           <HeadRight>
             <UserReviewTop>
               <span style={{ display: "block" }}>{data.userName}</span>
-              <MoreVert reviewOrReply={"reply"} userID={data.userID} />
+              <MoreVert reviewOrReply={"reply"} userID={data.userId} />
             </UserReviewTop>
             <UserReviewMain>
               <ReadMore text={data.comment} />
             </UserReviewMain>
             <UserReviewFooter>
-              <h5>{useTimeAgo(data.postedAt)}</h5>
+              <h5>{useTimeAgo(data.createTime)}</h5>
               <SocialBlock>
                 <div>
                   <HeartIcon likeCount={data.likeCount} isLike={data.isLike} />

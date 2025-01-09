@@ -8,12 +8,12 @@ export type ResponseData<T = unknown> = {
 
 //=========Reviews====================================
 export type Reply = {
-  replyID: string; // 留言ID
-  userID: string; // 留言人ID
+  replyId: string; // 留言ID
+  userId: string; // 留言人ID
   userName: string; // 留言人名稱
   userPhoto: string;
   comment: string; // 留言內容
-  postedAt: Date; // 發布時間
+  createTime: Date; // 發布時間
   country:
     | "Taiwan"
     | "Cambodia"
@@ -21,7 +21,7 @@ export type Reply = {
     | "Indonesia"
     | "Thailand"
     | "Vietnam";
-  badge: "Level1" | "Level2" | "Level3" | "Level4" | "Level5" | "Level6"; // 獎牌
+  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
   likeCount: number; // 愛心數
   isLike: boolean; // 是否已按愛心
 };
@@ -32,15 +32,15 @@ export type Photo = {
 };
 
 export type Comment = {
-  commentID: string; // 評論ID
-  userID: string; // 評論人ID
+  commentId: string; // 評論ID
+  userId: string; // 評論人ID
   userName: string; // 評論人名稱
   userPhoto: string;
-  photo: Photo[]; //照片
+  photos: Photo[]; //照片
   starCount: number; // 星星數量
   comment: string | null; // 評論內容
   replyCount?: number;
-  postedAt: Date; // 發布時間
+  createTime: Date; // 發布時間
   likeCount: number; // 愛心數
   isLike: boolean; // 是否已按愛心
   tags: string[]; // 評價標籤
@@ -51,7 +51,7 @@ export type Comment = {
     | "Indonesia"
     | "Thailand"
     | "Vietnam";
-  badge: "Level1" | "Level2" | "Level3" | "Level4" | "Level5" | "Level6"; // 獎牌
+  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
   reply?: null | Reply[]; // 留言回覆
 };
 
@@ -71,13 +71,13 @@ export type Advertise = {
 };
 
 type OpeningHours = {
-  Monday?: string | null;
-  Tuesday?: string | null;
-  Wednesday?: string | null;
-  Thursday?: string | null;
+  monday?: string | null;
+  tuesday?: string | null;
+  wednesday?: string | null;
+  thursday?: string | null;
   Friday?: string | null;
-  Saturday?: string | null;
-  Sunday?: string | null;
+  saturday?: string | null;
+  sunday?: string | null;
 };
 
 type Tag = {
@@ -91,6 +91,7 @@ export type Location = {
 };
 
 export type StoreData = {
+  id: string;
   advertise?: Advertise | null; // 廣告資料
   starCount?: number; // 星星數量
   tags?: Tag[] | null; // 標籤列表
@@ -98,7 +99,7 @@ export type StoreData = {
   placeId: string; // Google 地點 ID
   location: Location; // 經緯度
   displayName: string; // 店名
-  photos?: Photo[]; // 店鋪照片
+  photos: Photo[]; // 店鋪照片
   address?: string | null; // 地址
   enAddress?: string | null; // 英文地址
   Book?: string | null; // 預約網址

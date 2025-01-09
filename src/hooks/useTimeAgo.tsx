@@ -1,4 +1,7 @@
 function useTimeAgo(postedAt: string | Date) {
+  if (!postedAt || (typeof postedAt === "string" && postedAt.trim() === "")) {
+    return "No time record"; // 處理空值的情況
+  }
   const now = Date.now();
   //判斷如果是 Date ，使用 getTime() 取得時間戳。
   //string 類型，使用 new Date(postedAt).getTime()。
@@ -13,6 +16,9 @@ function useTimeAgo(postedAt: string | Date) {
   const months = Math.floor(days / 30);
   const years = Math.floor(days / 365);
 
+  if (isNaN(past)) {
+    return "Invalid date"; // 處理無效日期的情況
+  }
   if (years > 0) return `${years} years ago`;
   if (months > 0) return `${months} months ago`;
   if (days > 0) return `${days} days ago`;

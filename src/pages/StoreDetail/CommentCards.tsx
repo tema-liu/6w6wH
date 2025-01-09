@@ -22,7 +22,7 @@ function CommentCards({ data }: { data: Comment[] }) {
       return reviewList; // 如果只有一個元素，直接返回原始陣列
     }
     return [...reviewList].sort(
-      (a, b) => b!.postedAt.getTime() - a!.postedAt.getTime()
+      (a, b) => b!.createTime.getTime() - a!.createTime.getTime()
     );
   };
   const repliesList = () => {
@@ -51,7 +51,7 @@ function CommentCards({ data }: { data: Comment[] }) {
         break;
     }
     return listToRender.map((comment) => (
-      <CommentCard key={comment?.commentID} data={comment} />
+      <CommentCard key={comment?.commentId} data={comment} />
     ));
   };
 

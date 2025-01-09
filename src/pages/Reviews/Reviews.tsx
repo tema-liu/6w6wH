@@ -32,6 +32,11 @@ import useTimeAgo from "../../hooks/useTimeAgo";
 import Placeholder from "./Placeholder";
 import Badges from "../../component/Profile/BadgeWindow";
 import Country from "../../component/Profile/ConuntryIcon";
+import { getReply } from "../../apis/gatReply";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { useParams } from "react-router-dom";
+import defaultUserPhoto from "../../assets/user-3296.svg";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;
@@ -59,11 +64,18 @@ const ChatIcon = styled(Icon)`
 function Reviews() {
   const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
+  const userToken = useSelector((state: RootState) => state.auth.token);
 
+  //網址取得動態id
+  const { id } = useParams();
+  console.log(id);
   useEffect(() => {
     const fetchData = async () => {
+      const numericId = Number(id);
       try {
-        const result = await mockApi("/api/items");
+        const result = await getReply(numericId, userToken);
+
+        // const result = await mockApi("/api/items");
         setResponse(result);
         setLoading(false);
       } catch (error) {
@@ -77,7 +89,14 @@ function Reviews() {
   const data = response?.data ?? null;
 
   if (loading) {
-    return <div>Loading...</div>; // 顯示 loading 當資料還在加載時
+    return (
+      <Wrapper>
+        <Header title={"Reviews"} />
+        <Container>
+          <Placeholder />
+        </Container>
+      </Wrapper>
+    );
   }
   return (
     <>
@@ -85,11 +104,14 @@ function Reviews() {
         <Wrapper>
           <Header title={"Reviews"} />
           <Container>
-            {data.photos && <ReviewSwiper photos={data.photos} />}
-            <CommentContent $isHavePhoto={!!data.photos}>
+            {data.photos?.length > 0 && <ReviewSwiper photos={data.photos} />}
+            <CommentContent $isHavePhoto={data.photos?.length > 0}>
               <CommentDetail>
                 <Head>
-                  <HeadShot src={data.userPhoto} alt="headShot" />
+                  <HeadShot
+                    src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
+                    alt="headShot"
+                  />
                   <BadgeBox>
                     <Country country={data.country} />
                     <Badges level={data.badge} />
@@ -98,7 +120,7 @@ function Reviews() {
                 <HeadRight>
                   <UserReviewTop>
                     <UserRating>
-                      <span style={{ display: "block" }}>Ala</span>
+                      <span style={{ display: "block" }}>{data.userName}</span>
                       <StarRating
                         star={data?.starCount as 1 | 2 | 3 | 4 | 5}
                         width={112}
@@ -106,7 +128,7 @@ function Reviews() {
                       />
                     </UserRating>
                     <div>
-                      <MoreVert reviewOrReply="review" userID={data.userID!} />
+                      <MoreVert reviewOrReply="review" userID={data.userId!} />
                     </div>
                   </UserReviewTop>
                   <UserReviewMain>
@@ -118,10 +140,10 @@ function Reviews() {
                     <p>{data.comment}</p>
                   </UserReviewMain>
                   <UserReviewFooter>
-                    <h5>{useTimeAgo(data.postedAt)}</h5>
+                    <h5>{useTimeAgo(data.createTime)}</h5>
                     <SocialBlock>
                       <div>
-                        <h4>{data.reply?.length}</h4>
+                        <h4>{data.reply?.length ? data.reply.length : ""}</h4>
                         <ChatIcon
                           $isPointer={true}
                           className="material-symbols-outlined"

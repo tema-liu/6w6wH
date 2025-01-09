@@ -50,9 +50,9 @@ export function CommentCard({ data }: CommentCard) {
   return (
     data !== null && (
       <CommentCardContent>
-        {data.photo && (
+        {data.photos.length > 0 && (
           <CommentCardImgBox>
-            {data.photo.map((photo) => (
+            {data.photos.map((photo) => (
               <img
                 key={"photo" + photo.Id}
                 src={`${apiUrl}/Picture/Comment/${photo.PictureUrl}`}
@@ -87,7 +87,7 @@ export function CommentCard({ data }: CommentCard) {
               <p>{data.comment}</p>
             </UserCommentMain>
             <UserCommentFooter>
-              <h5>{useTimeAgo(data.postedAt)}</h5>
+              <h5>{useTimeAgo(data.createTime)}</h5>
               <SocialBlock>
                 <div>
                   <h4>{data.replyCount === 0 ? "" : data.replyCount}</h4>
@@ -95,7 +95,7 @@ export function CommentCard({ data }: CommentCard) {
                     $isPointer={true}
                     className="material-symbols-outlined"
                     onClick={() => {
-                      navigate(`/review/${data.commentID}`);
+                      navigate(`/review/${data.commentId}`);
                     }}
                   >
                     chat_bubble
@@ -136,13 +136,13 @@ export function ReviewsCard({ data }: ReviewsCard) {
         <HeadRight>
           <UserReviewTop>
             <span style={{ display: "block" }}>{data.userName}</span>
-            <MoreVert reviewOrReply="reply" userID={data.userID} />
+            <MoreVert reviewOrReply="reply" userID={data.userId} />
           </UserReviewTop>
           <UserReviewMain>
             <ReadMore text={data.comment} />
           </UserReviewMain>
           <UserReviewFooter>
-            <h5>{useTimeAgo(data.postedAt)}</h5>
+            <h5>{useTimeAgo(data.createTime)}</h5>
             <SocialBlock>
               <div>
                 <HeartIcon

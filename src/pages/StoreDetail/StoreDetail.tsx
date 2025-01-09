@@ -62,8 +62,6 @@ function StoreDetail() {
           getStoreDetail(numericId, userToken),
           getStoreCommit(numericId, userToken),
         ]);
-        console.log(commitList);
-
         // //假資料串接
         // const result = await storeResultApi("/api/items");
         // const commitList = await mockApi("/api/items");
@@ -125,13 +123,13 @@ function StoreDetail() {
                 />
               </PlaceName>
               <TagsBar>
-                {/* {storeData.data.tags?.map((tag) => (
+                {storeData.data.tags?.map((tag) => (
                   <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
-                ))} */}
+                ))}
               </TagsBar>
               <ReviewSection>
                 <ReviewBtn
-                  navigate={storeData.data.placeId}
+                  navigate={storeData.data.id}
                   $marginRight={16}
                   content={"Review"}
                 ></ReviewBtn>
@@ -185,7 +183,7 @@ function StoreDetail() {
                     <EmptyContent>
                       <EmptyDisplay
                         onClick={() => {
-                          navigator(`/postComment/${storeData.data?.placeId}`);
+                          navigator(`/postComment/${storeData.data?.id}`);
                         }}
                         content="There are no review yet"
                         iconStyle="reviews"
