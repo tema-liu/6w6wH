@@ -1,8 +1,11 @@
-import styled, { keyframes } from "styled-components";
-import {
-  Icon as IconI,
-  IconImg,
-} from "../../../component/layout/LayoutComponents";
+import styled from "styled-components";
+import { Icon as IconI } from "../../../component/layout/LayoutComponents";
+
+export const StoreImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 export const NavigateBtn = styled.a`
   display: flex;
@@ -72,6 +75,10 @@ export const LinkIcon = styled(IconI)`
   &:active::before {
     opacity: 0.5;
   }
+`;
+
+export const VoiceIcon = styled(IconI)`
+  margin: 0 8px;
 `;
 
 export const ReviewSection = styled.div`

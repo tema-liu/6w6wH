@@ -123,9 +123,15 @@ function StoreDetail() {
                 />
               </PlaceName>
               <TagsBar>
-                {storeData.data.tags?.map((tag) => (
-                  <Tag key={tag.tagName}>{`${tag.tagName} (${tag.count})`}</Tag>
-                ))}
+                {storeData.data.tags && storeData.data.tags.length > 0 ? (
+                  storeData.data.tags.map((tag) => (
+                    <Tag
+                      key={tag.tagName}
+                    >{`${tag.tagName} (${tag.count})`}</Tag>
+                  ))
+                ) : (
+                  <Tag>There are no review yet</Tag>
+                )}
               </TagsBar>
               <ReviewSection>
                 <ReviewBtn
