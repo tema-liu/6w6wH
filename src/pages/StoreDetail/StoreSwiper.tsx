@@ -45,7 +45,10 @@ function StoreSwiper({
       {photos.length > 0 ? (
         photos.map((photo) => (
           <SwiperSlide key={`photo${photo.Id}`}>
-            <Img src={`${apiUrl}/${photo.PictureUrl}`} alt="storePhoto" />
+            <Img
+              src={`${apiUrl}/Picture/Store/${photo.PictureUrl}`}
+              alt="storePhoto"
+            />
           </SwiperSlide>
         ))
       ) : (
