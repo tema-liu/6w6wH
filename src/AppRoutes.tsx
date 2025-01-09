@@ -21,7 +21,6 @@ import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions.ts
 import ProtectedRoute from "./pages/ProtectedRoute/ProtectRoute.tsx";
 
 function AppRoutes() {
-  const isAuthenticated = false;
   return (
     <BrowserRouter>
       <Routes>

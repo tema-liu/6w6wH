@@ -8,6 +8,7 @@ import { postLogin } from "../../apis/postLogin";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLoginData } from "../../redux/auth/slice";
+import { RootState } from "../../redux/store";
 
 const Content = styled.div`
   width: 100%;
@@ -62,6 +63,7 @@ function Login() {
   const isSmallScreen = useIsSmallScreen();
   const googleLoginWidth = isSmallScreen ? "359px" : "408px";
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state: RootState) => state.auth.token);
 
   const loginLogic = async (credentialResponse: CredentialResponse) => {
     try {
@@ -87,11 +89,17 @@ function Login() {
         })
       );
       //驗證之後跳轉個人頁面
-      navigate("/profile");
+      navigate("/profile", { replace: true });
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/profile", { replace: true }); // 已登入時直接跳轉到個人頁面
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <Wrapper>

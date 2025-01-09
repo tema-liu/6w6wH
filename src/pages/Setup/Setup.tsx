@@ -7,6 +7,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { PartialUserSetupForm } from "../../type/formType";
+import { postSignUp } from "../../apis/postSignUp";
+import { useDispatch } from "react-redux";
+import { fetchLoginData } from "../../redux/auth/slice";
 const SetupForm = styled.form`
   width: 100%;
   height: 100%;
@@ -21,6 +24,7 @@ function Setup() {
   const navigate = useNavigate();
   const location = useLocation();
   const { email, userPhoto, userName } = location.state || {};
+  const dispatch = useDispatch();
 
   console.log("email:", email);
   console.log("User Name:", userName);
@@ -41,14 +45,25 @@ function Setup() {
     }
   }, [email, userName, userPhoto, navigate]);
 
-  const onSubmit = (formData: PartialUserSetupForm) => {
+  const onSubmit = async (formData: PartialUserSetupForm) => {
     console.log(formData);
-    console.log({
+    const setupData = {
       ...formData,
       email: email,
       userName: userName,
       userPhoto: userPhoto,
-    });
+    };
+    try {
+      const sighUpRes = await postSignUp(setupData);
+      console.log(sighUpRes);
+      if (!sighUpRes.status) {
+        navigate("/popular", { replace: true });
+        return;
+      }
+      navigate("/profile", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
