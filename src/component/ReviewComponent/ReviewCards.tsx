@@ -46,7 +46,7 @@ type CommentCard = {
 const apiUrl = import.meta.env.VITE_API_URL;
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
-  console.log(data.photo);
+  console.log(data);
   return (
     data !== null && (
       <CommentCardContent>
@@ -77,11 +77,11 @@ export function CommentCard({ data }: CommentCard) {
                 width={112}
                 height={16}
               />
-              {/* <Tags>
+              <Tags>
                 {data.tags.map((tag) => (
                   <Tag key={tag}>{tag}</Tag>
                 ))}
-              </Tags> */}
+              </Tags>
             </UserCommentTop>
             <UserCommentMain>
               <p>{data.comment}</p>
