@@ -9,7 +9,6 @@ import { CommentCard } from "../../component/reviewComponent/ReviewCards";
 import { Container } from "./style/commentCards";
 
 function CommentCards({ data }: { data: Comment[] }) {
-  const [reviewList, setReviewList] = useState(data);
   const [filterValue, setFilterValue] = useState("popular");
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -18,18 +17,18 @@ function CommentCards({ data }: { data: Comment[] }) {
   };
 
   const latestList = () => {
-    if (reviewList.length <= 1) {
-      return reviewList; // 如果只有一個元素，直接返回原始陣列
+    if (data.length <= 1) {
+      return data; // 如果只有一個元素，直接返回原始陣列
     }
-    return [...reviewList].sort(
+    return [...data].sort(
       (a, b) => b!.createTime.getTime() - a!.createTime.getTime()
     );
   };
   const repliesList = () => {
-    if ([...reviewList].length <= 1) {
-      return [...reviewList]; // 如果只有一個元素，直接返回原始陣列
+    if ([...data].length <= 1) {
+      return [...data]; // 如果只有一個元素，直接返回原始陣列
     }
-    return [...reviewList].sort((a, b) => {
+    return [...data].sort((a, b) => {
       const replyCountA = a?.replyCount ?? 0; // 如果 a 或 replyCount 是 undefined，默認為 0
       const replyCountB = b?.replyCount ?? 0; // 同上
       return replyCountB - replyCountA;
@@ -41,7 +40,7 @@ function CommentCards({ data }: { data: Comment[] }) {
 
     switch (filterValue) {
       case "popular":
-        listToRender = reviewList;
+        listToRender = data;
         break;
       case "latest":
         listToRender = latestList();

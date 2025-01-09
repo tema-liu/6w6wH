@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
 import { ResponseData, StoreData } from "../type/type";
-import { RootState } from "../redux/store";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getStoreDetail = async (
