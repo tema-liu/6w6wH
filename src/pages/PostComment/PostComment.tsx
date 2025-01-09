@@ -37,6 +37,7 @@ function PostComment() {
   const navigate = useNavigate();
   //RTK取得TAG
   const dispatch: Dispatch = useDispatch();
+  const isHaveToken = useSelector((state: RootState) => state.auth.token);
   const cityTags = useSelector((state: RootState) => state.tags.cityTags);
   const categoryTags = useSelector(
     (state: RootState) => state.tags.categoryTags
@@ -154,6 +155,11 @@ function PostComment() {
   }, [photoList]);
   // 驗證是否留言過,如果有獲取的圖片 URL 列表
   useEffect(() => {
+    if (!isHaveToken) {
+      navigate("/login");
+      return;
+    }
+
     async function fetchPhotosFromServer() {
       const baseUrl = import.meta.env.VITE_API_URL;
       //驗證登入API的圖片

@@ -3,7 +3,7 @@ import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import siteIcon from "../../assets/6w6wH.svg";
 import styled from "styled-components";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { postLogin } from "../../apis/postLogin";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,13 +63,26 @@ function Login() {
   const isSmallScreen = useIsSmallScreen();
   const googleLoginWidth = isSmallScreen ? "359px" : "408px";
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: RootState) => state.auth.token);
+  const location = useLocation();
+
+  // 獲取用戶之前想要訪問的頁面
+  const from = location.state?.from?.pathname || "/profile";
+
+  // 檢查是否已登入
+  const isLoggedIn = useSelector((state: RootState) => !!state.auth.token);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(from, { replace: true }); // 已登入時重定向到目標頁面
+    }
+  }, [isLoggedIn, navigate, from]);
 
   const loginLogic = async (credentialResponse: CredentialResponse) => {
     try {
       console.log(credentialResponse);
       const response = await postLogin(credentialResponse.credential!);
       console.log(response);
+
       if (response.message === "firstSignUp！") {
         navigate("/setup", {
           state: {
@@ -80,6 +93,7 @@ function Login() {
         });
         return;
       }
+
       dispatch(
         fetchLoginData({
           token: response.data?.token ?? null,
@@ -88,18 +102,13 @@ function Login() {
           userPhoto: response.data?.userPhoto ?? null,
         })
       );
-      //驗證之後跳轉個人頁面
-      navigate("/profile", { replace: true });
+
+      console.log("Navigating to:", from);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/profile", { replace: true }); // 已登入時直接跳轉到個人頁面
-    }
-  }, [isLoggedIn, navigate]);
 
   return (
     <Wrapper>

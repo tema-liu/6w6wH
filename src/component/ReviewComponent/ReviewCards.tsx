@@ -1,4 +1,4 @@
-import headShotIcon from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
+import defaultUserPhoto from "../../assets/user-3296.svg";
 import { StarRating } from "../StarRating";
 import { Icon } from "../layout/LayoutComponents";
 import HeartIcon from "./HeartIcon";
@@ -63,7 +63,7 @@ export function CommentCard({ data }: CommentCard) {
         )}
         <CommentCardDetail>
           <Head>
-            <HeadShot src={data.userPhoto || noImgHeadShot} alt="headShot" />
+            <HeadShot src={data.userPhoto || defaultUserPhoto} alt="headShot" />
             <BadgeBox>
               <Country country={data.country} />
               <Badges level={data.badge} />
@@ -125,7 +125,7 @@ export function ReviewsCard({ data }: ReviewsCard) {
     data !== null && (
       <CommentCards>
         <Head>
-          <HeadShot src={headShotIcon} alt="headShot" />
+          <HeadShot src={data.userPhoto || defaultUserPhoto} alt="headShot" />
           <BadgeBox>
             <BadgeBox>
               <Country country={data.country} />
