@@ -53,6 +53,7 @@ h3{
     font-size: 15px;
     line-height: 20px;
     font-weight: 400;
+    letter-spacing: -0.24px;
 }
 h4{
     font-size: 14px;
