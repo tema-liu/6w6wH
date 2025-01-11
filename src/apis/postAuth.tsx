@@ -26,6 +26,7 @@ export const postAuth = async (
     }
 
     const json = await res.json().catch(() => null); // 防止 JSON 解析失敗
+
     if (!json?.status) {
       return {
         statusCode: res.status || 404,
