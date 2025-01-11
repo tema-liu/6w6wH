@@ -23,9 +23,11 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Placeholder from "./Placeholder";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../redux/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchTagsData } from "../../redux/tagList/slice";
-import { getStoreResult } from "../../apis/getStoreResult";
+import { getStoreResult } from "../../apis/postStoreResult";
+import { SearchOption } from "../../type/formType";
+import type { ResponseData, SearchResult } from "../../type/type";
 
 function SearchResult() {
   const dispatch: Dispatch = useDispatch();
@@ -37,6 +39,7 @@ function SearchResult() {
     (state: RootState) => state.tags.friendlyTags
   );
   const errorMessage = useSelector((state: RootState) => state.tags.error);
+  const token = useSelector((state: RootState) => state.auth.token);
   const navigate = useNavigate();
   //取得現在網址
   const webLocation = useLocation();
@@ -47,13 +50,21 @@ function SearchResult() {
   const location = searchParams.get("location");
   const locationType = searchParams.get("locationType");
   const [lat, lng] = location ? location.split(",").map(Number) : [0, 0];
+  const [shopList, setShopList] = useState<ResponseData<SearchResult[]> | null>(
+    null
+  );
+  const [isLoading, setLoading] = useState(true);
+  const [haveShop, setHaveShop] = useState(true);
+
   //API搜尋參數
-  const searchCriteria = {
-    // manberID:0, //之後登入要帶入的ID
+  const searchCriteria: SearchOption = {
     tags: tags,
     cityId: cityId,
     location: { lat: lat, lng: lng },
-    locationType: locationType,
+    locationType:
+      locationType !== "user" && locationType !== "station"
+        ? "station"
+        : locationType,
   };
 
   //避免重複調用 API
@@ -83,14 +94,24 @@ function SearchResult() {
     console.log("errorMessage:" + errorMessage);
   }
 
-  const num = 5;
-
+  console.log(shopList);
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getStoreResult(searchCriteria);
+      console.log(searchCriteria);
+
+      const result = await getStoreResult(searchCriteria, token);
+      if (!result.status) {
+        navigate("/popular");
+        return;
+      }
+      if (result.message === "沒有店家") {
+        setHaveShop(!haveShop);
+      }
+      setShopList(result);
+      setLoading(false);
     };
     fetchData(); // 呼叫非同步函式
-  }, []);
+  }, [searchParams.toString(), token]);
 
   //移除tag並且再搜尋
   const clickFilterTag = (tagId: number) => {
@@ -99,12 +120,10 @@ function SearchResult() {
     navigate(`${webLocation.pathname}?${searchParams.toString()}`);
   };
 
-  console.log(searchCriteria);
-
   return (
     <>
       <Wrapper>
-        <Header title={`SearchResults(${num})`} />
+        <Header title={`SearchResults(${shopList?.data?.length})`} />
         <Container>
           <ChipGroup>
             <TitleBox>
@@ -126,34 +145,52 @@ function SearchResult() {
               })}
             </TagBox>
           </ChipGroup>
-          <FilterColumn>
-            <FilterContainer>
-              <FilterButtons name="filter" id="filter">
-                <option value="popular">Popular</option>
-                <option value="lastest">Lastest</option>
-                <option value="Replies">Replies</option>
-              </FilterButtons>
-            </FilterContainer>
-          </FilterColumn>
-          {/* 若是沒有資料則出現Empty */}
-          {/* <EmptyContent>
-            <EmptyDisplay
-              content="No venues match the filter criteria"
-              iconStyle="add_circle"
-              btnText="Add places you know"
-              children={<EmptyChildren />}
-              btnClick={() => {
-                navigate("/addShop");
-              }}
-            />
-          </EmptyContent> */}
-          <div>
-            {/* <EmptyText>maybe you will like......</EmptyText> */}
-            <ShopCards>
-              <ShopCard />
-              <ShopCard />
-            </ShopCards>
-          </div>
+          {haveShop && (
+            <FilterColumn>
+              <FilterContainer>
+                <FilterButtons name="filter" id="filter">
+                  <option value="popular">Popular</option>
+                  <option value="lastest">Lastest</option>
+                  <option value="Replies">Replies</option>
+                </FilterButtons>
+              </FilterContainer>
+            </FilterColumn>
+          )}
+          {isLoading ? (
+            <Placeholder />
+          ) : (
+            <>
+              {haveShop ? (
+                <ShopCards>
+                  {shopList?.data?.map((data) => (
+                    <ShopCard data={data} />
+                  ))}
+                </ShopCards>
+              ) : (
+                <>
+                  <EmptyContent>
+                    <EmptyDisplay
+                      content="No venues match the filter criteria"
+                      iconStyle="add_circle"
+                      btnText="Add places you know"
+                      children={<EmptyChildren />}
+                      onClick={() => {
+                        navigate("/addShop");
+                      }}
+                    />
+                  </EmptyContent>
+                  <div>
+                    <EmptyText>maybe you will like......</EmptyText>
+                    <ShopCards>
+                      {shopList?.data?.map((data) => (
+                        <ShopCard data={data} />
+                      ))}
+                    </ShopCards>
+                  </div>
+                </>
+              )}
+            </>
+          )}
         </Container>
       </Wrapper>
     </>

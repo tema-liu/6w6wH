@@ -134,7 +134,13 @@ const ButtonDiv = styled.div`
   column-gap: 8px;
 `;
 
-function SuggestTag({ closeWindow }: { closeWindow: () => void }) {
+function SuggestTag({
+  storeId,
+  closeWindow,
+}: {
+  storeId: string;
+  closeWindow: () => void;
+}) {
   const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
 
@@ -161,7 +167,7 @@ function SuggestTag({ closeWindow }: { closeWindow: () => void }) {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/storeList/:id?option=Reviews");
+                  navigate(`/storeList/${storeId}?option=Reviews`);
                 }}
               >
                 Cancel

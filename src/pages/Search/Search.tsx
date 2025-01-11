@@ -10,7 +10,7 @@ import {
   IconImg,
 } from "./styled";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Radio from "./Radio";
 import LocationMap from "./LocationMap";
 import TagCheckBox from "../../component/TagCheckBox";
