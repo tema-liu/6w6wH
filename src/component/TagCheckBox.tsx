@@ -18,6 +18,7 @@ type TagCheckBoxProps<T extends TagsField> = {
   title: string;
   register: UseFormRegister<T>;
   required: boolean;
+  selectedTags?: number[];
 };
 
 function TagCheckBox<T extends TagsField>({
@@ -25,6 +26,7 @@ function TagCheckBox<T extends TagsField>({
   register,
   title,
   tags,
+  selectedTags,
 }: TagCheckBoxProps<T>) {
   return (
     <div>
@@ -33,16 +35,21 @@ function TagCheckBox<T extends TagsField>({
         <TitleBoxText>{title}</TitleBoxText>
       </StyledTitleBox>
       <StyledTagBox>
-        {tags.map((tag) => (
-          <CheckBox
-            idFor={`${title}-${tag.id}`}
-            key={tag.name}
-            name={tag.name}
-            value={tag.id}
-            register={register}
-            required={required}
-          />
-        ))}
+        {tags.map((tag) => {
+          return (
+            <CheckBox
+              idFor={`${title}-${tag.id}`}
+              key={tag.name}
+              name={tag.name}
+              value={tag.id}
+              register={register}
+              required={required}
+              {...(selectedTags && {
+                selectedTags: selectedTags.map(Number).includes(tag.id),
+              })}
+            />
+          );
+        })}
       </StyledTagBox>
     </div>
   );

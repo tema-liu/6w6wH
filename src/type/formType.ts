@@ -1,3 +1,5 @@
+import { Location } from "./type";
+
 // 新增店家表單==================
 export type AddPlaceList = {
   location: Location;
@@ -9,7 +11,7 @@ export type AddPlaceList = {
 };
 
 //tags=======================
-type Tags = string[];
+type Tags = number[];
 
 export type TagsField = {
   tags: Tags;
@@ -24,11 +26,13 @@ export type FormTags = {
 //postCommit=======================
 export type addPhoto = File[];
 export type PostCommitForm = {
-  tags: Tags;
+  tags: number[];
   starCount: number;
   comment: string;
   photos: addPhoto;
-  placeId: number;
+  placeId?: string;
+  storeId?: string;
+  commentPictures?: string[];
 };
 
 //editProfile
@@ -56,4 +60,12 @@ export type UserSetupForm = {
   email: string;
   userName: string;
   userPhoto: string;
+};
+
+//search=============
+export type SearchOption = {
+  cityId: string;
+  location: Location;
+  locationType: "station" | "user";
+  tags: number[];
 };

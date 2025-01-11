@@ -91,7 +91,7 @@ export type Location = {
 };
 
 export type StoreData = {
-  id: string;
+  id: number;
   advertise?: Advertise | null; // 廣告資料
   starCount?: number; // 星星數量
   tags?: Tag[] | null; // 標籤列表
@@ -159,4 +159,24 @@ export type AuthState = {
   userName: string | null;
   userPhoto: string | null;
   email?: string;
+};
+//search===================================
+export type CommentCard = {
+  commentId: number;
+  userPhoto: string | null; // 頭像
+  content: string; // 簡短的內容
+};
+
+export type SearchResult = {
+  id: number;
+  placeId: string;
+  displayName: string;
+  photos: Photo[];
+  starCount: number;
+  isAdvertise: boolean;
+  isFavorited: boolean;
+  reviewCount: number;
+  replyCount: number;
+  tags: Tag[];
+  comments: CommentCard[];
 };

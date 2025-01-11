@@ -13,7 +13,7 @@ import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
 import { PopupModal } from "../../component/popupModel/PopupModal";
 import GoodJobWindow from "../../component/popupModel/GoodJobWindow";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SuggestTag from "./SuggestTag";
 import {
   Section,
@@ -27,17 +27,19 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../redux/store";
 import { fetchTagsData } from "../../redux/tagList/slice";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { PostCommitForm } from "../../type/formType";
 import { postCommit } from "../../apis/postCommit";
 import validateImageFile from "../../hooks/validateImageFile";
 import { FieldError } from "../EditProfile/styled";
+import { postCommentsRepeat } from "../../apis/postCommentsRepeat";
+import useAuthVerify from "../../hooks/useAuthVerify ";
 
 function PostComment() {
   const navigate = useNavigate();
+  const { id } = useParams();
   //RTK取得TAG
   const dispatch: Dispatch = useDispatch();
-  const isHaveToken = useSelector((state: RootState) => state.auth.token);
   const cityTags = useSelector((state: RootState) => state.tags.cityTags);
   const categoryTags = useSelector(
     (state: RootState) => state.tags.categoryTags
@@ -46,7 +48,8 @@ function PostComment() {
     (state: RootState) => state.tags.friendlyTags
   );
   const errorMessage = useSelector((state: RootState) => state.tags.error);
-
+  const token = useSelector((state: RootState) => state.auth.token);
+  const verifyAuth = useAuthVerify(token);
   //控制彈跳式窗
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTagOpen, setIsModalTagOpen] = useState(false);
@@ -67,10 +70,12 @@ function PostComment() {
   //表單格式
   const {
     formState: { errors, isValid },
+    control,
+    reset,
+    setValue,
     watch,
     register,
     handleSubmit,
-    setValue,
   } = useForm<PostCommitForm>({
     mode: "onChange", //觸發及時驗證
     defaultValues: {
@@ -79,23 +84,25 @@ function PostComment() {
       starCount: 0,
     },
   });
-
   const onSubmit = async (data: PostCommitForm) => {
     const formData = {
-      placeId: 1,
+      placeId: id!,
       comment: data.comment,
       photos: data.photos ? Array.from(data.photos) : [],
       starCount: data.starCount,
       tags: data.tags,
     };
-
     try {
-      const res = await postCommit(formData);
-      console.log(res);
+      const res = await postCommit(formData, token);
+      if (res.status) {
+        toggleModal();
+      }
     } catch (error) {
       console.error("Error posting commit:", error);
     }
   };
+
+  const tagsValue = useWatch({ control, name: "tags" });
 
   //評分星數元件
   const StarRating = ({
@@ -121,53 +128,30 @@ function PostComment() {
     );
   };
 
-  //解析圖片
-  const photoList = watch("photos");
-  useEffect(() => {
-    const base64List: string[] = []; // 用於存儲 Base64 圖片數據
-
-    //如果圖片上傳後執行渲染圖片
-    if (photoList.length > 0)
-      if (photoList.length > 0) {
-        const base64List: string[] = [];
-
-        Array.from(photoList).forEach((photo, index) => {
-          const renderPhoto = new FileReader();
-
-          renderPhoto.onload = () => {
-            if (typeof renderPhoto.result === "string") {
-              base64List[index] = renderPhoto.result;
-
-              // 如果所有圖片都已轉換完成，更新狀態
-              if (base64List.length === photoList.length) {
-                setPhotoListBase64([...base64List]); // 確保引用改變
-              }
-            }
-          };
-
-          renderPhoto.onerror = (error) => {
-            console.error("文件讀取錯誤", error);
-          };
-
-          renderPhoto.readAsDataURL(photo);
-        });
-      }
-  }, [photoList]);
   // 驗證是否留言過,如果有獲取的圖片 URL 列表
   useEffect(() => {
-    if (!isHaveToken) {
-      navigate("/login");
-      return;
-    }
+    //驗證是否登入
+    verifyAuth();
 
+    //驗證是否評論過
     async function fetchPhotosFromServer() {
-      const baseUrl = import.meta.env.VITE_API_URL;
+      // const baseUrl = import.meta.env.VITE_API_URL;
+      //是否評論過
+      const commentRepeat = await postCommentsRepeat(id || "", token!);
+
+      if (commentRepeat.message === "用戶未評論") {
+        return;
+      }
+      console.log("hi", commentRepeat);
+      reset({
+        starCount: commentRepeat.data?.starCount,
+        photos: [],
+        tags: commentRepeat.data?.tags || [],
+        comment: commentRepeat.data?.comment || "",
+      });
       //驗證登入API的圖片
-      const serverPhotos = [
-        " https://picsum.photos/400/300",
-        " https://picsum.photos/400/300",
-        " https://picsum.photos/400/300",
-      ]; // 伺服器返回的圖片資料,之後需要加baseUrl
+      const serverPhotos: string[] = commentRepeat.data?.commentPictures || []; // 伺服器返回的圖片資料,之後需要加baseUrl
+      console.log(serverPhotos);
       const formattedPhotos = serverPhotos.map((photo) => photo);
       //假設圖片少於三張自動填充
       const mergedPhotos =
@@ -181,9 +165,9 @@ function PostComment() {
     }
 
     fetchPhotosFromServer();
-  }, []);
+  }, [id, token]);
 
-  //避免重複調用 API
+  //避免重複調用tag API
   useEffect(() => {
     if (!cityTags || !categoryTags || !friendlyTags) {
       dispatch(fetchTagsData());
@@ -192,6 +176,35 @@ function PostComment() {
   if (errorMessage) {
     console.log(errorMessage);
   }
+
+  //如果圖片上傳後執行渲染圖片
+  const photoList = watch("photos");
+  useEffect(() => {
+    if (photoList.length > 0) {
+      const base64List: string[] = [];
+
+      Array.from(photoList).forEach((photo, index) => {
+        const renderPhoto = new FileReader();
+
+        renderPhoto.onload = () => {
+          if (typeof renderPhoto.result === "string") {
+            base64List[index] = renderPhoto.result;
+
+            // 如果所有圖片都已轉換完成，更新狀態
+            if (base64List.length === photoList.length) {
+              setPhotoListBase64([...base64List]); // 確保引用改變
+            }
+          }
+        };
+
+        renderPhoto.onerror = (error) => {
+          console.error("文件讀取錯誤", error);
+        };
+
+        renderPhoto.readAsDataURL(photo);
+      });
+    }
+  }, [photoList]);
 
   return (
     <Wrapper>
@@ -204,12 +217,14 @@ function PostComment() {
               required={true}
               title="Category"
               tags={categoryTags || []}
+              selectedTags={tagsValue}
             />
             <TagCheckBox
               register={register}
               required={true}
               title="Friendly"
               tags={friendlyTags || []}
+              selectedTags={tagsValue}
             />
           </Section>
           <Section>
@@ -280,14 +295,10 @@ function PostComment() {
               $iconColor={isValid ? "gray900" : "gray600"}
               iconName="reviews"
               content="Submit"
-              onClick={() => {
-                // //這裡送出API假設成功後
-                // toggleModal();
-              }}
             />
           </BtnSection>
         </form>
-        {/* {isModalOpen && (
+        {isModalOpen && (
           <GoodJobWindow
             isActive={isModalOpen}
             onClose={() => {
@@ -304,6 +315,7 @@ function PostComment() {
             text="Suggest Tag"
             content={
               <SuggestTag
+                storeId={id!}
                 closeWindow={() => {
                   toggleModal("TagOpen");
                   toggleModal("PointOpen");
@@ -316,10 +328,10 @@ function PostComment() {
           <GoodJobWindow
             isActive={isModalPointOpen}
             onClose={() => {
-              navigate("/storeList/:id?option=Reviews");
+              navigate(`/storeList/${Number(id)}?option=Reviews`);
             }}
           />
-        )} */}
+        )}
       </Container>
     </Wrapper>
   );

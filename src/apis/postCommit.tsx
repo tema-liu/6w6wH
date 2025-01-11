@@ -11,7 +11,7 @@ export const postCommit = async (
   const formData = new FormData();
   // 添加其他欄位
   //資料轉字串
-  formData.append("placeID", data.placeId);
+  formData.append("placeID", data.placeId!);
   formData.append("tags", `${data.tags.join(",")}`);
   formData.append("comment", data.comment);
   formData.append("starCount", String(data.starCount));

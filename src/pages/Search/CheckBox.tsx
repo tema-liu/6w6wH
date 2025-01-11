@@ -71,6 +71,7 @@ type CheckProps<T extends TagsField> = {
   name: string;
   register: UseFormRegister<T>;
   required: boolean;
+  selectedTags?: boolean;
 };
 
 function CheckBox<T extends TagsField>({
@@ -79,6 +80,7 @@ function CheckBox<T extends TagsField>({
   name,
   register,
   required,
+  selectedTags,
 }: CheckProps<T>) {
   return (
     <>
@@ -88,9 +90,10 @@ function CheckBox<T extends TagsField>({
         value={value}
         {...register("tags" as Path<T>, {
           validate: required
-            ? (value: string[]) => value.length > 0 || "至少選擇一個標籤"
+            ? (value: number[]) => value.length > 0 || "至少選擇一個標籤"
             : undefined, // 如果非必填，則不應用驗證規則
         })}
+        {...(selectedTags && { checked: selectedTags })} // 只有 selectedTags 有值時設置 checked
       />
       <Label htmlFor={idFor}>
         <span>{name}</span>
