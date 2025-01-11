@@ -32,8 +32,8 @@ export type Photo = {
 };
 
 export type Comment = {
-  commentId: string; // 評論ID
-  userId: string; // 評論人ID
+  commentId: number; // 評論ID
+  userId: number; // 評論人ID
   userName: string; // 評論人名稱
   userPhoto: string;
   photos: Photo[]; //照片

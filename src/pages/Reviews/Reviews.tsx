@@ -128,7 +128,12 @@ function Reviews() {
                       />
                     </UserRating>
                     <div>
-                      <MoreVert reviewOrReply="review" userID={data.userId!} />
+                      <MoreVert
+                        commentId={data.commentId}
+                        reviewOrReply="review"
+                        activeUserID={data.userId}
+                        userID={data.userId!}
+                      />
                     </div>
                   </UserReviewTop>
                   <UserReviewMain>
