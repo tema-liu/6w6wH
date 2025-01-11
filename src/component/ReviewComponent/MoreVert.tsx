@@ -4,6 +4,11 @@ import { Icon } from "../layout/LayoutComponents";
 import { GeneralPopupModal, PopupModal } from "../popupModel//PopupModal";
 import ModelInfo from "../popupModel/ModelInfo";
 import TextAreaInfo from "../popupModel/TextAreaInfo";
+import { postCommentDelete } from "../../apis/postCommentDelete";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import useAuthVerify from "../../hooks/useAuthVerify ";
+import { useNavigate } from "react-router-dom";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -11,18 +16,29 @@ const IconImg = styled(Icon)`
 `;
 
 type moreProps = {
+  commentId: number;
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
-  userID: string;
-  activeUserID?: string; //登入者的ID
+  userID: number;
+  activeUserID?: number; //登入者的ID
 };
 
 function MoreVert({
+  commentId,
   reviewOrReply,
-  activeUserID = "isAnonymous",
+  activeUserID,
   userID,
 }: moreProps) {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [window, setWindow] = useState<"delete" | "report" | null>(null);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const handleCommentDelete = async () => {
+    const res = await postCommentDelete(commentId, token!);
+    if (res.statusCode === 200) {
+      navigate(-1);
+    }
+    setWindow(null);
+  };
 
   const windowList = {
     delete: (
@@ -34,7 +50,7 @@ function MoreVert({
             text="This operation is irreversible"
             btnText="Delete"
             btnClick={() => {
-              setWindow(null);
+              handleCommentDelete();
             }}
             cancelClick={() => {
               setWindow(null);
