@@ -4,9 +4,10 @@ import { TagsBar, Tag } from "./TagsBar";
 import { ReviewBtn } from "../button/ReviewBtn";
 import { StarRating } from "../StarRating";
 import arrowIcon from "../../assets/arrow.png";
-import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { ReadMore } from "../../pages/SearchResult/ReadMore";
 import { useNavigate } from "react-router-dom";
+import { SearchResult } from "../../type/type";
+import defaultUserPhoto from "../../assets/user-3296.svg";
 
 type DonateProps = {
   $isDonate?: boolean;
@@ -87,6 +88,7 @@ const BorderBox = styled.div`
 
 const MessageBox = styled.div`
   display: flex;
+  justify-content: space-between;
   padding: 8px 0;
   column-gap: 8px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
@@ -115,56 +117,55 @@ const ADtag = styled.div`
   }
 `;
 
-function ShopCard() {
-  const isAdvertise = true;
+type shopCardProps = {
+  data: SearchResult;
+};
+function ShopCard({ data }: shopCardProps) {
   const navigate = useNavigate();
+  console.log(data.id);
   return (
     <>
       <ShopCardBox
         onClick={() => {
-          navigate("/storeList/:id");
+          navigate(`/storeList/${data.id}`);
         }}
       >
-        {isAdvertise && (
+        {data.isAdvertise && (
           <ADtag>
             <span>AD</span>
           </ADtag>
         )}
         <ShopCardImg
-          $isDonate={isAdvertise}
+          $isDonate={data.isAdvertise}
           src="https://picsum.photos/1000/800"
           alt="shopImg"
         />
-
         <ShopCardMain>
-          <CollectIcon right={28} />
+          <CollectIcon isFavoriteData={data.isFavorited} right={28} />
           <PlaceName>
-            <h2> Left Bank Rendezvous Cafe 南國人文美食坊</h2>
+            <h2>{data.displayName}</h2>
           </PlaceName>
           <TagsBar>
-            <Tag>Multilingual (12)</Tag>
-            <Tag>Friendly (9)</Tag>
-            <Tag>Food (5)</Tag>
-            <Tag>Food (5)</Tag>
+            {data.tags.map((item) => (
+              <Tag key={item.tagName}>{`${item.tagName} (${item.count})`}</Tag>
+            ))}
           </TagsBar>
           <MessageBox>
-            <ReadMore
-              text={
-                " Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-              }
-            />
-
-            <HeadShot src={photo} />
+            {data.comments[0] && <ReadMore text={data.comments[0]?.content} />}
+            <HeadShot src={data.comments?.[0]?.userPhoto || defaultUserPhoto} />
           </MessageBox>
-
           <RatingContent>
-            <ReviewBtn />
+            <ReviewBtn navigate={data.id} />
             <RantingConTainer>
-              <StarRating star={3} width={112} height={16} />
+              <StarRating
+                star={data.starCount as 1 | 2 | 3 | 4 | 5}
+                width={112}
+                height={16}
+              />
               <RepliesBox>
-                <RepliesNum>23 Reviews</RepliesNum>
+                <RepliesNum>{`${data.reviewCount} Reviews`} </RepliesNum>
                 <h5>/</h5>
-                <RepliesNum>35 Replies</RepliesNum>
+                <RepliesNum>{data.replyCount}</RepliesNum>
               </RepliesBox>
             </RantingConTainer>
             <BorderBox />

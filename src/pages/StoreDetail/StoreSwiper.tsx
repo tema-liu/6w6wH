@@ -10,6 +10,7 @@ import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
 import noPhotoImg from "../../assets/Item-1.png";
 import { Photo } from "../../type/type";
+import { storePicture } from "../../constants/srcPaths";
 
 const Container = styled(SwiperContainer)`
   position: relative;
@@ -44,10 +45,7 @@ function StoreSwiper({
       {photos.length > 0 ? (
         photos.map((photo) => (
           <SwiperSlide key={`photo${photo.Id}`}>
-            <Img
-              src={`${apiUrl}/Picture/Store/${photo.PictureUrl}`}
-              alt="storePhoto"
-            />
+            <Img src={`${storePicture}${photo.PictureUrl}`} alt="storePhoto" />
           </SwiperSlide>
         ))
       ) : (

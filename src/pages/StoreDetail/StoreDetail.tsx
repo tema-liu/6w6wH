@@ -57,6 +57,7 @@ function StoreDetail() {
   useEffect(() => {
     const fetchData = async () => {
       const numericId = Number(id);
+      console.log("numericId", numericId);
       try {
         const [result, commitList] = await Promise.all([
           getStoreDetail(numericId, userToken),

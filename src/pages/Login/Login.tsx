@@ -79,7 +79,6 @@ function Login() {
 
   const loginLogic = async (credentialResponse: CredentialResponse) => {
     try {
-      console.log(credentialResponse);
       const response = await postLogin(credentialResponse.credential!);
       console.log(response);
 

@@ -37,13 +37,12 @@ import {
   UserProfileMain,
 } from "./style/ReviewCards";
 import Badges from "../Profile/BadgeWindow";
-import noImgHeadShot from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import Country from "../Profile/ConuntryIcon";
+import { commentPicture } from "../../constants/srcPaths";
 
 type CommentCard = {
   data: Comment;
 };
-const apiUrl = import.meta.env.VITE_API_URL;
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
   console.log(data);
@@ -52,13 +51,15 @@ export function CommentCard({ data }: CommentCard) {
       <CommentCardContent>
         {data.photos.length > 0 && (
           <CommentCardImgBox>
-            {data.photos.map((photo) => (
-              <img
-                key={"photo" + photo.Id}
-                src={`${apiUrl}/Picture/Comment/${photo.PictureUrl}`}
-                alt="commentPhoto"
-              />
-            ))}
+            {data.photos.map((photo) => {
+              return (
+                <img
+                  key={"photo" + photo.Id}
+                  src={`${commentPicture}${photo.PictureUrl}`}
+                  alt="commentPhoto"
+                />
+              );
+            })}
           </CommentCardImgBox>
         )}
         <CommentCardDetail>

@@ -5,7 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
 const persistConfig = {
-  key: "root",
+  key: "auth",
   storage,
 };
 //包裝reducer
@@ -19,10 +19,16 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+        ignoredActions: [
+          "persist/PERSIST",
+          "persist/REHYDRATE",
+          "persist/REGISTER",
+        ],
       },
     }),
 });
+
+console.log(typeof store.getState().auth.token, store.getState().auth.token);
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type Dispatch = typeof store.dispatch;

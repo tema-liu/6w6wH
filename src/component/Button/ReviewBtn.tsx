@@ -6,7 +6,7 @@ interface ReviewProps {
   $marginRight?: number;
   content?: string;
   setPostCommentOut?: React.Dispatch<React.SetStateAction<boolean>>;
-  navigate?: string;
+  navigate?: number;
 }
 
 const Review = styled.button<ReviewProps>`
