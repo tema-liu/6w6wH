@@ -55,6 +55,7 @@ function SearchResult() {
   );
   const [isLoading, setLoading] = useState(true);
   const [haveShop, setHaveShop] = useState(true);
+  const [filterValue, setFilterValue] = useState("popular");
 
   //API搜尋參數
   const searchCriteria: SearchOption = {
@@ -94,12 +95,10 @@ function SearchResult() {
     console.log("errorMessage:" + errorMessage);
   }
 
-  console.log(shopList);
   useEffect(() => {
     const fetchData = async () => {
-      console.log(searchCriteria);
-
       const result = await getStoreResult(searchCriteria, token);
+      //如果發生錯誤跳轉404
       if (!result.status) {
         navigate("/popular");
         return;
@@ -118,6 +117,48 @@ function SearchResult() {
     const removeTags = tags.filter((itemId) => itemId !== tagId);
     searchParams.set("tags", removeTags.join(","));
     navigate(`${webLocation.pathname}?${searchParams.toString()}`);
+  };
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectValue = e.target.value;
+    setFilterValue(selectValue);
+  };
+
+  const starList = () => {
+    if (!shopList?.data) {
+      return [];
+    }
+    return [...shopList.data].sort((a, b) => b.starCount - a.starCount);
+  };
+  const repliesList = () => {
+    if (!shopList?.data) {
+      return [];
+    }
+    return [...shopList.data].sort((a, b) => {
+      const replyCountA = a.reviewCount ?? 0; // 如果 a 或 reviewCount 是 undefined，默認為 0
+      const replyCountB = b.reviewCount ?? 0; // 同上
+      return replyCountB - replyCountA;
+    });
+  };
+  const RenderList = () => {
+    let listToRender: SearchResult[] = [];
+
+    switch (filterValue) {
+      case "popular":
+        listToRender = shopList?.data || []; // 確保是數組
+        break;
+      case "star":
+        listToRender = starList();
+        break;
+      case "reviews":
+        listToRender = repliesList();
+        break;
+      default:
+        listToRender = [];
+    }
+
+    return listToRender.map((shop) => (
+      <ShopCard key={shop.placeId} data={shop} />
+    ));
   };
 
   return (
@@ -148,10 +189,14 @@ function SearchResult() {
           {haveShop && (
             <FilterColumn>
               <FilterContainer>
-                <FilterButtons name="filter" id="filter">
+                <FilterButtons
+                  name="filter"
+                  id="filter"
+                  onChange={handleFilterChange}
+                >
                   <option value="popular">Popular</option>
-                  <option value="lastest">Lastest</option>
-                  <option value="Replies">Replies</option>
+                  <option value="star">Star</option>
+                  <option value="reviews">Reviews</option>
                 </FilterButtons>
               </FilterContainer>
             </FilterColumn>
@@ -162,9 +207,7 @@ function SearchResult() {
             <>
               {haveShop ? (
                 <ShopCards>
-                  {shopList?.data?.map((data) => (
-                    <ShopCard data={data} />
-                  ))}
+                  <RenderList />
                 </ShopCards>
               ) : (
                 <>
@@ -183,7 +226,7 @@ function SearchResult() {
                     <EmptyText>maybe you will like......</EmptyText>
                     <ShopCards>
                       {shopList?.data?.map((data) => (
-                        <ShopCard data={data} />
+                        <ShopCard key={data.placeId} data={data} />
                       ))}
                     </ShopCards>
                   </div>

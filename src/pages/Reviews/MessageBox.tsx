@@ -6,6 +6,7 @@ import { postCommentReply } from "../../apis/postCommentReply";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Reply } from "../../type/type";
+import useAuthVerify from "../../hooks/useAuthVerify ";
 
 const Box = styled.div`
   display: flex;
@@ -57,8 +58,14 @@ function MessageBox({ userId, commentId, onAddReply }: moreProps) {
     comment: inputValue,
   };
   const token = useSelector((state: RootState) => state.auth.token);
+  const authVerify = useAuthVerify(token);
   const handleBtnClick = async () => {
     if (inputValue.trim()) {
+      // 驗證是否登入
+      const isAuthenticated = await authVerify();
+      if (!isAuthenticated) {
+        return; // 如果驗證失敗結束函式
+      }
       const res = await postCommentReply(reply, token!);
       if (res.data) {
         onAddReply(res.data);

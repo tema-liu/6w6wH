@@ -8,6 +8,8 @@ import { ReadMore } from "../../pages/SearchResult/ReadMore";
 import { useNavigate } from "react-router-dom";
 import { SearchResult } from "../../type/type";
 import defaultUserPhoto from "../../assets/user-3296.svg";
+import { storePicture } from "../../constants/srcPaths";
+import noPhotoImg from "../../assets/Item-1.png";
 
 type DonateProps = {
   $isDonate?: boolean;
@@ -20,6 +22,7 @@ const ShopCardBox = styled.div`
 const ShopCardImg = styled.img<DonateProps>`
   width: 100%;
   aspect-ratio: 1 / 1;
+  margin-bottom: 92px;
   max-height: 424px;
   border-radius: 32px;
   object-fit: cover;
@@ -29,7 +32,7 @@ const ShopCardImg = styled.img<DonateProps>`
 `;
 const ShopCardMain = styled.div`
   box-shadow: 0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a;
-  margin-top: -200px;
+  margin-top: -270px;
   position: relative;
   max-width: 350px;
   border-radius: 32px;
@@ -88,7 +91,6 @@ const BorderBox = styled.div`
 
 const MessageBox = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 8px 0;
   column-gap: 8px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray400};
@@ -98,6 +100,7 @@ const HeadShot = styled.img`
   width: 64px; /* 設置圖片寬度 */
   height: 64px; /* 設置圖片高度（確保是正方形） */
   border-radius: 50%; /* 圓形裁切 */
+  margin-left: auto;
   object-fit: cover; /* 確保圖片內容不變形 */
 `;
 const ADtag = styled.div`
@@ -137,7 +140,11 @@ function ShopCard({ data }: shopCardProps) {
         )}
         <ShopCardImg
           $isDonate={data.isAdvertise}
-          src="https://picsum.photos/1000/800"
+          src={
+            data.photos.length > 0
+              ? `${storePicture}${data.photos[0].PictureUrl}`
+              : noPhotoImg
+          }
           alt="shopImg"
         />
         <ShopCardMain>
@@ -146,14 +153,26 @@ function ShopCard({ data }: shopCardProps) {
             <h2>{data.displayName}</h2>
           </PlaceName>
           <TagsBar>
-            {data.tags.map((item) => (
-              <Tag key={item.tagName}>{`${item.tagName} (${item.count})`}</Tag>
-            ))}
+            {data.tags.length > 0 ? (
+              data.tags.map((item) => (
+                <Tag
+                  key={item.tagName}
+                >{`${item.tagName} (${item.count})`}</Tag>
+              ))
+            ) : (
+              <Tag>There are no review yet</Tag>
+            )}
           </TagsBar>
-          <MessageBox>
-            {data.comments[0] && <ReadMore text={data.comments[0]?.content} />}
-            <HeadShot src={data.comments?.[0]?.userPhoto || defaultUserPhoto} />
-          </MessageBox>
+          {data.comments.length > 0 && (
+            <MessageBox>
+              {data.comments[0] && (
+                <ReadMore text={data.comments[0]?.content} />
+              )}
+              <HeadShot
+                src={data.comments?.[0]?.userPhoto || defaultUserPhoto}
+              />
+            </MessageBox>
+          )}
           <RatingContent>
             <ReviewBtn navigate={data.id} />
             <RantingConTainer>
@@ -165,7 +184,7 @@ function ShopCard({ data }: shopCardProps) {
               <RepliesBox>
                 <RepliesNum>{`${data.reviewCount} Reviews`} </RepliesNum>
                 <h5>/</h5>
-                <RepliesNum>{data.replyCount}</RepliesNum>
+                <RepliesNum>{data.replyCount} Replies</RepliesNum>
               </RepliesBox>
             </RantingConTainer>
             <BorderBox />

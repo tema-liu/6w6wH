@@ -20,8 +20,6 @@ import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";
 import defaultUserPhoto from "../../assets/user-3296.svg";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;

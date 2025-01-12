@@ -142,7 +142,6 @@ export function ReviewsCard({ data }: ReviewsCard) {
             <span style={{ display: "block" }}>{data.userName}</span>
             <MoreVert
               commentId={data.replyId}
-              loginUserId={loginUserId ?? 0}
               reviewOrReply="reply"
               userId={data.userId}
             />
