@@ -68,7 +68,6 @@ function Reviews() {
   const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
   const userToken = useSelector((state: RootState) => state.auth.token);
-  const loginUserId = useSelector((state: RootState) => state.auth.userId);
   const data = response?.data ?? null;
   //網址取得動態id
   const { id } = useParams();
@@ -141,8 +140,7 @@ function Reviews() {
                       <MoreVert
                         commentId={data.commentId}
                         reviewOrReply="review"
-                        loginUserId={loginUserId ?? 0}
-                        userID={data.userId!}
+                        userId={data.userId!}
                       />
                     </div>
                   </UserReviewTop>

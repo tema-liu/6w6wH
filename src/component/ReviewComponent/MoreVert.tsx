@@ -18,20 +18,15 @@ const IconImg = styled(Icon)`
 type moreProps = {
   commentId: number;
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
-  userID: number;
-  loginUserId: number; //登入者的ID
+  userId: number;
 };
 
-function MoreVert({
-  commentId,
-  reviewOrReply,
-  loginUserId,
-  userID,
-}: moreProps) {
+function MoreVert({ commentId, reviewOrReply, userId }: moreProps) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [window, setWindow] = useState<"delete" | "report" | null>(null);
   const token = useSelector((state: RootState) => state.auth.token);
+  const loginUserId = useSelector((state: RootState) => state.auth.userId);
   const authVerify = useAuthVerify(token);
 
   const handleCommentDelete = async () => {
@@ -115,13 +110,13 @@ function MoreVert({
             <ModelInfo
               isBtnDanger={false}
               btnText={
-                userID === loginUserId
+                userId === loginUserId
                   ? `Delete ${reviewOrReply}`
                   : "Report Inappropriate Content"
               }
               btnClick={() => {
                 setMenuOpen(!menuOpen);
-                if (userID === loginUserId) {
+                if (userId === loginUserId) {
                   setMenuOpen(!menuOpen);
                   setWindow("delete");
                 } else {

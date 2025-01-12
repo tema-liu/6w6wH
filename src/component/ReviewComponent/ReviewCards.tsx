@@ -39,13 +39,15 @@ import {
 import Badges from "../Profile/BadgeWindow";
 import Country from "../Profile/ConuntryIcon";
 import { commentPicture } from "../../constants/srcPaths";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 type CommentCard = {
   data: Comment;
 };
+
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
-  console.log(data);
   return (
     data !== null && (
       <CommentCardContent>
@@ -122,6 +124,7 @@ type ReviewsCard = {
 };
 
 export function ReviewsCard({ data }: ReviewsCard) {
+  const loginUserId = useSelector((state: RootState) => state.auth.userId);
   return (
     data !== null && (
       <CommentCards>
@@ -137,7 +140,12 @@ export function ReviewsCard({ data }: ReviewsCard) {
         <HeadRight>
           <UserReviewTop>
             <span style={{ display: "block" }}>{data.userName}</span>
-            <MoreVert reviewOrReply="reply" userID={data.userId} />
+            <MoreVert
+              commentId={data.replyId}
+              loginUserId={loginUserId ?? 0}
+              reviewOrReply="reply"
+              userId={data.userId}
+            />
           </UserReviewTop>
           <UserReviewMain>
             <ReadMore text={data.comment} />
