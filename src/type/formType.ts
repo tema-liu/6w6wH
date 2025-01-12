@@ -35,6 +35,13 @@ export type PostCommitForm = {
   commentPictures?: string[];
 };
 
+//postCommentReply
+export type CommentReply = {
+  commentId: number;
+  userId: number;
+  comment: string;
+};
+
 //editProfile
 export type EditProfileForm = {
   photo: string;

@@ -24,7 +24,7 @@ import HeartIcon from "../../component/reviewComponent/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
-import { Comment, ResponseData } from "../../type/type";
+import { Comment, Reply, ResponseData } from "../../type/type";
 import { mockApi } from "./data";
 import MoreVert from "../../component/reviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
@@ -62,14 +62,16 @@ const ChatIcon = styled(Icon)`
 `;
 
 function Reviews() {
+  const [replies, setCommentReplies] = useState<Reply[] | null | undefined>(
+    null
+  );
   const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
   const userToken = useSelector((state: RootState) => state.auth.token);
   const loginUserId = useSelector((state: RootState) => state.auth.userId);
-
+  const data = response?.data ?? null;
   //網址取得動態id
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     const fetchData = async () => {
       const numericId = Number(id);
@@ -78,6 +80,7 @@ function Reviews() {
 
         // const result = await mockApi("/api/items");
         setResponse(result);
+        setCommentReplies(result.data?.reply);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -87,7 +90,13 @@ function Reviews() {
     fetchData();
   }, []);
 
-  const data = response?.data ?? null;
+  const handleAddReply = (reply: Reply) => {
+    // 更新回覆列表
+    setCommentReplies((prevReplies) => {
+      const updatedReplies = [...(prevReplies ?? []), reply];
+      return updatedReplies;
+    });
+  };
 
   if (loading) {
     return (
@@ -149,7 +158,7 @@ function Reviews() {
                     <h5>{useTimeAgo(data.createTime)}</h5>
                     <SocialBlock>
                       <div>
-                        <h4>{data.reply?.length ? data.reply.length : ""}</h4>
+                        <h4>{replies?.length ? replies.length : ""}</h4>
                         <ChatIcon
                           $isPointer={true}
                           className="material-symbols-outlined"
@@ -168,9 +177,13 @@ function Reviews() {
                 </HeadRight>
               </CommentDetail>
             </CommentContent>
-            {data.reply && <RepliesCard data={data.reply} />}
+            {replies && <RepliesCard data={replies} />}
           </Container>
-          <MessageBox />
+          <MessageBox
+            userId={data.userId}
+            commentId={data.commentId}
+            onAddReply={handleAddReply}
+          />
         </Wrapper>
       )}
     </>

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { Icon } from "../../component/layout/LayoutComponents";
 import { useState } from "react";
+import { CommentReply } from "../../type/formType";
+import { postCommentReply } from "../../apis/postCommentReply";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { Reply } from "../../type/type";
 
 const Box = styled.div`
   display: flex;
@@ -38,12 +43,26 @@ const Button = styled.button<ButtonProps>`
   border-radius: 8px;
 `;
 
-function MessageBox() {
-  const [inputValue, setInputValue] = useState("");
+type moreProps = {
+  userId: number;
+  commentId: number;
+  onAddReply: (reply: Reply) => void;
+};
 
-  const handleBtnClick = () => {
+function MessageBox({ userId, commentId, onAddReply }: moreProps) {
+  const [inputValue, setInputValue] = useState("");
+  const reply: CommentReply = {
+    userId: userId,
+    commentId: commentId,
+    comment: inputValue,
+  };
+  const token = useSelector((state: RootState) => state.auth.token);
+  const handleBtnClick = async () => {
     if (inputValue.trim()) {
-      console.log("Reply:", inputValue); // 這裡用POST提交內容:UserID 以及內容
+      const res = await postCommentReply(reply, token!);
+      if (res.data) {
+        onAddReply(res.data);
+      }
       setInputValue(""); //清空輸入值
     } else {
       alert("Please do not input blank spaces.");
