@@ -14,23 +14,24 @@ const useAuthVerify = (userToken: string | null) => {
     try {
       if (!userToken) {
         navigate("/login", { replace: true, state: { from: location } });
-        return;
+        return false;
       }
 
       const response = await postAuth(userToken);
       console.log(response);
 
       if (!response.status) {
-        // 清除本地存儲和 Redux 狀態
-        localStorage.removeItem("userToken");
+        // 清除Redux 狀態
         dispatch(clearLoginData());
 
         // 跳轉到登入頁
         navigate("/login", { replace: true, state: { from: location } });
+        return false;
       }
     } catch (error) {
       console.error("驗證失敗", error);
     }
+    return true;
   }, [dispatch, navigate, location]);
 
   return verifyAuth;

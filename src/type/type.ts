@@ -155,7 +155,7 @@ export type StoreResult = {
 //Login=========================
 export type AuthState = {
   token: string | null;
-  userId: string | null;
+  userId: number | null;
   userName: string | null;
   userPhoto: string | null;
   email?: string;

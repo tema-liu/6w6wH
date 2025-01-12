@@ -19,25 +19,38 @@ type moreProps = {
   commentId: number;
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
   userID: number;
-  activeUserID?: number; //登入者的ID
+  loginUserId: number; //登入者的ID
 };
 
 function MoreVert({
   commentId,
   reviewOrReply,
-  activeUserID,
+  loginUserId,
   userID,
 }: moreProps) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [window, setWindow] = useState<"delete" | "report" | null>(null);
   const token = useSelector((state: RootState) => state.auth.token);
+  const authVerify = useAuthVerify(token);
+
   const handleCommentDelete = async () => {
-    const res = await postCommentDelete(commentId, token!);
-    if (res.statusCode === 200) {
-      navigate(-1);
+    try {
+      // 驗證是否登入
+      const isAuthenticated = await authVerify();
+      if (!isAuthenticated) {
+        return; // 如果驗證失敗結束函式
+      }
+
+      // 驗證成功後執行刪除評論
+      const deleteRes = await postCommentDelete(commentId, token!);
+      if (deleteRes.statusCode === 200) {
+        setWindow(null); // 關閉彈窗或清除狀態
+        navigate(-1); // 返回上一頁
+      }
+    } catch (error) {
+      console.error("刪除評論時發生錯誤", error);
     }
-    setWindow(null);
   };
 
   const windowList = {
@@ -102,13 +115,13 @@ function MoreVert({
             <ModelInfo
               isBtnDanger={false}
               btnText={
-                userID === activeUserID
+                userID === loginUserId
                   ? `Delete ${reviewOrReply}`
                   : "Report Inappropriate Content"
               }
               btnClick={() => {
                 setMenuOpen(!menuOpen);
-                if (userID === activeUserID) {
+                if (userID === loginUserId) {
                   setMenuOpen(!menuOpen);
                   setWindow("delete");
                 } else {

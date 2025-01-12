@@ -131,9 +131,12 @@ function PostComment() {
   // 驗證是否留言過,如果有獲取的圖片 URL 列表
   useEffect(() => {
     //驗證是否登入
-    verifyAuth();
-
-    //驗證是否評論過
+    verifyAuth().then((res) => {
+      //通過驗證執行驗證評論紀錄
+      if (res) {
+        fetchPhotosFromServer();
+      }
+    });
     async function fetchPhotosFromServer() {
       // const baseUrl = import.meta.env.VITE_API_URL;
       //是否評論過
@@ -163,8 +166,6 @@ function PostComment() {
             ];
       setPhotoListBase64(mergedPhotos);
     }
-
-    fetchPhotosFromServer();
   }, [id, token]);
 
   //避免重複調用tag API
