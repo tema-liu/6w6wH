@@ -62,9 +62,7 @@ const ChatIcon = styled(Icon)`
 `;
 
 function Reviews() {
-  const [replies, setCommentReplies] = useState<Reply[] | null | undefined>(
-    null
-  );
+  const [replies, setCommentReplies] = useState<Reply[] | null>(null);
   const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
   const userToken = useSelector((state: RootState) => state.auth.token);
@@ -79,7 +77,9 @@ function Reviews() {
 
         // const result = await mockApi("/api/items");
         setResponse(result);
-        setCommentReplies(result.data?.reply);
+        if (result.data?.reply) {
+          setCommentReplies(result.data?.reply);
+        }
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -175,7 +175,9 @@ function Reviews() {
                 </HeadRight>
               </CommentDetail>
             </CommentContent>
-            {replies && <RepliesCard data={replies} />}
+            {replies && (
+              <RepliesCard setReplies={setCommentReplies} replies={replies} />
+            )}
           </Container>
           <MessageBox
             userId={data.userId}

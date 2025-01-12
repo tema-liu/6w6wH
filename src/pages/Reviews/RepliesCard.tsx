@@ -35,19 +35,15 @@ const CommentCard = styled(CommentCardDetail)`
 `;
 
 type RepliesCardProps = {
-  data: Reply[]; // 更新這裡的型別為 Reply（回覆的陣列）
+  replies: Reply[]; // 更新這裡的型別為 Reply（回覆的陣列）
+  setReplies: React.Dispatch<React.SetStateAction<Reply[] | null>>; // 正確型別
 };
 
-function RepliesCard({ data }: RepliesCardProps) {
-  const [replies, setReplies] = useState<Reply[] | null | undefined>(null);
-
-  useEffect(() => {
-    setReplies(data);
-  }, []);
-
+function RepliesCard({ replies, setReplies }: RepliesCardProps) {
   const handleRemoveReply = (success: boolean, replyId: number) => {
     if (success) {
       setReplies((prevReplies) => {
+        if (!prevReplies) return [];
         // 根據 replyId 過濾掉要刪除的回覆
         const updatedReplies = prevReplies?.filter(
           (reply) => reply.replyId !== replyId
