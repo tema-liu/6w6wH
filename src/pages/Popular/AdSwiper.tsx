@@ -7,8 +7,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../../component/layout/LayoutComponents";
 import { ADtag } from "./style/adSwiper";
+import { useEffect } from "react";
+import { getPopularAdvertise } from "../../apis/getPopularAdvertise";
 
 function AdSwiper() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const popularAds = await getPopularAdvertise();
+      console.log(popularAds);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <SwiperContainer
       // install Swiper modules

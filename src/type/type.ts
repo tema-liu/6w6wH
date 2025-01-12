@@ -8,8 +8,8 @@ export type ResponseData<T = unknown> = {
 
 //=========Reviews====================================
 export type Reply = {
-  replyId: string; // 留言ID
-  userId: string; // 留言人ID
+  replyId: number; // 留言ID
+  userId: number; // 留言人ID
   userName: string; // 留言人名稱
   userPhoto: string;
   comment: string; // 留言內容

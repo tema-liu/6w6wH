@@ -138,7 +138,7 @@ function Reviews() {
                     </UserRating>
                     <div>
                       <MoreVert
-                        commentId={data.commentId}
+                        id={data.commentId}
                         reviewOrReply="review"
                         userId={data.userId!}
                       />

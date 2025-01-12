@@ -76,3 +76,10 @@ export type SearchOption = {
   locationType: "station" | "user";
   tags: number[];
 };
+
+// Advertise
+export type PopularAdvertise = {
+  adId: number;
+  url: string;
+  photo: string;
+};

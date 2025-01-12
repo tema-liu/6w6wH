@@ -1,19 +1,18 @@
+import { PopularAdvertise } from "../type/formType";
 import { ResponseData } from "../type/type"; // 假設型別定義在 types 檔案中
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const postCommentDelete = async (
-  commentId: number,
-  token: string
-): Promise<ResponseData<void>> => {
-  console.log("commentId", commentId);
-  const url = `${apiUrl}/api/comments/delete`;
+export const getPopularAdvertise = async (): Promise<
+  ResponseData<PopularAdvertise>
+> => {
+  const url = `${apiUrl}/home/advertise/get`;
   // 檢查 HTTP 回應是否成功
   const options = {
-    method: "POST",
-    body: JSON.stringify({ commentId: commentId }),
+    method: "GET",
+    // body: ,
     headers: {
-      Authorization: token ? `Bearer ${token}` : "",
+      //   Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": "application/json",
     },
   };
@@ -21,7 +20,7 @@ export const postCommentDelete = async (
   try {
     const res = await fetch(url, options);
     const json = await res.json().catch(() => null); // 防止 JSON 解析失敗
-    console.log("刪除評論結果: " + JSON.stringify(json));
+    console.log("取得首頁廣告結果: " + JSON.stringify(json));
 
     // 統一回傳格式，簡化錯誤處理
     if (!res.ok) {
@@ -37,7 +36,7 @@ export const postCommentDelete = async (
       return {
         statusCode: res.status,
         status: false,
-        message: json?.message || "評論刪除失敗",
+        message: json?.message || "取得首頁廣告失敗",
       };
     }
 

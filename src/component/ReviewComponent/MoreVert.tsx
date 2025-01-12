@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 import { useNavigate } from "react-router-dom";
+import { postReplyDelete } from "../../apis/postReplyDelete";
 
 const IconImg = styled(Icon)`
   margin: 12px 8px;
@@ -16,12 +17,13 @@ const IconImg = styled(Icon)`
 `;
 
 type moreProps = {
-  commentId: number;
+  id: number;
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
   userId: number;
+  onRemoveReply?: (success: boolean, reply: number) => void;
 };
 
-function MoreVert({ commentId, reviewOrReply, userId }: moreProps) {
+function MoreVert({ id, reviewOrReply, userId, onRemoveReply }: moreProps) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [window, setWindow] = useState<"delete" | "report" | null>(null);
@@ -29,7 +31,7 @@ function MoreVert({ commentId, reviewOrReply, userId }: moreProps) {
   const loginUserId = useSelector((state: RootState) => state.auth.userId);
   const authVerify = useAuthVerify(token);
 
-  const handleCommentDelete = async () => {
+  const handleDelete = async () => {
     try {
       // 驗證是否登入
       const isAuthenticated = await authVerify();
@@ -38,10 +40,19 @@ function MoreVert({ commentId, reviewOrReply, userId }: moreProps) {
       }
 
       // 驗證成功後執行刪除評論
-      const deleteRes = await postCommentDelete(commentId, token!);
-      if (deleteRes.statusCode === 200) {
-        setWindow(null); // 關閉彈窗或清除狀態
-        navigate(-1); // 返回上一頁
+      let deleteRes;
+      if (reviewOrReply === "review") {
+        deleteRes = await postCommentDelete(id, token!);
+        if (deleteRes && deleteRes.statusCode === 200) {
+          setWindow(null); // 關閉彈窗或清除狀態
+          navigate(-1); // 返回上一頁
+        }
+      } else if (reviewOrReply === "reply") {
+        deleteRes = await postReplyDelete(id, token!);
+        if (onRemoveReply) {
+          onRemoveReply(true, id); // 只有當 onRemoveReply 存在時才調用
+        }
+        console.log(deleteRes);
       }
     } catch (error) {
       console.error("刪除評論時發生錯誤", error);
@@ -58,7 +69,7 @@ function MoreVert({ commentId, reviewOrReply, userId }: moreProps) {
             text="This operation is irreversible"
             btnText="Delete"
             btnClick={() => {
-              handleCommentDelete();
+              handleDelete();
             }}
             cancelClick={() => {
               setWindow(null);
