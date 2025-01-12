@@ -124,7 +124,6 @@ type ReviewsCard = {
 };
 
 export function ReviewsCard({ data }: ReviewsCard) {
-  const loginUserId = useSelector((state: RootState) => state.auth.userId);
   return (
     data !== null && (
       <CommentCards>

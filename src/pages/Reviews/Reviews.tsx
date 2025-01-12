@@ -25,7 +25,7 @@ import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
 import { Comment, Reply, ResponseData } from "../../type/type";
-import { mockApi } from "./data";
+// import { mockApi } from "./data";
 import MoreVert from "../../component/reviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";

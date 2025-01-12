@@ -7,7 +7,7 @@ export type AddPlaceList = {
   placeId: string;
   displayName: string;
   address: string;
-  tags: string[];
+  tags: number[];
 };
 
 //tags=======================

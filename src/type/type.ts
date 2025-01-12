@@ -4,6 +4,7 @@ export type ResponseData<T = unknown> = {
   status: boolean; // 狀態
   message: string; // 回應訊息
   data?: T;
+  [key: string]: unknown; // 允許額外的未知 key，值的型別為 unknown
 };
 
 //=========Reviews====================================
@@ -116,6 +117,10 @@ export type AddPlaceList = {
   placeId: string;
   displayName: string;
   address: string;
+};
+
+export type AddPlaceRes = {
+  storeId: number;
 };
 
 //Tag===========================

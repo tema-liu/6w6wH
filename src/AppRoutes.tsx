@@ -27,8 +27,7 @@ function AppRoutes() {
         <Route path="/" element={<StoreListLayout />}>
           {/* 首頁 */}
           <Route index element={<Popular />} />
-          {/* 新增店家 */}
-          <Route path="/addShop" element={<AddStore />} />
+
           {/* 搜尋 */}
           <Route path="/search" element={<Search />} />
           {/* 店家列表 */}
@@ -50,6 +49,8 @@ function AppRoutes() {
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           {/* 用 ProtectedRoute 包裹需要驗證的路由 */}
           <Route element={<ProtectedRoute />}>
+            {/* 新增店家 */}
+            <Route path="/addShop" element={<AddStore />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/editProfile" element={<EditProfile />} />

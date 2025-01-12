@@ -13,7 +13,6 @@ import {
 } from "../Reviews/styled";
 import { ReadMore } from "./ReadMore";
 import HeartIcon from "../../component/reviewComponent/HeartIcon";
-import { useEffect, useState } from "react";
 import { Reply } from "../../type/type";
 import MoreVert from "../../component/reviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";

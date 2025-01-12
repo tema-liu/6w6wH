@@ -25,7 +25,7 @@ import CommentCards from "./CommentCards";
 import StoreSwiper from "./StoreSwiper";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Comment, ResponseData, StoreData } from "../../type/type";
-import { mockApi, storeResultApi } from "./data";
+// import { mockApi, storeResultApi } from "./data";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import SuggestModalButton from "./SuggestModalButton";
 import Placeholder from "./Placeholder";
