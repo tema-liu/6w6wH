@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import useDebounce from "../../hooks/useDebounce";
 
 interface CollectIconProps {
   $right?: number;
@@ -64,6 +65,9 @@ const IconDiv = styled.div<CollectIconProps>`
 const CollectIcon = ({ right, isFavoriteData }: ComponentProps) => {
   const [isFavorite, setFavorite] = useState(isFavoriteData);
 
+  useDebounce(isFavorite, 1000, () => {
+    console.log("收藏成功");
+  });
   return (
     <IconDiv
       $right={right}
