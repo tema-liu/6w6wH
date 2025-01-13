@@ -185,3 +185,22 @@ export type SearchResult = {
   tags: Tag[];
   comments: CommentCard[];
 };
+//popular=========================
+// Advertise
+export type PopularAdvertise = {
+  adId: number;
+  url: string;
+  photo: string;
+};
+
+export type PopularStore = {
+  id: number;
+  displayName: string;
+  photos: string;
+  starCount: number;
+  comment: {
+    commitId: number;
+    userPhoto: string | null;
+    content: string;
+  };
+};

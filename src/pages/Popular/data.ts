@@ -19,6 +19,7 @@ export const commentData = {
       comment: "這家店的產品很不錯，值得推薦！",
       postedAt: new Date("2024-12-05T10:00:00Z"),
       likeCount: 15,
+      country: "Taiwan",
       isLike: true,
       tags: [
         "Multilingual",
@@ -27,7 +28,7 @@ export const commentData = {
         "Average",
         "Improvement needed",
       ],
-      medal: "badge2", // 假設金獎
+      badge: "level1", // 假設金獎
       reply: [
         {
           replyID: "reply-54321",
@@ -37,8 +38,9 @@ export const commentData = {
           comment:
             "Kopi susu is super yummy! Nice ambient and service! Come hang out!",
           postedAt: new Date("2024-12-06T12:30:00Z"),
-          medal: "badge2", // 設銀獎
+          badge: "level3", // 設銀獎
           likeCount: 5,
+          country: "Indonesia",
           isLike: false,
         },
         {
@@ -48,7 +50,8 @@ export const commentData = {
           userPhoto: "https://picsum.photos/400/400.jpg",
           comment: "感謝推薦，會告訴朋友們！",
           postedAt: new Date("2024-12-09T00:30:00Z"),
-          medal: null, // 無獎牌
+          badge: "level6",
+          country: "Indonesia",
           likeCount: 10,
           isLike: true,
         },
@@ -70,7 +73,8 @@ export const commentData = {
       likeCount: 20,
       isLike: true,
       tags: ["Clean", "Comfortable", "Great service"],
-      medal: "badge2",
+      badge: "level1",
+      country: "Indonesia",
     },
     latest: {
       commentID: "comment-99999",
@@ -88,7 +92,8 @@ export const commentData = {
       likeCount: 8,
       isLike: false,
       tags: ["Average", "Improvement needed", "Quality"],
-      medal: null, // 無獎牌
+      badge: "level2",
+      country: "Indonesia",
       reply: [
         {
           replyID: "reply-55555",
@@ -97,8 +102,9 @@ export const commentData = {
           userPhoto: "https://picsum.photos/400/400.jpg",
           comment: "感謝反饋，我們會檢討改進！",
           postedAt: new Date("2024-12-05T10:45:00Z"),
-          medal: "badge", // 假設銀獎
+          badge: "level3", // 假設銀獎
           likeCount: 3,
+          country: "Taiwan",
           isLike: false,
         },
         {
@@ -108,8 +114,9 @@ export const commentData = {
           userPhoto: "https://picsum.photos/400/400.jpg",
           comment: "好吃咖哩一直吃",
           postedAt: new Date("2024-12-05T10:45:00Z"),
-          medal: "badge", // 假設銀獎
+          badge: "level5", // 假設銀獎
           likeCount: 3,
+          country: "Taiwan",
           isLike: false,
         },
       ],

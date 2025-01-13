@@ -1,4 +1,4 @@
-import { Comment, Reply, ResponseData } from "../type/type";
+import { Comment, ResponseData } from "../type/type";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getReply = async (

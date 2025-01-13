@@ -51,7 +51,7 @@ export function CommentCard({ data }: CommentCard) {
   return (
     data !== null && (
       <CommentCardContent>
-        {data.photos.length > 0 && (
+        {data.photos?.length > 0 && (
           <CommentCardImgBox>
             {data.photos.map((photo) => {
               return (
@@ -130,10 +130,8 @@ export function ReviewsCard({ data }: ReviewsCard) {
         <Head>
           <HeadShot src={data.userPhoto || defaultUserPhoto} alt="headShot" />
           <BadgeBox>
-            <BadgeBox>
-              <Country country={data.country} />
-              <Badges level={data.badge} />
-            </BadgeBox>
+            <Country country={data.country} />
+            <Badges level={data.badge} />
           </BadgeBox>
         </Head>
         <HeadRight>
