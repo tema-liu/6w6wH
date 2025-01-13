@@ -125,7 +125,7 @@ type shopCardProps = {
 };
 function ShopCard({ data }: shopCardProps) {
   const navigate = useNavigate();
-  console.log(data.id);
+  console.log(data);
   return (
     <>
       <ShopCardBox
@@ -148,7 +148,11 @@ function ShopCard({ data }: shopCardProps) {
           alt="shopImg"
         />
         <ShopCardMain>
-          <CollectIcon isFavoriteData={data.isFavorited} right={28} />
+          <CollectIcon
+            storeId={data.id}
+            isFavoriteData={data.isFavorited}
+            right={28}
+          />
           <PlaceName>
             <h2>{data.displayName}</h2>
           </PlaceName>

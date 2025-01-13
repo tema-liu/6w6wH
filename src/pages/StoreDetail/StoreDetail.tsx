@@ -104,6 +104,7 @@ function StoreDetail() {
           <Header title={"Store Detail"} />
           <Container>
             <StoreSwiper
+              storeId={storeData.data.id}
               isFavorite={storeData.data.isFavorited}
               photos={storeData.data.photos ?? []}
             />

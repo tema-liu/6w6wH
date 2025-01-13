@@ -23,14 +23,14 @@ const Container = styled(SwiperContainer)`
 `;
 
 function StoreSwiper({
+  storeId,
   photos,
   isFavorite,
 }: {
+  storeId: number;
   photos: Photo[];
   isFavorite: boolean;
 }) {
-  const apiUrl = import.meta.env.VITE_API_URL;
-
   return (
     <Container
       // install Swiper modules
@@ -41,7 +41,7 @@ function StoreSwiper({
         prevEl: ".swiper-button-prev",
       }}
     >
-      <CollectIcon isFavoriteData={isFavorite} right={32} />
+      <CollectIcon storeId={storeId} isFavoriteData={isFavorite} right={32} />
       {photos.length > 0 ? (
         photos.map((photo) => (
           <SwiperSlide key={`photo${photo.Id}`}>

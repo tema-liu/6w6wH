@@ -1,7 +1,6 @@
 import bugIcon from "../../assets/bug.png";
 import { TitleBox, TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 import { StarRating } from "../../component/StarRating";
-import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import {
   ShopCard,
   ShopCards,

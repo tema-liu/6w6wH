@@ -1,6 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import useDebounce from "../../hooks/useDebounce";
+import { postCollectShop } from "../../apis/postCollectShop";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import useAuthVerify from "../../hooks/useAuthVerify ";
 
 interface CollectIconProps {
   $right?: number;
@@ -9,6 +13,7 @@ interface CollectIconProps {
 interface ComponentProps {
   right?: number;
   isFavoriteData: boolean;
+  storeId: number;
 }
 
 const Icon = styled.div<CollectIconProps>`
@@ -52,7 +57,6 @@ const IconDiv = styled.div<CollectIconProps>`
   top: 0;
   right: ${(props) => props.$right}px;
   opacity: ${({ $isCollect }) => ($isCollect ? 1 : 0.75)};
-  opacity: 0.75;
   transition: all 0.25s ease;
   &:active {
     opacity: 1;
@@ -64,16 +68,38 @@ const IconDiv = styled.div<CollectIconProps>`
   }
 `;
 
-const CollectIcon = ({ right, isFavoriteData }: ComponentProps) => {
-  const [isFavorite, setFavorite] = useState(isFavoriteData);
+const CollectIcon = ({ right, isFavoriteData, storeId }: ComponentProps) => {
+  const token = useSelector((state: RootState) => state.auth.token);
+  const authVerify = useAuthVerify(token);
 
-  useDebounce(isFavorite, 1000, () => {
-    console.log("收藏成功");
+  const [isFavorite, setFavorite] = useState(isFavoriteData);
+  const [isAuth, setAuth] = useState(false);
+
+  useDebounce(isFavorite, 1000, async () => {
+    const collectShop = await postCollectShop(storeId, token);
+    console.log(collectShop);
   });
+
+  const clickHandler = async (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    if (!isAuth) {
+      const isAuthenticated = await authVerify();
+      if (!isAuthenticated) {
+        return; // 如果驗證失敗結束函式
+      }
+      setAuth(!isAuth);
+    }
+
+    setFavorite(!isFavorite);
+  };
   return (
     <IconDiv
       $right={right}
-      onClick={() => setFavorite(!isFavorite)}
+      onClick={(e) => {
+        clickHandler(e);
+      }}
       $isCollect={isFavorite}
     >
       <Icon $isCollect={isFavorite}>

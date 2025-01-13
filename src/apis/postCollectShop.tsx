@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const postCollectShop = async (
   storeId: number,
-  token: string
+  token: string | null
 ): Promise<ResponseData> => {
   const url = `${apiUrl}/api/CollectShop/Collect`;
   // 檢查 HTTP 回應是否成功
