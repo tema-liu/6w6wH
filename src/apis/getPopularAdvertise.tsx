@@ -1,4 +1,4 @@
-import { PopularAdvertise } from "../type/formType";
+import { PopularAdvertise } from "../type/type";
 import { ResponseData } from "../type/type"; // 假設型別定義在 types 檔案中
 
 const apiUrl = import.meta.env.VITE_API_URL;

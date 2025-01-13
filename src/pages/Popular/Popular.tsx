@@ -7,7 +7,7 @@ import HotShopList from "./HotShopList";
 import HotReviews from "./HotReviews";
 import LearningResources from "./LearningResources";
 import { useEffect, useState } from "react";
-import { ResponseData, ReviewOrReply } from "../../type/type";
+import { PopularStore, ResponseData, ReviewOrReply } from "../../type/type";
 import { mockApi } from "./data";
 import { getPopularMarquee } from "../../apis/getPopularMarquee";
 import { getStoreTop } from "../../apis/getStoreTop";
@@ -21,18 +21,23 @@ function Popular() {
     null
   );
   const [tagsMarquee, setTagsMarquee] = useState<number[]>([]);
+  const [popularStore, setPopularStore] = useState<PopularStore[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(popularStore);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const marquee = await getPopularMarquee();
+        const [marquee, storeTop, result] = await Promise.all([
+          getPopularMarquee(),
+          getStoreTop(),
+          mockApi("/api/items"),
+        ]);
         if (marquee.status && marquee.data) {
           setTagsMarquee(marquee.data);
         }
-        const storeTop = await getStoreTop();
-        console.log(storeTop);
-        const result = await mockApi("/api/items");
+        if (storeTop.status && storeTop.data) {
+          setPopularStore(storeTop.data);
+        }
         setResponse(result ?? null); //假設res為undefined或null 設為null
         setIsLoading(false);
       } catch (error) {
@@ -57,7 +62,7 @@ function Popular() {
         <HomeContainer>
           <AdSwiper />
           <PopularMarquee tags={tagsMarquee ?? []} />
-          <HotShopList />
+          <HotShopList shopList={popularStore} />
           {response && <HotReviews data={response.data ?? null} />}
           <LearningResources />
         </HomeContainer>

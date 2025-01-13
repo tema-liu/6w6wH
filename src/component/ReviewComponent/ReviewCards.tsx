@@ -39,8 +39,6 @@ import {
 import Badges from "../Profile/BadgeWindow";
 import Country from "../Profile/ConuntryIcon";
 import { commentPicture } from "../../constants/srcPaths";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 
 type CommentCard = {
   data: Comment;
@@ -53,10 +51,10 @@ export function CommentCard({ data }: CommentCard) {
       <CommentCardContent>
         {data.photos?.length > 0 && (
           <CommentCardImgBox>
-            {data.photos.map((photo) => {
+            {data.photos.map((photo, index) => {
               return (
                 <img
-                  key={"photo" + photo.Id}
+                  key={photo.Id ? `photo${photo.Id}` : `photo-${index}`}
                   src={`${commentPicture}${photo.PictureUrl}`}
                   alt="commentPhoto"
                 />

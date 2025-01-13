@@ -48,6 +48,7 @@ export const ShopNameContainer = styled.div`
 
 export const Review = styled.div`
   display: flex;
+  min-height: 82px;
   p {
     padding: 8px;
     color: ${({ theme }) => theme.colors.gray900};
@@ -59,7 +60,6 @@ export const HeadShot = styled.img`
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  margin: auto auto;
 `;
 export const ShopCards = styled.div`
   display: flex;

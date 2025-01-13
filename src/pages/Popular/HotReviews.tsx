@@ -74,7 +74,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
                 <>
                   <CommentCard data={data.popular} />
                   {data.popular.reply?.map((item) => {
-                    return <ReviewsCard key={item.replyID} data={item} />;
+                    return <ReviewsCard key={item.replyId} data={item} />;
                   })}
                 </>
               )}
@@ -89,7 +89,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
                 <>
                   <CommentCard data={data?.latest} />
                   {data.latest.reply?.map((item) => {
-                    return <ReviewsCard key={item.replyID} data={item} />;
+                    return <ReviewsCard key={item.replyId} data={item} />;
                   })}
                 </>
               )}

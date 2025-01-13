@@ -196,7 +196,7 @@ export type PopularAdvertise = {
 export type PopularStore = {
   id: number;
   displayName: string;
-  photos: string;
+  photos: string[];
   starCount: number;
   comment: {
     commitId: number;
