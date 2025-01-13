@@ -11,13 +11,22 @@ import { Container, Content, Item, ItemText } from "./style/menu";
 import ModelInfo from "../../component/popupModel/ModelInfo";
 import GrayButton from "../../component/button/GrayBtn";
 import { ItemList } from "./data";
+import { useDispatch } from "react-redux";
+import { clearLoginData } from "../../redux/auth/slice";
 
 function Menu() {
   const navigator = useNavigate();
+  const dispatch = useDispatch();
+
   //控制彈跳視窗
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(
     null
   );
+
+  const logOutHandler = () => {
+    dispatch(clearLoginData());
+    navigator("/popular");
+  };
 
   return (
     <Wrapper>
@@ -94,7 +103,7 @@ function Menu() {
                 isBtnDanger={true}
                 title="Log out 6w6wH ?"
                 btnText="Log out"
-                btnClick={() => {}} //5
+                btnClick={logOutHandler}
                 cancelClick={() => {
                   setModalContent(null);
                 }}

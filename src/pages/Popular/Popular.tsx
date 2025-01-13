@@ -23,7 +23,7 @@ function Popular() {
   const [tagsMarquee, setTagsMarquee] = useState<number[]>([]);
   const [popularStore, setPopularStore] = useState<PopularStore[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(popularStore);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
