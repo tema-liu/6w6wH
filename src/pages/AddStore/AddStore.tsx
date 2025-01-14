@@ -5,7 +5,7 @@ import SelectLocation from "./SelectLocation";
 import { Location } from "../../type/type";
 import GoogleMap from "./GoogleMap";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 
 function AddStore() {

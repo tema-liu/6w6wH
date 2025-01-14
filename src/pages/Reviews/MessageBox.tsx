@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CommentReply } from "../../type/formType";
 import { postCommentReply } from "../../apis/postCommentReply";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import { Reply } from "../../type/type";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 

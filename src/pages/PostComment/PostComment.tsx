@@ -25,8 +25,8 @@ import {
   Star,
 } from "./style";
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, RootState } from "../../redux/store";
-import { fetchTagsData } from "../../redux/tagList/slice";
+import { Dispatch, RootState } from "../../utils/redux/store";
+import { fetchTagsData } from "../../utils/redux/tagList/slice";
 import { useForm, useWatch } from "react-hook-form";
 import { PostCommitForm } from "../../type/formType";
 import { postCommit } from "../../apis/postCommit";

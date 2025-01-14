@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 
 import useAuthVerify from "../../hooks/useAuthVerify ";
 import { useEffect } from "react";

@@ -34,7 +34,7 @@ import Badges from "../../component/Profile/BadgeWindow";
 import Country from "../../component/Profile/ConuntryIcon";
 import { getReply } from "../../apis/gatReply";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import { useParams } from "react-router-dom";
 import defaultUserPhoto from "../../assets/user-3296.svg";
 

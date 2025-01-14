@@ -32,7 +32,7 @@ import Placeholder from "./Placeholder";
 import VoiceReader from "../../component/shop/VoiceReader";
 import { getStoreDetail } from "../../apis/getStoreDetail";
 import { getStoreCommit } from "../../apis/getStoreCommit";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import { useSelector } from "react-redux";
 
 function StoreDetail() {

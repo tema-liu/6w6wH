@@ -19,8 +19,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { Location } from "../../type/type";
 import useUserLocation from "../../hooks/useUseLocation";
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, RootState } from "../../redux/store";
-import { fetchTagsData } from "../../redux/tagList/slice";
+import { Dispatch, RootState } from "../../utils/redux/store";
+import { fetchTagsData } from "../../utils/redux/tagList/slice";
 
 function Search() {
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ import ModelInfo from "../../component/popupModel/ModelInfo";
 import GrayButton from "../../component/button/GrayBtn";
 import { ItemList } from "./data";
 import { useDispatch } from "react-redux";
-import { clearLoginData } from "../../redux/auth/slice";
+import { clearLoginData } from "../../utils/redux/auth/slice";
 
 function Menu() {
   const navigator = useNavigate();

@@ -6,9 +6,9 @@ import {
   TagList,
 } from "./style/popularMarquee";
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, RootState } from "../../redux/store";
+import { Dispatch, RootState } from "../../utils/redux/store";
 import { useEffect } from "react";
-import { fetchTagsData } from "../../redux/tagList/slice";
+import { fetchTagsData } from "../../utils/redux/tagList/slice";
 import { useNavigate } from "react-router-dom";
 
 type TagChipProps = {

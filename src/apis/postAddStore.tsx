@@ -22,7 +22,7 @@ export const postAddStore = async (
   try {
     const res = await fetch(url, options);
     const json = await res.json().catch(() => null); // 防止 JSON 解析失敗
-    console.log(json);
+    console.log("json", json);
     // 統一回傳格式，簡化錯誤處理
     if (!res.ok) {
       return {

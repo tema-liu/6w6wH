@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSearchTags, getStationTags } from "../../apis/getTagsList";
+import { getSearchTags, getStationTags } from "../../../apis/getTagsList";
 import { Dispatch } from "../store";
-import { SearchStationTag, SearchTag } from "../../type/type";
+import { SearchStationTag, SearchTag } from "../../../type/type";
 
 type TagsState = {
   cityTags: {

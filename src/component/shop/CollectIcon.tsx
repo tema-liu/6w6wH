@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useDebounce from "../../hooks/useDebounce";
 import { postCollectShop } from "../../apis/postCollectShop";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 
 interface CollectIconProps {

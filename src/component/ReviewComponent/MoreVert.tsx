@@ -6,7 +6,7 @@ import ModelInfo from "../popupModel/ModelInfo";
 import TextAreaInfo from "../popupModel/TextAreaInfo";
 import { postCommentDelete } from "../../apis/postCommentDelete";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../utils/redux/store";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 import { useNavigate } from "react-router-dom";
 import { postReplyDelete } from "../../apis/postReplyDelete";

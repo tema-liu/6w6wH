@@ -7,8 +7,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { postLogin } from "../../apis/postLogin";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLoginData } from "../../redux/auth/slice";
-import { RootState } from "../../redux/store";
+import { fetchLoginData } from "../../utils/redux/auth/slice";
+import { RootState } from "../../utils/redux/store";
 
 const Content = styled.div`
   width: 100%;

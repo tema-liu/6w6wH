@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { clearLoginData } from "../redux/auth/slice"; // Redux action
+import { clearLoginData } from "../utils/redux/auth/slice"; // Redux action
 import { postAuth } from "../apis/postAuth"; // 驗證 API
 
 // 用於驗證是否已登入

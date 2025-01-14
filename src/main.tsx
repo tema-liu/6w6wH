@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import AppRoutes from "./AppRoutes.tsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
-import store, { persistor } from "./redux/store.tsx";
+import store, { persistor } from "./utils/redux/store.tsx";
 import { PersistGate } from "redux-persist/integration/react";
 
 const rootElement = document.getElementById("root");
