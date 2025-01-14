@@ -73,7 +73,7 @@ function StoreDetail() {
           return;
         }
         if (result.message === "查無店家資料") {
-          navigator("/popular");
+          navigator("*");
           return;
         }
         setStoreData(result ?? null);

@@ -19,7 +19,7 @@ import defaultUserPhoto from "../../assets/user-3296.svg";
 
 function HotShopList({ shopList }: { shopList: PopularStore[] }) {
   const colors = ["secondary", "outline1", "outline2", "outline3"];
-
+  console.log(shopList);
   return (
     <ShopCards>
       {shopList.map((shop, index) => {

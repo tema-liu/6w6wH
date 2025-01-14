@@ -35,7 +35,7 @@ import Country from "../../component/Profile/ConuntryIcon";
 import { getReply } from "../../apis/gatReply";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import defaultUserPhoto from "../../assets/user-3296.svg";
 
 type CommentContentProps = {
@@ -62,6 +62,7 @@ const ChatIcon = styled(Icon)`
 `;
 
 function Reviews() {
+  const navigate = useNavigate();
   const [replies, setCommentReplies] = useState<Reply[] | null>(null);
   const [response, setResponse] = useState<ResponseData<Comment> | null>(null);
   const [loading, setLoading] = useState(true); //loading 狀態
@@ -74,7 +75,9 @@ function Reviews() {
       const numericId = Number(id);
       try {
         const result = await getReply(numericId, userToken);
-
+        if (!result.status) {
+          navigate("*");
+        }
         // const result = await mockApi("/api/items");
         setResponse(result);
         if (result.data?.reply) {
