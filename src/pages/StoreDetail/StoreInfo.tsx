@@ -10,6 +10,16 @@ import { StoreData } from "../../type/type";
 import VoiceReader from "../../component/shop/VoiceReader";
 
 function StoreInfo({ data }: { data: StoreData }) {
+  const weekDay = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  const openHour = data.opening_hours;
   return (
     <>
       <ContentDetail>
@@ -64,25 +74,23 @@ function StoreInfo({ data }: { data: StoreData }) {
             <a href={data.Book}>Book</a>
           </Store>
         )}
-        {data.opening_hours && (
-          <Store>
-            <Icon $isPointer={false} className="material-symbols-outlined">
-              schedule
-            </Icon>
-            <BusinessHours>
-              <BusinessHoursTitle $colors="gray900">
-                Business hours
-              </BusinessHoursTitle>
-              <h2>{`Monday ${data.opening_hours?.Monday}`}</h2>
-              <h2>{`Tuesday ${data.opening_hours?.Tuesday}`}</h2>
-              <h2>{`Wednesday ${data.opening_hours?.Wednesday}`}</h2>
-              <h2>{`Thursday ${data.opening_hours?.Thursday}`}</h2>
-              <h2>{`Friday ${data.opening_hours?.Friday}`}</h2>
-              <h2>{`Saturday ${data.opening_hours?.Saturday}`}</h2>
-              <h2>{`Sunday ${data.opening_hours?.Sunday}`}</h2>
-            </BusinessHours>
-          </Store>
-        )}
+
+        <Store>
+          <Icon $isPointer={false} className="material-symbols-outlined">
+            schedule
+          </Icon>
+          <BusinessHours>
+            <BusinessHoursTitle
+              $colors={openHour?.Monday ? "gray900" : "danger"}
+            >
+              Business hours
+            </BusinessHoursTitle>
+            {weekDay.map((day) => {
+              const hour = openHour?.[day];
+              return hour ? <h2 key={day}>{`${day} ${hour}`}</h2> : null;
+            })}
+          </BusinessHours>
+        </Store>
       </ContentDetail>
     </>
   );

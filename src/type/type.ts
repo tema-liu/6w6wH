@@ -72,13 +72,14 @@ export type Advertise = {
 };
 
 type OpeningHours = {
-  Monday?: string | null;
-  Tuesday?: string | null;
-  Wednesday?: string | null;
-  Thursday?: string | null;
-  Friday?: string | null;
-  Saturday?: string | null;
-  Sunday?: string | null;
+  Monday: string;
+  Tuesday: string;
+  Wednesday: string;
+  Thursday: string;
+  Friday: string;
+  Saturday: string;
+  Sunday: string;
+  [key: string]: string; // 動態索引簽名
 };
 
 type Tag = {
