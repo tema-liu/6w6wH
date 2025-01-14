@@ -19,6 +19,7 @@ import Settings from "./pages/Settings/Settings.tsx";
 import Faqs from "./pages/Faqs/Faqs.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions.tsx";
+import ErrorPage from "./pages/ErrorPage/ErrorPage.tsx";
 
 type ProtectedRouteProps = {
   isAuthenticated: boolean; // 驗證是否登入
@@ -72,9 +73,9 @@ function AppRoutes() {
             <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
-          {/* 404頁面 */}
-          <Route path="*" element={<Popular />} />
         </Route>
+        {/* 404頁面 */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
