@@ -19,6 +19,7 @@ import Faqs from "./pages/Faqs/Faqs.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions.tsx";
 import ProtectedRoute from "./pages/ProtectedRoute/ProtectRoute.tsx";
+import ErrorPage from "./pages/ErrorPage/ErrorPage.tsx";
 
 function AppRoutes() {
   return (
@@ -58,9 +59,9 @@ function AppRoutes() {
             {/* 通知 */}
             <Route path="/notification" element={<Notification />} />
           </Route>
-          {/* 404頁面 */}
-          <Route path="*" element={<Popular />} />
         </Route>
+        {/* 404頁面 */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
