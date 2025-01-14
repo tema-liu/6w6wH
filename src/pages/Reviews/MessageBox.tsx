@@ -66,6 +66,7 @@ function MessageBox({ userId, commentId, onAddReply }: moreProps) {
       if (!isAuthenticated) {
         return; // 如果驗證失敗結束函式
       }
+      console.log(reply);
       const res = await postCommentReply(reply, token!);
       if (res.data) {
         onAddReply(res.data);

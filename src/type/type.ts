@@ -72,13 +72,13 @@ export type Advertise = {
 };
 
 type OpeningHours = {
-  monday?: string | null;
-  tuesday?: string | null;
-  wednesday?: string | null;
-  thursday?: string | null;
+  Monday?: string | null;
+  Tuesday?: string | null;
+  Wednesday?: string | null;
+  Thursday?: string | null;
   Friday?: string | null;
-  saturday?: string | null;
-  sunday?: string | null;
+  Saturday?: string | null;
+  Sunday?: string | null;
 };
 
 type Tag = {
