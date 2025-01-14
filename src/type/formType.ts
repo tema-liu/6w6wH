@@ -44,14 +44,14 @@ export type CommentReply = {
 
 //editProfile
 export type EditProfileForm = {
-  photo: string;
+  userPhoto: string;
   name: string;
   comeFrom: string;
   nowLiveIn: string;
   bio: string;
   country: string;
   gender: string;
-  birth: string;
+  birthDay: string;
 };
 
 //userSetUp========================
@@ -75,4 +75,11 @@ export type SearchOption = {
   location: Location;
   locationType: "station" | "user";
   tags: number[];
+};
+
+//ReportComment=======================
+export type ReportComment = {
+  type: string; // comment,reply
+  commentId: number; //被檢舉評論ID
+  ReportReason: string; //檢舉原因
 };

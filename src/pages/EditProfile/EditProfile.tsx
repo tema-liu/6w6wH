@@ -22,8 +22,8 @@ function EditProfile() {
       bio: "Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime.",
       country: "Indonesia",
       gender: "Male",
-      birth: "2024-12-19",
-      photo: photo,
+      birthDay: "2024-12-19",
+      userPhoto: photo,
     },
   });
 
@@ -31,10 +31,10 @@ function EditProfile() {
     console.log(formData);
   };
   const onError = (errors: FieldErrors<EditProfileForm>) => {
-    console.log(errors.photo?.message);
+    console.log(errors.userPhoto?.message);
   };
 
-  const photoUrl = watch("photo");
+  const photoUrl = watch("userPhoto");
 
   return (
     <Wrapper>
@@ -45,7 +45,7 @@ function EditProfile() {
             register={register}
             firstPhoto={photo}
             photoUrl={photoUrl}
-            errorMessage={errors.photo?.message}
+            errorMessage={errors.userPhoto?.message}
           />
           <Content>
             <InputLabelPair
@@ -89,24 +89,11 @@ function EditProfile() {
               autoComplete="off"
               options={[
                 "Indonesia",
-                "China",
-                "Japan",
-                "South Korea",
+                "Taiwan",
                 "Thailand",
-                "Malaysia",
-                "Singapore",
                 "Vietnam",
                 "Philippines",
-                "India",
-                "United States",
-                "United Kingdom",
-                "France",
-                "Germany",
-                "Canada",
-                "Australia",
-                "New Zealand",
-                "Brazil",
-                "Mexico",
+                "Cambodia",
               ]}
               {...register("country")}
             />
@@ -121,7 +108,7 @@ function EditProfile() {
               idFor="birth"
               label="Birth date"
               type="date"
-              {...register("birth")}
+              {...register("birthDay")}
             />
           </Content>
           <PrimaryBtn

@@ -89,6 +89,8 @@ function MoreVert({ id, reviewOrReply, userId, onRemoveReply }: moreProps) {
         canActive={true}
         content={
           <TextAreaInfo
+            reportId={id}
+            reviewOrReply={reviewOrReply}
             idFor="report"
             title="Describe the reason for inappropriateness."
             placeholder="Describe the reason for inappropriateness."
