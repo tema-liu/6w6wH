@@ -62,6 +62,7 @@ export const HeadShot = styled.img`
   object-position: center;
 `;
 export const ShopCards = styled.div`
+  min-height: 458px;
   display: flex;
   column-gap: 4px;
   overflow-x: auto;

@@ -37,6 +37,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate, useParams } from "react-router-dom";
 import defaultUserPhoto from "../../assets/user-3296.svg";
+import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;
@@ -92,6 +93,7 @@ function Reviews() {
     fetchData();
   }, []);
 
+  const handleProfileClick = useProfileClickHandler();
   const handleAddReply = (reply: Reply) => {
     // 更新回覆列表
     setCommentReplies((prevReplies) => {
@@ -121,6 +123,9 @@ function Reviews() {
               <CommentDetail>
                 <Head>
                   <HeadShot
+                    onClick={() => {
+                      handleProfileClick(data.userId);
+                    }}
                     src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
                     alt="headShot"
                   />

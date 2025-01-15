@@ -9,6 +9,7 @@ import "swiper/css/scrollbar";
 import { Icon, Img } from "../../component/layout/LayoutComponents";
 import styled from "styled-components";
 import { Photo } from "../../type/type";
+import { commentPicture } from "../../constants/srcPaths";
 
 const Container = styled(SwiperContainer)`
   position: relative;
@@ -37,11 +38,14 @@ function ReviewSwiper({ photos }: PhotosProps) {
       pagination={{ clickable: true }}
     >
       {photos &&
-        photos.map((photo) => (
-          <SwiperSlide key={"photo" + photo.Id}>
-            <Img src={photo.PictureUrl} alt="reviewPhoto" />
-          </SwiperSlide>
-        ))}
+        photos.map((photo) => {
+          const PhotoUrl = `${commentPicture}${photo.PictureUrl}`;
+          return (
+            <SwiperSlide key={"photo" + photo.Id}>
+              <Img src={PhotoUrl} alt="reviewPhoto" />
+            </SwiperSlide>
+          );
+        })}
       <Button className="swiper-button-next">
         <Icon $isPointer={true} className="material-symbols-outlined">
           chevron_right

@@ -9,7 +9,7 @@ import FooterNav from "./component/layout/FooterNav";
 
 function StoreListLayout() {
   const location = useLocation();
-  const notFooterRenderPage = ["/review/:id", "/setup", "/otherProfile"];
+  const notFooterRenderPage = ["/review/:id", "/setup", "/otherProfile/:id"];
   const haveStoreListActive = notFooterRenderPage.some((pathPattern) =>
     matchPath(pathPattern, location.pathname)
   );

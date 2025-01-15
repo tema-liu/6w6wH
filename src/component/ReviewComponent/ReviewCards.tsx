@@ -39,6 +39,7 @@ import {
 import Badges from "../Profile/BadgeWindow";
 import Country from "../Profile/ConuntryIcon";
 import { commentPicture } from "../../constants/srcPaths";
+import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
 type CommentCard = {
   data: Comment;
@@ -46,7 +47,8 @@ type CommentCard = {
 
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
-  console.log(data);
+  const handleProfileClick = useProfileClickHandler();
+
   return (
     data !== null && (
       <CommentCardContent>
@@ -65,7 +67,13 @@ export function CommentCard({ data }: CommentCard) {
         )}
         <CommentCardDetail>
           <Head>
-            <HeadShot src={data.userPhoto || defaultUserPhoto} alt="headShot" />
+            <HeadShot
+              onClick={() => {
+                handleProfileClick(data.userId);
+              }}
+              src={data.userPhoto || defaultUserPhoto}
+              alt="headShot"
+            />
             <BadgeBox>
               <Country country={data.country} />
               <Badges level={data.badge} />
@@ -123,11 +131,19 @@ type ReviewsCard = {
 };
 
 export function ReviewsCard({ data }: ReviewsCard) {
+  const handleProfileClick = useProfileClickHandler();
+
   return (
     data !== null && (
       <CommentCards>
         <Head>
-          <HeadShot src={data.userPhoto || defaultUserPhoto} alt="headShot" />
+          <HeadShot
+            onClick={() => {
+              handleProfileClick(data.userId);
+            }}
+            src={data.userPhoto || defaultUserPhoto}
+            alt="headShot"
+          />
           <BadgeBox>
             <Country country={data.country} />
             <Badges level={data.badge} />

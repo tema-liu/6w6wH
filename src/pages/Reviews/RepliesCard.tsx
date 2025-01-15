@@ -19,6 +19,8 @@ import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";
 import defaultUserPhoto from "../../assets/user-3296.svg";
+import ProfileClickHandler from "../../hooks/useProfileClickHandler";
+import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -52,6 +54,8 @@ function RepliesCard({ replies, setReplies }: RepliesCardProps) {
     }
   };
 
+  const handleProfileClick = useProfileClickHandler();
+
   return (
     <CommentCards>
       {replies &&
@@ -59,6 +63,9 @@ function RepliesCard({ replies, setReplies }: RepliesCardProps) {
           <CommentCard key={data.replyId}>
             <Head>
               <HeadShot
+                onClick={() => {
+                  handleProfileClick(data.userId);
+                }}
                 src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
                 alt="headShot"
               />

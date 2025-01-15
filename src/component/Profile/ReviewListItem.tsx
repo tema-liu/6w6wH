@@ -7,8 +7,13 @@ import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
 import ShopCard from "../shop/ShopCard";
 import { EmptyBox, Container, GrayBorderBox } from "./style/reviewListItem";
+import { SearchResult } from "../../type/type";
 
-function ReviewListItem() {
+function ReviewListItem({
+  collectList,
+}: {
+  collectList: SearchResult[] | null;
+}) {
   const navigator = useNavigate();
 
   const options = ["Reviews", "Following", "Bookmarks"];
@@ -49,19 +54,24 @@ function ReviewListItem() {
     ),
     Bookmarks: (
       <Container>
-        {/* <ShopCard /> */}
-        {/* <EmptyBox>
-          <EmptyDisplay
-            $isIconDark={true}
-            webIcon={false}
-            iconStyle="local_fire_department"
-            content="No bookmarks"
-            btnText="View popular places"
-            onClick={() => {
-              navigator("/search");
-            }}
-          />
-        </EmptyBox> */}
+        {collectList ? (
+          collectList.map((shop) => {
+            return <ShopCard data={shop} />;
+          })
+        ) : (
+          <EmptyBox>
+            <EmptyDisplay
+              $isIconDark={true}
+              webIcon={false}
+              iconStyle="local_fire_department"
+              content="No bookmarks"
+              btnText="View popular places"
+              onClick={() => {
+                navigator("/search");
+              }}
+            />
+          </EmptyBox>
+        )}
       </Container>
     ),
   };
