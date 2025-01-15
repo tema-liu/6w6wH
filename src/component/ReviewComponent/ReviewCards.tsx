@@ -113,6 +113,8 @@ export function CommentCard({ data }: CommentCard) {
                 </div>
                 <div>
                   <HeartIcon
+                    type="comment"
+                    likeId={data.commentId}
                     likeCount={data.likeCount ?? 0}
                     isLike={data.isLike ?? false}
                   />
@@ -166,6 +168,8 @@ export function ReviewsCard({ data }: ReviewsCard) {
             <SocialBlock>
               <div>
                 <HeartIcon
+                  type="reply"
+                  likeId={data.replyId}
                   likeCount={data.likeCount ?? 0}
                   isLike={data.isLike ?? false}
                 />
@@ -242,7 +246,12 @@ export function ProfileReviewsCard() {
               </ChatIcon>
             </div>
             <div>
-              <HeartIcon isLike={true} likeCount={10} />
+              <HeartIcon
+                type="comment"
+                likeId={123}
+                isLike={true}
+                likeCount={10}
+              />
             </div>
           </SocialBlock>
         </UserReviewFooter>

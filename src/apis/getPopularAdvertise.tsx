@@ -12,7 +12,6 @@ export const getPopularAdvertise = async (): Promise<
     method: "GET",
     // body: ,
     headers: {
-      //   Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": "application/json",
     },
   };

@@ -89,3 +89,9 @@ export type ReportComment = {
   commentId: number; //被檢舉評論ID
   ReportReason: string; //檢舉原因
 };
+
+//CommentLike=======================
+export type CommentLike = {
+  type: "comment" | "reply";
+  id: number;
+};
