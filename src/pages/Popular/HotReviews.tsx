@@ -70,7 +70,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
         <ReviewContent>
           {selectedOption == "Popular" && (
             <>
-              {data?.popular && (
+              {data.popular && (
                 <>
                   <CommentCard data={data.popular} />
                   {data.popular.reply?.map((item) => {
@@ -81,13 +81,13 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
             </>
           )}
           {selectedOption == "Review" && (
-            <>{data?.review && <CommentCard data={data?.review} />} </>
+            <>{data.review && <CommentCard data={data.review} />} </>
           )}
           {selectedOption == "Latest" && (
             <>
-              {data?.latest && (
+              {data.latest && (
                 <>
-                  <CommentCard data={data?.latest} />
+                  <CommentCard data={data.latest} />
                   {data.latest.reply?.map((item) => {
                     return <ReviewsCard key={item.replyId} data={item} />;
                   })}

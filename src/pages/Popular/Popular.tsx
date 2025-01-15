@@ -7,29 +7,32 @@ import HotShopList from "./HotShopList";
 import HotReviews from "./HotReviews";
 import LearningResources from "./LearningResources";
 import { useEffect, useState } from "react";
-import { PopularStore, ResponseData, ReviewOrReply } from "../../type/type";
+import { PopularStore, ReviewOrReply } from "../../type/type";
 import { mockApi } from "./data";
 import { getPopularMarquee } from "../../apis/getPopularMarquee";
 import { getStoreTop } from "../../apis/getStoreTop";
+import { getCommentTop } from "../../apis/getCommentTop";
+import { RootState } from "../../utils/redux/store";
+import { useSelector } from "react-redux";
 
 const HomeContainer = styled(Container)`
   padding-top: 0px;
 `;
 
 function Popular() {
-  const [response, setResponse] = useState<ResponseData<ReviewOrReply> | null>(
-    null
-  );
   const [tagsMarquee, setTagsMarquee] = useState<number[]>([]);
   const [popularStore, setPopularStore] = useState<PopularStore[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [topReview, setTopReview] = useState<ReviewOrReply | null>(null);
+  const token = useSelector((state: RootState) => state.auth.token);
+  console.log("topReview", topReview);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [marquee, storeTop, result] = await Promise.all([
+        const [marquee, storeTop, commentTop, result] = await Promise.all([
           getPopularMarquee(),
           getStoreTop(),
+          getCommentTop(token),
           mockApi("/api/items"),
         ]);
         if (marquee.status && marquee.data) {
@@ -38,7 +41,9 @@ function Popular() {
         if (storeTop.status && storeTop.data) {
           setPopularStore(storeTop.data);
         }
-        setResponse(result ?? null); //假設res為undefined或null 設為null
+        if (commentTop.status && commentTop.data) {
+          setTopReview(commentTop.data);
+        }
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -63,7 +68,7 @@ function Popular() {
           <AdSwiper />
           <PopularMarquee tags={tagsMarquee ?? []} />
           <HotShopList shopList={popularStore} />
-          {response && <HotReviews data={response.data ?? null} />}
+          {topReview && <HotReviews data={topReview} />}
           <LearningResources />
         </HomeContainer>
       </Wrapper>

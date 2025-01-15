@@ -57,7 +57,7 @@ export type Comment = {
 };
 
 //hotReview===================================================
-export type ReviewOrReply = null | {
+export type ReviewOrReply = {
   popular: Comment;
   review: Comment;
   latest: Comment;
