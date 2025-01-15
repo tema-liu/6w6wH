@@ -10,13 +10,19 @@ export const getStoreResult = async (
   // 檢查 HTTP 回應是否成功
   const options = {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: token || "" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}` || "",
+    },
     body: JSON.stringify(searchOption),
   };
 
   try {
     const res = await fetch(url, options);
     const json = await res.json().catch(() => null); // 防止 JSON 解析失敗
+
+    console.log("token", token);
+    console.log(json);
 
     // 統一回傳格式，簡化錯誤處理
     if (!res.ok || !json?.status) {

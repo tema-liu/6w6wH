@@ -182,7 +182,7 @@ export type SearchResult = {
   isAdvertise: boolean;
   isFavorited: boolean;
   reviewCount: number;
-  replyCount: number;
+  repliesCount: number;
   tags: Tag[];
   comments: CommentCard[];
 };

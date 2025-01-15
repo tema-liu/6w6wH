@@ -41,7 +41,7 @@ function AppRoutes() {
           {/*評論頁面*/}
           <Route path="/review/:id" element={<Reviews />} />
           {/* {瀏覽個人頁面} */}
-          <Route path="/otherProfile" element={<OtherProfile />} />
+          <Route path="/otherProfile/:id" element={<OtherProfile />} />
           {/* 登入頁面 */}
           <Route path="/login" element={<Login />} />
           <Route path="/setup" element={<Setup />} />

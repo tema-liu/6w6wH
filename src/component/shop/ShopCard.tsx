@@ -188,7 +188,7 @@ function ShopCard({ data }: shopCardProps) {
               <RepliesBox>
                 <RepliesNum>{`${data.reviewCount} Reviews`} </RepliesNum>
                 <h5>/</h5>
-                <RepliesNum>{data.replyCount} Replies</RepliesNum>
+                <RepliesNum>{data.repliesCount} Replies</RepliesNum>
               </RepliesBox>
             </RantingConTainer>
             <BorderBox />
