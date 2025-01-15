@@ -125,6 +125,11 @@ type shopCardProps = {
 };
 function ShopCard({ data }: shopCardProps) {
   const navigate = useNavigate();
+  const handleImageError = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    event.currentTarget.src = noPhotoImg;
+  };
 
   return (
     <>
@@ -146,6 +151,7 @@ function ShopCard({ data }: shopCardProps) {
               : noPhotoImg
           }
           alt="shopImg"
+          onError={handleImageError}
         />
         <ShopCardMain>
           <CollectIcon

@@ -99,6 +99,7 @@ function SearchResult() {
   }
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const result = await getStoreResult(searchCriteria, token);
       //如果發生錯誤跳轉404
@@ -111,7 +112,9 @@ function SearchResult() {
         setHaveShop(!haveShop);
       }
       setShopList(result);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500); // 延遲一秒後取消加載動畫
     };
     fetchData(); // 呼叫非同步函式
   }, [searchParams.toString(), token]);

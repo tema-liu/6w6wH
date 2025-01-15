@@ -51,7 +51,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
     const res = await postAddStore(completeData, token!);
     //新增失敗則跑到404
     if (!res.status) {
-      navigate("/popular");
+      navigate("/");
     }
     if (typeof res.storeId === "number") {
       setNewStoreId(res.storeId);
