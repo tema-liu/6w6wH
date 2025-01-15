@@ -1,12 +1,12 @@
 import { AddPlaceList } from "../type/formType";
-import { AddPlaceRes, ResponseData } from "../type/type"; // 假設型別定義在 types 檔案中
+import { ResponseData } from "../type/type"; // 假設型別定義在 types 檔案中
 
 const apiUrl = import.meta.env.VITE_API_URL;
-
+type Data = { id: number };
 export const postAddStore = async (
   storeForm: AddPlaceList,
   token: string
-): Promise<ResponseData<void>> => {
+): Promise<ResponseData<Data>> => {
   console.log("storeForm", storeForm);
   const url = `${apiUrl}/api/addstore`;
   // 檢查 HTTP 回應是否成功

@@ -49,7 +49,13 @@ export type EditProfileForm = {
   comeFrom: string;
   nowLiveIn: string;
   bio: string;
-  country: string;
+  country:
+    | "Taiwan"
+    | "Vietnam"
+    | "Cambodia"
+    | "Philippines"
+    | "Indonesia"
+    | "Thailand";
   gender: string;
   birthDay: string;
 };

@@ -1,5 +1,3 @@
-import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
-import country from "../../assets/id.svg";
 import { Icon } from "../layout/LayoutComponents";
 import Marquee from "react-fast-marquee";
 import { useState } from "react";
@@ -10,7 +8,6 @@ import {
   Name,
   Content,
   HeadShot,
-  Img,
   Profile,
   TextBox,
   AreaMarquee,
@@ -21,14 +18,17 @@ import {
 } from "./style/ProfileCard";
 import { useNavigate } from "react-router-dom";
 import BadgeWindow from "./BadgeWindow";
+import Country from "./ConuntryIcon";
+import noUserPhoto from "../../assets/emptyPhoto/137420f5b9c39bc911e472f5d20f053e.jpg";
+import { ProfileType } from "../../type/type";
 
 type ProfileProps = {
   isUserProfile: Boolean;
+  profile: ProfileType;
 };
 
-function ProfileCard({ isUserProfile }: ProfileProps) {
+function ProfileCard({ isUserProfile, profile }: ProfileProps) {
   const navigator = useNavigate();
-
   const [isFollow, setFollow] = useState(false);
   const followClickHandler = () => {
     setFollow(!isFollow);
@@ -37,19 +37,22 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
   return (
     <>
       <Card>
-        <HeadShot src={photo} alt="headShot" />
+        <HeadShot
+          src={profile.userPhoto ? profile.userPhoto : noUserPhoto}
+          alt="headShot"
+        />
         <Content>
           <Profile>
-            <Name>Ala</Name>
+            <Name>{profile?.name}</Name>
             <AreaLabel>
               <AreaBox>
-                <Img src={country} />
-                <BadgeWindow level="level1" />
+                <Country country={profile?.country} />
+                <BadgeWindow level={profile?.badge} />
               </AreaBox>
               <AreaMarquee>
                 <Marquee>
                   <TextBox>
-                    <Text>Java</Text>
+                    <Text>{profile.comeFrom}</Text>
                     <Icon
                       $isPointer={false}
                       $color="gray600"
@@ -57,13 +60,13 @@ function ProfileCard({ isUserProfile }: ProfileProps) {
                     >
                       trending_flat
                     </Icon>
-                    <Text>Kaohsiung</Text>
+                    <Text>{profile.nowLiveIn}</Text>
                   </TextBox>
                 </Marquee>
               </AreaMarquee>
             </AreaLabel>
           </Profile>
-          <Message>Give a man a fish and you feed him for a day. </Message>
+          <Message>{profile.bio}</Message>
         </Content>
         {isUserProfile ? (
           <Button

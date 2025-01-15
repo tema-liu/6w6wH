@@ -53,9 +53,8 @@ function AddStoreForm({ ...props }: AddPlaceList) {
     if (!res.status) {
       navigate("/");
     }
-    if (typeof res.storeId === "number") {
-      setNewStoreId(res.storeId);
-    }
+
+    setNewStoreId(res.data?.id ?? 0);
     setWindowOpen(!windowOpen);
   };
 

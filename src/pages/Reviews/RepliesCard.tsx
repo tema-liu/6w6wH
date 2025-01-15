@@ -19,7 +19,6 @@ import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";
 import defaultUserPhoto from "../../assets/user-3296.svg";
-import ProfileClickHandler from "../../hooks/useProfileClickHandler";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
 const CommentCards = styled(CommentCardContent)`

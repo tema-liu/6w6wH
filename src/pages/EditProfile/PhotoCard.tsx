@@ -2,20 +2,11 @@ import styled from "styled-components";
 import { UseFormRegister } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Card, HeadShot, RightDiv, AddPhotoBtn, FieldError } from "./styled";
+import { EditProfileForm } from "../../type/formType";
 
 export const Input = styled.input`
   display: none;
 `;
-type EditProfileForm = {
-  photo: string;
-  name: string;
-  comeFrom: string;
-  nowLiveIn: string;
-  bio: string;
-  country: string;
-  gender: string;
-  birth: string;
-};
 
 type PhotoCardProps = {
   register: UseFormRegister<EditProfileForm>; // 添加 register prop
@@ -78,7 +69,7 @@ function PhotoCard({
           Change Photo
           <Input
             type="file"
-            {...register("photo", {
+            {...register("userPhoto", {
               validate: {
                 notImage: (fileList) => {
                   //如果圖片沒有改變則通過檢驗

@@ -10,22 +10,28 @@ import { getProfileCollect } from "../../apis/getProfileCollect";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate } from "react-router-dom";
-import { SearchResult } from "../../type/type";
+import { ProfileType, SearchResult } from "../../type/type";
+import { getUserProfile } from "../../apis/getUserProfile";
 
 function Profile() {
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state.auth.token);
   const id = useSelector((state: RootState) => state.auth.userId);
   const [collectList, setCollectList] = useState<SearchResult[] | null>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const collectList = await getProfileCollect(id, token);
-        if (collectList.status) {
+        const [userProfile, collectList] = await Promise.all([
+          getUserProfile(id, token),
+          getProfileCollect(id, token),
+        ]);
+        if (userProfile.status && collectList.status) {
+          setProfile(userProfile.data ?? null);
           setCollectList(collectList.data ?? null);
-          return;
         }
+        return;
       }
 
       navigate("/");
@@ -37,7 +43,7 @@ function Profile() {
     <Wrapper>
       <Header isBefore={false} menu={true} />
       <ContainerPd16 style={{ display: "flex", flexDirection: "column" }}>
-        <ProfileCard isUserProfile={true} />
+        {profile && <ProfileCard isUserProfile={true} profile={profile} />}{" "}
         <ReviewListItem collectList={collectList} />
       </ContainerPd16>
     </Wrapper>

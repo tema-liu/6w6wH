@@ -205,3 +205,22 @@ export type PopularStore = {
     content: string;
   };
 };
+
+//Profile=========================
+export type ProfileType = {
+  userPhoto: string;
+  name: string;
+  comeFrom: string;
+  nowLiveIn: string;
+  bio: string;
+  country:
+    | "Taiwan"
+    | "Vietnam"
+    | "Cambodia"
+    | "Philippines"
+    | "Indonesia"
+    | "Thailand";
+  gender: string;
+  birthDay: string;
+  badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6";
+};
