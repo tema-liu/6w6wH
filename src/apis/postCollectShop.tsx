@@ -13,7 +13,7 @@ export const postCollectShop = async (
       method: "POST", // 使用 POST 方法
       headers: {
         "Content-Type": "application/json", // 設置為 JSON 格式
-        Authorization: `Bearer ${token}`,
+        Authorization: token ? `Bearer ${token}` : "",
       },
       body: JSON.stringify({
         storeId: storeId, // 將物件轉換為 JSON 格式

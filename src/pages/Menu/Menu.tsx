@@ -25,7 +25,7 @@ function Menu() {
 
   const logOutHandler = () => {
     dispatch(clearLoginData());
-    navigator("/popular");
+    navigator("/");
   };
 
   return (

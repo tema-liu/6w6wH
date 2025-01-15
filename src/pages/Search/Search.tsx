@@ -115,6 +115,7 @@ function Search() {
       locationType: locationType || "",
     });
 
+    console.log(data);
     navigate(`/storeList?${newParams.toString()}`);
   };
   const prevStateRef = useRef({

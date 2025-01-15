@@ -32,9 +32,7 @@ function ReviewListItem() {
     ),
     Following: (
       <GrayBorderBox>
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
+        {/* <CommentCard /> */}
         {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
@@ -51,7 +49,7 @@ function ReviewListItem() {
     ),
     Bookmarks: (
       <Container>
-        <ShopCard />
+        {/* <ShopCard /> */}
         {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}

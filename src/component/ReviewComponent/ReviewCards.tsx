@@ -46,6 +46,7 @@ type CommentCard = {
 
 export function CommentCard({ data }: CommentCard) {
   const navigate = useNavigate();
+  console.log(data);
   return (
     data !== null && (
       <CommentCardContent>

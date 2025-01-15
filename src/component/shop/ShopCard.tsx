@@ -125,7 +125,7 @@ type shopCardProps = {
 };
 function ShopCard({ data }: shopCardProps) {
   const navigate = useNavigate();
-  console.log(data);
+
   return (
     <>
       <ShopCardBox

@@ -10,7 +10,6 @@ export const getPopularMarquee = async (): Promise<ResponseData<Tags>> => {
     method: "GET",
     // body: ,
     headers: {
-      //   Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": "application/json",
     },
   };

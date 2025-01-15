@@ -45,7 +45,10 @@ function SearchResult() {
   const webLocation = useLocation();
   //網址取得的queryString
   const [searchParams] = useSearchParams();
-  const tags = searchParams.get("tags")?.split(",").map(Number) || [];
+  const tags =
+    searchParams.get("tags")?.trim() === ""
+      ? []
+      : searchParams.get("tags")?.split(",").map(Number) || [];
   const cityId = searchParams.get("cityId") || "";
   const location = searchParams.get("location");
   const locationType = searchParams.get("locationType");
@@ -99,8 +102,9 @@ function SearchResult() {
     const fetchData = async () => {
       const result = await getStoreResult(searchCriteria, token);
       //如果發生錯誤跳轉404
+      console.log("result", result);
       if (!result.status) {
-        navigate("/popular");
+        navigate("*");
         return;
       }
       if (result.message === "沒有店家") {

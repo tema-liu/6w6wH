@@ -43,7 +43,7 @@ function HotShopList({ shopList }: { shopList: PopularStore[] }) {
                 </ShopNameContainer>
                 <ShopImg
                   src={
-                    shop.photos
+                    shop.photos && shop.photos.length > 0
                       ? `${storePicture}${shop.photos[0]}`
                       : noPhotoImg
                   }
