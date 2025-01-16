@@ -25,7 +25,7 @@ function Popular() {
   const [isLoading, setIsLoading] = useState(true);
   const [topReview, setTopReview] = useState<ReviewOrReply | null>(null);
   const token = useSelector((state: RootState) => state.auth.token);
-  console.log("topReview", topReview);
+  console.log("popularStore", popularStore);
   useEffect(() => {
     const fetchData = async () => {
       try {

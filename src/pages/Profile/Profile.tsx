@@ -43,7 +43,7 @@ function Profile() {
     <Wrapper>
       <Header isBefore={false} menu={true} />
       <ContainerPd16 style={{ display: "flex", flexDirection: "column" }}>
-        {profile && <ProfileCard isUserProfile={true} profile={profile} />}{" "}
+        {profile && <ProfileCard isUserProfile={true} profile={profile} />}
         <ReviewListItem collectList={collectList} />
       </ContainerPd16>
     </Wrapper>

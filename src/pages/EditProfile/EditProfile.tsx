@@ -7,8 +7,16 @@ import PhotoCard from "./PhotoCard";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { EditForm } from "./styled";
 import { EditProfileForm } from "../../type/formType";
+import { getUserProfile } from "../../apis/getUserProfile";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/redux/store";
+import { useLocation } from "react-router-dom";
 
 function EditProfile() {
+  const token = useSelector((state: RootState) => state.auth.token);
+  const location = useLocation();
+  const profile = location.state?.profile;
+  console.log("profile", profile);
   const {
     register,
     formState: { errors },
