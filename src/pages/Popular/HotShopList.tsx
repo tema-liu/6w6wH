@@ -16,15 +16,21 @@ import { PopularStore } from "../../type/type";
 import { storePicture } from "../../constants/srcPaths";
 import noPhotoImg from "../../assets/Item-1.png";
 import defaultUserPhoto from "../../assets/user-3296.svg";
+import { useNavigate } from "react-router-dom";
 
 function HotShopList({ shopList }: { shopList: PopularStore[] }) {
   const colors = ["secondary", "outline1", "outline2", "outline3"];
-  console.log(shopList);
+  const navigate = useNavigate();
   return (
     <ShopCards>
       {shopList.map((shop, index) => {
         return (
-          <ShopCard key={shop.displayName}>
+          <ShopCard
+            key={shop.displayName}
+            onClick={() => {
+              navigate(`/storeList/${shop.id}`);
+            }}
+          >
             <TitleBox color={colors[index]}>
               <TitleBoxIcon src={bugIcon} alt="bugIcon" />
               <TitleBoxText>Popular Stores</TitleBoxText>

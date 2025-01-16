@@ -174,6 +174,8 @@ function Reviews() {
                       </div>
                       <div>
                         <HeartIcon
+                          type="comment"
+                          likeId={data.commentId}
                           likeCount={data.likeCount ?? 0}
                           isLike={data.isLike ?? false}
                         />

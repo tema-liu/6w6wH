@@ -91,6 +91,8 @@ function RepliesCard({ replies, setReplies }: RepliesCardProps) {
                 <SocialBlock>
                   <div>
                     <HeartIcon
+                      type="reply"
+                      likeId={data.replyId}
                       likeCount={data.likeCount}
                       isLike={data.isLike}
                     />

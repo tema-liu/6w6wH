@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { NavLink, useLocation, matchPath } from "react-router-dom";
+import { NavLink, useLocation, matchPath, useNavigate } from "react-router-dom";
 import { IconImg, Icon } from "./LayoutComponents";
 import search from "../../assets/Frame65.png";
+import { useEffect, useState } from "react";
+import { getIsHaveNotify } from "../../apis/getIsHaveNotify";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/redux/store";
 
 const Footer = styled.div`
   display: flex;
@@ -32,19 +36,32 @@ const ImgIcon = styled(IconImg)<IconProps>`
   transition: opacity 0.25s ease;
 `;
 
-type fillProps = {
-  $fill?: boolean; // 或者根据需要调整类型
+type IsActive = {
+  $isActive?: boolean; // 或者根据需要调整类型
 };
 
-const NavIcon = styled(Icon)<fillProps>`
-  font-variation-settings: ${({ $fill }) => ($fill ? "'FILL' 1" : "'FILL' 0")};
-  color: ${({ theme, $fill }) =>
-    $fill ? theme.colors.gray900 : theme.colors.gray600};
+const NavIcon = styled(Icon)<IsActive>`
+  font-variation-settings: ${({ $isActive }) =>
+    $isActive ? "'FILL' 1" : "'FILL' 0"};
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.colors.gray900 : theme.colors.gray600};
+  position: relative;
+`;
+const Circle = styled.span<IsActive>`
+  position: absolute;
+  right: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: ${({ $isActive, theme }) =>
+    $isActive ? "transparent" : theme.colors.danger};
 `;
 
 function FooterNav() {
+  const navigate = useNavigate();
   const location = useLocation();
-
+  const [haveNotify, setHaveNotify] = useState(false);
+  const token = useSelector((state: RootState) => state.auth.token);
   const storeList = ["/storeList", "/storeList/:id", "postComment/:id"];
   const profileList = [
     "/login",
@@ -62,6 +79,13 @@ function FooterNav() {
   const isProfileListActive = profileList.some((pathPattern) =>
     matchPath(pathPattern, location.pathname)
   );
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getIsHaveNotify(token);
+      setHaveNotify(res.status);
+    };
+    fetchData();
+  }, [navigate]);
 
   return (
     <Footer>
@@ -69,7 +93,7 @@ function FooterNav() {
         {({ isActive }) => (
           <NavIcon
             $isPointer={true}
-            $fill={isActive}
+            $isActive={isActive}
             className="material-symbols-outlined"
           >
             local_fire_department
@@ -80,7 +104,7 @@ function FooterNav() {
         {({ isActive }) => (
           <NavIcon
             $isPointer={true}
-            $fill={isActive}
+            $isActive={isActive}
             className="material-symbols-outlined"
           >
             add_circle
@@ -100,9 +124,10 @@ function FooterNav() {
         {({ isActive }) => (
           <NavIcon
             $isPointer={true}
-            $fill={isActive}
+            $isActive={isActive}
             className="material-symbols-outlined"
           >
+            <Circle $isActive={!haveNotify} />
             notifications
           </NavIcon>
         )}
@@ -111,7 +136,7 @@ function FooterNav() {
         {({ isActive }) => (
           <NavIcon
             $isPointer={true}
-            $fill={isActive || isProfileListActive}
+            $isActive={isActive || isProfileListActive}
             className="material-symbols-outlined"
           >
             person
