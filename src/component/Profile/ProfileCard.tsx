@@ -71,7 +71,7 @@ function ProfileCard({ isUserProfile, profile }: ProfileProps) {
         {isUserProfile ? (
           <Button
             onClick={() => {
-              navigator("/editProfile", { state: profile });
+              navigator("/editProfile", { state: { profile: profile } });
             }}
           >
             <Icon

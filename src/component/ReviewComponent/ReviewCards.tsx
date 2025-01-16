@@ -88,9 +88,9 @@ export function CommentCard({ data }: CommentCard) {
                 height={16}
               />
               <Tags>
-                {/* {data.tags.map((tag) => (
+                {data.tags.map((tag) => (
                   <Tag key={tag}>{tag}</Tag>
-                ))} */}
+                ))}
               </Tags>
             </UserCommentTop>
             <UserCommentMain>

@@ -29,11 +29,10 @@ function Popular() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [marquee, storeTop, commentTop, result] = await Promise.all([
+        const [marquee, storeTop, commentTop] = await Promise.all([
           getPopularMarquee(),
           getStoreTop(),
           getCommentTop(token),
-          mockApi("/api/items"),
         ]);
         if (marquee.status && marquee.data) {
           setTagsMarquee(marquee.data);

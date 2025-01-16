@@ -15,7 +15,8 @@ import { useLocation } from "react-router-dom";
 function EditProfile() {
   const token = useSelector((state: RootState) => state.auth.token);
   const location = useLocation();
-  const profile = location.state?.profile;
+  const { state } = location; // 取得從 navigate 傳遞過來的 state
+  const profile = state.profile;
   console.log("profile", profile);
   const {
     register,

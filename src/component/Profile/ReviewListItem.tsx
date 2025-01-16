@@ -21,7 +21,6 @@ function ReviewListItem({
     Reviews: (
       <GrayBorderBox>
         <ProfileReviewsCard />
-        <ProfileReviewsCard />
         {/* <EmptyBox>
           <EmptyDisplay
             $isIconDark={true}
@@ -56,7 +55,8 @@ function ReviewListItem({
       <Container>
         {collectList ? (
           collectList.map((shop) => {
-            return <ShopCard data={shop} />;
+            const shopKey = `${shop.id}-${shop.displayName}`;
+            return <ShopCard key={shopKey} data={shop} />;
           })
         ) : (
           <EmptyBox>
