@@ -49,8 +49,9 @@ export const ShopNameContainer = styled.div`
 export const Review = styled.div`
   display: flex;
   min-height: 82px;
+  padding: 9px 0;
   p {
-    padding: 8px;
+    padding: 0 8px;
     color: ${({ theme }) => theme.colors.gray900};
   }
 `;
