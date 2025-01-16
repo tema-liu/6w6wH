@@ -7,17 +7,16 @@ import PhotoCard from "./PhotoCard";
 import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { EditForm } from "./styled";
 import { EditProfileForm } from "../../type/formType";
-import { getUserProfile } from "../../apis/getUserProfile";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
-import { useLocation } from "react-router-dom";
+import { defaultUserPhoto } from "../../constants/srcPaths";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
   const token = useSelector((state: RootState) => state.auth.token);
-  const location = useLocation();
-  const { state } = location; // 取得從 navigate 傳遞過來的 state
-  const profile = state.profile;
-  console.log("profile", profile);
+  const profile = useSelector((state: RootState) => state.profile);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -25,14 +24,14 @@ function EditProfile() {
     watch,
   } = useForm<EditProfileForm>({
     defaultValues: {
-      name: "Ala",
-      comeFrom: "Java",
-      nowLiveIn: "kaohsiung",
-      bio: "Give a man a fish and you feed him for a day. Teach a man to fish and you feed him for a lifetime.",
-      country: "Indonesia",
-      gender: "Male",
-      birthDay: "2024-12-19",
-      userPhoto: photo,
+      name: profile.name,
+      comeFrom: profile.comeFrom,
+      nowLiveIn: profile.nowLiveIn,
+      bio: profile.bio,
+      country: profile.country,
+      gender: profile.gender,
+      birthDay: profile.birthDay,
+      userPhoto: profile.userPhoto ? profile.userPhoto : defaultUserPhoto,
     },
   });
 
@@ -44,6 +43,9 @@ function EditProfile() {
   };
 
   const photoUrl = watch("userPhoto");
+  useEffect(() => {
+    if (!profile.name) navigate("/profile");
+  });
 
   return (
     <Wrapper>

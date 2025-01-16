@@ -7,30 +7,51 @@ import ProfileCard from "../../component/Profile/ProfileCard";
 import ReviewListItem from "../../component/Profile/ReviewListItem";
 import { useEffect, useState } from "react";
 import { getProfileCollect } from "../../apis/getProfileCollect";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate } from "react-router-dom";
-import { ProfileType, SearchResult } from "../../type/type";
+import { SearchResult } from "../../type/type";
 import { getUserProfile } from "../../apis/getUserProfile";
+import { fetchProfile } from "../../utils/redux/userProfile/slice";
 
 function Profile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const token = useSelector((state: RootState) => state.auth.token);
   const id = useSelector((state: RootState) => state.auth.userId);
   const [collectList, setCollectList] = useState<SearchResult[] | null>(null);
-  const [profile, setProfile] = useState<ProfileType | null>(null);
+  const profile = useSelector((state: RootState) => state.profile);
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        const [userProfile, collectList] = await Promise.all([
-          getUserProfile(id, token),
-          getProfileCollect(id, token),
-        ]);
-        if (userProfile.status && collectList.status) {
-          setProfile(userProfile.data ?? null);
-          setCollectList(collectList.data ?? null);
+        if (profile.name === "") {
+          const userProfile = await getUserProfile(id, token);
+          if (userProfile.status) {
+            const gender =
+              userProfile.data?.gender === 0
+                ? "Male"
+                : userProfile.data?.gender === 1
+                ? "Female"
+                : "Other";
+            dispatch(
+              fetchProfile({
+                name: userProfile.data?.name,
+                userPhoto: userProfile.data?.userPhoto,
+                comeFrom: userProfile.data?.comeFrom,
+                nowLiveIn: userProfile.data?.nowLiveIn,
+                bio: userProfile.data?.bio,
+                country: userProfile.data?.country,
+                gender: gender,
+                birthDay: userProfile.data?.birthDay,
+                badge: userProfile.data?.badge,
+                isFollowed: userProfile.data?.isFollowed,
+              })
+            );
+          }
         }
+        const collectRes = await getProfileCollect(id, token);
+        collectRes.status && setCollectList(collectRes.data ?? null);
         return;
       }
 

@@ -3,6 +3,7 @@ import { tagsReducer } from "./tagList/slice";
 import { authReducer } from "./auth/slice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
+import { profileReducer } from "./userProfile/slice";
 
 const persistConfig = {
   key: "auth",
@@ -15,6 +16,7 @@ const store = configureStore({
   reducer: {
     tags: tagsReducer,
     auth: persistedReducer, //持久化資料
+    profile: profileReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

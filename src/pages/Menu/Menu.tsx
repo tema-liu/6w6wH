@@ -13,6 +13,7 @@ import GrayButton from "../../component/button/GrayBtn";
 import { ItemList } from "./data";
 import { useDispatch } from "react-redux";
 import { clearLoginData } from "../../utils/redux/auth/slice";
+import { clearProfile } from "../../utils/redux/userProfile/slice";
 
 function Menu() {
   const navigator = useNavigate();
@@ -25,6 +26,7 @@ function Menu() {
 
   const logOutHandler = () => {
     dispatch(clearLoginData());
+    dispatch(clearProfile());
     navigator("/");
   };
 

@@ -56,7 +56,7 @@ export type EditProfileForm = {
     | "Philippines"
     | "Indonesia"
     | "Thailand";
-  gender: string;
+  gender: string | number;
   birthDay: string;
 };
 

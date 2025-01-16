@@ -19,8 +19,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import BadgeWindow from "./BadgeWindow";
 import Country from "./ConuntryIcon";
-import noUserPhoto from "../../assets/emptyPhoto/137420f5b9c39bc911e472f5d20f053e.jpg";
 import { ProfileType } from "../../type/type";
+import { defaultUserPhoto } from "../../constants/srcPaths";
 
 type ProfileProps = {
   isUserProfile: Boolean;
@@ -38,7 +38,7 @@ function ProfileCard({ isUserProfile, profile }: ProfileProps) {
     <>
       <Card>
         <HeadShot
-          src={profile.userPhoto ? profile.userPhoto : noUserPhoto}
+          src={profile.userPhoto ? profile.userPhoto : defaultUserPhoto}
           alt="headShot"
         />
         <Content>
@@ -71,7 +71,7 @@ function ProfileCard({ isUserProfile, profile }: ProfileProps) {
         {isUserProfile ? (
           <Button
             onClick={() => {
-              navigator("/editProfile", { state: { profile: profile } });
+              navigator("/editProfile");
             }}
           >
             <Icon

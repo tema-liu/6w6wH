@@ -220,7 +220,7 @@ export type ProfileType = {
     | "Philippines"
     | "Indonesia"
     | "Thailand";
-  gender: string;
+  gender: string | number;
   birthDay: string;
   badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6";
   isFollowed: boolean;

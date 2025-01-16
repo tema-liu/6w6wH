@@ -3,7 +3,8 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getProfileCollect = async (
   id: number,
-  token: string | null
+  token: string | null,
+  options?: RequestInit
 ): Promise<ResponseData<SearchResult[]>> => {
   const url = `${apiUrl}/collectshop/get/${id}`;
   // 如果有 token，則加入 Authorization 標頭
@@ -19,6 +20,7 @@ export const getProfileCollect = async (
     const res = await fetch(url, {
       method: "GET",
       headers,
+      ...options,
     });
 
     if (!res.ok) {

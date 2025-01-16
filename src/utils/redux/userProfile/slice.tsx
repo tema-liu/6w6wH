@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Dispatch } from "../store";
 import { ProfileType } from "../../../type/type";
 
 const initialState: ProfileType = {
@@ -9,13 +8,13 @@ const initialState: ProfileType = {
   nowLiveIn: "",
   bio: "",
   country: "Indonesia",
-  gender: "",
+  gender: "Male",
   birthDay: "",
   badge: "level1",
   isFollowed: false,
 };
 
-const tagsSlice = createSlice({
+const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
