@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Container } from "../../component/layout/LayoutComponents";
+
 export const CardWrapper = styled.div`
   padding: 16px 8px;
   border-radius: 16px;
@@ -22,4 +24,17 @@ export const Content = styled.div`
 
 export const Text = styled.span`
   padding: 8px 0;
+`;
+
+export const NotifyContainer = styled(Container)`
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+`;
+export const EmptyContainer = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

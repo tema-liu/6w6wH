@@ -2,23 +2,27 @@ import { Icon } from "../../component/layout/LayoutComponents";
 import headImg from "../../assets/fe595192d2f3182e2c308450c2f7be7f.jpg";
 import ADblock from "../../component/shop/AdBlock";
 import { HeadShot, CardWrapper, Text, Content } from "./style";
+import { defaultUserPhoto } from "../../constants/srcPaths";
+import { useNavigate } from "react-router-dom";
+import type {
+  AdvertiseNotification,
+  GeneralNotification,
+  Notification,
+} from "../../type/type";
 
-type GeneralNotificationProps = {
-  action: "like" | "follow" | "respond";
-  data?: {
-    userName: string;
-    userPhoto: string;
-    commentID?: string;
-    userID?: string;
-    likeType?: "post" | "reply";
-  };
+const AdNotification = (notify: AdvertiseNotification) => {
+  const { isCheck, data } = notify;
+
+  return (
+    <CardWrapper>
+      <ADblock data={data} />
+    </CardWrapper>
+  );
 };
 
-const AdNotification = () => {
-  return <CardWrapper>{/* <ADblock /> */}</CardWrapper>;
-};
-
-const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
+const GeneralNotification = (notify: GeneralNotification) => {
+  const { isCheck, type, action, data } = notify;
+  const navigate = useNavigate();
   const iconSettings = {
     follow: {
       iconColor: "secondary",
@@ -28,13 +32,13 @@ const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
     like: {
       iconColor: "container1",
       iconType: "favorite",
-      text: "liked your review",
+      text: `liked your ${data.likeType}`,
       fill: " 'FILL' 1",
     },
     respond: {
       iconColor: "secondary",
       iconType: "prompt_suggestion",
-      text: "liked your review",
+      text: "respond to your post",
     },
   };
 
@@ -45,7 +49,15 @@ const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
   const fill = "fill" in settings ? settings.fill : "'FILL' 0";
 
   return (
-    <CardWrapper>
+    <CardWrapper
+      onClick={() => {
+        if (action === "like" || action === "respond") {
+          navigate(`/review/${data.commentId}`);
+        } else {
+          navigate(`/otherProfile/${data.userId}`);
+        }
+      }}
+    >
       <Icon
         $isPointer={true}
         $color={iconColor}
@@ -55,27 +67,27 @@ const GeneralNotification = ({ action, data }: GeneralNotificationProps) => {
         {iconType}
       </Icon>
       <Content>
-        <HeadShot src={headImg} />
-        <Text>Fei Fei {text}</Text>
+        <HeadShot
+          src={
+            notify.data?.userPhoto ? notify.data?.userPhoto : defaultUserPhoto
+          }
+        />
+        <Text>
+          {notify.data?.userName} {text}
+        </Text>
       </Content>
     </CardWrapper>
   );
 };
 
-type NotificationItemProps = {
-  notification: {
-    type: "general" | "advertise";
-    action?: "like" | "follow" | "respond";
-    data?: any; //暫時設定?
-  };
-};
-
-function NotifyCard({ notification }: NotificationItemProps) {
-  const { type, data, action } = notification;
-  if (type === "advertise") {
-    return <AdNotification />;
+function NotifyCard({ notify }: { notify: Notification }) {
+  if (notify.type === "advertise") {
+    return <AdNotification {...notify} />;
   }
-  return <GeneralNotification action={action!} data={data} />;
+  if (notify.type === "general") {
+    return <GeneralNotification {...notify} />;
+  }
+  return null;
 }
 
 export default NotifyCard;

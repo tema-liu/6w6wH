@@ -1,52 +1,64 @@
-import styled from "styled-components";
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
+import { Wrapper } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
 import NotifyCard from "./NotifyCard";
 import EmptyDisplay from "../../component/EmptyDisplay";
-
-const NotifyContainer = styled(Container)`
-  padding: 16px 8px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-`;
-const EmptyContainer = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import { EmptyContainer, NotifyContainer } from "./style";
+import { useEffect, useState } from "react";
+import { getNotifyDetail } from "../../apis/getNotifyDetail";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/redux/store";
+import type { Notification } from "../../type/type";
+import { useNavigate } from "react-router-dom";
+import Placeholder from "./Placeholder";
 
 function Notification() {
+  const navigate = useNavigate();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const [notifyList, setNotifyList] = useState<Notification[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  console.log("notifyList", loading);
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = async () => {
+      const res = await getNotifyDetail(token ?? "");
+      //有通知則載入通知
+      if (res.status && res.data) {
+        setNotifyList(res.data);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Wrapper>
       <Header title="Notification" />
       <NotifyContainer>
-        <NotifyCard
-          notification={{
-            type: "general",
-            action: "like",
-          }}
-        />
-        <NotifyCard
-          notification={{
-            type: "general",
-            action: "respond",
-          }}
-        />
-        <NotifyCard
-          notification={{
-            type: "advertise",
-          }}
-        />
+        {loading && <Placeholder />}
+        {notifyList ? (
+          notifyList.map((notify) => {
+            return <NotifyCard key={"notify" + notify.id} notify={notify} />;
+          })
+        ) : (
+          <EmptyContainer>
+            <EmptyDisplay
+              content="There are no notifications yet"
+              iconStyle="local_fire_department"
+              btnText="View popular threads"
+              onClick={() => {
+                navigate("/"); // 先導航到首頁
+                setTimeout(() => {
+                  const element = document.getElementById("threads");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }, 300); // 給一點時間讓頁面加載
+              }}
+            />
+          </EmptyContainer>
+        )}
       </NotifyContainer>
-      {/* <EmptyContainer>
-        <EmptyDisplay
-          content="There are no notifications yet"
-          iconStyle="local_fire_department"
-          btnText="View popular threads"
-        />
-      </EmptyContainer> */}
     </Wrapper>
   );
 }

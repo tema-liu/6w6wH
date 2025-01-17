@@ -38,7 +38,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
   };
 
   return (
-    <Div>
+    <Div id="threads" style={{ scrollMarginTop: "80px" }}>
       <Reviews>
         <div style={{ display: "flex" }}>
           <Title>Thread</Title>

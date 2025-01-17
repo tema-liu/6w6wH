@@ -225,3 +225,34 @@ export type ProfileType = {
   badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6";
   isFollowed: boolean;
 };
+
+//Notify============================
+
+// 一般通知的數據結構
+export type GeneralNotificationData = {
+  userName: string;
+  userPhoto: string;
+  commentId?: string; // 貼文的ID (可選)
+  userId?: string; // 用來導流進入追蹤者頁面 (可選)
+  likeType?: "review" | "reply"; // 喜歡的是貼文還是留言 (僅在 action="like" 時需要)
+};
+
+// 一般通知
+export type GeneralNotification = {
+  id: number;
+  isCheck: boolean;
+  type: "general";
+  action: "like" | "follow" | "respond";
+  data: GeneralNotificationData;
+};
+
+// 廣告通知
+export type AdvertiseNotification = {
+  id: number;
+  isCheck: boolean;
+  type: "advertise";
+  data: Advertise;
+};
+
+// 通知的主類型 (聯合型別)
+export type Notification = GeneralNotification | AdvertiseNotification;

@@ -23,6 +23,10 @@ type ContentProps = {
   $rowGap?: number;
   $padding: string;
   $borderRadius?: string;
+  $fd?: string;
+  $columnGap?: number;
+  $alignItems?: string;
+  $justifyContent?: string;
 };
 
 const AnimationLine = styled.div<LineProps>`
@@ -38,10 +42,14 @@ const Content = styled.div<ContentProps>`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.gray100};
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ $fd }) => ($fd ? $fd : "column")};
   border-radius: ${({ $borderRadius }) =>
     $borderRadius ? $borderRadius : "none"};
   row-gap: ${({ $rowGap }) => $rowGap && $rowGap + "px"};
+  column-gap: ${({ $columnGap }) => $columnGap && $columnGap + "px"};
+  align-items: ${({ $alignItems }) => $alignItems && $alignItems};
+  justify-content: ${({ $justifyContent }) =>
+    $justifyContent && $justifyContent};
 `;
 
 const Circle = styled.div`
