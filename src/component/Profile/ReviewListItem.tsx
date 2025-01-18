@@ -7,12 +7,19 @@ import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
 import ShopCard from "../shop/ShopCard";
 import { EmptyBox, Container, GrayBorderBox } from "./style/reviewListItem";
-import { SearchResult } from "../../type/type";
+import { SearchResult, UserCommentData } from "../../type/type";
+import Placeholder from "../../pages/Profile/Placeholder";
 
 function ReviewListItem({
+  loading,
+  userId,
   collectList,
+  userComment,
 }: {
+  loading: boolean;
+  userId: number;
   collectList: SearchResult[] | null;
+  userComment: UserCommentData | null;
 }) {
   const navigator = useNavigate();
 
@@ -20,35 +27,57 @@ function ReviewListItem({
   const content = {
     Reviews: (
       <GrayBorderBox>
-        <ProfileReviewsCard />
-        {/* <EmptyBox>
-          <EmptyDisplay
-            $isIconDark={true}
-            webIcon={true}
-            content="No review left yet"
-            btnText="Explore places"
-            btnClick={() => {
-              navigator("/popular");
-            }}
-          />
-        </EmptyBox> */}
+        {loading ? (
+          <Placeholder />
+        ) : (
+          <>
+            {userComment?.comment ? (
+              userComment?.comment.map((comment, index) => {
+                return (
+                  <ProfileReviewsCard
+                    userId={userId}
+                    key={index + comment.commentId}
+                    data={comment}
+                  />
+                );
+              })
+            ) : (
+              <EmptyBox>
+                <EmptyDisplay
+                  $isIconDark={true}
+                  webIcon={true}
+                  content="No review left yet"
+                  btnText="Explore places"
+                  onClick={() => {
+                    navigator("/");
+                  }}
+                />
+              </EmptyBox>
+            )}
+          </>
+        )}
       </GrayBorderBox>
     ),
     Following: (
       <GrayBorderBox>
-        {/* <CommentCard /> */}
-        {/* <EmptyBox>
-          <EmptyDisplay
-            $isIconDark={true}
-            webIcon={false}
-            iconStyle="local_fire_department"
-            content="There are no people following"
-            btnText="View popular threads"
-            onClick={() => {
-              navigator("/popular");
-            }}
-          />
-        </EmptyBox> */}
+        {userComment?.following ? (
+          userComment?.following.map((comment, index) => {
+            return <CommentCard key={index + comment.userId} data={comment} />;
+          })
+        ) : (
+          <EmptyBox>
+            <EmptyDisplay
+              $isIconDark={true}
+              webIcon={false}
+              iconStyle="local_fire_department"
+              content="There are no people following"
+              btnText="View popular threads"
+              onClick={() => {
+                navigator("/");
+              }}
+            />
+          </EmptyBox>
+        )}
       </GrayBorderBox>
     ),
     Bookmarks: (

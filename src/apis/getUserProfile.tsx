@@ -37,7 +37,7 @@ export const getUserProfile = async (
       return {
         statusCode: res.status,
         status: false,
-        message: json?.message || "沒有店家評論",
+        message: json?.message || "沒有用戶資料",
       };
     }
 

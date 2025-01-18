@@ -10,16 +10,19 @@ import { getProfileCollect } from "../../apis/getProfileCollect";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate } from "react-router-dom";
-import { SearchResult } from "../../type/type";
+import { SearchResult, UserCommentData } from "../../type/type";
 import { getUserProfile } from "../../apis/getUserProfile";
 import { fetchProfile } from "../../utils/redux/userProfile/slice";
+import { getUserComment } from "../../apis/getUserComment";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state: RootState) => state.auth.token);
   const id = useSelector((state: RootState) => state.auth.userId);
+  const [loading, setLoading] = useState(true);
   const [collectList, setCollectList] = useState<SearchResult[] | null>(null);
+  const [userComment, setUserCommit] = useState<UserCommentData | null>(null);
   const profile = useSelector((state: RootState) => state.profile);
 
   useEffect(() => {
@@ -50,8 +53,13 @@ function Profile() {
             );
           }
         }
-        const collectRes = await getProfileCollect(id, token);
+        const [collectRes, userCommentRes] = await Promise.all([
+          getProfileCollect(id, token),
+          getUserComment(id, token),
+        ]);
+        userCommentRes.status && setUserCommit(userCommentRes.data ?? null);
         collectRes.status && setCollectList(collectRes.data ?? null);
+        setLoading(false);
         return;
       }
 
@@ -65,7 +73,12 @@ function Profile() {
       <Header isBefore={false} menu={true} />
       <ContainerPd16 style={{ display: "flex", flexDirection: "column" }}>
         {profile && <ProfileCard isUserProfile={true} profile={profile} />}
-        <ReviewListItem collectList={collectList} />
+        <ReviewListItem
+          loading={loading}
+          userId={Number(id)}
+          collectList={collectList}
+          userComment={userComment}
+        />
       </ContainerPd16>
     </Wrapper>
   );

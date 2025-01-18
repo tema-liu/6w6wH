@@ -12,7 +12,7 @@ function Placeholder() {
       {Array.from({ length: 5 }).map((_, index) => {
         return (
           <Content
-            key={`placeholder${index}`}
+            key={"placeholder" + index}
             $fd="row"
             $padding="16px 8px 24px 16px"
             $rowGap={16}

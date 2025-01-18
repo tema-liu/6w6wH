@@ -115,26 +115,6 @@ export const UserReviewFooter = styled.div`
   padding: 12px 0;
   color: ${({ theme }) => theme.colors.gray600};
 `;
-export const MenuOptions = styled.div`
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.gray400};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  > button + button {
-    border-top: 1px solid ${({ theme }) => theme.colors.gray400};
-  }
-  button {
-    padding: 4px;
-    font-size: 16px;
-    white-space: nowrap;
-  }
-`;
 
 //ProfileReviewsCard樣式==========================
 export const ProfileCard = styled.div`

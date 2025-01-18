@@ -20,6 +20,7 @@ type LineProps = {
   $width?: number;
 };
 type ContentProps = {
+  $margin?: string;
   $rowGap?: number;
   $padding: string;
   $borderRadius?: string;
@@ -46,6 +47,7 @@ const Content = styled.div<ContentProps>`
   border-radius: ${({ $borderRadius }) =>
     $borderRadius ? $borderRadius : "none"};
   row-gap: ${({ $rowGap }) => $rowGap && $rowGap + "px"};
+  margin: ${({ $margin }) => $margin && $margin};
   column-gap: ${({ $columnGap }) => $columnGap && $columnGap + "px"};
   align-items: ${({ $alignItems }) => $alignItems && $alignItems};
   justify-content: ${({ $justifyContent }) =>
@@ -58,5 +60,11 @@ const Circle = styled.div`
   border-radius: 50%;
   ${Animation}
 `;
+const Square = styled.div`
+  width: 120px;
+  height: 120px;
+  border-radius: 4px;
+  ${Animation}
+`;
 
-export { Content, AnimationLine, Animation, Circle };
+export { Content, AnimationLine, Animation, Circle, Square };

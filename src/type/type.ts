@@ -256,3 +256,25 @@ export type AdvertiseNotification = {
 
 // 通知的主類型 (聯合型別)
 export type Notification = GeneralNotification | AdvertiseNotification;
+
+//UserCommit=============================
+// 店家評論型別
+export type CommentData = {
+  displayName?: string; // 店家名稱 (僅用戶評論有)
+  commentId: number; // 評論 ID
+  userName: string; // 評論人名稱
+  photos: string[] | null; // 照片
+  starCount: 1 | 2 | 3 | 4 | 5; // 星星數量
+  comment: string | null; // 評論內容
+  createTime: Date; // 發布時間
+  likeCount: number; // 愛心數
+  replyCount: number; // 留言數量
+  isLike: boolean; // 是否已按愛心
+  tags: string[]; // 標籤 (如: [Food, Traffic])
+};
+
+// 主型別
+export type UserCommentData = {
+  comment: null | CommentData[]; // 用戶評論資料
+  following: null | Comment[]; // 關注者資料
+};

@@ -1,14 +1,12 @@
 import defaultUserPhoto from "../../assets/user-3296.svg";
 import { StarRating } from "../StarRating";
-import { Icon } from "../layout/LayoutComponents";
 import HeartIcon from "./HeartIcon";
 import { Tag } from "../shop/TagsBar";
 import { useNavigate } from "react-router-dom";
-import { Comment, Reply } from "../../type/type";
+import { Comment, CommentData, Reply } from "../../type/type";
 import MoreVert from "./MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import { ReadMore } from "../../pages/Reviews/ReadMore";
-import { useState } from "react";
 import {
   CommentCardContent,
   CommentCardDetail,
@@ -27,7 +25,6 @@ import {
   UserReviewFooter,
   UserReviewTop,
   ProfileReviewTop,
-  MenuOptions,
   UserReviewMain,
   ProfileCard,
   ShopName,
@@ -181,65 +178,63 @@ export function ReviewsCard({ data }: ReviewsCard) {
     )
   );
 }
-
-export function ProfileReviewsCard() {
+type ProfileReviews = {
+  userId: number;
+  data: CommentData;
+};
+export function ProfileReviewsCard({ userId, data }: ProfileReviews) {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // 切換選單顯示狀態
-  };
+
   return (
     <ProfileCard>
-      <CommentCardImgBox>
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-        <img src="https://picsum.photos/1000/800" alt="" />
-      </CommentCardImgBox>
+      {data.photos && data.photos?.length > 0 && (
+        <CommentCardImgBox>
+          {data.photos?.map((photo, index) => {
+            return (
+              <img
+                key={`photo${photo}photo-${index}`}
+                src={`${commentPicture}${photo}`}
+                alt="commentPhoto"
+              />
+            );
+          })}
+        </CommentCardImgBox>
+      )}
       <ProfileContent>
-        <ShopName>Left Bank Rendezvous Cafe 南國人文美食坊</ShopName>
+        <ShopName>{data.displayName}</ShopName>
         <ProfileReviewTop>
           <NameRating>
-            <span style={{ display: "block" }}>Ala</span>
-            <StarRating star={3} width={112} height={16} />
+            <span style={{ display: "block" }}>{data.userName}</span>
+            <StarRating
+              star={data.starCount as 1 | 2 | 3 | 4 | 5}
+              width={112}
+              height={16}
+            />
           </NameRating>
-          <Icon
-            $isPointer={true}
-            $color="gray600"
-            onClick={toggleMenu}
-            className="material-symbols-outlined"
-          >
-            more_vert
-          </Icon>
-          {isMenuOpen && (
-            <MenuOptions>
-              <button>delete</button>
-              <button>report</button>
-            </MenuOptions>
-          )}
+          <MoreVert
+            id={data.commentId}
+            reviewOrReply="review"
+            userId={userId}
+          />
         </ProfileReviewTop>
         <ProfileTags>
-          <Tag>Multilingual</Tag>
-          <Tag>Friendly</Tag>
-          <Tag>Food</Tag>
+          {data.tags.map((tag) => (
+            <Tag key={tag + data.displayName}>{tag}</Tag>
+          ))}
         </ProfileTags>
         <UserProfileMain>
-          <ReadMore
-            text={
-              "Kopi susu is super yummy! Nice ambient and service! Come hang out!"
-            }
-          />
+          <ReadMore text={data.comment ?? ""} />
         </UserProfileMain>
         <UserReviewFooter>
-          <h5>3 hour ago</h5>
+          <h5>{useTimeAgo(data.createTime)}</h5>
           <SocialBlock>
             <div>
-              <h4>1.5k</h4>
+              <h4>{data.replyCount === 0 ? "" : data.replyCount}</h4>
               <ChatIcon
                 $isPointer={true}
                 className="material-symbols-outlined"
                 onClick={() => {
-                  navigate("/review/:id");
+                  navigate(`/review/${data.commentId}`);
                 }}
               >
                 chat_bubble
@@ -248,9 +243,9 @@ export function ProfileReviewsCard() {
             <div>
               <HeartIcon
                 type="comment"
-                likeId={123}
-                isLike={true}
-                likeCount={10}
+                likeId={data.commentId}
+                isLike={data.isLike}
+                likeCount={data.likeCount ?? 0}
               />
             </div>
           </SocialBlock>

@@ -21,7 +21,7 @@ const AdNotification = (notify: AdvertiseNotification) => {
 };
 
 const GeneralNotification = (notify: GeneralNotification) => {
-  const { isCheck, type, action, data } = notify;
+  const { isCheck, action, data } = notify;
   const navigate = useNavigate();
   const iconSettings = {
     follow: {

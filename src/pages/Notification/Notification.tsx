@@ -22,10 +22,8 @@ function Notification() {
     const fetchData = async () => {
       const res = await getNotifyDetail(token ?? "");
       //有通知則載入通知
-      if (res.status && res.data) {
-        setNotifyList(res.data);
-        setLoading(false);
-      }
+      setNotifyList(res.data ?? null);
+      setLoading(false);
     };
 
     fetchData();
