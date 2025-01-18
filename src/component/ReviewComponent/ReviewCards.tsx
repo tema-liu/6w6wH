@@ -1,4 +1,3 @@
-import defaultUserPhoto from "../../assets/user-3296.svg";
 import { StarRating } from "../StarRating";
 import HeartIcon from "./HeartIcon";
 import { Tag } from "../shop/TagsBar";
@@ -35,7 +34,10 @@ import {
 } from "./style/ReviewCards";
 import Badges from "../Profile/BadgeWindow";
 import Country from "../Profile/ConuntryIcon";
-import { commentPicture } from "../../constants/srcPaths";
+import {
+  commentPicture,
+  defaultReviewUserPhoto,
+} from "../../constants/srcPaths";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
 type CommentCard = {
@@ -68,7 +70,7 @@ export function CommentCard({ data }: CommentCard) {
               onClick={() => {
                 handleProfileClick(data.userId);
               }}
-              src={data.userPhoto || defaultUserPhoto}
+              src={data.userPhoto || defaultReviewUserPhoto}
               alt="headShot"
             />
             <BadgeBox>
@@ -140,7 +142,7 @@ export function ReviewsCard({ data }: ReviewsCard) {
             onClick={() => {
               handleProfileClick(data.userId);
             }}
-            src={data.userPhoto || defaultUserPhoto}
+            src={data.userPhoto || defaultReviewUserPhoto}
             alt="headShot"
           />
           <BadgeBox>

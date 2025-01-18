@@ -1,8 +1,6 @@
-import styled from "styled-components";
 import {
   AnimationLine,
   Content,
-  Animation,
   Circle,
 } from "../../component/Placeholder/Layout";
 

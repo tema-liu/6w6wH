@@ -64,7 +64,13 @@ function OtherProfile() {
     <Wrapper>
       <Header isBefore={true} />
       <ContainerPd16 style={{ display: "flex", flexDirection: "column" }}>
-        {profile && <ProfileCard isUserProfile={false} profile={profile} />}
+        {profile && (
+          <ProfileCard
+            userId={numberId}
+            isUserProfile={false}
+            profile={profile}
+          />
+        )}
         <ReviewListItem
           loading={loading}
           userId={numberId}

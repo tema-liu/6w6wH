@@ -69,7 +69,7 @@ function EditProfile() {
               {...register("name", {
                 required: "No spaces",
                 pattern: {
-                  value: /\S/, //输入至少包含一个非空白字符
+                  value: /\S/,
                   message: "No spaces",
                 },
               })}

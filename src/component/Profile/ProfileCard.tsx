@@ -21,18 +21,41 @@ import BadgeWindow from "./BadgeWindow";
 import Country from "./ConuntryIcon";
 import { ProfileType } from "../../type/type";
 import { defaultUserPhoto } from "../../constants/srcPaths";
+import useDebounce from "../../hooks/useDebounce";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/redux/store";
+import { postUserFollow } from "../../apis/postUserFollow";
+import useAuthVerify from "../../hooks/useAuthVerify ";
 
 type ProfileProps = {
   isUserProfile: Boolean;
   profile: ProfileType;
+  userId?: number;
 };
 
-function ProfileCard({ isUserProfile, profile }: ProfileProps) {
+function ProfileCard({ userId, isUserProfile, profile }: ProfileProps) {
   const navigator = useNavigate();
-  const [isFollow, setFollow] = useState(false);
-  const followClickHandler = () => {
+  const token = useSelector((state: RootState) => state.auth.token);
+  const [isAuth, setAuth] = useState(false);
+  const authVerify = useAuthVerify(token);
+  const [isFollow, setFollow] = useState(profile.isFollowed);
+  const followClickHandler = async () => {
+    if (!isAuth) {
+      const isAuthenticated = await authVerify();
+      if (!isAuthenticated) {
+        return; // 如果驗證失敗結束函式
+      }
+      setAuth(!isAuth);
+    }
     setFollow(!isFollow);
   };
+
+  useDebounce(isFollow, 1000, async () => {
+    if (userId) {
+      const followUser = await postUserFollow(userId, token);
+      console.log(followUser);
+    }
+  });
 
   return (
     <>

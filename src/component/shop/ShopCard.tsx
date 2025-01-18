@@ -7,8 +7,7 @@ import arrowIcon from "../../assets/arrow.png";
 import { ReadMore } from "../../pages/SearchResult/ReadMore";
 import { useNavigate } from "react-router-dom";
 import { SearchResult } from "../../type/type";
-import defaultUserPhoto from "../../assets/user-3296.svg";
-import { storePicture } from "../../constants/srcPaths";
+import { defaultReviewUserPhoto, storePicture } from "../../constants/srcPaths";
 import noPhotoImg from "../../assets/Item-1.png";
 
 type DonateProps = {
@@ -179,7 +178,7 @@ function ShopCard({ data }: shopCardProps) {
                 <ReadMore text={data.comments[0]?.content} />
               )}
               <HeadShot
-                src={data.comments?.[0]?.userPhoto || defaultUserPhoto}
+                src={data.comments?.[0]?.userPhoto || defaultReviewUserPhoto}
               />
             </MessageBox>
           )}

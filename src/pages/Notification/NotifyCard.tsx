@@ -1,5 +1,4 @@
 import { Icon } from "../../component/layout/LayoutComponents";
-import headImg from "../../assets/fe595192d2f3182e2c308450c2f7be7f.jpg";
 import ADblock from "../../component/shop/AdBlock";
 import { HeadShot, CardWrapper, Text, Content } from "./style";
 import { defaultUserPhoto } from "../../constants/srcPaths";
