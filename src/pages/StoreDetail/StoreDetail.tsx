@@ -34,6 +34,7 @@ import { getStoreDetail } from "../../apis/getStoreDetail";
 import { getStoreCommit } from "../../apis/getStoreCommit";
 import { RootState } from "../../utils/redux/store";
 import { useSelector } from "react-redux";
+import { getClicksAdd } from "../../apis/getClicksAdd";
 
 function StoreDetail() {
   const navigator = useNavigate();
@@ -53,6 +54,10 @@ function StoreDetail() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
+
+  function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,6 +81,15 @@ function StoreDetail() {
           navigator("*");
           return;
         }
+
+        // 場所新增點擊次數
+        if (result.data) {
+          const storeId = result.data?.id;
+          setTimeout(() => {
+            getClicksAdd(storeId, userToken);
+          }, 10000);
+        }
+
         setStoreData(result ?? null);
         setStoreReviewsData(commitList ?? null);
         setIsLoading(false);
@@ -172,9 +186,8 @@ function StoreDetail() {
                     checked={selectedOption === "Reviews"}
                     onChange={handleOptionChange}
                   />
-                  <Label htmlFor="Reviews">{`Reviews (${
-                    storeReviewsData?.data?.length ?? 0
-                  })`}</Label>
+                  <Label htmlFor="Reviews">{`Reviews (${storeReviewsData?.data?.length ?? 0
+                    })`}</Label>
                 </SegmentedControlInner>
               </form>
               {selectedOption === "Detail" && (
@@ -183,7 +196,7 @@ function StoreDetail() {
               {selectedOption === "Reviews" && (
                 <>
                   {storeReviewsData?.data &&
-                  storeReviewsData.data.length > 0 ? (
+                    storeReviewsData.data.length > 0 ? (
                     <>
                       <CommentCards data={storeReviewsData.data} />
                     </>
