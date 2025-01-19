@@ -1,4 +1,4 @@
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import { useForm } from "react-hook-form";
 import { AddPlaceList } from "../../type/type";

@@ -4,7 +4,7 @@ import {
   Container,
   Icon,
 } from "../../component/layout/LayoutComponents";
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import nullPhoto from "../../assets/Rectangle.png";
 import { Photo, PhotosBar } from "../../component/shop/TagsBar";

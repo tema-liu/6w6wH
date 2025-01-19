@@ -2,7 +2,7 @@ import { ToggleSwitch } from "./ProfileTab";
 import {
   CommentCard,
   ProfileReviewsCard,
-} from "../reviewComponent/ReviewCards";
+} from "../ReviewComponent/ReviewCards";
 import EmptyDisplay from "../EmptyDisplay";
 import { useNavigate } from "react-router-dom";
 import ShopCard from "../shop/ShopCard";

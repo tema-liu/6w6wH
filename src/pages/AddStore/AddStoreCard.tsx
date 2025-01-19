@@ -1,6 +1,6 @@
 import emptyPhoto from "../../assets/Rectangle.png";
 import { Icon } from "../../component/layout/LayoutComponents";
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { AddPlaceList } from "../../type/type";
 import {
   ImgBox,

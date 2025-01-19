@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PopupModal } from "../../component/popupModel/PopupModal";
 import SuggestForm from "./SuggestForm";
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import GoodJobWindow from "../../component/popupModel/GoodJobWindow";
 
 function SuggestModalButton() {

@@ -9,7 +9,7 @@ import {
 import { AdvancedMarker, APIProvider, Pin } from "@vis.gl/react-google-maps";
 import { AddPlaceList, Location } from "../../type/type";
 import webIcon from "../../assets/Frame65Large.svg";
-import { PrimaryBtn } from "../../component/button/PrimaryBtn";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { useState } from "react";
 import { Icon } from "../../component/layout/LayoutComponents";
 import NearbyPlaces from "../../hooks/NearbyPlaces";

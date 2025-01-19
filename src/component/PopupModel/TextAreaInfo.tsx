@@ -1,4 +1,4 @@
-import { PrimaryBtn } from "../button/PrimaryBtn";
+import { PrimaryBtn } from "../Button/PrimaryBtn";
 import { useForm } from "react-hook-form";
 import { Textarea, Label, BtnBox } from "../../pages/Menu/style/contactInfo";
 import { postReportComments } from "../../apis/postReportComments";
@@ -40,7 +40,6 @@ function TextAreaInfo({
 
   const onSubmit = async (formData: textForm) => {
     try {
-
       const isAuthenticated = await authVerify();
       // 驗證是否登入
       if (!isAuthenticated) {
@@ -48,10 +47,8 @@ function TextAreaInfo({
       }
       console.log(reportId);
       if (reportId === 0) {
-
         const res = await postContactus(formData.textArea, token);
       } else {
-
         const reportComment = {
           type: type, // comment,reply
           commentId: reportId, //被檢舉評論ID
@@ -61,7 +58,6 @@ function TextAreaInfo({
         //送出檢舉表單
         const res = await postReportComments(reportComment, token);
       }
-
     } catch (error) {
       console.log("錯誤", error);
     }
@@ -104,7 +100,7 @@ function TextAreaInfo({
           $bgColor={isValid ? "outline2" : "gray400"}
           content="Submit"
           disabled={!isValid}
-        // 禁用按鈕直到表單有效
+          // 禁用按鈕直到表單有效
         />
       </BtnBox>
     </form>
