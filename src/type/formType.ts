@@ -95,3 +95,10 @@ export type CommentLike = {
   type: "comment" | "reply";
   id: number;
 };
+
+//ReportStore===================
+export type ReportStore = {
+  errorText: string[];
+  suggestText: string;
+  storeId: number;
+};

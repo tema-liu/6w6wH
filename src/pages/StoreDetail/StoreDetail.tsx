@@ -44,6 +44,7 @@ function StoreDetail() {
   const [storeData, setStoreData] = useState<ResponseData<StoreData> | null>(
     null
   ); //商店詳細資料
+  const numericId = Number(id);
   const [storeReviewsData, setStoreReviewsData] = useState<ResponseData<
     Comment[]
   > | null>(null); //商店評論
@@ -57,8 +58,6 @@ function StoreDetail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const numericId = Number(id);
-      console.log("numericId", numericId);
       try {
         const [result, commitList] = await Promise.all([
           getStoreDetail(numericId, userToken),
@@ -208,7 +207,9 @@ function StoreDetail() {
                 </>
               )}
             </PlaceDetailMain>
-            {selectedOption === "Detail" && <SuggestModalButton />}
+            {selectedOption === "Detail" && (
+              <SuggestModalButton storeId={numericId} />
+            )}
           </Container>
         </Wrapper>
       )}

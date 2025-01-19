@@ -4,12 +4,11 @@ import SuggestForm from "./SuggestForm";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 
-function SuggestModalButton() {
+function SuggestModalButton({ storeId }: { storeId: number }) {
   const [modals, setModals] = useState({
     isModalOpen: false,
     isGoodJobWindowOpen: false,
   });
-
   const toggleModal = (modalName: keyof typeof modals) => {
     setModals((prev) => ({
       ...prev,
@@ -35,6 +34,7 @@ function SuggestModalButton() {
           text="Suggest an edit"
           content={
             <SuggestForm
+              storeId={storeId}
               windowOpen={() => {
                 toggleModal("isModalOpen");
                 toggleModal("isGoodJobWindowOpen");
