@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
-  const token = useSelector((state: RootState) => state.auth.token);
+  // const token = useSelector((state: RootState) => state.auth.token);
   const profile = useSelector((state: RootState) => state.profile);
   const navigate = useNavigate();
   const {

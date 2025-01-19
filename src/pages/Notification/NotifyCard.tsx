@@ -10,7 +10,7 @@ import type {
 } from "../../type/type";
 
 const AdNotification = (notify: AdvertiseNotification) => {
-  const { isCheck, data } = notify;
+  const { data } = notify;
 
   return (
     <CardWrapper>
@@ -20,7 +20,7 @@ const AdNotification = (notify: AdvertiseNotification) => {
 };
 
 const GeneralNotification = (notify: GeneralNotification) => {
-  const { isCheck, action, data } = notify;
+  const { action, data } = notify;
   const navigate = useNavigate();
   const iconSettings = {
     follow: {

@@ -38,7 +38,7 @@ function HeartIcon({
     id: likeId,
   };
   useDebounce(Liked, 1000, async () => {
-    const commentLike = await postCommentLike(option, token);
+    await postCommentLike(option, token);
   });
 
   const clickHandler = async (

@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import {
   GeneralPopupModal,
   PopupModal,
-} from "../../component/popupModel/PopupModal";
+} from "../../component/PopupModel/PopupModal";
 import { useState } from "react";
-import TextAreaInfo from "../../component/popupModel/TextAreaInfo";
+import TextAreaInfo from "../../component/PopupModel/TextAreaInfo";
 import { Container, Content, Item, ItemText } from "./style/menu";
-import ModelInfo from "../../component/popupModel/ModelInfo";
-import GrayButton from "../../component/button/GrayBtn";
+import ModelInfo from "../../component/PopupModel/ModelInfo";
+import GrayButton from "../../component/Button/GrayBtn";
 import { ItemList } from "./data";
 import { useDispatch } from "react-redux";
 import { clearLoginData } from "../../utils/redux/auth/slice";

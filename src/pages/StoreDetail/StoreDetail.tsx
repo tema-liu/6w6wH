@@ -12,7 +12,7 @@ import {
   LinkIcon,
 } from "./style/storeDetail";
 import { StarRating } from "../../component/StarRating";
-import { ReviewBtn } from "../../component/button/ReviewBtn";
+import { ReviewBtn } from "../../component/Button/ReviewBtn";
 import {
   SegmentedControlInner,
   RadioInput,
@@ -54,10 +54,6 @@ function StoreDetail() {
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
-
-  function delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
 
   useEffect(() => {
     const fetchData = async () => {

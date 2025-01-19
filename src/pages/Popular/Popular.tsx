@@ -8,7 +8,7 @@ import HotReviews from "./HotReviews";
 import LearningResources from "./LearningResources";
 import { useEffect, useState } from "react";
 import { PopularStore, ReviewOrReply } from "../../type/type";
-import { mockApi } from "./data";
+// import { mockApi } from "./data";
 import { getPopularMarquee } from "../../apis/getPopularMarquee";
 import { getStoreTop } from "../../apis/getStoreTop";
 import { getCommentTop } from "../../apis/getCommentTop";

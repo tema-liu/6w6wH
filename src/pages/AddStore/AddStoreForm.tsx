@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../utils/redux/store";
 import { useEffect, useState } from "react";
 import { fetchTagsData } from "../../utils/redux/tagList/slice";
-import GoodJobWindow from "../../component/popupModel/GoodJobWindow";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import { postAddStore } from "../../apis/postAddStore";
 

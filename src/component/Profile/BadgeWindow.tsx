@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CircleImg } from "../layout/LayoutComponents";
-import { PopupModal } from "../popupModel/PopupModal";
+import { PopupModal } from "../PopupModel/PopupModal";
 import { Item, Content, Title, TopSection, BottomSection } from "./style/badge";
 import { badgeImgList, badgeRuleList } from "./data/badge";
 

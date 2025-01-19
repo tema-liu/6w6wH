@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Icon } from "../layout/LayoutComponents";
-import { GeneralPopupModal, PopupModal } from "../popupModel//PopupModal";
-import ModelInfo from "../popupModel/ModelInfo";
-import TextAreaInfo from "../popupModel/TextAreaInfo";
+import { GeneralPopupModal, PopupModal } from "../PopupModel/PopupModal";
+import ModelInfo from "../PopupModel/ModelInfo";
+import TextAreaInfo from "../PopupModel/TextAreaInfo";
 import { postCommentDelete } from "../../apis/postCommentDelete";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";

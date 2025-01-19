@@ -13,7 +13,7 @@ import { locationList, locationTab } from "./data";
 import { Location } from "../../type/type";
 import useUserLocation from "../../hooks/useUseLocation";
 import React from "react";
-import { GeneralPopupModal } from "../../component/popupModel/PopupModal";
+import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";
 import { useNavigate } from "react-router-dom";
 
 type SelectLocationProps = {

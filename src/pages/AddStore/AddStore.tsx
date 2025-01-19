@@ -10,19 +10,19 @@ import useAuthVerify from "../../hooks/useAuthVerify ";
 
 function AddStore() {
   const [selectLocation, setSelectLocation] = useState<Location | null>(null);
-  // const token = useSelector((state: RootState) => state.auth.token);
-  // const authVerify = useAuthVerify(token);
-  // useEffect(() => {
-  //   const verify = async () => {
-  //     const isAuthenticated = await authVerify();
-  //     if (!isAuthenticated) {
-  //       return;
-  //     }
-  //     console.log(isAuthenticated);
-  //   };
+  const token = useSelector((state: RootState) => state.auth.token);
+  const authVerify = useAuthVerify(token);
+  useEffect(() => {
+    const verify = async () => {
+      const isAuthenticated = await authVerify();
+      if (!isAuthenticated) {
+        return;
+      }
+      console.log(isAuthenticated);
+    };
 
-  //   verify(); // 在 useEffect 中執行 verify
-  // }, []);
+    verify(); // 在 useEffect 中執行 verify
+  }, []);
 
   return (
     <Wrapper>

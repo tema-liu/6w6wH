@@ -11,8 +11,8 @@ import { Photo, PhotosBar } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
 import star from "../../assets/Star.png";
 import starOn from "../../assets/StarOn.png";
-import { PopupModal } from "../../component/popupModel/PopupModal";
-import GoodJobWindow from "../../component/popupModel/GoodJobWindow";
+import { PopupModal } from "../../component/PopupModel/PopupModal";
+import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate, useParams } from "react-router-dom";
 import SuggestTag from "./SuggestTag";
 import {

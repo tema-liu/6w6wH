@@ -20,13 +20,13 @@ import {
 } from "../Reviews/styled";
 import RepliesCard from "./RepliesCard";
 import MessageBox from "./MessageBox";
-import HeartIcon from "../../component/reviewComponent/HeartIcon";
+import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import styled from "styled-components";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import { useEffect, useState } from "react";
 import { Comment, Reply, ResponseData } from "../../type/type";
 // import { mockApi } from "./data";
-import MoreVert from "../../component/reviewComponent/MoreVert";
+import MoreVert from "../../component/ReviewComponent/MoreVert";
 import ReviewSwiper from "./ReviewSwiper";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Placeholder from "./Placeholder";

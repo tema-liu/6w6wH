@@ -12,9 +12,9 @@ import {
   SocialBlock,
 } from "../Reviews/styled";
 import { ReadMore } from "./ReadMore";
-import HeartIcon from "../../component/reviewComponent/HeartIcon";
+import HeartIcon from "../../component/ReviewComponent/HeartIcon";
 import { Reply } from "../../type/type";
-import MoreVert from "../../component/reviewComponent/MoreVert";
+import MoreVert from "../../component/ReviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";

@@ -16,7 +16,7 @@ type TextAreaInfoProps = {
   title: string;
   idFor: string;
   closeWindow: () => void;
-  reportId: number;
+  reportId?: number;
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 function TextAreaInfo({
@@ -47,7 +47,7 @@ function TextAreaInfo({
       }
       console.log(reportId);
       if (reportId === 0) {
-        const res = await postContactus(formData.textArea, token);
+        await postContactus(formData.textArea, token);
       } else {
         const reportComment = {
           type: type, // comment,reply
@@ -56,7 +56,7 @@ function TextAreaInfo({
         };
 
         //送出檢舉表單
-        const res = await postReportComments(reportComment, token);
+        await postReportComments(reportComment, token);
       }
     } catch (error) {
       console.log("錯誤", error);

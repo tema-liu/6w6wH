@@ -2,7 +2,7 @@ import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 import { AddPlaceList, Location } from "../type/type";
 import EmptyDisplay from "../component/EmptyDisplay";
-import { GeneralPopupModal } from "../component/popupModel/PopupModal";
+import { GeneralPopupModal } from "../component/PopupModel/PopupModal";
 import { useNavigate } from "react-router-dom";
 
 type NearbyProps = {
