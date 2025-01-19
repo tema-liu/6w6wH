@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postTagsSuggest } from "../../apis/postTagsSuggest";
+import { useSelector } from "react-redux";
+import { RootState } from "../../utils/redux/store";
 
 const TagText = styled.p`
   overflow: hidden;
@@ -141,6 +144,13 @@ function SuggestTag({
 }) {
   const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
+  const [inputValue, setInputValue] = useState(""); 
+  const userToken = useSelector((state: RootState) => state.auth.token);
+
+  const handleTagsSuggest = async () => {
+    await postTagsSuggest(inputValue, userToken); 
+    closeWindow();
+  };
 
   return (
     <>
@@ -155,6 +165,7 @@ function SuggestTag({
           <MainSection>
             <Input
               onChange={(e) => {
+                setInputValue(e.target.value);
                 setSubmit(e.target.value.trim().length > 0);
               }}
               placeholder="add...｜"
@@ -174,7 +185,7 @@ function SuggestTag({
                 $color={submit ? "dark" : "gray600"}
                 onClick={(e) => {
                   e.preventDefault();
-                  closeWindow();
+                  handleTagsSuggest();
                 }}
                 disabled={!submit}
               >

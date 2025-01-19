@@ -55,10 +55,6 @@ function StoreDetail() {
     setSelectedOption(event.target.value);
   };
 
-  function delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       const numericId = Number(id);
