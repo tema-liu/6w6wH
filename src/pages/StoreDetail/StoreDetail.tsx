@@ -72,12 +72,8 @@ function StoreDetail() {
         // const result = await storeResultApi("/api/items");
         // const commitList = await mockApi("/api/items");
 
-        //如果代碼錯誤返回首頁,可能需要跟UI討論404頁面 之後都要倒轉那裏
-        if (!result.status) {
-          navigator("/popular");
-          return;
-        }
-        if (result.message === "查無店家資料") {
+        //如果代碼錯誤返回404
+        if (!result.status || result.message === "查無店家資料") {
           navigator("*");
           return;
         }
@@ -186,8 +182,9 @@ function StoreDetail() {
                     checked={selectedOption === "Reviews"}
                     onChange={handleOptionChange}
                   />
-                  <Label htmlFor="Reviews">{`Reviews (${storeReviewsData?.data?.length ?? 0
-                    })`}</Label>
+                  <Label htmlFor="Reviews">{`Reviews (${
+                    storeReviewsData?.data?.length ?? 0
+                  })`}</Label>
                 </SegmentedControlInner>
               </form>
               {selectedOption === "Detail" && (
@@ -196,7 +193,7 @@ function StoreDetail() {
               {selectedOption === "Reviews" && (
                 <>
                   {storeReviewsData?.data &&
-                    storeReviewsData.data.length > 0 ? (
+                  storeReviewsData.data.length > 0 ? (
                     <>
                       <CommentCards data={storeReviewsData.data} />
                     </>
