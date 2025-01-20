@@ -1,19 +1,18 @@
-import { ReportStore } from "../type/formType";
 import { ResponseData } from "../type/type";
 
 const apiUrl = import.meta.env.VITE_API_URL;
-export const postStoreReport = async (
-  reportStoreForm: ReportStore
+export const postDeleteAccount = async (
+  token: string | null
 ): Promise<ResponseData> => {
-  const url = `${apiUrl}/stores/report`;
+  const url = `${apiUrl}/api/user/delete`;
   // 檢查 HTTP 回應是否成功
   try {
     const res = await fetch(url, {
       method: "POST", // 使用 POST 方法
       headers: {
         "Content-Type": "application/json", // 設置為 JSON 格式
+        Authorization: token ? `Bearer ${token}` : "",
       },
-      body: JSON.stringify(reportStoreForm),
     });
     // 統一回傳格式，簡化錯誤處理
     if (!res.ok) {
@@ -26,12 +25,11 @@ export const postStoreReport = async (
 
     const json = await res.json().catch(() => null); // 防止 JSON 解析失敗
 
-    console.log(json);
     if (!json?.status) {
       return {
         statusCode: res.status || 404,
         status: false,
-        message: json?.message || "通報店家失敗",
+        message: json?.message || "刪除帳號失敗",
       };
     }
 

@@ -6,9 +6,26 @@ import { useState } from "react";
 import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";
 import ModelInfo from "../../component/PopupModel/ModelInfo";
 import { itemList } from "./data/settings";
+import { postDeleteAccount } from "../../apis/postUserDelete";
+import { RootState } from "../../utils/redux/store";
+import { useSelector } from "react-redux";
+import useAuthVerify from "../../hooks/useAuthVerify ";
+import { useNavigate } from "react-router-dom";
 
 function Settings() {
+  const navigate = useNavigate();
   const [windowOpen, setWindowOpen] = useState(false);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const authVerify = useAuthVerify(token);
+  const deleteHandler = async () => {
+    const isAuthenticated = await authVerify();
+    if (!isAuthenticated) {
+      return; // 如果驗證失敗結束函式
+    }
+    const res = await postDeleteAccount(token);
+    console.log(res);
+    navigate("/");
+  };
 
   return (
     <Wrapper>
@@ -50,7 +67,7 @@ function Settings() {
                 text="Deleting your account will permanently remove:All your Details, Reviews, Favorites, Followers etc."
                 title="Delete your account ?"
                 btnText="Delete account"
-                btnClick={() => {}} //5
+                btnClick={deleteHandler}
                 cancelClick={() => {
                   setWindowOpen(!windowOpen);
                 }}

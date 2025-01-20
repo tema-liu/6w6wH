@@ -11,9 +11,6 @@ import {
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { useEffect, useState } from "react";
 import { postStoreReport } from "../../apis/postStoreReport";
-import { useSelector } from "react-redux";
-import { RootState } from "../../utils/redux/store";
-import useAuthVerify from "../../hooks/useAuthVerify ";
 
 type textForm = {
   errorText: string[];
@@ -29,8 +26,6 @@ function SuggestForm({
 }) {
   //按鈕狀態
   const [isBtnDisabled, setBtnDisabled] = useState(false);
-  const token = useSelector((state: RootState) => state.auth.token);
-  const authVerify = useAuthVerify(token);
   const { register, handleSubmit, watch } = useForm<textForm>({
     mode: "onChange", // 每次輸入時觸發驗證
     defaultValues: {
@@ -58,13 +53,9 @@ function SuggestForm({
   }, [watchAllFields]);
 
   const onSubmit = async (formData: textForm) => {
-    const isAuthenticated = await authVerify();
-    if (!isAuthenticated) {
-      return; // 如果驗證失敗結束函式
-    }
     //送出的表單資料
     const postData = { ...formData, storeId: storeId };
-    await postStoreReport(postData, token);
+    await postStoreReport(postData);
     windowOpen();
   };
 
