@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+import { Container, Wrapper } from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
 import { useLocation, useNavigate } from "react-router-dom";

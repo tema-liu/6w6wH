@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container } from "../../component/layout/LayoutComponents";
+import { Container } from "../../component/Layout/LayoutComponents";
 type NotifyProps = {
   $isCheck: boolean;
 };

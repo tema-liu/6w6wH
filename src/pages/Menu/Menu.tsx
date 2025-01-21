@@ -1,5 +1,5 @@
-import Header from "../../component/layout/header";
-import { Icon, Wrapper } from "../../component/layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
+import { Icon, Wrapper } from "../../component/Layout/LayoutComponents";
 import { useNavigate } from "react-router-dom";
 import {
   GeneralPopupModal,

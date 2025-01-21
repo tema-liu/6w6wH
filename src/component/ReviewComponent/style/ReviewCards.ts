@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../../layout/LayoutComponents";
+import { Icon } from "../../Layout/LayoutComponents";
 import { TagsBar } from "../../shop/TagsBar";
 
 //==========================評論卡片樣式

@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Icon, Img } from "../../component/layout/LayoutComponents";
+import { Icon, Img } from "../../component/Layout/LayoutComponents";
 import styled from "styled-components";
 import { Photo } from "../../type/type";
 import { commentPicture } from "../../constants/srcPaths";

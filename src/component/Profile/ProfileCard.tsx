@@ -1,4 +1,4 @@
-import { Icon } from "../layout/LayoutComponents";
+import { Icon } from "../Layout/LayoutComponents";
 import Marquee from "react-fast-marquee";
 import { useState } from "react";
 import {

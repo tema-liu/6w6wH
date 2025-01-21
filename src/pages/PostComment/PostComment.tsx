@@ -1,9 +1,9 @@
-import Header from "../../component/layout/header";
+import Header from "../../component/Layout/Header";
 import {
   Wrapper,
   Container,
   Icon,
-} from "../../component/layout/LayoutComponents";
+} from "../../component/Layout/LayoutComponents";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import TagCheckBox from "../../component/TagCheckBox";
 import nullPhoto from "../../assets/Rectangle.png";

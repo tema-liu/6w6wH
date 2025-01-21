@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon as IconImg } from "../../component/layout/LayoutComponents";
+import { Icon as IconImg } from "../../component/Layout/LayoutComponents";
 
 export const CommentCardContent = styled.div`
   padding: 16px 8px 16px 8px;

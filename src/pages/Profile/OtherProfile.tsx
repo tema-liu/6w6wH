@@ -1,8 +1,8 @@
 import {
   ContainerPd16,
   Wrapper,
-} from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+} from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import ProfileCard from "../../component/Profile/ProfileCard";
 import ReviewListItem from "../../component/Profile/ReviewListItem";
 import { getProfileCollect } from "../../apis/getProfileCollect";

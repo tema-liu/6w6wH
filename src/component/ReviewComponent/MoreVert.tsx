@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Icon } from "../layout/LayoutComponents";
+import { Icon } from "../Layout/LayoutComponents";
 import { GeneralPopupModal, PopupModal } from "../PopupModel/PopupModal";
 import ModelInfo from "../PopupModel/ModelInfo";
 import TextAreaInfo from "../PopupModel/TextAreaInfo";

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Header from "../../component/layout/header";
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
+import { Container, Wrapper } from "../../component/Layout/LayoutComponents";
 import AdSwiper from "./AdSwiper";
 import PopularMarquee from "./PopularMarquee";
 import HotShopList from "./HotShopList";

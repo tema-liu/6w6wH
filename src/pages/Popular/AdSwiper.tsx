@@ -5,7 +5,7 @@ import { SwiperContainer, Button, Photo } from "../../component/SwiperStyle";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Icon } from "../../component/layout/LayoutComponents";
+import { Icon } from "../../component/Layout/LayoutComponents";
 import { ADtag } from "./style/adSwiper";
 import { useEffect } from "react";
 import { getPopularAdvertise } from "../../apis/getPopularAdvertise";

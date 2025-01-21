@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../../component/layout/LayoutComponents";
+import { Icon } from "../../component/Layout/LayoutComponents";
 import { useState } from "react";
 import { CommentReply } from "../../type/formType";
 import { postCommentReply } from "../../apis/postCommentReply";

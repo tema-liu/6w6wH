@@ -1,4 +1,4 @@
-import { Icon } from "../layout/LayoutComponents";
+import { Icon } from "../Layout/LayoutComponents";
 import { useState } from "react";
 import styled from "styled-components";
 import useAuthVerify from "../../hooks/useAuthVerify ";

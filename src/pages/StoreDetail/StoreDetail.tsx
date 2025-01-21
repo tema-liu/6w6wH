@@ -1,5 +1,5 @@
-import Header from "../../component/layout/header";
-import { Wrapper, Container } from "../../component/layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
+import { Wrapper, Container } from "../../component/Layout/LayoutComponents";
 import { TagsBar, Tag } from "../../component/shop/TagsBar";
 import {
   NavigateBtn,

@@ -1,4 +1,4 @@
-import { Icon } from "../layout/LayoutComponents";
+import { Icon } from "../Layout/LayoutComponents";
 
 type VoiceReaderProps = {
   text: string;

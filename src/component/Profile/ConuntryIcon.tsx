@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CircleImg } from "../layout/LayoutComponents";
+import { CircleImg } from "../Layout/LayoutComponents";
 import { countryImgList } from "./data/contry";
 
 type countryProps = {

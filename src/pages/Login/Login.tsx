@@ -1,5 +1,5 @@
-import Header from "../../component/layout/header";
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
+import { Container, Wrapper } from "../../component/Layout/LayoutComponents";
 import siteIcon from "../../assets/6w6wH.svg";
 import styled from "styled-components";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";

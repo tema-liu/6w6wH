@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Header from "../../component/layout/header";
-import { Wrapper } from "../../component/layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
+import { Wrapper } from "../../component/Layout/LayoutComponents";
 import SelectLocation from "./SelectLocation";
 import { Location } from "../../type/type";
 import GoogleMap from "./GoogleMap";

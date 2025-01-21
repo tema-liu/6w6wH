@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container as Cont } from "../../component/layout/LayoutComponents";
+import { Container as Cont } from "../../component/Layout/LayoutComponents";
 
 export const Container = styled(Cont)`
   padding: 16px 8px;

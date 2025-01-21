@@ -18,7 +18,6 @@ const useAuthVerify = (userToken: string | null) => {
       }
 
       const response = await postAuth(userToken);
-      console.log(response);
 
       if (!response.status) {
         // 清除Redux 狀態

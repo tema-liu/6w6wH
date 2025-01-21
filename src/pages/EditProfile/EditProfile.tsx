@@ -1,5 +1,5 @@
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+import { Container, Wrapper } from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
 import { useForm } from "react-hook-form";

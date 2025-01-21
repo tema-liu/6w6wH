@@ -1,8 +1,8 @@
 import {
   WhiteWrapper,
   ContainerPd32,
-} from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+} from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import { Content, Section, SubTag, Ul } from "../Faqs/style";
 import { textList } from "./data";
 

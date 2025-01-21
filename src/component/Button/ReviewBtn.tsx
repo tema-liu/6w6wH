@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon } from "../layout/LayoutComponents";
+import { Icon } from "../Layout/LayoutComponents";
 import { useNavigate } from "react-router-dom";
 
 interface ReviewProps {

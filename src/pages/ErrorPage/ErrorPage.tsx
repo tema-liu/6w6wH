@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Container, Wrapper } from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+import { Container, Wrapper } from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import photo from "../../assets/emptyPhoto/Group 48097694.png";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ContainerPd16 } from "../../../component/layout/LayoutComponents";
+import { ContainerPd16 } from "../../../component/Layout/LayoutComponents";
 
 export const Content = styled.main`
   flex: 1;

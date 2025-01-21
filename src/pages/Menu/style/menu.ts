@@ -1,4 +1,4 @@
-import { ContainerPd16 } from "../../../component/layout/LayoutComponents";
+import { ContainerPd16 } from "../../../component/Layout/LayoutComponents";
 import styled from "styled-components";
 
 export const Content = styled.main`

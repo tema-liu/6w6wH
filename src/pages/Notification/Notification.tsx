@@ -1,5 +1,5 @@
-import { Wrapper } from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+import { Wrapper } from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import NotifyCard from "./NotifyCard";
 import EmptyDisplay from "../../component/EmptyDisplay";
 import { EmptyContainer, NotifyContainer } from "./style";

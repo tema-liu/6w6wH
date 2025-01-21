@@ -11,7 +11,7 @@ import { AddPlaceList, Location } from "../../type/type";
 import webIcon from "../../assets/Frame65Large.svg";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { useState } from "react";
-import { Icon } from "../../component/layout/LayoutComponents";
+import { Icon } from "../../component/Layout/LayoutComponents";
 import NearbyPlaces from "../../hooks/NearbyPlaces";
 import AddStoreCard from "./AddStoreCard";
 import { Button } from "../../component/SwiperStyle";

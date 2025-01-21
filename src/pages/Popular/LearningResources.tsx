@@ -1,4 +1,4 @@
-import { Icon } from "../../component/layout/LayoutComponents";
+import { Icon } from "../../component/Layout/LayoutComponents";
 import bugIcon from "../../assets/bug.png";
 import { TitleBox, TitleBoxIcon, TitleBoxText } from "../../component/TitleBox";
 import {

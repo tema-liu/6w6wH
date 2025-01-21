@@ -1,6 +1,6 @@
 import { Container, Content, Item, ItemText } from "./style/settings";
-import { Wrapper, Icon } from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+import { Wrapper, Icon } from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import GrayButton from "../../component/Button/GrayBtn";
 import { useState } from "react";
 import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";

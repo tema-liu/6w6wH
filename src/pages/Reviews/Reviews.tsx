@@ -1,10 +1,10 @@
-import Header from "../../component/layout/header";
+import Header from "../../component/Layout/Header";
 import { StarRating } from "../../component/StarRating";
 import {
   Wrapper,
   Container,
   Icon,
-} from "../../component/layout/LayoutComponents";
+} from "../../component/Layout/LayoutComponents";
 import {
   UserReviewFooter,
   CommentCardContent,

@@ -1,4 +1,4 @@
-import { Icon } from "../../component/layout/LayoutComponents";
+import { Icon } from "../../component/Layout/LayoutComponents";
 import ADblock from "../../component/shop/AdBlock";
 import { HeadShot, CardWrapper, Text, Content } from "./style";
 import { defaultReviewUserPhoto, userPicture } from "../../constants/srcPaths";

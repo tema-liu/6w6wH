@@ -1,8 +1,8 @@
 import {
   WhiteWrapper,
   ContainerPd32,
-} from "../../component/layout/LayoutComponents";
-import Header from "../../component/layout/header";
+} from "../../component/Layout/LayoutComponents";
+import Header from "../../component/Layout/Header";
 import { addEditList, textList } from "./data";
 import { Content, Title, Section, SubTag, Ul } from "./style";
 

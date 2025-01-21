@@ -1,9 +1,9 @@
 import {
   ContainerPd32,
   WhiteWrapper,
-} from "../../component/layout/LayoutComponents";
+} from "../../component/Layout/LayoutComponents";
 import { Content, Title, Section, SubTag } from "../Faqs/style";
-import Header from "../../component/layout/header";
+import Header from "../../component/Layout/Header";
 import { textList } from "./data";
 
 function TermsAndConditions() {
