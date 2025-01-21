@@ -58,9 +58,15 @@ const IconDiv = styled.div<CollectIconProps>`
   right: ${(props) => props.$right}px;
   opacity: ${({ $isCollect }) => ($isCollect ? 1 : 0.75)};
   transition: all 0.25s ease;
+  filter: ${({ $isCollect }) =>
+    $isCollect
+      ? `drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1))`
+      : "none"};
+
   &:active {
     opacity: 1;
-    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.04))
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15))
       drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.1));
   }
   &:hover {

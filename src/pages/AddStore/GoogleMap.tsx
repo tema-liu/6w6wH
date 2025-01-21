@@ -24,7 +24,7 @@ type GoogleMapProps = {
 function GoogleMap({ location }: GoogleMapProps) {
   const mapId = import.meta.env.VITE_GOOGLE_MAPS_ID;
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const [zoom, setZoom] = useState(16);
+  const [zoom, setZoom] = useState(18);
   const [pinLocation, setPinLocation] = useState<Location | null>(null); //主要pin的定位
   const [isLocationConfirmed, setLocationConfirmed] = useState(false); //是否確認定位
   const [placeList, setPlaceList] = useState<AddPlaceList[] | null>(null); //搜尋後的商店列表

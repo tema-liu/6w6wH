@@ -34,8 +34,9 @@ function Notification() {
     <Wrapper>
       <Header title="Notification" />
       <NotifyContainer>
-        {loading && <Placeholder />}
-        {notifyList ? (
+        {loading ? (
+          <Placeholder />
+        ) : notifyList ? (
           notifyList.map((notify) => {
             return <NotifyCard key={"notify" + notify.id} notify={notify} />;
           })
