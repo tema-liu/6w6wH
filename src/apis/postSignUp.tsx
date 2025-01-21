@@ -8,12 +8,7 @@ export const postSignUp = async (
 ): Promise<ResponseData<AuthState>> => {
   const url = `${apiUrl}/user/register`;
   // 檢查 HTTP 回應是否成功
-  console.log("setup" + formData.birthDay);
-  console.log("setup" + formData.country);
-  console.log("setup" + formData.email);
-  console.log("setup" + formData.gender);
-  console.log("setup" + formData.userName);
-  console.log("setup" + formData.userPhoto);
+
   try {
     const res = await fetch(url, {
       method: "POST", // 使用 POST 方法

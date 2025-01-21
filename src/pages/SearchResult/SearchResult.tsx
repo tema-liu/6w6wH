@@ -164,7 +164,7 @@ function SearchResult() {
     }
 
     return listToRender.map((shop) => (
-      <ShopCard key={shop.placeId} data={shop} />
+      <ShopCard key={`${shop.placeId}-${shop.id}`} data={shop} />
     ));
   };
 

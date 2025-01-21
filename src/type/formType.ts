@@ -72,7 +72,7 @@ export type UserSetupForm = {
   birthDay: string;
   email: string;
   userName: string;
-  userPhoto: string;
+  userPhoto: null;
 };
 
 //search=============

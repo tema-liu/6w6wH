@@ -2,21 +2,26 @@ import { Container, Wrapper } from "../../component/layout/LayoutComponents";
 import Header from "../../component/layout/header";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
-import { FieldErrors, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import PhotoCard from "./PhotoCard";
-import photo from "../../assets/4d7a9ac84094d8ed9c205d7b69288815.jpg";
 import { EditForm } from "./styled";
 import { EditProfileForm } from "../../type/formType";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { defaultUserPhoto } from "../../constants/srcPaths";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { postEditProfile } from "../../apis/postEditProfile";
+import { getUserProfile } from "../../apis/getUserProfile";
+import { fetchProfile } from "../../utils/redux/userProfile/slice";
 
 function EditProfile() {
-  // const token = useSelector((state: RootState) => state.auth.token);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const userId = useSelector((state: RootState) => state.auth.userId);
   const profile = useSelector((state: RootState) => state.profile);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const firstPhoto = profile.userPhoto ? profile.userPhoto : defaultUserPhoto;
   const {
     register,
     formState: { errors },
@@ -31,18 +36,49 @@ function EditProfile() {
       country: profile.country,
       gender: profile.gender,
       birthDay: profile.birthDay,
-      userPhoto: profile.userPhoto ? profile.userPhoto : defaultUserPhoto,
+      userPhoto: firstPhoto,
     },
   });
 
-  const onSubmit = (formData: EditProfileForm) => {
-    console.log(formData);
-  };
-  const onError = (errors: FieldErrors<EditProfileForm>) => {
-    console.log(errors.userPhoto?.message);
+  const onSubmit = async (formData: EditProfileForm) => {
+    const processedPhoto =
+      formData.userPhoto === defaultUserPhoto ? "" : formData.userPhoto;
+    const form = {
+      ...formData,
+      userPhoto: processedPhoto,
+    };
+    await postEditProfile(form, token);
+
+    const userProfile = await getUserProfile(Number(userId), token);
+    if (userProfile.status) {
+      const userData = userProfile.data;
+      const gender =
+        userData?.gender === 0
+          ? "Male"
+          : userData?.gender === 1
+          ? "Female"
+          : "Other";
+      dispatch(
+        fetchProfile({
+          name: userData?.name,
+          userPhoto: userData?.userPhoto,
+          comeFrom: userData?.comeFrom,
+          nowLiveIn: userData?.nowLiveIn,
+          bio: userData?.bio,
+          country: userData?.country,
+          gender: gender,
+          birthDay: userData?.birthDay,
+          badge: userData?.badge,
+          isFollowed: userData?.isFollowed,
+        })
+      );
+    }
+
+    navigate("/profile");
   };
 
   const photoUrl = watch("userPhoto");
+
   useEffect(() => {
     if (!profile.name) navigate("/profile");
   });
@@ -51,10 +87,10 @@ function EditProfile() {
     <Wrapper>
       <Header title="Edit Profile" menu={true} />
       <Container>
-        <EditForm onSubmit={handleSubmit(onSubmit, onError)}>
+        <EditForm onSubmit={handleSubmit(onSubmit)}>
           <PhotoCard
             register={register}
-            firstPhoto={photo}
+            firstPhoto={firstPhoto}
             photoUrl={photoUrl}
             errorMessage={errors.userPhoto?.message}
           />

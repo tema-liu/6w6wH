@@ -87,7 +87,6 @@ function Login() {
           state: {
             email: response.data?.email,
             userName: response.data?.userName,
-            userPhoto: response.data?.userPhoto,
           },
         });
         return;

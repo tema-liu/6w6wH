@@ -45,7 +45,7 @@ function Setup() {
       ...formData,
       email: email,
       userName: userName,
-      userPhoto: userPhoto,
+      userPhoto: null,
     };
     try {
       const sighUpRes = await postSignUp(setupData);

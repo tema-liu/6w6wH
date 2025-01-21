@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import BadgeWindow from "./BadgeWindow";
 import Country from "./ConuntryIcon";
 import { ProfileType } from "../../type/type";
-import { defaultUserPhoto } from "../../constants/srcPaths";
+import { defaultUserPhoto, userPicture } from "../../constants/srcPaths";
 import useDebounce from "../../hooks/useDebounce";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
@@ -61,7 +61,11 @@ function ProfileCard({ userId, isUserProfile, profile }: ProfileProps) {
     <>
       <Card>
         <HeadShot
-          src={profile.userPhoto ? profile.userPhoto : defaultUserPhoto}
+          src={
+            profile.userPhoto
+              ? userPicture + profile.userPhoto
+              : defaultUserPhoto
+          }
           alt="headShot"
         />
         <Content>

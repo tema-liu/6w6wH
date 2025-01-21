@@ -165,7 +165,7 @@ function ShopCard({ data }: shopCardProps) {
             {data.tags.length > 0 ? (
               data.tags.map((item) => (
                 <Tag
-                  key={`item.tagName`}
+                  key={`${data.displayName}-${item.tagName}`}
                 >{`${item.tagName} (${item.count})`}</Tag>
               ))
             ) : (
