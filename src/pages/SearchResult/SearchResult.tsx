@@ -233,7 +233,10 @@ function SearchResult() {
                     <EmptyText>maybe you will like......</EmptyText>
                     <ShopCards>
                       {shopList?.data?.map((data) => (
-                        <ShopCard key={data.placeId} data={data} />
+                        <ShopCard
+                          key={`${data.placeId}-${data.id}`}
+                          data={data}
+                        />
                       ))}
                     </ShopCards>
                   </div>

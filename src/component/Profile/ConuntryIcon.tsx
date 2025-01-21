@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CircleImg } from "../Layout/LayoutComponents";
+import { IconImg } from "../Layout/LayoutComponents";
 import { countryImgList } from "./data/contry";
 
 type countryProps = {
@@ -11,7 +11,7 @@ function Country({ country }: countryProps) {
 
   return (
     <>
-      <CircleImg
+      <IconImg
         onClick={() => {
           setWindowOpen(!isWindowOpen);
         }}

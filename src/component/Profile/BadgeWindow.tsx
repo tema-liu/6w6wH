@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CircleImg } from "../Layout/LayoutComponents";
+import { IconImg } from "../Layout/LayoutComponents";
 import { PopupModal } from "../PopupModel/PopupModal";
 import { Item, Content, Title, TopSection, BottomSection } from "./style/badge";
 import { badgeImgList, badgeRuleList } from "./data/badge";
@@ -13,7 +13,7 @@ function Badges({ level }: BadgeProps) {
 
   return (
     <>
-      <CircleImg
+      <IconImg
         onClick={() => {
           setWindowOpen(!isWindowOpen);
         }}
@@ -46,7 +46,7 @@ function Badges({ level }: BadgeProps) {
                           badgeImgList[item as keyof typeof badgeImgList]
                         ) {
                           return (
-                            <CircleImg
+                            <IconImg
                               style={{ width: "22px", height: "22px" }}
                               key={item}
                               src={
