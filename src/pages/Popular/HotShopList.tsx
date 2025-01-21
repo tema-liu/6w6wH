@@ -13,9 +13,12 @@ import {
   HeadShot,
 } from "./style/hotShopList";
 import { PopularStore } from "../../type/type";
-import { storePicture } from "../../constants/srcPaths";
+import {
+  defaultReviewUserPhoto,
+  storePicture,
+  userPicture,
+} from "../../constants/srcPaths";
 import noPhotoImg from "../../assets/Item-1.png";
-import defaultUserPhoto from "../../assets/user-3296.svg";
 import { useNavigate } from "react-router-dom";
 
 function HotShopList({ shopList }: { shopList: PopularStore[] }) {
@@ -62,8 +65,8 @@ function HotShopList({ shopList }: { shopList: PopularStore[] }) {
                     <HeadShot
                       src={
                         shop.comment.userPhoto
-                          ? shop.comment.userPhoto
-                          : defaultUserPhoto
+                          ? userPicture + shop.comment.userPhoto
+                          : defaultReviewUserPhoto
                       }
                       alt="photo"
                     />

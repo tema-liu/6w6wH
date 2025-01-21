@@ -36,8 +36,8 @@ import { getReply } from "../../apis/gatReply";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate, useParams } from "react-router-dom";
-import defaultUserPhoto from "../../assets/user-3296.svg";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
+import { defaultReviewUserPhoto, userPicture } from "../../constants/srcPaths";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;
@@ -126,7 +126,11 @@ function Reviews() {
                     onClick={() => {
                       handleProfileClick(data.userId);
                     }}
-                    src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
+                    src={
+                      data.userPhoto
+                        ? userPicture + data.userPhoto
+                        : defaultReviewUserPhoto
+                    }
                     alt="headShot"
                   />
                   <BadgeBox>

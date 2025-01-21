@@ -18,8 +18,8 @@ import MoreVert from "../../component/ReviewComponent/MoreVert";
 import useTimeAgo from "../../hooks/useTimeAgo";
 import Country from "../../component/Profile/ConuntryIcon";
 import Badges from "../../component/Profile/BadgeWindow";
-import defaultUserPhoto from "../../assets/user-3296.svg";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
+import { defaultReviewUserPhoto, userPicture } from "../../constants/srcPaths";
 
 const CommentCards = styled(CommentCardContent)`
   border-radius: 32px;
@@ -65,7 +65,11 @@ function RepliesCard({ replies, setReplies }: RepliesCardProps) {
                 onClick={() => {
                   handleProfileClick(data.userId);
                 }}
-                src={data.userPhoto ? data.userPhoto : defaultUserPhoto}
+                src={
+                  data.userPhoto
+                    ? userPicture + data.userPhoto
+                    : defaultReviewUserPhoto
+                }
                 alt="headShot"
               />
               <BadgeBox>

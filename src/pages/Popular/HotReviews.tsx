@@ -15,17 +15,6 @@ import styled from "styled-components";
 
 const Div = styled.div`
   position: relative;
-  &::before {
-    /* background-color: #fafafa;
-    border-radius: 32px;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0px 4px 16px #0000000a)
-      drop-shadow(0px 2px 8px #0000002a); */
-    /* box-shadow: 0px -4px 16px 4px #0000000a, 0px -2px 8px 0px #0000001a; */
-  }
 `;
 
 function HotReviews({ data }: { data: ReviewOrReply }) {

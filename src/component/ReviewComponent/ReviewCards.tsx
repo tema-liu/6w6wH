@@ -37,6 +37,7 @@ import Country from "../Profile/ConuntryIcon";
 import {
   commentPicture,
   defaultReviewUserPhoto,
+  userPicture,
 } from "../../constants/srcPaths";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 
@@ -70,7 +71,11 @@ export function CommentCard({ data }: CommentCard) {
               onClick={() => {
                 handleProfileClick(data.userId);
               }}
-              src={data.userPhoto || defaultReviewUserPhoto}
+              src={
+                data.userPhoto
+                  ? userPicture + data.userPhoto
+                  : defaultReviewUserPhoto
+              }
               alt="headShot"
             />
             <BadgeBox>
@@ -142,7 +147,11 @@ export function ReviewsCard({ data }: ReviewsCard) {
             onClick={() => {
               handleProfileClick(data.userId);
             }}
-            src={data.userPhoto || defaultReviewUserPhoto}
+            src={
+              data.userPhoto
+                ? userPicture + data.userPhoto
+                : defaultReviewUserPhoto
+            }
             alt="headShot"
           />
           <BadgeBox>

@@ -8,7 +8,7 @@ import { EditForm } from "./styled";
 import { EditProfileForm } from "../../type/formType";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
-import { defaultUserPhoto } from "../../constants/srcPaths";
+import { defaultUserPhoto, userPicture } from "../../constants/srcPaths";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postEditProfile } from "../../apis/postEditProfile";
@@ -21,7 +21,9 @@ function EditProfile() {
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const firstPhoto = profile.userPhoto ? profile.userPhoto : defaultUserPhoto;
+  const firstPhoto = profile.userPhoto
+    ? userPicture + profile.userPhoto
+    : defaultUserPhoto;
   const {
     register,
     formState: { errors },
@@ -42,13 +44,14 @@ function EditProfile() {
 
   const onSubmit = async (formData: EditProfileForm) => {
     const processedPhoto =
-      formData.userPhoto === defaultUserPhoto ? "" : formData.userPhoto;
+      formData.userPhoto === firstPhoto ? "" : formData.userPhoto;
     const form = {
       ...formData,
       userPhoto: processedPhoto,
     };
-    await postEditProfile(form, token);
 
+    //修改個人資料
+    await postEditProfile(form, token);
     const userProfile = await getUserProfile(Number(userId), token);
     if (userProfile.status) {
       const userData = userProfile.data;
@@ -72,9 +75,10 @@ function EditProfile() {
           isFollowed: userData?.isFollowed,
         })
       );
+      navigate("/profile");
+    } else {
+      navigate("*");
     }
-
-    navigate("/profile");
   };
 
   const photoUrl = watch("userPhoto");

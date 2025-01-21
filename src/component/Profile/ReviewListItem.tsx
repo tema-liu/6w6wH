@@ -33,10 +33,11 @@ function ReviewListItem({
           <>
             {userComment?.comment ? (
               userComment?.comment.map((comment, index) => {
+                const key = `review${index}${comment.commentId}`;
                 return (
                   <ProfileReviewsCard
                     userId={userId}
-                    key={index + comment.commentId}
+                    key={key}
                     data={comment}
                   />
                 );
@@ -62,7 +63,8 @@ function ReviewListItem({
       <GrayBorderBox>
         {userComment?.following ? (
           userComment?.following.map((comment, index) => {
-            return <CommentCard key={index + comment.userId} data={comment} />;
+            const key = `following${index}${comment.commentId}`;
+            return <CommentCard key={key} data={comment} />;
           })
         ) : (
           <EmptyBox>

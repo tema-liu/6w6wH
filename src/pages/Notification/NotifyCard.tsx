@@ -1,7 +1,7 @@
 import { Icon } from "../../component/layout/LayoutComponents";
 import ADblock from "../../component/shop/AdBlock";
 import { HeadShot, CardWrapper, Text, Content } from "./style";
-import { defaultUserPhoto } from "../../constants/srcPaths";
+import { defaultReviewUserPhoto, userPicture } from "../../constants/srcPaths";
 import { useNavigate } from "react-router-dom";
 import type {
   AdvertiseNotification,
@@ -68,7 +68,9 @@ const GeneralNotification = (notify: GeneralNotification) => {
       <Content>
         <HeadShot
           src={
-            notify.data?.userPhoto ? notify.data?.userPhoto : defaultUserPhoto
+            notify.data?.userPhoto
+              ? userPicture + notify.data?.userPhoto
+              : defaultReviewUserPhoto
           }
         />
         <Text>
