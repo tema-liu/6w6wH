@@ -34,6 +34,7 @@ import validateImageFile from "../../hooks/validateImageFile";
 import { FieldError } from "../EditProfile/styled";
 import { postCommentsRepeat } from "../../apis/postCommentsRepeat";
 import useAuthVerify from "../../hooks/useAuthVerify ";
+import { commentPicture } from "../../constants/srcPaths";
 
 function PostComment() {
   const navigate = useNavigate();
@@ -138,14 +139,12 @@ function PostComment() {
       }
     });
     async function fetchPhotosFromServer() {
-      // const baseUrl = import.meta.env.VITE_API_URL;
       //是否評論過
       const commentRepeat = await postCommentsRepeat(id || "", token!);
 
       if (commentRepeat.message === "用戶未評論") {
         return;
       }
-      console.log("hi", commentRepeat);
       reset({
         starCount: commentRepeat.data?.starCount,
         photos: [],
@@ -153,9 +152,12 @@ function PostComment() {
         comment: commentRepeat.data?.comment || "",
       });
       //驗證登入API的圖片
-      const serverPhotos: string[] = commentRepeat.data?.commentPictures || []; // 伺服器返回的圖片資料,之後需要加baseUrl
-      console.log(serverPhotos);
-      const formattedPhotos = serverPhotos.map((photo) => photo);
+      const serverPhotos: string[] = commentRepeat.data?.commentPictures || [];
+
+      const formattedPhotos = serverPhotos.map((photo) => {
+        const photoUrl = `${commentPicture}${photo}`;
+        return photoUrl;
+      });
       //假設圖片少於三張自動填充
       const mergedPhotos =
         formattedPhotos.length > 3

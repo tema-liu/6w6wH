@@ -55,10 +55,14 @@ export function CommentCard({ data }: CommentCard) {
         {data.photos?.length > 0 && (
           <CommentCardImgBox>
             {data.photos.map((photo, index) => {
+              const PhotoUrl = photo.PictureUrl
+                ? `${commentPicture}${photo.PictureUrl}`
+                : `${commentPicture}${photo}`;
+
               return (
                 <img
                   key={photo.Id ? `photo${photo.Id}` : `photo-${index}`}
-                  src={`${commentPicture}${photo.PictureUrl}`}
+                  src={PhotoUrl}
                   alt="commentPhoto"
                 />
               );

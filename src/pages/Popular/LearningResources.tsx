@@ -12,6 +12,8 @@ import {
   FooterTitle,
   Review,
 } from "./style/learningResources";
+import taiwanLifeBoardGame from "../../assets/Rectangle 5.png";
+import communicationPad from "../../assets/Rectangle2.png";
 
 function LearningResources() {
   return (
@@ -21,7 +23,7 @@ function LearningResources() {
           <TitleBoxIcon src={bugIcon} alt="bugIcon" />
           <TitleBoxText>Learning Resources</TitleBoxText>
         </TitleBox>
-        <ShopCardImg src="https://picsum.photos/1000/800" alt="shopImg" />
+        <ShopCardImg src={taiwanLifeBoardGame} alt="shopImg" />
         <ShopCardMain>
           <PlaceName>
             <h2>Taiwan life board game</h2>
@@ -45,10 +47,10 @@ function LearningResources() {
       </ShopCardBox>
       <ShopCardBox>
         <TitleBox color={"outline1"}>
-          <TitleBoxIcon src={bugIcon} alt="bugIcon" />
+          <TitleBoxIcon src={bugIcon} alt="Taiwan life board game" />
           <TitleBoxText>Communication Tool</TitleBoxText>
         </TitleBox>
-        <ShopCardImg src="https://picsum.photos/1000/800" alt="shopImg" />
+        <ShopCardImg src={communicationPad} alt="Communication Pad" />
         <ShopCardMain>
           <PlaceName>
             <h2>Communication Pad</h2>
