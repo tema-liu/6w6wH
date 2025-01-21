@@ -50,8 +50,8 @@ const NavIcon = styled(Icon)<IsActive>`
 const Circle = styled.span<IsActive>`
   position: absolute;
   right: 0;
-  width: 4px;
-  height: 4px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: ${({ $isActive, theme }) =>
     $isActive ? "transparent" : theme.colors.danger};

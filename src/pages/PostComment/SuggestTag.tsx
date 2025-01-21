@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { postTagsSuggest } from "../../apis/postTagsSuggest";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
+import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 
 const TagText = styled.p`
   overflow: hidden;
@@ -80,19 +81,6 @@ const FooterSection = styled.div`
   flex-direction: column;
 `;
 
-type buttonProps = {
-  $color?: string;
-};
-const Button = styled.button<buttonProps>`
-  width: 100%;
-  padding: 9px 0;
-  border-radius: 8px;
-  color: ${({ theme, $color }) =>
-    $color ? theme.colors[$color] : theme.colors.dark};
-  background-color: ${({ theme }) => theme.colors.gray400};
-  font-weight: 700;
-`;
-
 // const Label = styled.label`
 //   font-size: 17px;
 //   font-weight: 400;
@@ -144,11 +132,11 @@ function SuggestTag({
 }) {
   const navigate = useNavigate();
   const [submit, setSubmit] = useState(false);
-  const [inputValue, setInputValue] = useState(""); 
+  const [inputValue, setInputValue] = useState("");
   const userToken = useSelector((state: RootState) => state.auth.token);
 
   const handleTagsSuggest = async () => {
-    await postTagsSuggest(inputValue, userToken); 
+    await postTagsSuggest(inputValue, userToken);
     closeWindow();
   };
 
@@ -173,24 +161,34 @@ function SuggestTag({
           </MainSection>
           <FooterSection>
             <ButtonDiv>
-              <Button
+              <PrimaryBtn
+                type="button"
+                $color="gray600"
+                $border="1px solid #D4D4D4"
+                $boxShadow="none"
+                $fontWeight={700}
+                $bgColor="light"
+                $borderRadius={8}
+                content="Cancel"
                 onClick={(e) => {
                   e.preventDefault();
                   navigate(`/storeList/${storeId}?option=Reviews`);
                 }}
-              >
-                Cancel
-              </Button>
-              <Button
+              ></PrimaryBtn>
+              <PrimaryBtn
+                type="button"
+                $boxShadow="none"
+                $fontWeight={700}
+                $bgColor={submit ? "outline2" : "gray400"}
+                $borderRadius={8}
+                content="Submit"
                 $color={submit ? "dark" : "gray600"}
                 onClick={(e) => {
                   e.preventDefault();
                   handleTagsSuggest();
                 }}
                 disabled={!submit}
-              >
-                Submit
-              </Button>
+              ></PrimaryBtn>
             </ButtonDiv>
 
             {/* <BoxDiv>

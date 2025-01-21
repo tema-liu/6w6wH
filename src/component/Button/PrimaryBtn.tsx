@@ -22,7 +22,9 @@ type buttonProps = {
   content?: string;
   $bgColor?: string;
   $iconColor?: string;
-  onClick?: () => void; // 可選的點擊事件處理函式
+  onClick?:
+    | ((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    | (() => void);
   type?: "button" | "submit" | "reset";
   $padding?: string;
   $margin?: string;
