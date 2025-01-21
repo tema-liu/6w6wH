@@ -1,9 +1,9 @@
-import level1 from "../../../assets/medal/Frame 1984077552.svg";
-import level2 from "../../../assets/medal/Frame 1984077549.svg";
-import level3 from "../../../assets/medal/Frame 1984077550.svg";
-import level4 from "../../../assets/medal/Group 48097690.svg";
-import level5 from "../../../assets/medal/Frame 1984077553.svg";
-import level6 from "../../../assets/medal/Frame 1984077554.svg";
+import level1 from "../../../assets/medal/1.png";
+import level2 from "../../../assets/medal/2.png";
+import level3 from "../../../assets/medal/3.png";
+import level4 from "../../../assets/medal/4.png";
+import level5 from "../../../assets/medal/5.png";
+import level6 from "../../../assets/medal/6.png";
 
 //badgeList對應圖片
 export const badgeImgList = {
