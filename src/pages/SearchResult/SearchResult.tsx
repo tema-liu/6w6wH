@@ -130,21 +130,33 @@ function SearchResult() {
     setFilterValue(selectValue);
   };
 
-  const starList = () => {
+  const sortList = (sort: string) => {
     if (!shopList?.data) {
       return [];
     }
-    return [...shopList.data].sort((a, b) => b.starCount - a.starCount);
-  };
-  const repliesList = () => {
-    if (!shopList?.data) {
-      return [];
-    }
-    return [...shopList.data].sort((a, b) => {
-      const replyCountA = a.reviewCount ?? 0; // 如果 a 或 reviewCount 是 undefined，默認為 0
-      const replyCountB = b.reviewCount ?? 0; // 同上
-      return replyCountB - replyCountA;
-    });
+    return sort === "star"
+      ? [...shopList.data].sort((a, b) => {
+          //比較starCount,如果starCount不同則直接排序
+          const starDiff = b.starCount - a.starCount;
+          if (starDiff != 0) {
+            return starDiff;
+          }
+          // 如果 starCount 相同，進一步比較 reviewCount
+          const replyCountA = a.reviewCount ?? 0;
+          const replyCountB = b.reviewCount ?? 0;
+          return replyCountB - replyCountA;
+        })
+      : [...shopList.data].sort((a, b) => {
+          const replyCountA = a.reviewCount ?? 0; // 如果 a 或 reviewCount 是 undefined，默認為 0
+          const replyCountB = b.reviewCount ?? 0; // 同上
+          const reviewDiff = replyCountB - replyCountA;
+          if (reviewDiff !== 0) {
+            return reviewDiff;
+          }
+          // 如果 reviewCount 相同，進一步比較 starCount
+
+          return b.starCount - a.starCount;
+        });
   };
   const RenderList = () => {
     let listToRender: SearchResult[] = [];
@@ -154,10 +166,10 @@ function SearchResult() {
         listToRender = shopList?.data || []; // 確保是數組
         break;
       case "star":
-        listToRender = starList();
+        listToRender = sortList("star");
         break;
       case "reviews":
-        listToRender = repliesList();
+        listToRender = sortList("reviews");
         break;
       default:
         listToRender = [];
