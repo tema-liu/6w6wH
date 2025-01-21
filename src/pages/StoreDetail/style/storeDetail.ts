@@ -61,7 +61,7 @@ export const LinkIcon = styled(IconI)`
     content: "";
     font-family: roboto;
     position: absolute;
-    bottom: 15%;
+    bottom: 13%;
     left: 30%;
     background: ${({ theme }) => theme.colors.gray400};
     padding: 20px;

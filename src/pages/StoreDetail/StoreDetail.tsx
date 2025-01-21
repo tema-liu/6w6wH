@@ -37,8 +37,9 @@ import { useSelector } from "react-redux";
 import { getClicksAdd } from "../../apis/getClicksAdd";
 
 function StoreDetail() {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const copyLink = window.location.href; //提供複製的網址
   const { id } = useParams();
   const userToken = useSelector((state: RootState) => state.auth.token);
   const [storeData, setStoreData] = useState<ResponseData<StoreData> | null>(
@@ -69,7 +70,7 @@ function StoreDetail() {
 
         //如果代碼錯誤返回404
         if (!result.status || result.message === "查無店家資料") {
-          navigator("*");
+          navigate("*");
           return;
         }
 
@@ -152,6 +153,9 @@ function StoreDetail() {
                   />
                 </StarContent>
                 <LinkIcon
+                  onClick={() => {
+                    navigator.clipboard.writeText(copyLink);
+                  }}
                   $isPointer={true}
                   className={"material-symbols-outlined"}
                 >
@@ -196,7 +200,7 @@ function StoreDetail() {
                     <EmptyContent>
                       <EmptyDisplay
                         onClick={() => {
-                          navigator(`/postComment/${storeData.data?.id}`);
+                          navigate(`/postComment/${storeData.data?.id}`);
                         }}
                         content="There are no review yet"
                         iconStyle="reviews"
