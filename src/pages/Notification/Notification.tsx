@@ -10,19 +10,20 @@ import { RootState } from "../../utils/redux/store";
 import type { Notification } from "../../type/type";
 import { useNavigate } from "react-router-dom";
 import Placeholder from "./Placeholder";
+import { getReadNotify } from "../../apis/getReadNotify";
 
 function Notification() {
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state.auth.token);
   const [notifyList, setNotifyList] = useState<Notification[] | null>(null);
   const [loading, setLoading] = useState(true);
-  console.log("notifyList", loading);
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       const res = await getNotifyDetail(token ?? "");
       //有通知則載入通知
       setNotifyList(res.data ?? null);
+      await getReadNotify(token);
       setLoading(false);
     };
 

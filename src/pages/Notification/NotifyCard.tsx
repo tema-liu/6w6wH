@@ -10,17 +10,17 @@ import type {
 } from "../../type/type";
 
 const AdNotification = (notify: AdvertiseNotification) => {
-  const { data } = notify;
+  const { data, isCheck } = notify;
 
   return (
-    <CardWrapper>
+    <CardWrapper $isCheck={isCheck}>
       <ADblock data={data} />
     </CardWrapper>
   );
 };
 
 const GeneralNotification = (notify: GeneralNotification) => {
-  const { action, data } = notify;
+  const { action, data, isCheck } = notify;
   const navigate = useNavigate();
   const iconSettings = {
     follow: {
@@ -49,6 +49,7 @@ const GeneralNotification = (notify: GeneralNotification) => {
 
   return (
     <CardWrapper
+      $isCheck={isCheck}
       onClick={() => {
         if (action === "like" || action === "respond") {
           navigate(`/review/${data.commentId}`);

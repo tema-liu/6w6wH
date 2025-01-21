@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { Container } from "../../component/layout/LayoutComponents";
+type NotifyProps = {
+  $isCheck: boolean;
+};
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<NotifyProps>`
   padding: 16px 8px;
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.light};
-  box-shadow: 0px 4px 16px 4px #0000000a, 0px 2px 8px 0px #0000001a;
+  background-color: ${({ $isCheck, theme }) =>
+    $isCheck ? theme.colors.gray100 : theme.colors.light};
+  box-shadow: ${({ $isCheck }) =>
+    $isCheck
+      ? "none"
+      : "0px 4px 16px 4px #0000000a, 0px 2px 8px 0px #0000001a"};
   display: flex;
   align-items: center;
   column-gap: 8px;
