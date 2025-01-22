@@ -196,8 +196,13 @@ export function ReviewsCard({ data }: ReviewsCard) {
 type ProfileReviews = {
   userId: number;
   data: CommentData;
+  handleRemoveReply: (replyId: number) => void;
 };
-export function ProfileReviewsCard({ userId, data }: ProfileReviews) {
+export function ProfileReviewsCard({
+  userId,
+  data,
+  handleRemoveReply,
+}: ProfileReviews) {
   const navigate = useNavigate();
 
   return (
@@ -230,6 +235,7 @@ export function ProfileReviewsCard({ userId, data }: ProfileReviews) {
             id={data.commentId}
             reviewOrReply="review"
             userId={userId}
+            onRemoveReply={handleRemoveReply}
           />
         </ProfileReviewTop>
         <ProfileTags>

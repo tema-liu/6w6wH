@@ -1,7 +1,7 @@
 import { ReportComment } from "../type/formType";
 import { ResponseData } from "../type/type";
 
-const apiUrl = import.meta.env.REACT_APP_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 export const postReportComments = async (
   reportForm: ReportComment,
   token: string | null

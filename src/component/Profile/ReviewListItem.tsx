@@ -15,14 +15,28 @@ function ReviewListItem({
   userId,
   collectList,
   userComment,
+  setUserCommit,
 }: {
   loading: boolean;
   userId: number;
   collectList: SearchResult[] | null;
   userComment: UserCommentData | null;
+  setUserCommit: React.Dispatch<React.SetStateAction<UserCommentData | null>>;
 }) {
   const navigator = useNavigate();
-
+  //刪除評論
+  const handleRemoveReply = (replyId: number) => {
+    setUserCommit((prevReplies) => {
+      if (!prevReplies) return null;
+      const updatedReplies = prevReplies.comment!.filter(
+        (comment) => comment.commentId !== replyId
+      );
+      return {
+        ...prevReplies,
+        comment: updatedReplies, // 更新 comment
+      };
+    });
+  };
   const options = ["Reviews", "Following", "Bookmarks"];
   const content = {
     Reviews: (
@@ -39,6 +53,7 @@ function ReviewListItem({
                     userId={userId}
                     key={key}
                     data={comment}
+                    handleRemoveReply={handleRemoveReply}
                   />
                 );
               })

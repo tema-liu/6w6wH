@@ -67,7 +67,6 @@ function Profile() {
     };
     fetchData();
   }, []);
-
   return (
     <Wrapper>
       <Header isBefore={false} menu={true} />
@@ -78,6 +77,7 @@ function Profile() {
           userId={Number(id)}
           collectList={collectList}
           userComment={userComment}
+          setUserCommit={setUserCommit}
         />
       </ContainerPd16>
     </Wrapper>

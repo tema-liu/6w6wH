@@ -20,7 +20,7 @@ type moreProps = {
   id: number;
   reviewOrReply: "review" | "reply"; //判斷是評論或留言
   userId: number;
-  onRemoveReply?: (success: boolean, reply: number) => void;
+  onRemoveReply?: (reply: number) => void;
 };
 
 function MoreVert({ id, reviewOrReply, userId, onRemoveReply }: moreProps) {
@@ -43,14 +43,18 @@ function MoreVert({ id, reviewOrReply, userId, onRemoveReply }: moreProps) {
       let deleteRes;
       if (reviewOrReply === "review") {
         deleteRes = await postCommentDelete(id, token!);
-        if (deleteRes && deleteRes.statusCode === 200) {
+        if (deleteRes.status) {
+          if (onRemoveReply) {
+            onRemoveReply(id); // 只有當 onRemoveReply 存在時才調用
+            return;
+          }
           setWindow(null); // 關閉彈窗或清除狀態
           navigate(-1); // 返回上一頁
         }
       } else if (reviewOrReply === "reply") {
         deleteRes = await postReplyDelete(id, token!);
         if (onRemoveReply) {
-          onRemoveReply(true, id); // 只有當 onRemoveReply 存在時才調用
+          onRemoveReply(id); // 只有當 onRemoveReply 存在時才調用
         }
         console.log(deleteRes);
       }

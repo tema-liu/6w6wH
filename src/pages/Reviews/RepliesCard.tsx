@@ -40,17 +40,15 @@ type RepliesCardProps = {
 };
 
 function RepliesCard({ replies, setReplies }: RepliesCardProps) {
-  const handleRemoveReply = (success: boolean, replyId: number) => {
-    if (success) {
-      setReplies((prevReplies) => {
-        if (!prevReplies) return [];
-        // 根據 replyId 過濾掉要刪除的回覆
-        const updatedReplies = prevReplies?.filter(
-          (reply) => reply.replyId !== replyId
-        );
-        return updatedReplies;
-      });
-    }
+  const handleRemoveReply = (replyId: number) => {
+    setReplies((prevReplies) => {
+      if (!prevReplies) return [];
+      // 根據 replyId 過濾掉要刪除的回覆
+      const updatedReplies = prevReplies?.filter(
+        (reply) => reply.replyId !== replyId
+      );
+      return updatedReplies;
+    });
   };
 
   const handleProfileClick = useProfileClickHandler();

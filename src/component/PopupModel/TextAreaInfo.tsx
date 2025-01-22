@@ -57,6 +57,7 @@ function TextAreaInfo({
 
         //送出檢舉表單
         await postReportComments(reportComment, token);
+        closeWindow();
       }
     } catch (error) {
       console.log("錯誤", error);
