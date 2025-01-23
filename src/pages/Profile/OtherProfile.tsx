@@ -76,6 +76,7 @@ function OtherProfile() {
           userId={numberId}
           collectList={collectList}
           userComment={userComment}
+          setUserCommit={setUserCommit}
         />
       </ContainerPd16>
     </Wrapper>
