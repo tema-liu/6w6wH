@@ -33,9 +33,9 @@ function Setup() {
   });
 
   useEffect(() => {
-    if (!email || !userName || !userPhoto) {
+    if (!email || !userName) {
       // 如果必須的資料不存在，跳轉到 /popular
-      navigate("/popular", { replace: true });
+      navigate("/", { replace: true });
     }
   }, [email, userName, userPhoto, navigate]);
 

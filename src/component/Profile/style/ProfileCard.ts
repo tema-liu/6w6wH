@@ -7,6 +7,7 @@ export const Card = styled.div`
   display: flex;
   position: relative;
   margin-bottom: 16px;
+  max-height: 200px;
 `;
 export const HeadShot = styled.img`
   width: 200px;
@@ -50,6 +51,7 @@ export const Name = styled.h1`
   letter-spacing: 0.38px;
 `;
 export const Message = styled.div`
+  overflow-wrap: break-word;
   padding-top: 8px;
 `;
 export const Button = styled.button`

@@ -66,12 +66,12 @@ function StoreInfo({ data }: { data: StoreData }) {
             <a href={data.url}>Website</a>
           </Store>
         )}
-        {data.Book && (
+        {data.book && (
           <Store>
             <Icon $isPointer={false} className="material-symbols-outlined">
               today
             </Icon>
-            <a href={data.Book}>Book</a>
+            <a href={data.book}>Book</a>
           </Store>
         )}
 

@@ -29,6 +29,7 @@ function EditProfile() {
     formState: { errors },
     handleSubmit,
     watch,
+    setValue,
   } = useForm<EditProfileForm>({
     defaultValues: {
       name: profile.name,
@@ -131,7 +132,11 @@ function EditProfile() {
               type="textArea"
               idFor="bio"
               label="Bio"
-              {...register("bio")}
+              {...register("bio", {
+                onChange: (e) => {
+                  setValue("bio", e.target.value.slice(0, 80));
+                },
+              })}
             />
             <InputLabelPair
               idFor="country"

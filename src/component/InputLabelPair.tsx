@@ -111,7 +111,7 @@ type InputLabelPairProps = {
     | "select"
     | "textArea"; // 支援的 input 類型
   options?: string[]; // 若是 select 類型，則有 options 屬性
-  [key: string]: any; // 允許傳遞其他所有的 props，如 onChange、defaultValue 等
+  [key: string]: any;
 };
 
 export const Content = styled.div`

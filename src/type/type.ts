@@ -104,7 +104,7 @@ export type StoreData = {
   photos: Photo[]; // 店鋪照片
   address?: string | null; // 地址
   enAddress?: string | null; // 英文地址
-  Book?: string | null; // 預約網址
+  book?: string | null; // 預約網址
   budget?: string | null; // 預算
   phone?: string | null; // 電話
   url?: string | null; // 網址
