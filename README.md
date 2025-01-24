@@ -57,6 +57,20 @@
 
 ## 開發環境
 
+<h2 align="center">:art:UI設計</h2>
+<div >
+<img src="https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white" />
+<img src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white" />
+<img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white" />
+<div />
+
+> **設計工具與指南:**
+
+- **Figma**
+- **Human Interface Guidelines**
+- **Material Design 3**
+- **多色**
+
 <h2 align="center">:computer:前端技術</h2>
 <div ><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
@@ -100,3 +114,33 @@
 
 - **swiper**
 - **React Marquee**
+<h2 align="center">:globe_with_meridians:後端技術</h2>
+<img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white" />
+<img src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white" />
+<img src="https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white" />
+<img src="https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white" />
+<img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
+<img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+
+> 後端框架及語言:
+
+- **C# (.NET Framework)**
+- **.NET Framework Web API**
+- **RESTful API**
+
+> 資料庫:
+
+- **MSSQL**
+
+> 雲端 & 伺服器:
+
+- **Azure VM**
+
+> 版本控制:
+
+- **Git**
+
+> 其他:
+
+- **爬蟲**
