@@ -4,7 +4,7 @@
 <h1 align="center" style="font-weight: 700">6w6wH｜移工友善商店</h1>
 <div align="center" >
 <a href="https://6w6w-h.vercel.app/" >專案網址</a ><span> | <span/>
-<a href="https://6w6w-h.vercel.app/" >swagger</a >
+<a href="https://6w6wh.rocket-coding.com/swagger/index.html?url=/swagger/v1/swagger.json" >swagger</a >
 </div>
 <p align="center" >移工友善商店，幫助移工輕鬆找尋有意願擁抱新族群的商家</p>
 
