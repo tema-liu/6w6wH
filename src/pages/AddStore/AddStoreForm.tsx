@@ -11,9 +11,11 @@ import { fetchTagsData } from "../../utils/redux/tagList/slice";
 import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import { postAddStore } from "../../apis/postAddStore";
+import Spinner from "../../component/Placeholder/Spinners";
 
 function AddStoreForm({ ...props }: AddPlaceList) {
   const [windowOpen, setWindowOpen] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
   const dispatch: Dispatch = useDispatch();
   const categoryTags = useSelector(
@@ -47,7 +49,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
   const onSubmit = async (data: TagsField) => {
     const transformedData = data.tags.map((tag) => Number(tag)); // 自定義數據轉換
     const completeData = { ...props, tags: transformedData }; // 合併 props 和表單數據，ＡＰＩ請送出這筆資料
-    console.log(completeData);
+    setIsSubmit(true);
     const res = await postAddStore(completeData, token!);
     //新增失敗則跑到404
     if (!res.status) {
@@ -55,6 +57,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
     }
 
     setNewStoreId(res.data?.id ?? 0);
+    setIsSubmit(false);
     setWindowOpen(!windowOpen);
   };
 
@@ -76,10 +79,19 @@ function AddStoreForm({ ...props }: AddPlaceList) {
           />
         </TagsContent>
         <PrimaryBtn
-          $opacity={haveTags.length > 0 ? 1 : 0.5}
+          $opacity={!isSubmit && haveTags.length > 0 ? 1 : 0.5}
           $margin="16px 0"
           iconName="add_location"
-          content="submit"
+          children={
+            <>
+              {isSubmit ? (
+                <Spinner size="4px" pointColor="gray900" />
+              ) : (
+                <p>Submit</p>
+              )}
+            </>
+          }
+          disabled={isSubmit}
         />
       </form>
       {windowOpen && (
