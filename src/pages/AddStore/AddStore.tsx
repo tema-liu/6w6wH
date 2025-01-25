@@ -18,7 +18,6 @@ function AddStore() {
       if (!isAuthenticated) {
         return;
       }
-      console.log(isAuthenticated);
     };
 
     verify(); // 在 useEffect 中執行 verify

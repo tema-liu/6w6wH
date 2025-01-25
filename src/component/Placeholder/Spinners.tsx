@@ -13,10 +13,10 @@ export const Loader = styled.div`
 `;
 
 // Styled Element
-export const Element = styled.div<{ size: string; pointColor: string }>`
+export const Element = styled.div<{ $size: string; $pointColor: string }>`
   border-radius: 100%;
-  border: ${({ size, pointColor, theme }) =>
-    `${size} solid ${theme.colors[pointColor]}`};
+  border: ${({ $size, $pointColor, theme }) =>
+    `${$size} solid ${theme.colors[$pointColor]}`};
 
   &:nth-child(1) {
     animation: ${preloader} 0.6s ease-in-out alternate infinite;
@@ -39,9 +39,9 @@ type SpinnerProps = {
 function Spinner({ size, pointColor }: SpinnerProps) {
   return (
     <Loader>
-      <Element size={size} pointColor={pointColor}></Element>
-      <Element size={size} pointColor={pointColor}></Element>
-      <Element size={size} pointColor={pointColor}></Element>
+      <Element $size={size} $pointColor={pointColor}></Element>
+      <Element $size={size} $pointColor={pointColor}></Element>
+      <Element $size={size} $pointColor={pointColor}></Element>
     </Loader>
   );
 }

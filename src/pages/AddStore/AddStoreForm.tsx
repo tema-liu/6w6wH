@@ -12,9 +12,11 @@ import GoodJobWindow from "../../component/PopupModel/GoodJobWindow";
 import { useNavigate } from "react-router-dom";
 import { postAddStore } from "../../apis/postAddStore";
 import Spinner from "../../component/Placeholder/Spinners";
+import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";
+import EmptyDisplay from "../../component/EmptyDisplay";
 
 function AddStoreForm({ ...props }: AddPlaceList) {
-  const [windowOpen, setWindowOpen] = useState(false);
+  const [windowOpen, setWindowOpen] = useState<null | number>(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
   const dispatch: Dispatch = useDispatch();
@@ -58,7 +60,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
 
     setNewStoreId(res.data?.id ?? 0);
     setIsSubmit(false);
-    setWindowOpen(!windowOpen);
+    setWindowOpen(res.statusCode);
   };
 
   return (
@@ -94,15 +96,31 @@ function AddStoreForm({ ...props }: AddPlaceList) {
           disabled={isSubmit}
         />
       </form>
-      {windowOpen && (
-        <GoodJobWindow
-          onClose={() => {
-            setWindowOpen(!windowOpen);
-            navigate(`/storeList/${newStoreId}`);
-          }}
-          isActive={windowOpen}
-        />
-      )}
+      {windowOpen &&
+        (windowOpen === 200 ? (
+          <GoodJobWindow
+            onClose={() => {
+              setWindowOpen(null);
+              navigate(`/storeList/${newStoreId}`);
+            }}
+            isActive={windowOpen === 200}
+          />
+        ) : (
+          <GeneralPopupModal
+            canActive={true}
+            content={
+              <EmptyDisplay
+                showButton={false}
+                content="The store already exists. Taking you to the store page."
+              />
+            }
+            onClose={() => {
+              setWindowOpen(null);
+              navigate(`/storeList/${newStoreId}`);
+            }}
+            isActive={windowOpen === 201}
+          />
+        ))}
     </>
   );
 }
