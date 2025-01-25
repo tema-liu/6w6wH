@@ -35,6 +35,7 @@ import { FieldError } from "../EditProfile/styled";
 import { postCommentsRepeat } from "../../apis/postCommentsRepeat";
 import useAuthVerify from "../../hooks/useAuthVerify ";
 import { commentPicture } from "../../constants/srcPaths";
+import Spinner from "../../component/Placeholder/Spinners";
 
 function PostComment() {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ function PostComment() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTagOpen, setIsModalTagOpen] = useState(false);
   const [isModalPointOpen, setModalPointOpen] = useState(false);
+  const [isDisable, setDisable] = useState(false);
   const toggleModal = (e?: "TagOpen" | "PointOpen") => {
     e === "TagOpen"
       ? setIsModalTagOpen((prev) => !prev)
@@ -85,7 +87,16 @@ function PostComment() {
       starCount: 0,
     },
   });
+
+  const tagsValue = useWatch({ control, name: "tags" });
+  const starValue = useWatch({ control, name: "starCount" });
+  //星數及tag為必填選項,判斷是否皆已填
+  const haveError = starValue > 0 && isValid;
+
+  //送出評論
   const onSubmit = async (data: PostCommitForm) => {
+    setDisable(true);
+
     const formData = {
       placeId: id!,
       comment: data.comment,
@@ -93,17 +104,12 @@ function PostComment() {
       starCount: data.starCount,
       tags: data.tags,
     };
-    try {
-      const res = await postCommit(formData, token);
-      if (res.status) {
-        toggleModal();
-      }
-    } catch (error) {
-      console.error("Error posting commit:", error);
+    const res = await postCommit(formData, token);
+    if (res.status) {
+      setDisable(false);
+      toggleModal();
     }
   };
-
-  const tagsValue = useWatch({ control, name: "tags" });
 
   //評分星數元件
   const StarRating = ({
@@ -293,11 +299,20 @@ function PostComment() {
           </RatingSection>
           <BtnSection>
             <PrimaryBtn
-              $bgColor={isValid ? "outline3" : "gray400"}
-              $color={isValid ? "gray900" : "gray600"}
-              $iconColor={isValid ? "gray900" : "gray600"}
+              $bgColor={!isDisable && haveError ? "outline3" : "gray400"}
+              $color={!isDisable && haveError ? "gray900" : "gray600"}
+              $iconColor={!isDisable && haveError ? "gray900" : "gray600"}
               iconName="reviews"
-              content="Submit"
+              children={
+                <>
+                  {isDisable ? (
+                    <Spinner size="4px" pointColor="gray600" />
+                  ) : (
+                    <p>Submit</p>
+                  )}
+                </>
+              }
+              disabled={isDisable}
             />
           </BtnSection>
         </form>
