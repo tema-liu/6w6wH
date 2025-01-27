@@ -42,7 +42,6 @@ function EditProfile() {
       userPhoto: firstPhoto,
     },
   });
-
   const onSubmit = async (formData: EditProfileForm) => {
     const processedPhoto =
       formData.userPhoto === firstPhoto ? "" : formData.userPhoto;

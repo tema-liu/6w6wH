@@ -5,7 +5,11 @@ import { Card, HeadShot, RightDiv, AddPhotoBtn, FieldError } from "./styled";
 import { EditProfileForm } from "../../type/formType";
 
 export const Input = styled.input`
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 `;
 
 type PhotoCardProps = {
@@ -65,9 +69,10 @@ function PhotoCard({
     <Card>
       <HeadShot src={renderPhoto} alt="headShot" />
       <RightDiv>
-        <AddPhotoBtn>
+        <AddPhotoBtn htmlFor="userPhoto">
           Change Photo
           <Input
+            id="userPhoto"
             type="file"
             {...register("userPhoto", {
               validate: {
