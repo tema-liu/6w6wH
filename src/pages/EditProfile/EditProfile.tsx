@@ -9,13 +9,15 @@ import { EditProfileForm } from "../../type/formType";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { defaultUserPhoto, userPicture } from "../../constants/srcPaths";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postEditProfile } from "../../apis/postEditProfile";
 import { getUserProfile } from "../../apis/getUserProfile";
 import { fetchProfile } from "../../utils/redux/userProfile/slice";
+import Spinner from "../../component/Placeholder/Spinners";
 
 function EditProfile() {
+  const [isSubmit, setSubmit] = useState(false);
   const token = useSelector((state: RootState) => state.auth.token);
   const userId = useSelector((state: RootState) => state.auth.userId);
   const profile = useSelector((state: RootState) => state.profile);
@@ -43,6 +45,7 @@ function EditProfile() {
     },
   });
   const onSubmit = async (formData: EditProfileForm) => {
+    setSubmit(true);
     const processedPhoto =
       formData.userPhoto === firstPhoto ? "" : formData.userPhoto;
     const form = {
@@ -167,10 +170,20 @@ function EditProfile() {
             />
           </Content>
           <PrimaryBtn
+            $opacity={isSubmit ? 0.5 : 1}
             $fill={true}
             $fontWeight={700}
             iconName="how_to_reg"
-            content="Submit"
+            children={
+              <>
+                {isSubmit ? (
+                  <Spinner size="4px" pointColor="gray900" />
+                ) : (
+                  <p>Submit</p>
+                )}
+              </>
+            }
+            disabled={isSubmit}
             type="submit"
           />
         </EditForm>

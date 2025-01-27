@@ -64,6 +64,9 @@ const Btn = styled.button<buttonStyleProps>`
       ? $boxShadow
       : "0px 0px 4px 0px #00000033, 0px 0px 8px 0px #0000001a"};
   font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : 400)};
+  p {
+    font-weight: ${({ $fontWeight }) => ($fontWeight ? $fontWeight : 400)};
+  }
 `;
 
 export function PrimaryBtn({
