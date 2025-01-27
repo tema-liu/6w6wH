@@ -136,6 +136,8 @@ function SuggestTag({
   const userToken = useSelector((state: RootState) => state.auth.token);
 
   const handleTagsSuggest = async () => {
+    //禁止重複點擊
+    setSubmit(false);
     await postTagsSuggest(inputValue, userToken);
     closeWindow();
   };
