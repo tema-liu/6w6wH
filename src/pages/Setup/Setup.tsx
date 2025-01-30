@@ -4,10 +4,12 @@ import Header from "../../component/Layout/Header";
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { InputLabelPair, Content } from "../../component/InputLabelPair";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PartialUserSetupForm } from "../../type/formType";
 import { postSignUp } from "../../apis/postSignUp";
+import { GeneralPopupModal } from "../../component/PopupModel/PopupModal";
+import EmptyDisplay from "../../component/EmptyDisplay";
 
 const SetupForm = styled.form`
   width: 100%;
@@ -23,6 +25,7 @@ function Setup() {
   const navigate = useNavigate();
   const location = useLocation();
   const { email, userPhoto, userName } = location.state || {};
+  const [isSubmit, setSubmit] = useState(false);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -40,24 +43,22 @@ function Setup() {
   }, [email, userName, userPhoto, navigate]);
 
   const onSubmit = async (formData: PartialUserSetupForm) => {
-    console.log(formData);
     const setupData = {
       ...formData,
       email: email,
       userName: userName,
       userPhoto: null,
     };
-    try {
-      const sighUpRes = await postSignUp(setupData);
-      console.log(sighUpRes);
-      if (!sighUpRes.status) {
-        navigate("/popular", { replace: true });
-        return;
-      }
-      navigate("/profile", { replace: true });
-    } catch (error) {
-      console.log(error);
+    const sighUpRes = await postSignUp(setupData);
+    if (!sighUpRes.status) {
+      navigate("*", { replace: true });
+      return;
     }
+    setSubmit(true);
+    setTimeout(() => {
+      setSubmit(false);
+      navigate("/login", { replace: true });
+    }, 2000);
   };
 
   return (
@@ -104,6 +105,18 @@ function Setup() {
             $fontWeight={700}
           />
         </SetupForm>
+        {isSubmit && (
+          <GeneralPopupModal
+            isActive={isSubmit}
+            canActive={false}
+            content={
+              <EmptyDisplay
+                showButton={false}
+                content="Sign-up complete! Redirecting to login."
+              />
+            }
+          />
+        )}
       </Container>
     </Wrapper>
   );
