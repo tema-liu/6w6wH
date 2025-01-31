@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const ReadMoreBtn = styled.span`
-  color: ${({ theme }) => theme.colors.Secondary};
+  color: ${({ theme }) => theme.colors.secondary};
   //styleName: Callout/Bold;
   font-size: 16px;
   font-weight: 700;
@@ -17,7 +17,7 @@ type ReadMoreProps = {
 
 export const ReadMore: React.FC<ReadMoreProps> = ({
   text,
-  amountOfWords = 17,
+  amountOfWords = 14,
 }) => {
   const splittedText = text.split(" ");
 

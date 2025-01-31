@@ -3,7 +3,8 @@ import { TagBox } from "../../../component/TitleBox";
 
 export const ShopCard = styled.div``;
 export const Box = styled(TagBox)`
-  padding: 32px 16px 96px 16px;
+  padding: 32px 16px 16px 16px;
+  height: calc(100% - 26.38px);
   justify-content: start;
   flex-direction: column;
   gap: 0;
@@ -63,7 +64,7 @@ export const HeadShot = styled.img`
   object-position: center;
 `;
 export const ShopCards = styled.div`
-  min-height: 458px;
+  height: 458px;
   display: flex;
   column-gap: 4px;
   overflow-x: auto;
