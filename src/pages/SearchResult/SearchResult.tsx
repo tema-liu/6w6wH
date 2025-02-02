@@ -183,7 +183,10 @@ function SearchResult() {
   return (
     <>
       <Wrapper>
-        <Header title={`SearchResults(${shopList?.data?.length})`} />
+        <Header
+          navigate="/search"
+          title={`SearchResults(${shopList?.data?.length})`}
+        />
         <Container>
           <ChipGroup>
             <TitleBox>
