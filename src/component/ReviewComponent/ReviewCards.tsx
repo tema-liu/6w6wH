@@ -223,7 +223,7 @@ export function ProfileReviewsCard({
       <ProfileContent>
         <ShopName
           onClick={() => {
-            navigate(`/storeList/${data.id}`);
+            navigate(`/storeList/${data.storeId}`);
           }}
         >
           {data.displayName}

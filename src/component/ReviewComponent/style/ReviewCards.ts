@@ -145,6 +145,7 @@ export const ShopName = styled.h2`
   letter-spacing: 0.38px;
   font-family: mix;
   padding-top: 8px;
+  cursor: pointer;
 `;
 
 export const UserProfileMain = styled(UserReviewMain)`

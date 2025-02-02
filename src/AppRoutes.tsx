@@ -20,10 +20,12 @@ import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions.tsx";
 import ProtectedRoute from "./pages/ProtectedRoute/ProtectRoute.tsx";
 import ErrorPage from "./pages/ErrorPage/ErrorPage.tsx";
+import ScrollToTop from "./component/ScrollToTop .tsx";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
+      <ScrollToTop /> {/* 每次換路由時跳轉到頂部 */}
       <Routes>
         <Route path="/" element={<StoreListLayout />}>
           {/* 首頁 */}

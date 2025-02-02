@@ -235,7 +235,7 @@ function SearchResult() {
                 <>
                   <EmptyContent>
                     <EmptyDisplay
-                      content="No venues match the filter criteria"
+                      content="No venues match your search criteria"
                       iconStyle="add_circle"
                       btnText="Add places you know"
                       children={<EmptyChildren />}

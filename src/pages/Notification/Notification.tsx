@@ -48,12 +48,13 @@ function Notification() {
               btnText="View popular threads"
               onClick={() => {
                 navigate("/"); // 先導航到首頁
-                setTimeout(() => {
+                const checkExist = setInterval(() => {
                   const element = document.getElementById("threads");
                   if (element) {
                     element.scrollIntoView({ behavior: "smooth" });
+                    clearInterval(checkExist); // 找到元素后停止轮询
                   }
-                }, 300); // 給一點時間讓頁面加載
+                }, 100); // 每 100ms檢查一次是否抓到元素
               }}
             />
           </EmptyContainer>

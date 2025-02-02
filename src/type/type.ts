@@ -260,6 +260,7 @@ export type Notification = GeneralNotification | AdvertiseNotification;
 //UserCommit=============================
 // 店家評論型別
 export type CommentData = {
+  storeId?: number; // 店家id (僅用戶評論有)
   displayName?: string; // 店家名稱 (僅用戶評論有)
   commentId: number; // 評論 ID
   userName: string; // 評論人名稱
