@@ -10,6 +10,7 @@ const preloader = keyframes`
 export const Loader = styled.div`
   display: flex;
   gap: 10px;
+  padding: 8px 0;
 `;
 
 // Styled Element

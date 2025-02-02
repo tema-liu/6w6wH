@@ -173,7 +173,7 @@ function EditProfile() {
             $opacity={isSubmit ? 0.5 : 1}
             $fill={true}
             $fontWeight={700}
-            iconName="how_to_reg"
+            iconName={isSubmit ? "" : "how_to_reg"}
             children={
               <>
                 {isSubmit ? (

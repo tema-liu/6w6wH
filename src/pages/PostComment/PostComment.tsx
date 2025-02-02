@@ -302,7 +302,7 @@ function PostComment() {
               $bgColor={!isDisable && haveError ? "outline3" : "gray400"}
               $color={!isDisable && haveError ? "gray900" : "gray600"}
               $iconColor={!isDisable && haveError ? "gray900" : "gray600"}
-              iconName="reviews"
+              iconName={isDisable ? "" : "reviews"}
               $fontWeight={700}
               children={
                 <>

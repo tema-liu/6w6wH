@@ -83,7 +83,7 @@ function AddStoreForm({ ...props }: AddPlaceList) {
         <PrimaryBtn
           $opacity={!isSubmit && haveTags.length > 0 ? 1 : 0.5}
           $margin="16px 0"
-          iconName="add_location"
+          iconName={isSubmit ? "" : "add_location"}
           children={
             <>
               {isSubmit ? (
