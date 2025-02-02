@@ -221,7 +221,13 @@ export function ProfileReviewsCard({
         </CommentCardImgBox>
       )}
       <ProfileContent>
-        <ShopName>{data.displayName}</ShopName>
+        <ShopName
+          onClick={() => {
+            navigate(`/storeList/${data.id}`);
+          }}
+        >
+          {data.displayName}
+        </ShopName>
         <ProfileReviewTop>
           <NameRating>
             <span style={{ display: "block" }}>{data.userName}</span>
