@@ -20,8 +20,10 @@ import {
 } from "../../constants/srcPaths";
 import noPhotoImg from "../../assets/Item-1.png";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function HotShopList({ shopList }: { shopList: PopularStore[] }) {
+  const { t } = useTranslation("popular");
   const colors = ["secondary", "outline1", "outline2", "outline3"];
   const navigate = useNavigate();
   return (
@@ -36,7 +38,7 @@ function HotShopList({ shopList }: { shopList: PopularStore[] }) {
           >
             <TitleBox color={colors[index]}>
               <TitleBoxIcon src={bugIcon} alt="bugIcon" />
-              <TitleBoxText>Popular Stores</TitleBoxText>
+              <TitleBoxText>{`${t("popular_stores")}`}</TitleBoxText>
             </TitleBox>
             <Box>
               <ShopMain>

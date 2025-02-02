@@ -12,6 +12,7 @@ import {
   ReviewsCard,
 } from "../../component/ReviewComponent/ReviewCards";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const Div = styled.div`
   position: relative;
@@ -20,6 +21,7 @@ const Div = styled.div`
 function HotReviews({ data }: { data: ReviewOrReply }) {
   //單選nav
   const [selectedOption, setSelectedOption] = useState("Popular");
+  const { t } = useTranslation("popular");
 
   //處理選擇的變更
   const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
     <Div id="threads" style={{ scrollMarginTop: "80px" }}>
       <Reviews>
         <div style={{ display: "flex" }}>
-          <Title>Thread</Title>
+          <Title>{`${t("thread")}`}</Title>
           <Input
             id="Popular"
             type="radio"
@@ -38,7 +40,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
             checked={selectedOption === "Popular"}
             onChange={handleOptionChange}
           />
-          <Label htmlFor="Popular">Popular</Label>
+          <Label htmlFor="Popular">{`${t("popular")}`}</Label>
           <Input
             id="Review"
             type="radio"
@@ -46,7 +48,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
             checked={selectedOption === "Review"}
             onChange={handleOptionChange}
           />
-          <Label htmlFor="Review">Review</Label>
+          <Label htmlFor="Review">{`${t("review")}`}</Label>
           <Input
             id="Latest"
             type="radio"
@@ -54,7 +56,7 @@ function HotReviews({ data }: { data: ReviewOrReply }) {
             checked={selectedOption === "Latest"}
             onChange={handleOptionChange}
           />
-          <Label htmlFor="Latest">Latest</Label>
+          <Label htmlFor="Latest">{`${t("latest")}`}</Label>
         </div>
         <ReviewContent>
           {selectedOption == "Popular" && (

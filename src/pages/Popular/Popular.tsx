@@ -14,6 +14,7 @@ import { getStoreTop } from "../../apis/getStoreTop";
 import { getCommentTop } from "../../apis/getCommentTop";
 import { RootState } from "../../utils/redux/store";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const HomeContainer = styled(Container)`
   padding-top: 0px;
@@ -25,7 +26,7 @@ function Popular() {
   const [isLoading, setIsLoading] = useState(true);
   const [topReview, setTopReview] = useState<ReviewOrReply | null>(null);
   const token = useSelector((state: RootState) => state.auth.token);
-  console.log("popularStore", popularStore);
+  const { t } = useTranslation("popular");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,14 +56,14 @@ function Popular() {
   if (isLoading) {
     return (
       <Wrapper>
-        <Header title={`Popular`} isBefore={false} />
+        <Header title={`${t("popular")}`} isBefore={false} />
       </Wrapper>
     );
   }
   return (
     <>
       <Wrapper>
-        <Header title={`Popular`} isBefore={false} />
+        <Header title={`${t("popular")}`} isBefore={false} />
         <HomeContainer>
           <AdSwiper />
           <PopularMarquee tags={tagsMarquee ?? []} />

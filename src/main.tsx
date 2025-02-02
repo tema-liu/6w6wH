@@ -7,6 +7,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import store, { persistor } from "./utils/redux/store.tsx";
 import { PersistGate } from "redux-persist/integration/react";
+import "./utils/i18n/i18n.ts";
+import { Suspense } from "react";
 
 const rootElement = document.getElementById("root");
 const clientId = import.meta.env.VITE_GOOGLE_OAUTH_CLIENTID;
@@ -17,9 +19,11 @@ if (rootElement) {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <GlobalStyle />
-            <ThemeProvider theme={theme}>
-              <AppRoutes />
-            </ThemeProvider>
+            <Suspense>
+              <ThemeProvider theme={theme}>
+                <AppRoutes />
+              </ThemeProvider>
+            </Suspense>
           </PersistGate>
         </Provider>
       </GoogleOAuthProvider>
