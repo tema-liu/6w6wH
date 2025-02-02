@@ -11,6 +11,7 @@ import {
 import { PrimaryBtn } from "../../component/Button/PrimaryBtn";
 import { useEffect, useState } from "react";
 import { postStoreReport } from "../../apis/postStoreReport";
+import Spinner from "../../component/Placeholder/Spinners";
 
 type textForm = {
   errorText: string[];
@@ -26,6 +27,7 @@ function SuggestForm({
 }) {
   //按鈕狀態
   const [isBtnDisabled, setBtnDisabled] = useState(false);
+  const [isSubmit, setSubmit] = useState(false);
   const { register, handleSubmit, watch } = useForm<textForm>({
     mode: "onChange", // 每次輸入時觸發驗證
     defaultValues: {
@@ -54,8 +56,10 @@ function SuggestForm({
 
   const onSubmit = async (formData: textForm) => {
     //送出的表單資料
+    setSubmit(true);
     const postData = { ...formData, storeId: storeId };
     await postStoreReport(postData);
+    setSubmit(false);
     windowOpen();
   };
 
@@ -74,19 +78,28 @@ function SuggestForm({
           </InputCheck>
         );
       })}
-      <TextAreaTitle>Any suggest?</TextAreaTitle>
+      <TextAreaTitle>Other issues?</TextAreaTitle>
       <InputText
         placeholder="Write down your suggestions at this place"
         {...register("suggestText")}
       />
       <PrimaryBtn
-        $color={isBtnDisabled ? "gray900" : "gray600"}
+        $color={!isSubmit && isBtnDisabled ? "gray900" : "gray600"}
         $borderRadius={8}
         $fontWeight={700}
         $boxShadow="none"
-        $bgColor={isBtnDisabled ? "outline2" : "gray400"}
-        content="Submit"
-        disabled={!isBtnDisabled}
+        $padding={isSubmit ? "11px 0" : "12px 16px"}
+        $bgColor={!isSubmit && isBtnDisabled ? "outline2" : "gray400"}
+        children={
+          <>
+            {isSubmit ? (
+              <Spinner size="4px" pointColor="gray600" />
+            ) : (
+              <p>Submit</p>
+            )}
+          </>
+        }
+        disabled={!isBtnDisabled && !isSubmit}
       />
     </Form>
   );

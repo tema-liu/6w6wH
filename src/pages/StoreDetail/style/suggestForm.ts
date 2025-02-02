@@ -36,7 +36,7 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.colors.gray900};
 `;
 export const Form = styled.form`
-  div + div {
+  > div + div {
     margin-top: 8px;
   }
 `;

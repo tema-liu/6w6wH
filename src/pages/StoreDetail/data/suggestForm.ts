@@ -9,7 +9,7 @@ export const checkBoxList = [
   },
   {
     idFor: "InvalidAddressFormat",
-    errorText: "Invalid business hours",
+    errorText: "Invalid address format",
   },
   {
     idFor: "InvalidBusinessHours",
