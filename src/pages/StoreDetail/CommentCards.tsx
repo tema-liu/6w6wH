@@ -21,7 +21,8 @@ function CommentCards({ data }: { data: Comment[] }) {
       return data; // 如果只有一個元素，直接返回原始陣列
     }
     return [...data].sort(
-      (a, b) => b!.createTime.getTime() - a!.createTime.getTime()
+      (a, b) =>
+        new Date(b!.createTime).getTime() - new Date(a!.createTime).getTime()
     );
   };
   const repliesList = () => {
