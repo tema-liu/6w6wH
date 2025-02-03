@@ -23,6 +23,7 @@ import {
   RatingSection,
   RatingText,
   Star,
+  HintText,
 } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../utils/redux/store";
@@ -57,6 +58,7 @@ function PostComment() {
   const [isModalTagOpen, setIsModalTagOpen] = useState(false);
   const [isModalPointOpen, setModalPointOpen] = useState(false);
   const [isDisable, setDisable] = useState(false);
+  const [isReviewed, setReviewed] = useState(false); //是否評論過
   const toggleModal = (e?: "TagOpen" | "PointOpen") => {
     e === "TagOpen"
       ? setIsModalTagOpen((prev) => !prev)
@@ -151,6 +153,7 @@ function PostComment() {
       if (commentRepeat.message === "用戶未評論") {
         return;
       }
+      setReviewed(true);
       reset({
         starCount: commentRepeat.data?.starCount,
         photos: [],
@@ -220,6 +223,9 @@ function PostComment() {
       <Header title="Review" />
       <Container>
         <form onSubmit={handleSubmit(onSubmit)}>
+          {isReviewed && (
+            <HintText>You have already reviewed this place.</HintText>
+          )}
           <Section>
             <TagCheckBox
               register={register}

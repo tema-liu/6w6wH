@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const HintText = styled.h6`
+  color: ${({ theme }) => theme.colors.gray600};
+  padding: 12px 0;
+  text-align: center;
+`;
+
 export const Section = styled.div`
   display: flex;
   flex-direction: column;
