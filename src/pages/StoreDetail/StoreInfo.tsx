@@ -74,23 +74,22 @@ function StoreInfo({ data }: { data: StoreData }) {
             <a href={data.book}>Book</a>
           </Store>
         )}
-
-        <Store>
-          <Icon $isPointer={false} className="material-symbols-outlined">
-            schedule
-          </Icon>
-          <BusinessHours>
-            <BusinessHoursTitle
-              $colors={openHour?.Monday ? "gray900" : "danger"}
-            >
-              Business hours
-            </BusinessHoursTitle>
-            {weekDay.map((day) => {
-              const hour = openHour?.[day];
-              return hour ? <h2 key={day}>{`${day} ${hour}`}</h2> : null;
-            })}
-          </BusinessHours>
-        </Store>
+        {openHour?.Monday && (
+          <Store>
+            <Icon $isPointer={false} className="material-symbols-outlined">
+              schedule
+            </Icon>
+            <BusinessHours>
+              <BusinessHoursTitle $colors={"gray900"}>
+                Business hours
+              </BusinessHoursTitle>
+              {weekDay.map((day) => {
+                const hour = openHour?.[day];
+                return hour ? <h2 key={day}>{`${day} ${hour}`}</h2> : null;
+              })}
+            </BusinessHours>
+          </Store>
+        )}
       </ContentDetail>
     </>
   );
