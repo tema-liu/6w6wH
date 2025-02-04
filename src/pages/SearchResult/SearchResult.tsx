@@ -212,19 +212,14 @@ function SearchResult() {
             <FilterColumn>
               <FilterContainer>
                 <FilterButtons
+                  value={filterValue}
                   name="filter"
                   id="filter"
                   onChange={handleFilterChange}
                 >
-                  <option selected={filterValue === "related"} value="related">
-                    Related
-                  </option>
-                  <option selected={filterValue === "Star"} value="star">
-                    Star
-                  </option>
-                  <option selected={filterValue === "reviews"} value="reviews">
-                    Reviews
-                  </option>
+                  <option value="related">Related</option>
+                  <option value="star">Star</option>
+                  <option value="reviews">Reviews</option>
                 </FilterButtons>
               </FilterContainer>
             </FilterColumn>

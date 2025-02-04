@@ -15,7 +15,7 @@ const Input = styled.input`
 `;
 
 type CircleProps = {
-  isChecked: boolean;
+  $isChecked: boolean;
 };
 
 const Circle = styled.div<CircleProps>`
@@ -26,8 +26,8 @@ const Circle = styled.div<CircleProps>`
   top: 4px;
   position: absolute;
   left: 3px;
-  animation: ${({ isChecked }) => (isChecked ? toggleOn : toggleOff)} 0.4s ease
-    forwards;
+  animation: ${({ $isChecked }) => ($isChecked ? toggleOn : toggleOff)} 0.4s
+    ease forwards;
 `;
 
 const Toggle = () => {
@@ -45,7 +45,7 @@ const Toggle = () => {
         checked={isChecked}
         onChange={handleToggle}
       />
-      <Circle isChecked={isChecked} />
+      <Circle $isChecked={isChecked} />
     </Label>
   );
 };

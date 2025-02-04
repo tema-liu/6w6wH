@@ -18,9 +18,9 @@ function LangSelect() {
 
   return (
     <SelectBox htmlFor="lang">
-      <Select id="lang" onChange={handleBlur}>
+      <Select value={lang ?? "en"} id="lang" onChange={handleBlur}>
         {languages.map(({ code, label }) => (
-          <option selected={lang === code} key={code} value={code}>
+          <option key={code} value={code}>
             {label}
           </option>
         ))}
