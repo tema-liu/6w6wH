@@ -12,8 +12,8 @@ import {
   FooterTitle,
   Review,
 } from "./style/learningResources";
-import taiwanLifeBoardGame from "../../assets/Rectangle 5.png";
-import communicationPad from "../../assets/Rectangle2.png";
+import taiwanLifeBoardGame from "../../assets/Notebooks.png";
+import communicationPad from "../../assets/80c71bfe-5d59-287c-2e37-556675e5e314.jpg";
 import { useTranslation } from "react-i18next";
 
 function LearningResources() {
@@ -35,7 +35,14 @@ function LearningResources() {
           <ShopCardText>{`${t("master_phrases")}`}</ShopCardText>
           <ShopCardFooter>
             <FooterTitle>{`${t("free_download")}`}</FooterTitle>
-            <Review>
+            <Review
+              onClick={() => {
+                window.open(
+                  "https://drive.google.com/file/d/1WGFG8z35x_AhRFpBvs7IhxJwUeWL3XDY/view?usp=sharing",
+                  "_blank"
+                );
+              }}
+            >
               <Icon $isPointer={true} className="material-symbols-outlined">
                 download
               </Icon>
@@ -57,7 +64,14 @@ function LearningResources() {
           <ShopCardText>{`${t("multi_language_translation")}`}</ShopCardText>
           <ShopCardFooter>
             <FooterTitle>{`${t("free_download")}`}</FooterTitle>
-            <Review>
+            <Review
+              onClick={() => {
+                window.open(
+                  "https://drive.google.com/file/d/1DWicGROiY7z2xHHAf4f9Sm9ue2_RmnO5/view?usp=sharing",
+                  "_blank"
+                );
+              }}
+            >
               <Icon $isPointer={true} className="material-symbols-outlined">
                 download
               </Icon>

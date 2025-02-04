@@ -1,4 +1,3 @@
-import photo from "../../assets/b166552d01f7fc185b15236002eda985.png";
 import { SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { SwiperContainer, Button, Photo } from "../../component/SwiperStyle";
@@ -6,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../../component/Layout/LayoutComponents";
-import { ADtag } from "./style/adSwiper";
+// import { ADtag } from "./style/adSwiper";
 import { PopularAdvertise } from "../../type/type";
 import { popularAdvertisesPicture } from "../../constants/srcPaths";
 
