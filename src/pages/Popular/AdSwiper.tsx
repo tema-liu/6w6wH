@@ -7,19 +7,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Icon } from "../../component/Layout/LayoutComponents";
 import { ADtag } from "./style/adSwiper";
-import { useEffect } from "react";
-import { getPopularAdvertise } from "../../apis/getPopularAdvertise";
+import { PopularAdvertise } from "../../type/type";
+import { popularAdvertisesPicture } from "../../constants/srcPaths";
 
-function AdSwiper() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const popularAds = await getPopularAdvertise();
-      console.log(popularAds);
-    };
+type AdSwiperProps = {
+  data: PopularAdvertise[];
+};
 
-    fetchData();
-  }, []);
-
+function AdSwiper({ data }: AdSwiperProps) {
   return (
     <SwiperContainer
       // install Swiper modules
@@ -32,21 +27,23 @@ function AdSwiper() {
       }}
       pagination={{ clickable: true }}
     >
-      <ADtag>
+      {/* <ADtag>
         <span>AD</span>
-      </ADtag>
-      <SwiperSlide>
-        <Photo src={photo} alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Photo src={photo} alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Photo src={photo} alt="advertise" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Photo src={photo} alt="advertise" />
-      </SwiperSlide>
+      </ADtag> */}
+      {data.map((ad) => {
+        const photoUrl = popularAdvertisesPicture + ad.photo;
+        return (
+          <SwiperSlide key={`adSlide${ad.adId}`}>
+            <Photo
+              onClick={() => {
+                window.open(ad.url, "_blank");
+              }}
+              src={photoUrl}
+              alt="advertise"
+            />
+          </SwiperSlide>
+        );
+      })}
       <Button className="swiper-button-next">
         <Icon $isPointer={true} className="material-symbols-outlined">
           chevron_right

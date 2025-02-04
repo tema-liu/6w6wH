@@ -4,7 +4,7 @@ import { ResponseData } from "../type/type"; // 假設型別定義在 types 檔�
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const getPopularAdvertise = async (): Promise<
-  ResponseData<PopularAdvertise>
+  ResponseData<PopularAdvertise[]>
 > => {
   const url = `${apiUrl}/home/advertise/get`;
   // 檢查 HTTP 回應是否成功

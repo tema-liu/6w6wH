@@ -6,7 +6,6 @@ export const SwiperContainer = styled(Swiper)`
   height: 248px;
   margin-left: -8px;
   margin-right: -8px;
-  background-color: ${({ theme }) => theme.colors.outline1};
   display: flex;
   align-items: center;
   --swiper-pagination-color: #fff;
@@ -21,7 +20,7 @@ export const SwiperContainer = styled(Swiper)`
 export const Photo = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 type ButtonProps = {
   $bottom?: string; // 定義屬性類型，可選屬性
