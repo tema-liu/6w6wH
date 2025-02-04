@@ -110,6 +110,8 @@ function PostComment() {
     if (res.status) {
       setDisable(false);
       toggleModal();
+    } else {
+      navigate("*");
     }
   };
 
