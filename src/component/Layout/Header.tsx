@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
+import icon from "../../assets/Frame65Large.svg";
 
 const Wrapper = styled.header`
   width: 100%;
@@ -84,7 +85,7 @@ const Header = ({
       )}
       {title && (
         <Title>
-          <img src="/Frame65.png" alt="icon" />
+          <img src={icon} alt="icon" />
           {title}
         </Title>
       )}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink, useLocation, matchPath, useNavigate } from "react-router-dom";
 import { IconImg, Icon } from "./LayoutComponents";
-import search from "../../assets/Frame65.png";
+import search from "../../assets/Frame65Large.svg";
 import { useEffect, useState } from "react";
 import { getIsHaveNotify } from "../../apis/getIsHaveNotify";
 import { useSelector } from "react-redux";
@@ -30,8 +30,8 @@ type IconProps = {
   $opacity?: boolean; // 或者根据需要调整类型
 };
 const ImgIcon = styled(IconImg)<IconProps>`
-  width: 32px;
-  height: 32px;
+  width: auto;
+  height: 24px;
   opacity: ${({ $opacity }) => ($opacity ? 1 : 0.5)};
   transition: opacity 0.25s ease;
 `;
