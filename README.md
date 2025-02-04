@@ -1,5 +1,5 @@
 <div align="center" >
-  <img src="https://raw.githubusercontent.com/tema-liu/6w6wH/77b94c95d72fe16858840247ae7cf46d81f1b1c6/src/assets/6w6wH.svg" width="300" alt="描述文字" />
+  <img src="src/assets/logo_log_in" width="300" alt="描述文字" />
 </div>
 <h1 align="center" style="font-weight: 700">6w6wH｜移工友善商店</h1>
 <div align="center" >
