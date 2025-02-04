@@ -58,7 +58,7 @@ function SearchResult() {
   );
   const [isLoading, setLoading] = useState(true);
   const [haveShop, setHaveShop] = useState(true);
-  const [filterValue, setFilterValue] = useState("popular");
+  const [filterValue, setFilterValue] = useState("reviews");
 
   //API搜尋參數
   const searchCriteria: SearchOption = {
@@ -162,7 +162,7 @@ function SearchResult() {
     let listToRender: SearchResult[] = [];
 
     switch (filterValue) {
-      case "popular":
+      case "related":
         listToRender = shopList?.data || []; // 確保是數組
         break;
       case "star":
@@ -216,9 +216,15 @@ function SearchResult() {
                   id="filter"
                   onChange={handleFilterChange}
                 >
-                  <option value="popular">Popular</option>
-                  <option value="star">Star</option>
-                  <option value="reviews">Reviews</option>
+                  <option selected={filterValue === "related"} value="related">
+                    Related
+                  </option>
+                  <option selected={filterValue === "Star"} value="star">
+                    Star
+                  </option>
+                  <option selected={filterValue === "reviews"} value="reviews">
+                    Reviews
+                  </option>
                 </FilterButtons>
               </FilterContainer>
             </FilterColumn>
