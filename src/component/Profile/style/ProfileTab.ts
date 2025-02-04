@@ -66,11 +66,12 @@ export const Label = styled.label<LabelProps>`
 
 export const Content = styled.div`
   height: 100%;
+  border-radius: 0 0 16px 16px;
   background-color: ${({ theme }) => theme.colors.gray100};
 `;
 export const TabBox = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   box-shadow: 0px -8px 16px 4px #0000000a, 0px -4px 8px 0px #0000001a;
 `;
