@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
 function useDebounce(value: boolean, delay: number, callback: () => void) {
-  const initialValue = useRef(value); // 儲存初始值
-  const timeoutRef = useRef<number | null>(null); // 定時器引用
+  const prevValueRef = useRef(value); // 追蹤前一個值
+  const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     // 清理舊的定時器
@@ -10,21 +10,20 @@ function useDebounce(value: boolean, delay: number, callback: () => void) {
       clearTimeout(timeoutRef.current);
     }
 
-    // 設置新的定時器
-    timeoutRef.current = setTimeout(() => {
-      // 比較初始值與當前值
-      if (initialValue.current !== value) {
-        callback(); // 如果不同，執行回調
-      }
-    }, delay);
+    // 如果值發生變化，設置新的定時器
+    if (prevValueRef.current !== value) {
+      timeoutRef.current = setTimeout(() => {
+        callback(); // 執行回調
+        prevValueRef.current = value; // 更新前一個值
+      }, delay);
+    }
 
     return () => {
-      // 清理定時器
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [value, delay, callback]); // 監聽 value 的變化
+  }, [value, delay, callback]);
 }
 
 export default useDebounce;

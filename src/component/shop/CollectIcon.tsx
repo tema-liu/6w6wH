@@ -42,12 +42,6 @@ const Icon = styled.div<CollectIconProps>`
       background-color: ${({ theme }) => theme.colors.warning};
     }
   }
-  &:hover {
-    opacity: 1;
-    .ribbon {
-      background-color: ${({ theme }) => theme.colors.warning};
-    }
-  }
 `;
 
 const IconDiv = styled.div<CollectIconProps>`
@@ -80,10 +74,8 @@ const CollectIcon = ({ right, isFavoriteData, storeId }: ComponentProps) => {
 
   const [isFavorite, setFavorite] = useState(isFavoriteData);
   const [isAuth, setAuth] = useState(false);
-
   useDebounce(isFavorite, 1000, async () => {
-    const collectShop = await postCollectShop(storeId, token);
-    console.log(collectShop);
+    await postCollectShop(storeId, token);
   });
 
   const clickHandler = async (
