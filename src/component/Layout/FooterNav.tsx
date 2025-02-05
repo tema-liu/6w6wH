@@ -2,17 +2,22 @@ import styled from "styled-components";
 import { NavLink, useLocation, matchPath, useNavigate } from "react-router-dom";
 import { IconImg, Icon } from "./LayoutComponents";
 import search from "../../assets/Frame65Large.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getIsHaveNotify } from "../../apis/getIsHaveNotify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 
-const Footer = styled.div`
+type FooterProps = {
+  $isScrollTop: boolean;
+};
+
+const Footer = styled.div<FooterProps>`
   display: flex;
   justify-content: space-evenly;
   position: sticky;
   z-index: 10;
-  bottom: 0;
+  bottom: ${({ $isScrollTop }) => ($isScrollTop ? "0px" : "-72px")};
+  transition: all 0.3s ease-in-out;
   background-color: ${({ theme }) => theme.colors.gray200};
   color: #fff;
   padding-bottom: 24px;
@@ -27,7 +32,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 type IconProps = {
-  $opacity?: boolean; // 或者根据需要调整类型
+  $opacity?: boolean;
 };
 const ImgIcon = styled(IconImg)<IconProps>`
   width: auto;
@@ -37,7 +42,7 @@ const ImgIcon = styled(IconImg)<IconProps>`
 `;
 
 type IsActive = {
-  $isActive?: boolean; // 或者根据需要调整类型
+  $isActive?: boolean;
 };
 
 const NavIcon = styled(Icon)<IsActive>`
@@ -60,6 +65,8 @@ const Circle = styled.span<IsActive>`
 function FooterNav() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isScrollTop, setScrollTop] = useState(true);
+  const prevScrollY = useRef(window.scrollY || 0); // 使用 useRef 來儲存前一個滾動位置
   const [haveNotify, setHaveNotify] = useState(false);
   const token = useSelector((state: RootState) => state.auth.token);
   const storeList = ["/storeList", "/storeList/:id", "postComment/:id"];
@@ -87,8 +94,35 @@ function FooterNav() {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight - 72;
+      const currentScrollY = Math.max(0, window.scrollY);
+
+      //如果當前滾動位置小於最大滾動高度，且正在向上滾動，則設置 scrollTop 為 true
+      if (
+        currentScrollY === 0 ||
+        (currentScrollY < prevScrollY.current &&
+          currentScrollY < maxScrollHeight)
+      ) {
+        setScrollTop(true);
+      } else {
+        setScrollTop(false);
+      }
+
+      prevScrollY.current = currentScrollY; // 更新 ref 的值
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 清除事件監聽
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <Footer>
+    <Footer $isScrollTop={isScrollTop}>
       <StyledNavLink to="/">
         {({ isActive }) => (
           <NavIcon

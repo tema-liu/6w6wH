@@ -2,8 +2,13 @@ import styled from "styled-components";
 import beforeBtn from "../../assets/navigate_before.png";
 import { useNavigate } from "react-router-dom";
 import icon from "../../assets/Frame65Large.svg";
+import { useEffect, useRef, useState } from "react";
 
-const Wrapper = styled.header`
+type HeaderStyleProps = {
+  $isScrollTop: boolean;
+};
+
+const Wrapper = styled.header<HeaderStyleProps>`
   width: 100%;
   min-height: 48px;
   background-color: ${({ theme }) => theme.colors.gray200};
@@ -12,7 +17,8 @@ const Wrapper = styled.header`
   justify-content: center; /* 使標題在主軸上居中 */
   position: sticky;
   z-index: 15;
-  top: 0;
+  top: ${({ $isScrollTop }) => ($isScrollTop ? "0px" : "-48px")};
+  transition: all 0.3s ease-in-out;
   box-shadow: 0px 8px 16px 4px #0000000a, 0px 4px 8px 0px #0000001a;
 `;
 
@@ -66,6 +72,8 @@ const Header = ({
   menu = false,
 }: HeaderProps) => {
   const navigator = useNavigate();
+  const [isScrollTop, setScrollTop] = useState(true);
+  const prevScrollY = useRef(window.scrollY || 0); // 使用 useRef 來儲存前一個滾動位置
 
   //如果有指定函數返回指定函數操作，其餘返回上一頁
   const handleBeforeClick = () => {
@@ -76,8 +84,31 @@ const Header = ({
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight; // 修正 Safari誤差
+      const currentScrollY = Math.max(0, window.scrollY);
+
+      if (
+        currentScrollY >= maxScrollHeight - 2 || // 避免 Safari誤判
+        currentScrollY < prevScrollY.current
+      ) {
+        setScrollTop(true);
+      } else {
+        setScrollTop(false);
+      }
+
+      prevScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <Wrapper>
+    <Wrapper $isScrollTop={isScrollTop}>
       {isBefore && (
         <BeforeBtn onClick={handleBeforeClick}>
           <Arrow src={beforeBtn} alt="beforeBtn" />
