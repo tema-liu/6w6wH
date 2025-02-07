@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 function useDebounce(value: boolean, delay: number, callback: () => void) {
   const prevValueRef = useRef(value); // 追蹤前一個值
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // 清理舊的定時器
