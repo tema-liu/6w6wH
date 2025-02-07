@@ -1,12 +1,46 @@
 {
   "rewrites": [
     {
-      "source": "/.:path*",
-      "destination": "https://6w6wh.rocket-coding.com/:path*"
+      "source": "/collectshop/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/collectshop/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/api/:path*"
+    },
+    {
+      "source": "/user/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/user/:path*"
+    },
+    {
+      "source": "/stoers/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/stoers/:path*"
+    },
+    {
+      "source": "/notify/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/notify/:path*"
+    },
+    {
+      "source": "/users/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/users/:path*"
+    },
+    {
+      "source": "/home/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/home/:path*"
+    },
+    {
+      "source": "/Picture/:path*",
+      "destination": "https://6w6wh.rocket-coding.com/Picture/:path*"
     },
     {
       "source": "/(.*)",
       "destination": "/"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/Picture/:path*",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
     }
   ]
 }
