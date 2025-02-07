@@ -16,8 +16,8 @@ export default defineConfig({
         target: "https://6w6wh.rocket-coding.com",
         changeOrigin: true,
         // 加入以下配置
-        configure: (proxy, options) => {
-          proxy.on("proxyRes", function (proxyRes, req, res) {
+        configure: (proxy) => {
+          proxy.on("proxyRes", function (proxyRes) {
             proxyRes.headers["Cache-Control"] = "no-cache";
           });
         },
