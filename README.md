@@ -55,6 +55,108 @@
 9. 跳轉到剛新增的店家
 10. 收藏店家
 
+## 下載及安裝
+
+Clone 專案
+
+```bash
+  git clone https://github.com/tema-liu/6w6wH.git
+```
+
+進入專案
+
+```bash
+   cd 6w6wH
+```
+
+安裝套件
+
+```bash
+  npm install
+```
+
+新增環境變數檔案 .env.development
+
+```bash
+# Google Maps 設定
+VITE_GOOGLE_MAPS_ID= YOUR_MAPS_ID
+VITE_GOOGLE_MAPS_API_KEY= YOUR_MAPS_API_KEY
+
+# Google OAuth 設定
+VITE_GOOGLE_OAUTH_CLIENTID= YOUR_GOOGLE_OAUTH_CLIENTID
+
+# API 伺服器位址
+VITE_API_URL= https://dev-api.yourwebsite.com
+```
+
+啟動專案
+
+```bash
+  npm run dev
+```
+
+---
+
+## 資料夾結構
+
+```flow
+└── Project Root/
+    ├── public/
+    │   └── locales/  # 存放i18n（國際化）語言檔案
+    │       ├── en/  # 英文語系
+    │       │   └── popular.json
+    │       └── id/  # 印尼語系
+    │           └── popular.json
+    ├── src/
+    │   ├── apis/
+    │   │   └── getUserProfile.ts  # 取得使用者資訊的 API
+    │   │   └──...
+    │   ├── assets/ # 放置圖片資料
+    │   ├── component/  # 可重用的 React 元件
+    │   ├── constants/  # 常數定義（例如 API 路徑、狀態碼）
+    │   ├── hooks/  # 自訂義hook
+    │   ├── pages/  # 應用的主要頁面
+    │   │   ├── Popular/
+    │   │   └── ...
+    │   ├── styles/
+    │   │   └── theme.ts  # 主題設定
+    │   ├── type/  # TypeScript 類型定義
+    │   │   ├── formType.ts
+    │   │   └── type.ts  # api類型
+    │   ├── utils/
+    │   │   ├── i18n/
+    │   │   ├── redux/
+    │   │   └── styled-components/
+    │   │          └── GlobalStyle.tsx # 全域樣式
+    │   ├── AppRoutes.tsx
+    │   └── main.tsx
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── index.html
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    ├── vercel.json
+    └── vite.config.ts
+```
+
+---
+
+<!--StartFragment--><h2>Commit Message 規範</h2>
+
+| Type 類型 | Usage 格式 | example 範例                     |
+| --------- | ---------- | -------------------------------- |
+| 新增功能  | 新增-      | 新增-查詢店家功能                |
+| 修補錯誤  | 修正-      | 修正-API 串接邏輯錯誤            |
+| 樣式相關  | 樣式-      | 樣式-更改 PrimaryButton 按鈕樣式 |
+| 雜務相關  | 雜務-      | 雜務-安裝 i18n 套件              |
+| 重構代碼  | 重構-      | 重構-useDebounce 代碼            |
+
+<!-- notionvc: 82013f6d-dca5-4cc5-a806-0510e476cd44 --><!--EndFragment-->
+
 ## 開發環境
 
 <h2 align="center">:art:UI設計</h2>

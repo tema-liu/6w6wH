@@ -1,3 +1,12 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/.:path*",
+      "destination": "https://6w6wh.rocket-coding.com/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
