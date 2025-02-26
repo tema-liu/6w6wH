@@ -32,12 +32,13 @@ import useTimeAgo from "../../hooks/useTimeAgo";
 import Placeholder from "./Placeholder";
 import Badges from "../../component/Profile/BadgeWindow";
 import Country from "../../component/Profile/ConuntryIcon";
-import { getReply } from "../../apis/gatReply";
+import { getReply } from "../../apis/getReply";
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/redux/store";
 import { useNavigate, useParams } from "react-router-dom";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
 import { defaultReviewUserPhoto, userPicture } from "../../constants/srcPaths";
+import VoiceReader from "../../component/shop/VoiceReader";
 
 type CommentContentProps = {
   $isHavePhoto: boolean;
@@ -48,6 +49,9 @@ const CommentContent = styled(CommentCardContent)<CommentContentProps>`
     $isHavePhoto ? "8px 8px 16px 8px" : " 16px 8px"};
   border-radius: ${({ $isHavePhoto }) =>
     $isHavePhoto ? "0 0 32px 32px " : "32px"};
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
 `;
 const CommentDetail = styled(CommentCardDetail)`
   margin: 0;
@@ -60,6 +64,20 @@ const Tags = styled(TagsBar)`
 `;
 const ChatIcon = styled(Icon)`
   color: ${({ theme }) => theme.colors.gray600};
+`;
+
+const ShopNameBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const ShopName = styled.h2`
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  font-family: mix;
+  cursor: pointer;
 `;
 
 function Reviews() {
@@ -120,6 +138,21 @@ function Reviews() {
           <Container>
             {data.photos?.length > 0 && <ReviewSwiper photos={data.photos} />}
             <CommentContent $isHavePhoto={data.photos?.length > 0}>
+              <ShopNameBox>
+                <ShopName
+                  onClick={() => {
+                    navigate(`/storeList/${data.storeId}`);
+                  }}
+                >
+                  {data.displayName}
+                </ShopName>
+                <VoiceReader
+                  text={data.displayName ? data.displayName : ""}
+                  $margin={"0 8px"}
+                >
+                  {data.displayName}
+                </VoiceReader>
+              </ShopNameBox>
               <CommentDetail>
                 <Head>
                   <HeadShot

@@ -138,6 +138,12 @@ export const ProfileTags = styled(TagsBar)`
   padding: 10px 0;
 `;
 
+export const ShopNameBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const ShopName = styled.h2`
   font-size: 20px;
   font-weight: 400;
