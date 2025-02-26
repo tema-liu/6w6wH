@@ -54,6 +54,8 @@ export type Comment = {
     | "Vietnam";
   badge: "level1" | "level2" | "level3" | "level4" | "level5" | "level6"; // 獎牌
   reply?: null | Reply[]; // 留言回覆
+  displayName?: string;
+  storeId?: number;
 };
 
 //hotReview===================================================

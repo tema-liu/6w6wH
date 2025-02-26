@@ -1,12 +1,21 @@
 <div align="center" >
-  <img src="https://raw.githubusercontent.com/tema-liu/6w6wH/b28f8b83132ce67003d1bbbf6c9dd7888f023e7f/src/assets/logo_log_in.svg" width="300" alt="描述文字" />
+  <img src="https://raw.githubusercontent.com/tema-liu/6w6wH/e41094908e1823b79e4210b2e2b290ff107cb4a5/src/assets/logo_log_in%20(1).svg" width="300" alt="描述文字" />
 </div>
 <h1 align="center" style="font-weight: 700">6w6wH｜移工友善商店</h1>
 <div align="center" >
+<a href="https://www.notion.so/1d6becbca3664486863a183f0a47ba82" >專案文件</a ><span> | <span/>
 <a href="https://6w6w-h.vercel.app/" >專案網址</a ><span> | <span/>
 <a href="https://6w6wh.rocket-coding.com/swagger/index.html?url=/swagger/v1/swagger.json" >swagger</a >
 </div>
 <p align="center" >移工友善商店，幫助移工輕鬆找尋有意願擁抱新族群的商家</p>
+
+---
+
+## 簡介
+
+5 人團隊(2 位 UI 、1 位前端、2 位後端)開發移工社群平台，透過店家資訊分享與社群互動功能（包含: 追蹤、點讚、通知系統），協助在台移工快速找到友善商家，促進文化交流與生活適應。
+
+  <img src="https://raw.githubusercontent.com/tema-liu/6w6wH/refs/heads/fixUiRequest/src/assets/Frame%201984077608.png" alt="描述文字" />
 
 ## 功能介紹
 
@@ -35,6 +44,14 @@
 - 會員查看通知
 
 ## 建議體驗流程
+
+- **登入用測試帳號:**
+
+```bash
+  帳號 : 6w6whtest@gmail.com
+  密碼 : 666666wh
+
+```
 
 - **遊客:**
 
@@ -153,9 +170,28 @@ VITE_API_URL= https://dev-api.yourwebsite.com
 | 修補錯誤  | 修正-      | 修正-API 串接邏輯錯誤            |
 | 樣式相關  | 樣式-      | 樣式-更改 PrimaryButton 按鈕樣式 |
 | 雜務相關  | 雜務-      | 雜務-安裝 i18n 套件              |
-| 重構代碼  | 重構-      | 重構-useDebounce 代碼            |
+| 重構代碼  | 重構-      | 重構-useDebounce 程式碼          |
 
 <!-- notionvc: 82013f6d-dca5-4cc5-a806-0510e476cd44 --><!--EndFragment-->
+
+---
+
+## Git 分支管理規範
+
+- Master（主分支）：專案的主要分支，只有穩定且測試完成的功能才會合併進來。
+- Layout（切版分支）：負責畫面開發，所有與 UI / CSS 相關的改動皆在此分支處理。
+- Logic（邏輯分支）：負責功能與邏輯開發，當開發時需要畫面，可從 Layout 分支取得對應的 UI。
+
+---
+
+## Git Flow
+
+![image.png](https://raw.githubusercontent.com/tema-liu/6w6wH/refs/heads/fixUiRequest/src/assets/Frame_2_2.png)
+
+- 最初主要分 Master、Layout、Logic 三種分支，主分支、切版、邏輯
+- 將路由 merge 到 Layout 分支時進行切版
+- 當我在 Logic 分支上需要畫面時，從 C1 取得畫面
+- 進行邏輯的途中，遇到 UI 改設計圖時，跳回分支 Layout 修正後，**C2 merge C1**取得修正後畫面便可持續開發，保持**Git Flow 整潔**
 
 ## 開發環境
 

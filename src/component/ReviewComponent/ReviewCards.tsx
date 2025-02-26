@@ -31,6 +31,7 @@ import {
   ProfileContent,
   ProfileTags,
   UserProfileMain,
+  ShopNameBox,
 } from "./style/ReviewCards";
 import Badges from "../Profile/BadgeWindow";
 import Country from "../Profile/ConuntryIcon";
@@ -40,6 +41,7 @@ import {
   userPicture,
 } from "../../constants/srcPaths";
 import useProfileClickHandler from "../../hooks/useProfileClickHandler";
+import VoiceReader from "../shop/VoiceReader";
 
 type CommentCard = {
   data: Comment;
@@ -221,13 +223,19 @@ export function ProfileReviewsCard({
         </CommentCardImgBox>
       )}
       <ProfileContent>
-        <ShopName
-          onClick={() => {
-            navigate(`/storeList/${data.storeId}`);
-          }}
-        >
-          {data.displayName}
-        </ShopName>
+        <ShopNameBox>
+          <ShopName
+            onClick={() => {
+              navigate(`/storeList/${data.storeId}`);
+            }}
+          >
+            {data.displayName}
+          </ShopName>
+          <VoiceReader
+            text={data.displayName ? data.displayName : ""}
+            $margin={"0 8px"}
+          />
+        </ShopNameBox>
         <ProfileReviewTop>
           <NameRating>
             <span style={{ display: "block" }}>{data.userName}</span>
