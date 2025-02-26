@@ -45,6 +45,14 @@
 
 ## 建議體驗流程
 
+- **登入用測試帳號:**
+
+```bash
+  帳號 : 6w6whtest@gmail.com
+  密碼 : 666666wh
+
+```
+
 - **遊客:**
 
 1. 瀏覽首頁「熱門店家」/「最新評論」
@@ -162,7 +170,7 @@ VITE_API_URL= https://dev-api.yourwebsite.com
 | 修補錯誤  | 修正-      | 修正-API 串接邏輯錯誤            |
 | 樣式相關  | 樣式-      | 樣式-更改 PrimaryButton 按鈕樣式 |
 | 雜務相關  | 雜務-      | 雜務-安裝 i18n 套件              |
-| 重構代碼  | 重構-      | 重構-useDebounce 代碼            |
+| 重構代碼  | 重構-      | 重構-useDebounce 程式碼          |
 
 <!-- notionvc: 82013f6d-dca5-4cc5-a806-0510e476cd44 --><!--EndFragment-->
 
