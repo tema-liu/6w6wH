@@ -30,6 +30,12 @@ function AddStoreCard({
   currentStore,
   setCurrentStore,
 }: AddStoreCardProps) {
+  const handleImageError = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    event.currentTarget.src = emptyPhoto;
+  };
+
   return (
     <Content>
       <div>
@@ -40,6 +46,7 @@ function AddStoreCard({
                 key={"photo" + index}
                 src={photo ? photo : emptyPhoto}
                 alt="photo"
+                onError={handleImageError}
               />
             ))
           ) : (
